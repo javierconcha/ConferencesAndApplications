@@ -1,0 +1,409 @@
+%\documentclass[final,t]{beamer}
+% more info: http://www-i6.informatik.rwth-aachen.de/~dreuw/latexbeamerposter.php
+\documentclass[mathserif]{beamer}
+\mode<presentation>
+{
+%  \usetheme{Warsaw}
+%  \usetheme{Aachen}
+%  \usetheme{Oldi6}
+%  \usetheme{I6td}
+%  \usetheme{I6dv}
+%  \usetheme{I6pd}
+%  \usetheme{I6pd2}
+%\usetheme{Icy}
+\usetheme{RIT6dvgreen}
+}
+% additional settings
+%\setbeamerfont{itemize}{size=\normalsize}
+%\setbeamerfont{itemize/enumerate body}{size=\normalsize}
+%\setbeamerfont{itemize/enumerate subbody}{size=\normalsize}
+
+\setbeamerfont{itemize}{size=\small}
+\setbeamerfont{itemize/enumerate body}{size=\small}
+\setbeamerfont{itemize/enumerate subbody}{size=\small}
+
+
+% additional packages
+\usepackage{times}
+\DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
+\usepackage{amsmath,amsthm, amssymb, latexsym}
+\usepackage{exscale}
+%\usepackage{subfig}
+\usepackage{booktabs, array}
+%\usepackage{rotating} %sideways environment
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+%\usepackage[orientation=landscape,size=custom,width=118,height=91,scale=1.9]{beamerposter}
+%\usepackage[orientation=landscape,size=custom,height=100,width=120,scale=1.2]{beamerposter}  %size=a0
+\usepackage[orientation=landscape,size=custom,height=111,width=90,scale=1.2]{beamerposter}  %size=a0
+%\listfiles
+%\graphicspath{{figures/}}
+% Display a grid to help align images
+%\beamertemplategridbackground[1cm]
+% \usepackage{tikz}
+% \usetikzlibrary{shapes,arrows,positioning,shadows,calc,plotmarks}
+\usepackage[footnotesize]{caption}
+\setbeamertemplate{caption}[numbered] % to add number to figures
+
+
+ 
+%\usepackage{caption}
+%\DeclareCaptionStyle{mystyle}{name=none}
+%\captionsetup[figure]{style=mystyle}
+\usepackage[]{graphicx}
+\usepackage{floatflt,subfigure}
+\setcounter{subfigure}{0}% Reset subfigure counter
+
+\usepackage{ragged2e}% for justify
+
+%%%% Added by Javier 04/21/14 %%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{filecontents}% http://ctan.org/pkg/filecontents
+\usepackage{silence}% http://ctan.org/pkg/silence
+\WarningFilter{latex}{Overwriting file}% Remove LaTeX warnings starting with "Overwriting file"
+% \begin{filecontents*}{linereg.data}
+% #x y
+% 0 4
+% 10 24
+% \end{filecontents*} 
+
+% \begin{filecontents*}{linereg2.data}
+% #x y
+% 2 8
+% 8 20
+% \end{filecontents*} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{ \huge In-Water Component Retrieval over Case 2 Water using Landsat 8:\\ Initial Results}
+\author[]{Javier A. Concha and John R. Schott}
+\institute[Rochester Institute of Technology]{Digital Imaging and Remote Sensing Laboratory, Chester F. Carlson Center for Imaging Science\\ Rochester Institute of Technology, Rochester, New York, USA}
+% \date{\today}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% t
+\begin{document}
+\begin{frame}{} 
+  \begin{columns}[t]
+    
+
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% COLUMN 1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{column}{.3\linewidth}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%BLOCK 1 (column 1)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{block}{Introduction}
+\justifying\small Ocean color satellites (i.e. MODIS, SeaWiFS) are designed for studying large-scale water bodies and therefore perform well for retrieving water quality parameters at a global scale. However, medium scale (i.e. hundred of meters) water bodies are not resolvable by these kinds of satellites due to their spatial resolution (i.e. 1000m).\\
+\begin{center}
+\begin{figure}[H]
+\centering
+  \includegraphics[height=9cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/NESSF14/latex/ResolComp.pdf}
+  \caption{Spatial resolution comparison between Terra-MODIS (500m) and Landsat 8 (30m). \label{fig:resol} } 
+\end{figure}
+\end{center}
+% \vspace{.5cm}
+\end{block}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% BLOCK 2 (column 1)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      
+\begin{block}{Goal}
+\justifying\small 
+To use the Landsat 8 satellite for retrieval of color producing agents (CPAs) (chlorophyll-{\it a}, sediments (total suspended solid or TSS) and colored dissolved organic matter (CDOM)) over inland and coastal waters (Case 2 waters). 
+\end{block}
+%-------------------------------
+\begin{block}{Landsat 8}
+\begin{figure}[htb]
+\begin{minipage}[c]{0.48\linewidth}
+\small
+\begin{itemize}
+	\item Optical satellite (passive)
+	\vspace{.2cm}
+	\item Multispectral: 4 VIS, 1 NIR, \\2 SWIR, 1 Pan, 2 Thermal
+	\vspace{.2cm}
+	\item Spatial resolution: 15/30/100m
+	\vspace{.2cm}
+	\item Temporal resolution: 16 days
+	\vspace{.2cm}
+	\item Bit depth: 12-bits quantization (4096 levels)
+	\vspace{.2cm}
+	\item Pushbroom satellite
+\end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.48\linewidth}
+  	\centering
+  	\includegraphics[height=8cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/Proposal/Images/LC80160302013262LGN00subset.jpg}
+  \caption{Landsat 8 image over Rochester. \label{fig:Scene} } 
+\end{minipage}
+\end{figure}
+
+\vspace{-.5cm}
+\end{block}
+%-------------------------------
+\begin{block}{The Retrieval Process}
+\justifying\small First, a model-based empirical line method (ELM)~\cite{Concha2014SPIE} is used to correct the Landsat 8 imagery for atmospheric effects, having reflectance of water pixels as output. Then, the concentration of these water pixels are estimated by a nonlinear optimization routine that searches in a look-up table (LUT) created with the in water radiative transfer model, Hydrolight.
+\vspace{1cm}   
+%-------------------------------
+\begin{center}
+\begin{figure}[H]
+    \includegraphics[height=15.4cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2014_ASPRS_SOY/Images/RetProcess.pdf}
+    \caption{CPAs Retrieval Process}
+\end{figure}
+\end{center}
+\end{block}
+
+% ----------------------------------------------
+\begin{block}{Empirical Line Method (ELM)}
+\begin{itemize}
+  \item \small Linear relationship between radiance $L$ and reflectance $r_d$:
+\begin{equation}\label{eq:ELM}
+  L(\lambda)=m\times r_d(\lambda)+b
+\end{equation}
+
+\vspace{0.005cm}
+\item \small At least two pixels from the scene: {\bf \small Dark} and {\bf \small Bright} Pixels
+
+\end{itemize}
+
+% \begin{figure}[htb]
+%   \centering
+% \resizebox{15cm}{!}{%
+% \begin{tikzpicture}[x=2.8ex,y=.7ex]
+%   %axis
+%   \draw (0,0) -- coordinate (x axis mid) (10,0);
+%     \draw (0,0) -- coordinate (y axis mid) (0,30);
+%     %ticks
+%  %    \foreach \x in {0,...,10}
+%  %      \draw (\x,1pt) -- (\x,-3pt)
+%   % node[anchor=north] {\x};
+%  %    \foreach \y in {0,5,...,30}
+%  %      \draw (1pt,\y) -- (-3pt,\y) 
+%  %        node[anchor=east] {\y}; 
+%     %labels      
+%   \node[below=0ex] at (8,0) {\small $Band_i~~reflectance~(r_d)$};
+%   \node[rotate=90] at (-.5,23) {\small $Band_i~~Radiance~(L)$};
+
+%   \node[below=.2ex] at (-2.1,4.5) {\small $b=$offset};
+%   \node[below=1.4ex] at (-2.1,4.0) {\scriptsize (path radiance)};
+%   \draw[rotate=90,|<->|] (0,1) -- coordinate (x axis mid) (1,1);
+
+%   \node[below=0ex] at (2,16) {\small Dark Object};
+%   \draw[arrows=-triangle 45] (2,12.5) -- (2,9);
+
+%   \node[below=0ex] at (4,21) {\small $m=$ Slope};
+%   \draw[arrows=-triangle 45] (4,17.5) -- (5,14.5);
+
+%   \node[below=0ex] at (7,28) {\small Bright Object};
+%   \draw[arrows=-triangle 45] (7,24.5) -- (7.9,20.5);
+
+%   \node[below=0ex] at (8,9) {\small $r_d=(L-b)/m$};
+
+%   %plots
+%   \draw plot 
+%     file {linereg.data};
+%   \draw plot[mark=*] 
+%     file {linereg2.data};
+
+% \end{tikzpicture}
+%   }%close \resizebox
+% \caption{Regression used in ELM to solve the linear relationship between reflectance $r_d$ and radiance $L$ using a dark and bright pixel from the scene. \label{fig:ELM}}
+% \end{figure}
+%-------------------------------
+\vspace{-.5cm}
+\end{block}
+
+\end{column}   
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% COLUMN 2      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ \begin{column}{.3\linewidth}  %.29\linewidth (3-columns) %0.46\linewidth (2-columns)
+%%%%%%%%%%%%%%%%%%%%%
+% BLOCK 1 (column 2) 
+%%%%%%%%%%%%%%%%%%%%%
+%-------------------------------
+
+% -----------------------------------------------
+\begin{block}{Hydrolight}
+\small
+\begin{itemize}
+  \item In-water radiative transfer model
+  \vspace{0.5cm}
+  \item Inputs: inherent optical properties (IOPs), concentrations, geometry, etc.
+  \vspace{0.5cm}
+  \item Output: spectral reflectance, radiance distributions and derived quantities (irradiances, K functions, etc.)
+  \vspace{0.5cm}
+  \item For the Dark Pixel and LUT generation
+\end{itemize}
+\vspace{1cm}
+\begin{figure}[H]
+    \includegraphics[height=18cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2014_ASPRS_SOY/Images/HLdiagram.pdf}
+    \caption{Hydrolight model}
+\end{figure}
+% \hspace{12cm}{\scriptsize $*~$IOPs: Inherent Optical Properties}
+% \vspace{1cm}
+\end{block}
+
+% -----------------------------------------------
+
+\begin{block}{Atmospheric Correction: Model-based ELM}
+{\large \bf Bright Pixel}
+\begin{itemize}
+    \item Radiance: pseudo-invariant features (PIF) from Landsat 8 image
+    \vspace{0.5cm}
+    \item Reflectance: PIF from Landsat reflectance product
+\end{itemize}
+\vspace{0.3cm}
+{\large \bf Dark Pixel}
+
+\begin{itemize}
+    \item Radiance: region of interest (ROI) over water from Landsat 8 image
+    \vspace{0.5cm}
+    \item Reflectance: Hydrolight
+\end{itemize}
+\vspace{1cm}
+\begin{figure}[htb]
+  \centering
+    \includegraphics[height=14.55cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2014_RITResearchSymposium/Images/StudyArea.png}
+  \caption{ROI for the Dark Pixel \label{fig:ROIDark} } 
+\end{figure}
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=26.5cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/Proposal/Images/ELMpixelsENVI.pdf}
+  \caption{Bright and Dark pixels used in ENVI to apply ELM. (a) Data spectra and (b) Field spectra \label{fig:ELMpxsENVI} } 
+\end{figure}
+
+\begin{figure}
+    \centering
+      \includegraphics[height=10cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/NESSF14/latex/WaterPixels_2.eps}
+      \caption{Water pixel spectra.}
+      \label{fig:waterpxs}
+\end{figure}
+\vspace{-.2cm}
+\end{block}
+
+
+\end{column}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%COLUMN 3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ \begin{column}{.3\linewidth}
+%%%%%%%%%%%%%%%%%%%%%        
+% Block 1 (column 3)      
+%%%%%%%%%%%%%%%%%%%%%
+% \vspace{.5cm}
+%-----------------------
+\begin{block}{Look-Up Table}
+
+\begin{figure}[htb]
+  \begin{minipage}[c]{0.44\linewidth}
+    \begin{table}[!ht]
+    \caption{\small Concentrations used to create the LUT in Hydrolight. \label{tab:LUTconc} } 
+    \centering\footnotesize
+    \begin{tabular}{c|c|c}
+                \bfseries{$<CHL>$}    & \bfseries{$<TSS>$}  & \bfseries{$a_{CDOM}(440)$}\\
+        $[ug/L]$      & $[mg/L]$ &  $[1/m]$\\ \hline \hline
+    0.1   & 1.0  &  0.11\\
+    1.0   & 2.0  &  0.15\\
+    10.0   & 5.0  &  0.21\\
+    40.0   & 10.0 &  0.6 \\
+    90.0  & 25.0 &  1.0 \\
+    110.0  & 45.0 &  1.2 \\
+    150.0  & 50.0 &  --  \\     
+        \end{tabular}
+    \end{table}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[d]{0.54\linewidth}  
+    \centering
+      \includegraphics[height=10cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2014_ASPRS_SOY/Images/LUT.eps}
+      \caption{LUT created in HydroLight}
+      \label{fig:LUT}
+  \end{minipage}
+\end{figure}
+
+\end{block}
+%-------------------------------------
+\begin{block}{Retrieval}
+  \begin{itemize}
+    \item Spectral matching technique to predict concentration of CPAs
+    \vspace{0.5cm}
+    \item Comparison between spectral shape of water pixel (unknown concentrations) with the LUT (known concentrations)using a nonlinear optimization routine that solves nonlinear least-square problem
+  \end{itemize}
+\end{block}
+
+\begin{block}{Results}
+
+\begin{figure}[htb]
+\centering
+\includegraphics[trim=200 100 180 0,clip,height=15.8cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2014_RITResearchSymposium/Images/RetrievalResults.eps}
+   \caption{Retrieval preliminary results.}
+      \label{fig:retrievalresults} 
+\end{figure}
+
+\begin{figure}[htb]
+  \begin{minipage}[c]{0.48\linewidth}
+    \centering
+      \includegraphics[height=9.5cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/IGARSS2014/paper/Images/chlcomp.eps} 
+      \vspace{.3cm}
+      % \centerline{(a)}\medskip
+      \label{fig:chlcomp} 
+  \end{minipage}
+  \hfill
+  \begin{minipage}[d]{0.48\linewidth}
+    \centering
+      \includegraphics[height=9.5cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/IGARSS2014/paper/Images/tsscomp.eps}   
+      \vspace{.3cm}
+      % \centerline{(b)}\medskip
+      \label{fig:tsscomp} 
+  \end{minipage}
+  \\
+  \begin{minipage}[d]{0.48\linewidth}
+    \centering
+      \includegraphics[height=9.5cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/IGARSS2014/paper/Images/cdomcomp.eps}    
+      \vspace{.3cm}
+      % \centerline{(c)}\medskip
+      \label{fig:cdomcomp}
+  \end{minipage}  
+  \caption{Comparison between retrieved vs measured CPAs concentrations}
+\end{figure}          
+
+  %-------------   
+
+\end{block}  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{block}{Conclusion}
+	
+\justifying\small A retrieval process to simultaneously retrieve the CPAs using Landsat 8 images was developed. The first step is to atmospherically correct the image using a model-based ELM that uses PIF extraction for the bright pixel determination and the radiative transfer model Hydrolight for the dark pixel. Then, an nonlinear optimization routine is used to estimate the CPAs concentration for each water pixel from the LUT created in Hydrolight. Initial results were presented that exhibit expected trend for the concentration in the lake and nearby ponds. A comparison with field measurements showed good agreement at low concentrations but differences at higher concentrations.
+\vspace{.3cm}
+\end{block}
+
+
+\begin{block}{References} 
+   
+ { \scriptsize 
+\setbeamertemplate{bibliography item}[text]
+				\bibliographystyle{spiebib}
+				\bibliography{/Users/javier/Desktop/Javier/PHD_RIT/Latex/javier_bib}
+}
+\end{block} 
+
+\end{column}
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{columns}
+\end{frame}
+
+\end{document}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-PDF-mode: t
+%%% End:
+
+%spelling checked
