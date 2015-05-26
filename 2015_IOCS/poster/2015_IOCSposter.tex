@@ -40,8 +40,8 @@
 %\graphicspath{{figures/}}
 % Display a grid to help align images
 %\beamertemplategridbackground[1cm]
-% \usepackage{tikz}
-% \usetikzlibrary{shapes,arrows,positioning,shadows,calc,plotmarks}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,positioning,shadows,calc,plotmarks}
 \usepackage[footnotesize]{caption}
 \setbeamertemplate{caption}[numbered] % to add number to figures
 
@@ -60,17 +60,17 @@
 \usepackage{filecontents}% http://ctan.org/pkg/filecontents
 \usepackage{silence}% http://ctan.org/pkg/silence
 \WarningFilter{latex}{Overwriting file}% Remove LaTeX warnings starting with "Overwriting file"
-% \begin{filecontents*}{linereg.data}
-% #x y
-% 0 4
-% 10 24
-% \end{filecontents*} 
+\begin{filecontents*}{linereg.data}
+#x y
+0 4
+10 24
+\end{filecontents*} 
 
-% \begin{filecontents*}{linereg2.data}
-% #x y
-% 2 8
-% 8 20
-% \end{filecontents*} 
+\begin{filecontents*}{linereg2.data}
+#x y
+2 8
+8 20
+\end{filecontents*} 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \title{ \huge In-Water Component Retrieval over Case 2 Water using Landsat 8:\\ Initial Results}
@@ -166,50 +166,49 @@ To use the Landsat 8 satellite for retrieval of color producing agents (CPAs) (c
 \item \small At least two pixels from the scene: {\bf \small Dark} and {\bf \small Bright} Pixels
 
 \end{itemize}
+\begin{figure}[htb]
+  \centering
+\resizebox{15cm}{!}{%
+\begin{tikzpicture}[x=2.8ex,y=.7ex]
+  %axis
+  \draw (0,0) -- coordinate (x axis mid) (10,0);
+    \draw (0,0) -- coordinate (y axis mid) (0,30);
+    %ticks
+ %    \foreach \x in {0,...,10}
+ %      \draw (\x,1pt) -- (\x,-3pt)
+  % node[anchor=north] {\x};
+ %    \foreach \y in {0,5,...,30}
+ %      \draw (1pt,\y) -- (-3pt,\y) 
+ %        node[anchor=east] {\y}; 
+    %labels      
+  \node[below=0ex] at (8,0) {\small $Band_i~~reflectance~(r_d)$};
+  \node[rotate=90] at (-.5,23) {\small $Band_i~~Radiance~(L)$};
 
-% \begin{figure}[htb]
-%   \centering
-% \resizebox{15cm}{!}{%
-% \begin{tikzpicture}[x=2.8ex,y=.7ex]
-%   %axis
-%   \draw (0,0) -- coordinate (x axis mid) (10,0);
-%     \draw (0,0) -- coordinate (y axis mid) (0,30);
-%     %ticks
-%  %    \foreach \x in {0,...,10}
-%  %      \draw (\x,1pt) -- (\x,-3pt)
-%   % node[anchor=north] {\x};
-%  %    \foreach \y in {0,5,...,30}
-%  %      \draw (1pt,\y) -- (-3pt,\y) 
-%  %        node[anchor=east] {\y}; 
-%     %labels      
-%   \node[below=0ex] at (8,0) {\small $Band_i~~reflectance~(r_d)$};
-%   \node[rotate=90] at (-.5,23) {\small $Band_i~~Radiance~(L)$};
+  \node[below=.2ex] at (-2.1,4.5) {\small $b=$offset};
+  \node[below=1.4ex] at (-2.1,4.0) {\scriptsize (path radiance)};
+  \draw[rotate=90,|<->|] (0,1) -- coordinate (x axis mid) (1,1);
 
-%   \node[below=.2ex] at (-2.1,4.5) {\small $b=$offset};
-%   \node[below=1.4ex] at (-2.1,4.0) {\scriptsize (path radiance)};
-%   \draw[rotate=90,|<->|] (0,1) -- coordinate (x axis mid) (1,1);
+  \node[below=0ex] at (2,16) {\small Dark Object};
+  \draw[arrows=-triangle 45] (2,12.5) -- (2,9);
 
-%   \node[below=0ex] at (2,16) {\small Dark Object};
-%   \draw[arrows=-triangle 45] (2,12.5) -- (2,9);
+  \node[below=0ex] at (4,21) {\small $m=$ Slope};
+  \draw[arrows=-triangle 45] (4,17.5) -- (5,14.5);
 
-%   \node[below=0ex] at (4,21) {\small $m=$ Slope};
-%   \draw[arrows=-triangle 45] (4,17.5) -- (5,14.5);
+  \node[below=0ex] at (7,28) {\small Bright Object};
+  \draw[arrows=-triangle 45] (7,24.5) -- (7.9,20.5);
 
-%   \node[below=0ex] at (7,28) {\small Bright Object};
-%   \draw[arrows=-triangle 45] (7,24.5) -- (7.9,20.5);
+  \node[below=0ex] at (8,9) {\small $r_d=(L-b)/m$};
 
-%   \node[below=0ex] at (8,9) {\small $r_d=(L-b)/m$};
+  %plots
+  \draw plot 
+    file {linereg.data};
+  \draw plot[mark=*] 
+    file {linereg2.data};
 
-%   %plots
-%   \draw plot 
-%     file {linereg.data};
-%   \draw plot[mark=*] 
-%     file {linereg2.data};
-
-% \end{tikzpicture}
-%   }%close \resizebox
-% \caption{Regression used in ELM to solve the linear relationship between reflectance $r_d$ and radiance $L$ using a dark and bright pixel from the scene. \label{fig:ELM}}
-% \end{figure}
+\end{tikzpicture}
+  }%close \resizebox
+\caption{Regression used in ELM to solve the linear relationship between reflectance $r_d$ and radiance $L$ using a dark and bright pixel from the scene. \label{fig:ELM}}
+\end{figure}
 %-------------------------------
 \vspace{-.5cm}
 \end{block}
