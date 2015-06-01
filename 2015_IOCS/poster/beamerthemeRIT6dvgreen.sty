@@ -1,0 +1,205 @@
+% !TEX root=SPIE2014Poster.tex 
+\ProvidesPackage{beamerthemeRIT6dvgreen} % this style was created by David Vilar
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\selectcolormodel{cymk}
+%\mode<presentation>
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\selectcolormodel{HTML}
+\mode<presentation>
+
+% custom colors
+% http://www.colorsontheweb.com/colorwizard.asp#wizard, used start set: #535967
+% 535967 (mittel) 
+% 0e0f12 (schwarz)
+% a0a5b2 (hell) 
+% 5d5d5d (gray)   
+% cd995d (orange, hell) 
+% F79C32 (orange, mittel) 
+% FF7e00 (orange, stark) 
+% FFBD00 (orange, gelblich) 
+ 
+%% ICY COLOR THEME (grays) %561010
+\definecolor{i6colorscheme1}{HTML}{0033cc}  %  e.g. for headline background 000800
+%\definecolor{i6colorscheme2}{HTML}{ffffff}  %  e.g. title in headline
+\definecolor{i6colorscheme3}{HTML}{c9d0e0}  %  e.g. for poster background
+\definecolor{i6colorscheme4}{HTML}{5d5d5d}  %  e.g. for block background
+\definecolor{i6colorscheme5}{HTML}{FFFFFF}  %  e.g. title in headline, separation lines
+\definecolor{i6colorscheme6}{HTML}{c00000}   %  e.g. for alert (orange)
+
+\definecolor{i6colorblock7}{HTML}{FCE94F} %(yellow block header label color)
+%% ICY COLOR THEME 2
+
+
+%\definecolor{i6colorscheme1}{rgb}{0.8,0.6,0.6}  %  e.g. for headline background
+%\definecolor{i6colorscheme2}{rgb}{1.0,1.0,1.0}  %  e.g. title in headline
+%\definecolor{i6colorscheme3}{rgb}{0.3,0.3,0.3}  %  e.g. for poster background
+%\definecolor{i6colorscheme4}{rgb}{0.85,0.85,0.85}  %  e.g. for block background
+%\definecolor{i6colorscheme5}{rgb}{1.0,1.0,1.0}  %  e.g. title in headline, separation %lines
+%\definecolor{i6colorscheme6}{rgb}{0,0,0}  %  e.g. for alert
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% headline colors and fonts
+\setbeamercolor{headline}{fg=i6colorscheme5,bg=i6colorscheme1}
+\setbeamercolor{title in headline}{fg=i6colorscheme5}
+\setbeamercolor{author in headline}{fg=i6colorscheme5}
+\setbeamercolor{institute in headline}{fg=i6colorscheme3}
+\setbeamercolor{logo in headline}{fg=black,bg=i6colorscheme3}
+
+% lines
+%\setbeamercolor{upper separation line head}{fg=ta2orange}
+\setbeamercolor{separation line}{bg=i6colorscheme5}
+
+% footline colors and fonts
+\setbeamercolor{footline}{fg=i6colorscheme5,bg=i6colorscheme1}
+\setbeamerfont{footline}{size=\normalsize,series=\bf}
+
+% poster background, body colors, and fonts
+\setbeamercolor*{normal text}{fg=black,bg=i6colorscheme3}
+
+% block environment
+\setbeamercolor*{block body}{bg=i6colorscheme5,fg=black}
+\setbeamercolor*{block title}{fg=i6colorblock7,bg=i6colorscheme1} %fg=i6colorscheme5
+\setbeamerfont{block title}{size=\large,series=\bf}
+
+% example environment
+\setbeamercolor*{example title}{fg=i6colorscheme5,bg=i6colorscheme1}
+\setbeamerfont{example title}{size=\large,series=\bf}
+
+%\setbeamercolor*{example body}{fg=i6colorscheme5,bg=i6colorscheme4}
+%\setbeamercolor*{example title}{fg=i6colorscheme5,bg=i6colorscheme1}
+
+%  \setbeamercolor{framesubtitle}{fg=ta3orange, bg=ta2gray}
+%  \setbeamercolor{author in head/foot}{fg=tabutter, bg=black}
+%  \setbeamercolor{title in head/foot}{bg=tabutter, fg=black}
+
+\setbeamercolor{alerted text}{fg=i6colorscheme6}
+
+%\setbeamercolor{example text}{fg=taorange}
+%\setbeamercolor{structure}{fg=ta3skyblue}
+
+\setbeamertemplate{itemize items}[triangle]
+\setbeamertemplate{navigation symbols}{}  % no navigation on a poster
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setbeamertemplate{block begin}{
+  \vskip.75ex
+  \begin{beamercolorbox}[leftskip=1cm,colsep*=.75ex]{block title}%
+    \usebeamerfont*{block title}\insertblocktitle
+  \end{beamercolorbox}%
+  {\ifbeamercolorempty[bg]{block body}{}{\nointerlineskip\vskip-0.5pt}}%
+  \usebeamerfont{block body}%
+  \begin{beamercolorbox}[colsep*=.75ex,sep=.75ex,vmode]{block body}%
+    \ifbeamercolorempty[bg]{block body}{\vskip-.25ex}{\vskip-.75ex}\vbox{}%
+  }
+  \setbeamertemplate{block end}{
+  \end{beamercolorbox}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setbeamertemplate{headline}{  
+  \leavevmode
+
+  \begin{beamercolorbox}[wd=\paperwidth]{headline}
+    \begin{columns}[T]
+      \begin{column}{.02\paperwidth}
+      \end{column}
+%------------------------------ 
+      \begin{column}{.1\paperwidth}
+        \vskip1.5cm 	%1.5cm was the default      	  
+		    \centering      
+				\includegraphics[width=0.7\linewidth]{/Users/javier/Desktop/Javier/MASTER_RIT/GLRCconference/Poster2/rit_seal}
+				\vspace{0.5cm}
+				\vskip.5cm
+				\includegraphics[width=7cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/SPIE2014/poster_latex/usgs_logoblack.png}
+        \vspace{.5cm}
+      \end{column}
+%------------------------------
+     \begin{column}{.80\paperwidth} %.678
+        \vskip2.0cm
+        \centering		
+		    \usebeamercolor{title in headline}{\color{fg}\textbf{\LARGE{\inserttitle}}\\[1ex]}
+        \vspace{.5cm}
+       	\usebeamercolor{author in headline}{\color{fg}\Large{\insertauthor}\\[1ex]}
+        \usebeamercolor{institute in headline}{\color{fg}\large{\insertinstitute}\\[1ex]}     
+      	\vskip4ex
+		\end{column}
+%------------------------------
+    \begin{column}{.1\paperwidth}
+        \vskip2.5cm 	%1.5cm was the default      	  
+		    \raggedright  
+				\includegraphics[width=0.7\linewidth]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2014_ASPRS_SOY/Images/dirs_logo.png}
+        \vskip.5cm  
+    \end{column}
+ \end{columns}
+  \end{beamercolorbox}
+  
+  
+  \begin{beamercolorbox}[wd=\paperwidth]{lower separation line head}
+    \rule{0pt}{2pt}
+  \end{beamercolorbox}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setbeamertemplate{footline}{
+  \begin{beamercolorbox}[wd=\paperwidth]{upper separation line foot}
+    \rule{0pt}{2pt}
+  \end{beamercolorbox}
+  
+  \begin{beamercolorbox}[ht=6.5ex,leftskip=1cm,rightskip=1cm]{footline}%
+\begin{columns}[T]  
+	\begin{column}{.3\paperwidth}
+	\vskip7cm 
+   	 	\hspace{2cm} Contact: Javier A. Concha\hspace{1ex} {\texttt{jxc4005@rit.edu}} 
+	\end{column}
+	
+	\begin{column}{.05\paperwidth}  
+	\vskip6cm    			
+	\raggedright	
+		\includegraphics[width=2.5cm]{/Users/javier/Desktop/Javier/MASTER_RIT/IGARSS12/poster/Javier.jpg}
+	\end{column}	
+
+  %----------------------------------------------
+    \begin{column}{.3\paperwidth}
+  \vskip7cm 
+      \hspace{4cm} John R. Schott\hspace{1ex} {\texttt{schott@cis.rit.edu}} 
+  \end{column}
+  \hspace{-2cm}
+  \begin{column}{.03\paperwidth}  
+  \vskip6cm         
+  % \raggedright  
+    \includegraphics[width=2.5cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/SPIE2014/poster_latex/john-schottcut.png}
+  \end{column}  
+  %----------------------------------------------
+	
+	\begin{column}{.3\paperwidth} 
+	\vskip7cm  
+	\raggedleft
+	 	{ \texttt{http://dirs.cis.rit.edu}} 
+	\hspace{2cm}	
+	 \end{column}
+	
+ \end{columns}  
+    \vskip1ex
+  \end{beamercolorbox}
+
+  \begin{beamercolorbox}[wd=\paperwidth]{lower separation line foot}
+    \rule{0pt}{2pt}
+  \end{beamercolorbox}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\mode<all>
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "poster"
+%%% TeX-PDF-mode: t
+%%% End: 
