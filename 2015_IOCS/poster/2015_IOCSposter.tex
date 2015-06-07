@@ -101,9 +101,9 @@ To use the Landsat 8 satellite for retrieval of color producing agents (CPAs) (c
 %% BLOCK 2 (column 1)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{block}{Introduction}
-\justifying\small New approaches need to be considered to solve the current high demand for color producing agent (CPA) retrievals over Case 2 waters. Standard retrieval algorithms are known to fail over highly turbid Case 2 waters because they were developed specifically for the Case 1 waters. Landsat 8 provides an improved signal-to-noise ratio (SNR) and a new spectral coastal aerosol band in the blue. This additional information provides means to tackle this retrieval endeavor. A look-up-table (LUT) and spectrum-matching methodology was implemented to simultaneously retrieve CPAs, taking advantage of Landsat 8's new features. A LUT of spectral remote-sensing reflectances ($R_{rs}$) with different concentration of CPAs was produced using the in-water radiative transfer model Hydrolight. A model-based empirical line method (MoB-ELM) algorithm was developed to atmospherically correct the Landsat 8 imagery and allow direct comparison with the LUT of $R_{rs}$. This MoB-ELM atmospheric correction algorithm uses pseudo-invariant features (PIFs) from the image, ground-truth data and the Hydrolight model.
+\justifying\small New approaches need to be considered to solve the current high demand for color producing agent (CPA) retrievals over Case 2 waters. Standard retrieval algorithms are known to fail over highly turbid Case 2 waters because they were developed specifically for the Case 1 waters. Landsat 8 provides an improved signal-to-noise ratio (SNR) and a new spectral coastal aerosol band in the blue. This additional information provides means to tackle this retrieval endeavor. %A look-up-table (LUT) and spectrum-matching methodology was implemented to simultaneously retrieve CPAs, taking advantage of Landsat 8's new features. A LUT of spectral remote-sensing reflectances ($R_{rs}$) with different concentration of CPAs was produced using the in-water radiative transfer model Hydrolight. A model-based empirical line method (MoB-ELM) algorithm was developed to atmospherically correct the Landsat 8 imagery and allow direct comparison with the LUT of $R_{rs}$. This MoB-ELM atmospheric correction algorithm uses pseudo-invariant features (PIFs) from the image, ground-truth data and the Hydrolight model.
 
-The retrieval algorithm was applied over two Landsat 8 scenes and shows a root mean squared error (RMSE) as a percentage of range of about 10\% for Chlorophyll-a and total suspended solid (TSS), and about 5\% for colored dissolved organic matter (CDOM) when compared with ground-truth data. The CPA concentration maps exhibit expected trends of low concentrations in clear water and higher concentrations in turbid water. These results show that the Landsat 8 satellite can be utilized over Case 2 waters as long as a careful atmospheric correction is applied.\\
+%The retrieval algorithm was applied over two Landsat 8 scenes and shows a root mean squared error (RMSE) as a percentage of range of about 10\% for Chlorophyll-a and total suspended solid (TSS), and about 5\% for colored dissolved organic matter (CDOM) when compared with ground-truth data. The CPA concentration maps exhibit expected trends of low concentrations in clear water and higher concentrations in turbid water. These results show that the Landsat 8 satellite can be utilized over Case 2 waters as long as a careful atmospheric correction is applied.\\
 \begin{center}
 \begin{figure}[H]
 \centering
@@ -118,15 +118,15 @@ The retrieval algorithm was applied over two Landsat 8 scenes and shows a root m
 
 %-------------------------------
 \begin{block}{Landsat 8}
-\begin{figure}[htb]
-\begin{minipage}[c]{0.48\linewidth}
-\small
+% \begin{figure}[htb]
+% \begin{minipage}[c]{0.48\linewidth}
+% \small
 \begin{itemize}
   \item Optical satellite (passive)
   \vspace{.2cm}
-  \item Multispectral: 4 VIS, 1 NIR, \\2 SWIR, 1 Pan, 2 Thermal
+  \item Multispectral: 4 VIS, 1 NIR, 2 SWIR, 1 Pan, 2 Thermal
   \vspace{.2cm}
-  \item Spatial resolution: 15/30/100m
+  \item Spatial resolution: 15m Pan/30m VIS-NIR/100m Thermal
   \vspace{.2cm}
   \item Temporal resolution: 16 days
   \vspace{.2cm}
@@ -134,13 +134,14 @@ The retrieval algorithm was applied over two Landsat 8 scenes and shows a root m
   \vspace{.2cm}
   \item Pushbroom satellite
 \end{itemize}
-\end{minipage}
-\hfill
-\begin{minipage}[c]{0.48\linewidth}
+% \end{minipage}
+% \hfill
+\begin{figure}[htb]
+% \begin{minipage}[c]{0.48\linewidth}
     \centering
-    \includegraphics[trim=30 350 30 350,clip,width=8cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/WholeImage130919}
+    \includegraphics[trim=30 350 30 350,clip,width=12cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/WholeImage130919}
   \caption{Landsat 8 image over Rochester. \label{fig:Scene} } 
-\end{minipage}
+% \end{minipage}
 \end{figure}
 
 \vspace{-.5cm}
