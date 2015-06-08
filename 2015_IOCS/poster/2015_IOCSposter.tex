@@ -87,7 +87,7 @@
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % COLUMN 1
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{column}{.3\linewidth}
+\begin{column}{.31\linewidth}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 %BLOCK 1 (column 1)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -116,9 +116,7 @@ To use the Landsat 8 satellite for retrieving of color producing agents (CPAs) (
 
 %-------------------------------
 \begin{block}{Landsat 8}
-\begin{figure}[htb]
-\begin{minipage}[c]{0.48\linewidth}
-\small
+
 \begin{itemize}
 	\item Optical satellite (passive)
 	\vspace{.2cm}
@@ -132,33 +130,31 @@ To use the Landsat 8 satellite for retrieving of color producing agents (CPAs) (
 	\vspace{.2cm}
 	\item Pushbroom satellite
 \end{itemize}
-\end{minipage}
-\hfill
-\begin{minipage}[c]{0.48\linewidth}
+
+\begin{figure}[htb]
   	\centering
   	\includegraphics[trim=30 350 30 350,clip,width=12cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/WholeImage130919}
   \caption{Landsat 8 image over Rochester. \label{fig:Scene} } 
-\end{minipage}
 \end{figure}
 
 \begin{figure}[htb]
   \centering
   \includegraphics[trim=0 90 0 110,clip,width=24cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/ROI_RocEmbayment130919_150424}
-  \caption{Landsat 8 scene acquired on 09-19-2013 (scene LC80160302013262LGN00) showing the sites in the Rochester Embayment for the water sample collection. (Labels: ONTNS: Lake Ontario near-shore, ONTOS: Lake Ontario off-shore, LONGS: Long Pond south, LONGN: Long Pond north, CRANB: Cranberry Pond and IBAYN: Irondequoit Bay north)\label{fig:091913Sites} } 
+  \caption{Landsat 8 scene acquired on 09-19-2013 showing the sites in the Rochester Embayment for the water sample collection. \label{fig:091913Sites} } 
 \end{figure}
 
 \vspace{-.5cm}
 \end{block}
 %-------------------------------
 \begin{block}{The Retrieval Process}
-\justifying\small First, a model-based empirical line method (ELM) is used to correct the Landsat 8 imagery for atmospheric effects, having reflectance of water pixels as output. Then, the concentration of these water pixels are estimated by a nonlinear optimization routine that searches in a look-up table (LUT) created with the in water radiative transfer model, Hydrolight.
+\justifying\small The radiance image from the satellite is first corrected for atmospheric effects, having as result $R_{rs}$ spectra for each water pixel in the image. Then, a spectrum-matching methodology is used to find the closest match in the least-squared sense for the water pixels with unknown CPAs concentration in the LUT of water pixels with known CPAs concentration. The final result is a concentration map for each CPA.
 \vspace{1cm}   
 %-------------------------------
 \begin{center}
 \begin{figure}[htbp!]
   \centering
     \includegraphics[height=15cm]{./Images/Retrieval_RMSE.png}
-    \caption{Retrieval process flow diagram. The radiance image from the satellite is first corrected for atmospheric effects, having as result $R_{rs}$ spectra for each water pixel in the image. Then, a spectrum-matching methodology is used to find the closest match in the least-squared sense for the water pixels with unknown CPAs concentration in the LUT of water pixels with known CPAs concentration. The final result is a concentration map for each CPA.  \label{fig:retrieval} }
+    \caption{Retrieval process flow diagram.   \label{fig:retrieval} }
 \end{figure}
 \end{center}
 \end{block}
@@ -169,7 +165,7 @@ To use the Landsat 8 satellite for retrieving of color producing agents (CPAs) (
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % COLUMN 2      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- \begin{column}{.3\linewidth}  %.29\linewidth (3-columns) %0.46\linewidth (2-columns)
+ \begin{column}{.31\linewidth}  %.29\linewidth (3-columns) %0.46\linewidth (2-columns)
 %%%%%%%%%%%%%%%%%%%%%
 % BLOCK 1 (column 2) 
 %%%%%%%%%%%%%%%%%%%%%
@@ -181,11 +177,11 @@ To use the Landsat 8 satellite for retrieving of color producing agents (CPAs) (
 \begin{itemize}
   \item In-water radiative transfer model
   \vspace{0.5cm}
-  \item Inputs: inherent optical properties (IOPs), concentrations, geometry, etc.
+  \item Inputs: inherent optical properties (IOPs), IOPs concentrations, geometry, etc.
   \vspace{0.5cm}
-  \item Output: spectral reflectance, radiance distributions and derived quantities (irradiances, K functions, etc.)
+  \item Output: spectral $R_{rs}$, radiance distributions and derived quantities (irradiances, K functions, etc.)
   \vspace{0.5cm}
-  \item For the Dark Pixel and LUT generation
+  \item Used for the Dark Pixel reflectance determination and for the LUT generation
 \end{itemize}
 \vspace{1cm}
 \begin{figure}[H]
@@ -198,23 +194,23 @@ To use the Landsat 8 satellite for retrieving of color producing agents (CPAs) (
 
 % -----------------------------------------------
 
-\begin{block}{Atmospheric Correction: Model-based ELM}
+\begin{block}{AC: Model-Based ELM (MoB-ELM)}
 
 % ----------------------------------------------
 \begin{itemize}
-  \item \small Linear relationship between radiance $L$ and reflectance $r_d$:
+  \item \small Empirical Line Method (ELM): Linear relationship between radiance $L$ and reflectance $r_d$:
 \begin{equation}\label{eq:ELM}
   L(\lambda)=m\times r_d(\lambda)+b
 \end{equation}
 
 \vspace{0.005cm}
-\item \small At least two pixels from the scene: {\bf \small Dark} and {\bf \small Bright} Pixels
+\item \small At least two pixels from the scene: {\bf \small Dark} and {\bf \small Bright} Pixels with known reflectances
 
 \end{itemize}
 
 \begin{figure}[htb]
   \centering
-\resizebox{15cm}{!}{%
+\resizebox{14cm}{!}{%
 \begin{tikzpicture}[x=2.8ex,y=.7ex]
   %axis
   \draw (0,0) -- coordinate (x axis mid) (10,0);
@@ -246,48 +242,50 @@ To use the Landsat 8 satellite for retrieving of color producing agents (CPAs) (
 
 \end{tikzpicture}
   }%close \resizebox
-\caption{Regression used in ELM to solve the linear relationship between reflectance $r_d$ and radiance $L$ using a dark and bright pixel from the scene. \label{fig:ELM}}
+\caption{Regression used in MoB-ELM \label{fig:ELM}}
 \end{figure}
 
+\vspace{1cm}
+
 {\large \bf Bright Pixel}
+\vspace{0.5cm}
 \begin{itemize}
     \item Radiance: pseudo-invariant features (PIF) from Landsat 8 image
     \vspace{0.5cm}
     \item Reflectance: PIF from Landsat reflectance product
 \end{itemize}
-\vspace{0.3cm}
+\vspace{1.0cm}
 {\large \bf Dark Pixel}
-
+\vspace{0.5cm}
 \begin{itemize}
     \item Radiance: region of interest (ROI) over water from Landsat 8 image
     \vspace{0.5cm}
-    \item Reflectance: Hydrolight
+    \item Reflectance: Hydrolight with known IOPs from the ROI
 \end{itemize}
-\vspace{1cm}
+\vspace{0.5cm}
 
 
 
 \begin{figure}[htb]
-  \begin{minipage}[c]{0.40\linewidth}
+  \begin{minipage}[c]{0.49\linewidth}
     \centering
-      \includegraphics[width=12cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/ELMrad130929_150422}\\
+      \includegraphics[width=13cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/ELMrad130929_150422}\\
     % \vspace{1.5cm}
-    \centerline{(a)}\medskip
+    \centerline{\small (a)}\medskip
   \end{minipage}
-  \hspace{1cm}
-  \begin{minipage}[d]{0.40\linewidth}
+  \begin{minipage}[d]{0.49\linewidth}
     \centering
-      \includegraphics[width=12cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/ELMRrs130929_150422}\\
+      \includegraphics[width=13cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/ELMRrs130929_150422}\\
     % \vspace{1.5cm}
-    \centerline{(b)}\medskip
+    \centerline{\small (b)}\medskip
   \end{minipage}
-  \caption{Example of the bright and dark pixel used in the MoB-ELM atmospheric correction method for Landsat 8 scene acquired on 09-19-2013.\label{fig:MOBELMpxls} } 
+  \caption{Example of the (a) radiance and (b) $R_{rs}$ for the bright and dark pixel used in the MoB-ELM for Landsat 8 scene acquired on 09-19-2013.\label{fig:MOBELMpxls} } 
 \end{figure}
 
 \begin{figure}[htbp!]
   \centering
-  \includegraphics[height=9cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/ROI130919_150422}
-  \caption{$R_{rs}$ for the sites for the 09-19-2013 collection after applying the MoB-ELM atmospheric correction (Labels: LONGS: Long Pond south, CRANB: Cranberry Pond, ONTOS: Lake Ontario off-shore, and ONTNS: Lake Ontario near-shore).\label{fig:RrsROIs130919} } 
+  \includegraphics[width=14cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/ROI130919_150422}
+  \caption{$R_{rs}$ for the sites for the 09-19-2013 collection after applying the MoB-ELM atmospheric correction.\label{fig:RrsROIs130919} } 
 \end{figure}
 \vspace{-.2cm}
 \end{block}
@@ -297,7 +295,7 @@ To use the Landsat 8 satellite for retrieving of color producing agents (CPAs) (
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %COLUMN 3
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- \begin{column}{.3\linewidth}
+ \begin{column}{.31\linewidth}
 %%%%%%%%%%%%%%%%%%%%%        
 % Block 1 (column 3)      
 %%%%%%%%%%%%%%%%%%%%%
@@ -339,8 +337,8 @@ LONGS   &  60.0   & 25.0    &  1.0    &  0.3  \\
 
 \begin{figure}[htb]
     \centering
-      \includegraphics[width=10cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/LUTsmart130919_150422.eps}
-      \caption{LUT with $1170$ elements created in Ecolight for the Landsat 8 scene acquired on 09-19-2013. Each element was created from a combination of parameters in \autoref{tab:LUTconc2}.}
+      \includegraphics[width=14cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/LUTsmart130919_150422.eps}
+      \caption{LUT with $1170$ elements created in Ecolight for the Landsat 8 scene acquired on 09-19-2013. Each element was created from a combination of parameters in Table \autoref{tab:LUTconc2}.}
       \label{fig:LUT}
 
 \end{figure}
@@ -352,69 +350,74 @@ LONGS   &  60.0   & 25.0    &  1.0    &  0.3  \\
   \begin{itemize}
     \item Spectral matching technique to predict concentration of CPAs
     \vspace{0.5cm}
-    \item Comparison between spectral shape of water pixel (unknown concentrations) with the LUT (known concentrations)using a nonlinear optimization routine that solves nonlinear least-square problem
+    \item Comparison between spectral shape of water pixel (unknown concentrations) with the LUT (known concentrations) in the least-squared sense using the RMSE
   \end{itemize}
 \end{block}
 
 \begin{block}{Results}
 
 \begin{figure}[htbp!]
-  \begin{minipage}[c]{0.4\linewidth}
+  \begin{minipage}[c]{0.46\linewidth}
       \centering
-      \includegraphics[trim=0 20 0 30,clip,height=7cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/CHLmap130919_150420}  
+      \includegraphics[trim=0 20 0 30,clip,height=8.0cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/CHLmap130919_150420}  
   \end{minipage}
   \hspace{1cm}
-  \begin{minipage}[c]{0.4\linewidth}
+  \begin{minipage}[c]{0.46\linewidth}
       \centering
-      \includegraphics[trim=0 0 0 30,clip,height=7cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/CHLmap140929_150420}  
+      \includegraphics[trim=0 0 0 30,clip,height=8.0cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/CHLmap140929_150420}  
   \end{minipage}
 % 
 %% TSS
-  \begin{minipage}[c]{0.4\linewidth}
+  \begin{minipage}[c]{0.46\linewidth}
       \centering
-      \includegraphics[trim=0 30 0 10,clip,height=7cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/TSSmap130919_150420}  
+      \includegraphics[trim=0 30 0 10,clip,height=8.0cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/TSSmap130919_150420}  
   \end{minipage}
   \hspace{1cm}
-  \begin{minipage}[c]{0.4\linewidth}
+  \begin{minipage}[c]{0.46\linewidth}
       \centering
-      \includegraphics[trim=0 0 0 30,clip,height=7cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/TSSmap140929_150420}  
+      \includegraphics[trim=0 0 0 30,clip,height=8.0cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/TSSmap140929_150420}  
   \end{minipage}
 
 %% CDOM
-  \begin{minipage}[c]{0.4\linewidth}
+  \begin{minipage}[c]{0.46\linewidth}
       \centering
-      \includegraphics[trim=0 0 0 30,clip,height=7cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/CDOMmap130919_150420}  
+      \includegraphics[trim=0 0 0 30,clip,height=8.0cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/CDOMmap130919_150420}\\
+      \centerline{\small (a)}  
   \end{minipage}
   \hspace{1cm}
-  \begin{minipage}[c]{0.4\linewidth}
+  \begin{minipage}[c]{0.46\linewidth}
       \centering
-      \includegraphics[trim=0 0 0 30,clip,height=7cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/CDOMmap140929_150420}  
+      \includegraphics[trim=0 0 0 30,clip,height=8.0cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/CDOMmap140929_150420}\\
+      \centerline{\small (b)}
   \end{minipage}
-% 
-  \caption{CPA retrieval results for the Landsat 8 image acquired on 09-19-2013 (scene LC80160302013262LGN00). Concentration maps (left) and measured vs retrieved plots (right). The dashed line represent the 1:1 line. (Labels: LongS: Long Pond south, Cranb: Cranberry Pond, OntOS: Lake Ontario off-shore, and OntNS: Lake Ontario near-shore). \label{fig:CPAsMaps130919} } 
+  \caption{CPA concentration retrieval results for the Landsat 8 images acquired on (a) 09-19-2013 and (b) 09-29-2014.} 
 \end{figure}
 
 
 \begin{figure}[htb]
-  \begin{minipage}[c]{0.32\linewidth}
+  \begin{minipage}[c]{0.47\linewidth}
+      \centering
   % CHL
-      \includegraphics[trim=40 0 80 0,clip,height=9.0cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/CHLretvsmea150423}  
+      \includegraphics[trim=40 0 80 0,clip,height=9.0cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/CHLretvsmea150423} 
   \end{minipage}
-  \hspace{1cm}
+  \hspace{0.5cm}
   % TSS
-  \begin{minipage}[d]{0.32\linewidth}
+  \begin{minipage}[d]{0.47\linewidth}
+      \centering
       \includegraphics[trim=40 0 80 0,clip,height=9.0cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/TSSretvsmea150423}
   \end{minipage}\\
   % CDOM
-  \begin{minipage}[c]{0.32\linewidth}
+  \begin{minipage}[c]{0.47\linewidth}
+      \centering
       \includegraphics[trim=40 0 80 0,clip,height=9.0cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/CDOMretvsmea150423}  
   \end{minipage}
-  \hspace{1cm}
-  \begin{minipage}[c]{0.32\linewidth}
+  \hspace{0.5cm}
+  \begin{minipage}[c]{0.47\linewidth}
+      \centering
       \includegraphics[height=9.0cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/RMSE_ret150421}
   \end{minipage}
 
-  \caption{Landsat 8's retrieved vs measured CPA concentration for the 09-19-2014 and 09-29-2015 scenes with regression line (solid red line) and goodness of fit values. The dashed line represents the 1:1 line. RMSE expressed as percentage of range for each CPA. \label{fig:CPAsRetVSMea} } 
+  \caption{Landsat 8's retrieved vs measured CPA concentration for the 09-19-2014 and 09-29-2015 scenes with regression line (solid red line) and goodness of fit values and RMSE expressed as percentage of range for each CPA (lower right). The dashed line represents the 1:1 line. \label{fig:CPAsRetVSMea} } 
 \end{figure}        
 
   %-------------   
