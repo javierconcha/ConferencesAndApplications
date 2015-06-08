@@ -73,7 +73,7 @@
 \end{filecontents*} 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\title{ \huge A Model-Based ELM for Atmospheric Correction \\over Case 2 Water with Landsat 8}
+\title{ \huge Retrieval of Color Producing Agents in Case 2 Waters using Landsat 8}
 \author[]{Javier A. Concha and John R. Schott}
 \institute[Rochester Institute of Technology]{Digital Imaging and Remote Sensing Laboratory, Chester F. Carlson Center for Imaging Science\\ Rochester Institute of Technology, Rochester, New York, USA}
 % \date{\today}
@@ -120,9 +120,9 @@ To use the Landsat 8 satellite for retrieving of color producing agents (CPAs) (
 \begin{itemize}
 	\item Optical satellite (passive)
 	\vspace{.2cm}
-	\item Multispectral: 4 VIS, 1 NIR, \\2 SWIR, 1 Pan, 2 Thermal
+	\item Multispectral: 4 VIS, 1 NIR, 2 SWIR, 1 Pan, 2 Thermal
 	\vspace{.2cm}
-	\item Spatial resolution: 15/30/100m
+	\item Spatial resolution: 15m Pan/30m VNIR-SWIR/100m Thermal
 	\vspace{.2cm}
 	\item Temporal resolution: 16 days
 	\vspace{.2cm}
@@ -145,32 +145,6 @@ To use the Landsat 8 satellite for retrieving of color producing agents (CPAs) (
 
 \vspace{-.5cm}
 \end{block}
-%-------------------------------
-\begin{block}{The Retrieval Process}
-\justifying\small The radiance image from the satellite is first corrected for atmospheric effects, having as result $R_{rs}$ spectra for each water pixel in the image. Then, a spectrum-matching methodology is used to find the closest match in the least-squared sense for the water pixels with unknown CPAs concentration in the LUT of water pixels with known CPAs concentration. The final result is a concentration map for each CPA.
-\vspace{1cm}   
-%-------------------------------
-\begin{center}
-\begin{figure}[htbp!]
-  \centering
-    \includegraphics[height=15cm]{./Images/Retrieval_RMSE.png}
-    \caption{Retrieval process flow diagram.   \label{fig:retrieval} }
-\end{figure}
-\end{center}
-\end{block}
-
-
-
-\end{column}   
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% COLUMN 2      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- \begin{column}{.31\linewidth}  %.29\linewidth (3-columns) %0.46\linewidth (2-columns)
-%%%%%%%%%%%%%%%%%%%%%
-% BLOCK 1 (column 2) 
-%%%%%%%%%%%%%%%%%%%%%
-%-------------------------------
-
 % -----------------------------------------------
 \begin{block}{Hydrolight}
 \small
@@ -185,7 +159,7 @@ To use the Landsat 8 satellite for retrieving of color producing agents (CPAs) (
 \end{itemize}
 \vspace{1cm}
 \begin{figure}[H]
-    \includegraphics[height=18cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2014_ASPRS_SOY/Images/HLdiagram.pdf}
+    \includegraphics[height=14cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2014_ASPRS_SOY/Images/HLdiagram.pdf}
     \caption{Hydrolight model}
 \end{figure}
 % \hspace{12cm}{\scriptsize $*~$IOPs: Inherent Optical Properties}
@@ -193,30 +167,55 @@ To use the Landsat 8 satellite for retrieving of color producing agents (CPAs) (
 \end{block}
 
 % -----------------------------------------------
+\end{column}   
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% COLUMN 2      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ \begin{column}{.31\linewidth}  %.29\linewidth (3-columns) %0.46\linewidth (2-columns)
+%%%%%%%%%%%%%%%%%%%%%
+% BLOCK 1 (column 2) 
+%%%%%%%%%%%%%%%%%%%%%
+%-------------------------------
+\begin{block}{The Retrieval Process}
+\justifying\small The radiance image from the satellite is first corrected for atmospheric effects, having as result $R_{rs}$ spectra for each water pixel in the image. Then, a spectrum-matching methodology is used to find the closest match in the least-squared sense for the water pixels with unknown CPAs concentration in the LUT of water pixels with known CPA concentrations. The final result is a concentration map for each CPA.
+\vspace{1cm}   
+%-------------------------------
+\begin{center}
+\begin{figure}[htbp!]
+  \centering
+    \includegraphics[height=18.5cm]{./Images/Retrieval_RMSE.png}
+    \caption{Retrieval process flow diagram.   \label{fig:retrieval} }
+\end{figure}
+\end{center}
+\end{block}
+
+
+%-------------------------------
+
 
 \begin{block}{AC: Model-Based ELM (MoB-ELM)}
 
 % ----------------------------------------------
 \begin{itemize}
-  \item \small Empirical Line Method (ELM): Linear relationship between radiance $L$ and reflectance $r_d$:
-\begin{equation}\label{eq:ELM}
-  L(\lambda)=m\times r_d(\lambda)+b
+  \item \small Empirical Line Method (ELM): Linear relationship between radiance $L$ and remote-sensing reflectance $R_{rs}$:
+\begin{equation}
+  L(\lambda)=m\times R_{rs}(\lambda)+b
 \end{equation}
 
-\vspace{0.005cm}
-\item \small At least two pixels from the scene: {\bf \small Dark} and {\bf \small Bright} Pixels with known reflectances
+\vspace{0.2cm}
+\item \small At least two pixels from the scene: {\bf \small Dark} and {\bf \small Bright} Pixels with known reflectances and radiances
 
 \end{itemize}
 
 \begin{figure}[htb]
   \centering
-\resizebox{14cm}{!}{%
+\resizebox{16cm}{!}{%
 \begin{tikzpicture}[x=2.8ex,y=.7ex]
   %axis
   \draw (0,0) -- coordinate (x axis mid) (10,0);
     \draw (0,0) -- coordinate (y axis mid) (0,30);
     %labels      
-  \node[below=0ex] at (8,0) {\small $Band_i~~reflectance~(r_d)$};
+  \node[below=0ex] at (5.5,0) {\small $Band_i~~remote-sensing~reflectance~(R_{rs})$};
   \node[rotate=90] at (-.5,23) {\small $Band_i~~Radiance~(L)$};
 
   \node[below=.2ex] at (-2.1,4.5) {\small $b=$offset};
@@ -232,7 +231,7 @@ To use the Landsat 8 satellite for retrieving of color producing agents (CPAs) (
   \node[below=0ex] at (7,28) {\small Bright Object};
   \draw[arrows=-triangle 45] (7,24.5) -- (7.9,20.5);
 
-  \node[below=0ex] at (8,9) {\small $r_d=(L-b)/m$};
+  \node[below=0ex] at (8,9) {\small $R_{rs}=(L-b)/m$};
 
   %plots
   \draw plot 
@@ -254,7 +253,7 @@ To use the Landsat 8 satellite for retrieving of color producing agents (CPAs) (
     \vspace{0.5cm}
     \item Reflectance: PIF from Landsat reflectance product
 \end{itemize}
-\vspace{1.0cm}
+\vspace{1.01cm}
 {\large \bf Dark Pixel}
 \vspace{0.5cm}
 \begin{itemize}
@@ -264,8 +263,6 @@ To use the Landsat 8 satellite for retrieving of color producing agents (CPAs) (
 \end{itemize}
 \vspace{0.5cm}
 
-
-
 \begin{figure}[htb]
   \begin{minipage}[c]{0.49\linewidth}
     \centering
@@ -273,6 +270,7 @@ To use the Landsat 8 satellite for retrieving of color producing agents (CPAs) (
     % \vspace{1.5cm}
     \centerline{\small (a)}\medskip
   \end{minipage}
+  \hspace{-.5cm}
   \begin{minipage}[d]{0.49\linewidth}
     \centering
       \includegraphics[width=13cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/ELMRrs130929_150422}\\
@@ -284,7 +282,7 @@ To use the Landsat 8 satellite for retrieving of color producing agents (CPAs) (
 
 \begin{figure}[htbp!]
   \centering
-  \includegraphics[width=14cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/ROI130919_150422}
+  \includegraphics[width=16cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/ROI130919_150422}
   \caption{$R_{rs}$ for the sites for the 09-19-2013 collection after applying the MoB-ELM atmospheric correction.\label{fig:RrsROIs130919} } 
 \end{figure}
 \vspace{-.2cm}
@@ -306,6 +304,7 @@ To use the Landsat 8 satellite for retrieving of color producing agents (CPAs) (
 
 \begin{table}[htb]
 \caption{Input parameters for the LUT generation in Ecolight for the Landsat 8 image acquired on 09-19-2013. \label{tab:LUTconc2}} 
+\vspace{.07cm}
 \scriptsize
 \centering
     \begin{tabular}{c|c|c|c|c}
