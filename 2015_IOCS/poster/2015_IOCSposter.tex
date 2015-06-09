@@ -180,12 +180,12 @@ To use the Landsat 8 satellite for the retrieval of color producing agents (CPAs
 %-------------------------------
 \begin{block}{The Retrieval Process}
 \justifying\small First, atmospheric correction (AC) is applied to the radiance image from the satellite, having as a result $R_{rs}$ spectra for each water pixel in the image. Then, a spectrum-matching methodology is used to find the closest match in the least-squared sense for the water pixels with unknown CPA concentrations in the LUT of water pixels with known CPA concentrations. The final result is a concentration map for each CPA.
-\vspace{1cm}   
+% \vspace{1cm}   
 %-------------------------------
 \begin{center}
 \begin{figure}[htbp!]
   \centering
-    \includegraphics[height=19.0cm]{./Images/Retrieval_RMSE.png}
+    \includegraphics[height=19.0cm]{./Images/Retrieval_RMSE4.pdf}
     \caption{Retrieval process flow diagram.   \label{fig:retrieval} }
 \end{figure}
 \end{center}
@@ -205,14 +205,14 @@ To use the Landsat 8 satellite for the retrieval of color producing agents (CPAs
   L(\lambda)=m\times R_{rs}(\lambda)+b
 \end{equation*}
 
-\vspace{0.26cm}
+\vspace{.85cm}
 \item \small At least two pixels from the scene: {\bf \small Dark} and {\bf \small Bright} Pixels with known reflectances and radiances
 
 \end{itemize}
 
 \begin{figure}[htb]
   \centering
-\resizebox{17cm}{!}{%
+\resizebox{16cm}{!}{%
 \begin{tikzpicture}[x=2.8ex,y=.7ex]
   %axis
   \draw (0,0) -- coordinate (x axis mid) (10,0);
@@ -256,7 +256,7 @@ To use the Landsat 8 satellite for the retrieval of color producing agents (CPAs
     \vspace{0.5cm}
     \item Reflectance: PIF from Landsat reflectance product
 \end{itemize}
-\vspace{1.01cm}
+\vspace{1.02cm}
 {\large \bf Dark Pixel}
 \vspace{0.5cm}
 \begin{itemize}
