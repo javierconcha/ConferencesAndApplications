@@ -81,19 +81,21 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% t
 \begin{document}
 \begin{frame}{} 
+\vspace{-1.4cm} % upper separation after title box
   \begin{columns}[t]
     
-
+\begin{column}{.005\linewidth} % left space
+\end{column}
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % COLUMN 1
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{column}{.31\linewidth}
+\begin{column}{.32\linewidth}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 %BLOCK 1 (column 1)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{block}{Goal}
 \justifying\small 
-To use the Landsat 8 satellite for the retrieval of color producing agents (CPAs) (chlorophyll-{\it a}, sediments (total suspended solid or TSS) and colored dissolved organic matter (CDOM)) over inland and coastal waters (Case 2 Waters). 
+To use the Landsat 8 satellite for the retrieval of color producing agents (CPAs) (chlorophyll-{\it \small a}, sediments (total suspended solid or TSS) and colored dissolved organic matter (CDOM)) over inland and coastal waters (Case 2 Waters). 
 \end{block}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{block}{Introduction}
@@ -104,7 +106,7 @@ To use the Landsat 8 satellite for the retrieval of color producing agents (CPAs
 \begin{figure}[H]
 \centering
   \includegraphics[height=9cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/NESSF14/latex/ResolComp.pdf}
-  \caption{Spatial resolution comparison between Terra-MODIS (500m) and Landsat 8 (30m). \label{fig:resol} } 
+  \caption{Spatial resolution comparison between Terra-MODIS (500m) and Landsat 8 (30m) over the Lake Ontario. \label{fig:resol} } 
 \end{figure}
 \end{center}
 % \vspace{.5cm}
@@ -133,13 +135,13 @@ To use the Landsat 8 satellite for the retrieval of color producing agents (CPAs
 
 \begin{figure}[htb]
   	\centering
-  	\includegraphics[trim=30 350 30 350,clip,width=12cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/WholeImage130919}
+  	\includegraphics[trim=30 350 30 350,clip,width=15cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/WholeImage130919}
   \caption{Landsat 8 image over Lake Ontario. \label{fig:Scene} } 
 \end{figure}
 
 \begin{figure}[htb]
   \centering
-  \includegraphics[trim=0 90 0 110,clip,width=24cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/ROI_RocEmbayment130919_150424}
+  \includegraphics[trim=0 90 0 110,clip,width=25cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/ROI_RocEmbayment130919_150424}
   \caption{Landsat 8 scene acquired on 09-19-2013 showing the sites in the Rochester Embayment for the water sample collection. \label{fig:091913Sites} } 
 \end{figure}
 
@@ -171,19 +173,19 @@ To use the Landsat 8 satellite for the retrieval of color producing agents (CPAs
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % COLUMN 2      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- \begin{column}{.31\linewidth}  %.29\linewidth (3-columns) %0.46\linewidth (2-columns)
+ \begin{column}{.32\linewidth}  %.29\linewidth (3-columns) %0.46\linewidth (2-columns)
 %%%%%%%%%%%%%%%%%%%%%
 % BLOCK 1 (column 2) 
 %%%%%%%%%%%%%%%%%%%%%
 %-------------------------------
 \begin{block}{The Retrieval Process}
-\justifying\small First, atmospheric correction (AC) is applied to radiance image from the satellite, having as result $R_{rs}$ spectra for each water pixel in the image. Then, a spectrum-matching methodology is used to find the closest match in the least-squared sense for the water pixels with unknown CPA concentrations in the LUT of water pixels with known CPA concentrations. The final result is a concentration map for each CPA.
+\justifying\small First, atmospheric correction (AC) is applied to the radiance image from the satellite, having as a result $R_{rs}$ spectra for each water pixel in the image. Then, a spectrum-matching methodology is used to find the closest match in the least-squared sense for the water pixels with unknown CPA concentrations in the LUT of water pixels with known CPA concentrations. The final result is a concentration map for each CPA.
 \vspace{1cm}   
 %-------------------------------
 \begin{center}
 \begin{figure}[htbp!]
   \centering
-    \includegraphics[height=18.5cm]{./Images/Retrieval_RMSE.png}
+    \includegraphics[height=19.0cm]{./Images/Retrieval_RMSE.png}
     \caption{Retrieval process flow diagram.   \label{fig:retrieval} }
 \end{figure}
 \end{center}
@@ -198,18 +200,19 @@ To use the Landsat 8 satellite for the retrieval of color producing agents (CPAs
 % ----------------------------------------------
 \begin{itemize}
   \item \small Empirical Line Method (ELM): Linear relationship between radiance $L$ and remote-sensing reflectance $R_{rs}$:
-\begin{equation}
-  L(\lambda)=m\times R_{rs}(\lambda)+b
-\end{equation}
 
-\vspace{0.2cm}
+\begin{equation*}
+  L(\lambda)=m\times R_{rs}(\lambda)+b
+\end{equation*}
+
+\vspace{0.26cm}
 \item \small At least two pixels from the scene: {\bf \small Dark} and {\bf \small Bright} Pixels with known reflectances and radiances
 
 \end{itemize}
 
 \begin{figure}[htb]
   \centering
-\resizebox{16cm}{!}{%
+\resizebox{17cm}{!}{%
 \begin{tikzpicture}[x=2.8ex,y=.7ex]
   %axis
   \draw (0,0) -- coordinate (x axis mid) (10,0);
@@ -259,21 +262,22 @@ To use the Landsat 8 satellite for the retrieval of color producing agents (CPAs
 \begin{itemize}
     \item Radiance: region of interest (ROI) over water from Landsat 8 image
     \vspace{0.5cm}
-    \item Reflectance: Hydrolight with known IOPs from the ROI
+    \item Reflectance: Hydrolight with known CPA's IOPs from the ROI
 \end{itemize}
 \vspace{0.5cm}
 
 \begin{figure}[htb]
-  \begin{minipage}[c]{0.49\linewidth}
-    \centering
-      \includegraphics[width=13cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/ELMrad130929_150422}\\
+\hspace{-.5cm}
+  \begin{minipage}[c]{0.495\linewidth}
+    % \centering
+      \includegraphics[trim=27 0 0 0,clip,width=13.8cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/ELMrad130929_150422}\\
     % \vspace{1.5cm}
     \centerline{\small (a)}\medskip
   \end{minipage}
-  \hspace{-.5cm}
-  \begin{minipage}[d]{0.49\linewidth}
-    \centering
-      \includegraphics[width=13cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/ELMRrs130929_150422}\\
+  \hspace{-.85cm}
+  \begin{minipage}[d]{0.495\linewidth}
+    % \centering
+      \includegraphics[trim=5 0 20 0,clip,width=13.8cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/ELMRrs130929_150422}\\
     % \vspace{1.5cm}
     \centerline{\small (b)}\medskip
   \end{minipage}
@@ -282,7 +286,7 @@ To use the Landsat 8 satellite for the retrieval of color producing agents (CPAs
 
 \begin{figure}[htbp!]
   \centering
-  \includegraphics[width=16cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/ROI130919_150422}
+  \includegraphics[width=17cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/ROI130919_150422}
   \caption{$R_{rs}$ for the sites for the 09-19-2013 collection after applying the MoB-ELM atmospheric correction.\label{fig:RrsROIs130919} } 
 \end{figure}
 \vspace{-.2cm}
@@ -293,7 +297,7 @@ To use the Landsat 8 satellite for the retrieval of color producing agents (CPAs
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %COLUMN 3
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- \begin{column}{.31\linewidth}
+ \begin{column}{.32\linewidth}
 %%%%%%%%%%%%%%%%%%%%%        
 % Block 1 (column 3)      
 %%%%%%%%%%%%%%%%%%%%%
@@ -397,30 +401,30 @@ LONGS   &  60.0   & 25.0    &  1.0    &  0.3  \\
   \begin{minipage}[c]{0.47\linewidth}
       \centering
   % CHL
-      \includegraphics[trim=40 0 80 0,clip,height=9.0cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/CHLretvsmea150423} 
+      \includegraphics[trim=40 0 80 0,clip,height=9.8cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/CHLretvsmea150423} 
   \end{minipage}
   \hspace{0.5cm}
   % TSS
   \begin{minipage}[d]{0.47\linewidth}
       \centering
-      \includegraphics[trim=40 0 80 0,clip,height=9.0cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/TSSretvsmea150423}
+      \includegraphics[trim=40 0 80 0,clip,height=9.8cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/TSSretvsmea150423}
   \end{minipage}\\
   % CDOM
   \begin{minipage}[c]{0.47\linewidth}
       \centering
-      \includegraphics[trim=40 0 80 0,clip,height=9.0cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/CDOMretvsmea150423}  
+      \includegraphics[trim=40 0 80 0,clip,height=9.8cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/CDOMretvsmea150423}  
   \end{minipage}
   \hspace{0.5cm}
   \begin{minipage}[c]{0.47\linewidth}
       \centering
-      \includegraphics[height=9.0cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/RMSE_ret150421}
+      \includegraphics[height=9.8cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/RMSE_ret150421}
   \end{minipage}
 
   \caption{Landsat 8's retrieved vs measured CPA concentration for the 09-19-2014 and 09-29-2015 scenes with regression line (solid red line) and goodness of fit values and RMSE expressed as percentage of range for each CPA (lower right). The dashed line represents the 1:1 line. \label{fig:CPAsRetVSMea} } 
 \end{figure}        
 
   %-------------   
-
+\vspace{-0.3cm}
 \end{block}  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
