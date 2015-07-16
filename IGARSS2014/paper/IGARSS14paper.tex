@@ -1,0 +1,207 @@
+% Template for IGARSS-2013 paper; to be used with:
+%          spconf.sty  - ICASSP/ICIP LaTeX style file, and
+%          IEEEbib.bst - IEEE bibliography style file.
+% --------------------------------------------------------------------------
+\documentclass{article}
+\usepackage{spconf,amsmath,epsfig}
+\usepackage[font=small,labelfont=bf]{caption}
+\captionsetup{belowskip=-0.3cm}
+% Example definitions.
+% --------------------
+\def\x{{\mathbf x}}
+\def\L{{\cal L}}
+
+\usepackage{hyperref}
+\hypersetup{
+    % bookmarks=true,         % show bookmarks bar?
+    unicode=false,          % non-Latin characters in AcrobatÕs bookmarks
+    pdftoolbar=true,        % show AcrobatÕs toolbar?
+    pdfmenubar=true,        % show AcrobatÕs menu?
+    pdffitwindow=false,     % window fit to page when opened
+    pdfstartview={FitH},    % fits the width of the page to the window
+    pdftitle={L8's potential for water constituents retrieval },    % title
+    pdfauthor={Javier Concha},     % author
+    pdfsubject={Subject},   % subject of the document
+    pdfcreator={Creator},   % creator of the document
+    pdfproducer={Producer}, % producer of the document
+    pdfkeywords={keyword1} {key2} {key3}, % list of keywords
+    pdfnewwindow=true,      % links in new window
+    colorlinks=true,       % false: boxed links; true: colored links
+    linkcolor=blue,          % color of internal links
+    citecolor=cyan,        % color of links to bibliography
+    filecolor=magenta,      % color of file links
+    urlcolor=green           % color of external links
+}
+
+\usepackage[all]{hypcap} % to see figure with hyper ref
+
+% Title.
+% ------
+\title{In-Water Component Retrieval over Case 2 Water using Landsat 8:\\ Initial Results}
+%
+% Single address.
+% ---------------
+\name{Javier A. Concha and John R. Schott\thanks{Thanks to USGS for funding.}}
+\address{Digital Imaging and Remote Sensing Laboratory\\
+  Chester F. Carlson Center for Imaging Science\\ 
+	Rochester Institute of Technology\\
+	54 Lomb Memorial Dr., Rochester, NY 14623, USA\\
+	}
+
+%
+\begin{document}
+%\ninept
+%
+\maketitle
+%
+\begin{abstract}
+Ocean color satellites (i.e. MODIS, SeaWiFS) are designed for studying large-scale water bodies and therefore perform well for retrieving water quality parameters at a global scale (e.g. MODIS Chlorophyll-{\it a} product). However, medium scale (i.e. hundred of meters) water bodies are not resolvable by these kinds of satellites due to their spatial resolution (i.e. 1000m). This work presents a methodology to address this problem using the Landsat 8 satellite for color producing agents (CPAs) (chlorophyll-{\it a}, sediments and colored dissolved organic matter (CDOM)) retrieval over inland and coastal waters (Case 2 waters). First, a model-based empirical line method (ELM) is used to correct the Landsat 8 imagery for atmospheric effects, having water reflectance pixels as output. Then, the concentration of these water pixels are estimated by a nonlinear optimization routine that searches in a look-up table (LUT) created with the in water radiative transfer model, Hydrolight.
+\end{abstract}
+%
+\begin{keywords}
+Atmospheric Correction, Landsat 8, CPAs Retrieval, Case 2 Water
+\end{keywords}
+%
+% -------------------------------------------
+\section{Introduction}
+\label{sec:intro}
+
+The Landsat project, a joint initiative between USGS and NASA, has been monitoring the earth for over four decades, creating the longest uninterrupted data set available. Landsat 8 is the most recent satellite to continue this objective. Carrying two instruments onboard, the Operational Land Imager (OLI) and the Thermal InfraRed Scanner (TIRS), Landsat 8 is the first of a new generation of Landsat satellites with improved state-of-the-art technologies. Gerace, Schott and Nevins \cite{Gerace:2013} demonstrated that OLI with its improved spectral coverage and radiometric resolution, has the potential to dramatically improve our ability to simultaneously retrieve the three primary coloring agents (chlorophyll-{\it a}, colored dissolved organic matter (CDOM), and suspended matter (SM - sometimes referred to as total suspended solids or TSS)) from water bodies.
+
+For the past two decades, the ocean optics community has been using products derived from ocean color sensors -- for example the Chl-{\it a} product from the Moderate Resolution Imaging Spectroradiometer (MODIS) -- to study marine biogeochemical cycles and ecosystems on regional-to-global scales. These types of sensors have a spatial resolution of hundreds of meters (e.g. 250-1000m for MODIS), which makes them suitable for global-scale studies. However, small scale variability in the nearshore environment (e.g. coastal dynamics, fresh water-salt water interfaces and most fresh water bodies) cannot be captured by a 250m pixel size. Considering its 30-meter resolution, Landsat 8 should be especially useful for studying the nearshore and coastal environment at a much higher spatial resolution. This is illustrated in Figure~\ref{fig:resol} where some features in the nearshore areas of Rochester, NY (such as ponds) can be fully resolved by Landsat 8 (30m) and not by Terra-MODIS (500m).
+\begin{figure}[htb]
+  \centering
+  \includegraphics[height=3cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/NESSF14/latex/ResolComp.pdf}
+  \caption{Spatial resolution comparison between Terra-MODIS (500m) and Landsat 8 (30m). \label{fig:resol} } 
+\end{figure}
+
+% Although the OLI's spectral bands are not narrow enough to be compared with MODIS' spectral bands, the OLI's spectral bands are narrower when compared to Landsat 7 (L7), as seen in Table~\ref{tab:bandwidth}. OLI also includes a new coastal band that increases the spectral resolution of the instrument. These two improved features have the potential to more accurately capture signals leaving the water. Gerace, Schott and Nevins \cite{Gerace:2013} demonstrated with a simulated dataset that system noise is the main driver of retrieval error, and therefore a higher signal-to-noise ratio (SNR) means a better retrieval. In comparison to its predecessors, Landsat 8 has an improved SNR because of its 12-bit quantization and pushbroom sensor (which allows for more continuous integration on target). This improvement in SNR can be seen in Figure~\ref{fig:L8SNR} which compares the SNR of Landsat 7 and Landsat 8, calculated from actual image data over uniform water regions of the Red Sea that have similar brightness \cite{Hu:2012}. Figure~\ref{fig:L8SNR} also shows the specified SNR from Landsat 8 at typical input signal (L typical) levels (which the instrument significantly exceeds), which were obtained from \cite{Irons:2012}. These improvements are significant drivers behind the hypothesis that the Landsat 8 satellite has superior performance and application in water quality studies than its predecessors.
+% \begin{table}[!ht]
+%       % \begin{table}[h!]
+%       \caption{Bandwidth comparison between Landsat 8, Landsat 7 and MODIS. \label{tab:bandwidth} } 
+%       \centering
+%       \small
+%       \begin{tabular}{c|c|c|c|c}
+%           \bfseries{Band}& \bfseries{Center}   & \bfseries{L8} & \bfseries{L7} & \bfseries{MODIS} \\ 
+%                   & \bfseries{$[\mu m]$} & $[nm]$\footnote{Bandwidth}   & $[nm]${\it $^a$} & $[nm]${\it $^a$}   \\ \hline \hline
+%           Coastal &  0.44 & 16  & N/A &  10 \\
+%           Blue    &  0.48 & 60  & 73  &  10 \\
+%           Green   &  0.56 & 57  & 82  &  10 \\
+%           Red     &  0.66 & 37  & 61  &  10 \\  
+%           NIR     &  0.83 & 28  & 126 &  15 \\
+%           SWIR 1  &  1.65 & 85  & 202 &  24 \\
+%           SWIR 2  &  2.22 & 187 & 281 &  50 \\ 
+%        \end{tabular}
+% \end{table}
+% \begin{figure}
+%     \centering
+%       \includegraphics[height=6.5cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/NESSF14/latex/L8SNR_2.eps}
+%       \caption{Comparison between Landsat 7 and Landsat 8 SNR. \label{fig:L8SNR} } 
+%   % \end{minipage}
+% \end{figure}
+
+% Mueller-Karger {\it et al.}~\cite{Mueller2013} recognized that there is a ``lack of algorithms to address coastal issues, including important metrics of water quality.''  Such algorithms are also necessary to define a basic set of core products including  water surface spectral reflectance, chlorophyll-{\it a} concentration, CDOM absorption coefficient, and suspended matter concentration. This proposed research will focus on developing an algorithm with the products mentioned above as the output over inland and coastal regions.
+
+% In the Case 2 water problem, accurate atmospheric correction is essential, yet remains a significant source of water-constituent retrieval error particularly since the sensor-reaching signal due to water is very small compared to the signal from atmospheric effects and the black target assumption is not valid due to water-leaving signal in the NIR in turbid water~\cite{Siegel:2000fv}.
+%--------------------------------------------------
+\section{Methodology}
+In this work, a look-up-table (LUT) methodology was implemented to retrieve concentration of CPAs using Landsat 8 imagery. Figure~\ref{fig:retrieval} shows a diagram of this retrieval process. First, the Landsat 8 image data (shown at the top of the figure) needs to be atmospherically corrected. Then, a non-linear optimization routine uses the water pixels (reflectance values) and a LUT of reflectance spectra with known concentrations to estimate concentrations for each water pixel in the scene. The outputs to the process are concentration maps for each CPA, as shown in Figure~\ref{fig:retrieval}. This process is explained in more details in the following sections.
+\begin{figure}[!h]
+    \includegraphics[height=5.5cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2014_ASPRS_SOY/Images/RetProcess.pdf}
+    \caption{Retrieval process diagram. \label{fig:retrieval} }
+\end{figure}
+\vspace{-.4cm}
+%--------------------------------------------------
+\section{Area of Study}
+The area of study for this research is the Lake Ontario Rochester Embayment, which includes some nearby ponds (Long and Cranberry Ponds), the Genesee River plume, the Irondequoit Bay and the southern end of Lake Ontario. This area of study is shown in Figure~\ref{fig:0910913Sites}. This area was selected because it exhibits a wide range of variability in concentration of water constituents, so the retrieval algorithm can be tested with different scenarios. Landsat 8 images from this area of study and corresponding water samples collected at the time of the satellite's overpass are used to test the retrieval algorithm. There are only three satisfactory images available from the summer 2013. This project contemplates performing new ground truth data collections during 2014 and 2015. Note that a difficult challenge of this research is to obtain images with relatively clear weather conditions (i.e. cloud free) over the area of study.
+
+In order to have outputs in HydroLight that are representative of the water bodies that are being studied, inherent optical properties (IOPs) of the CPAs of those specific waters along with their CPAs concentrations have to be defined as input to the HydroLight model. After collection, these water samples need to be analyzed in the lab to obtain IOPs for the CPAs. Furthermore, apparent optical properties (AOPs) (i.e. water surface reflectance) and backscattering measurements are also collected for further comparison and to pursue closure between the HydroLight AOPs results and in-situ AOPs measurements.
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/Proposal/Images/groundtruth-sitenames-no-ends.jpg}
+  \caption{Sites in the Rochester Embayment for the water sample collection on September, $19^{th}$, 2013.\label{fig:0910913Sites} } 
+\end{figure}
+%--------------------------------------------------
+\section{Atmospheric Correction}
+The atmospheric correction is a complex task to perform over water because the signal leaving the water that reaches the sensor is very small compared to the signal reaching the sensor from atmospheric scattering. Most of the atmospheric correction algorithms applied to ocean color satellites are not suitable for highly turbid coastal waters because the {\it black pixel assumption} cannot be applied to these types of waters~\cite{Patt2003}. The atmospheric correction algorithm used in this work is a model-based empirical line method (ELM) and it is described by Concha and Schott~\cite{Concha2014SPIE}. This method is based on previous work done by Gerace {\it et al.}~\cite{Gerace:2013,Gerace:2012}  for simulated OLI data. 
+
+In summary, the ELM method needs to solve the linear regression
+\begin{equation}
+  \label{eq:ELM} 
+  L = m\times r_d + b
+\end{equation}
+where $L$ is the radiance reaching the sensor, $m$ is the slope of the regression, $r_d$ is the reflectance of the target, and $b=L_u$ is the intercept, with $L_u$ the upwelled radiance or path radiance. Then, the reflectance of any Lambertian objects or in this case the reflectance of the water at the surface can be calculated by rearranging Equation \ref{eq:ELM}, i.e. $r_d=(L-b)/m$. In order to solve this regression, i.e. determine the value of $m$ and $b$, we need to have at least two targets with known radiance $L$ and reflectance $r_d$. After $m$ and $b$ have been determined, the reflectance of each pixel at each wavelength can be calculated from its radiance value from the image.
+
+While this new method is based on the traditional ELM method~\cite{Smith:1999}, it combines the pseudo-invariant feature (PIF) extraction from the Landsat 5 reflectance product (Landsat Surface Reflectance CDR \cite{LandsatCDR}) and the radiative transfer model over water HydroLight~\cite{MobleyHE} to determine the bright and dark pixel reflectance, respectively. Preliminary results of the atmospheric correction methods for an area of water in the Rochester, NY region are shown in Figure~\ref{fig:waterpxs}, which shows the spectrum of the water pixels after atmospheric correction (in reflectance values), and these exhibit shapes that correspond with the shapes of typical water pixels. 
+
+\begin{figure}
+    \centering
+      \includegraphics[height=6cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/NESSF14/latex/WaterPixels_2.eps}
+      \caption{Water pixel spectra after applying the model-based ELM atmospheric correction method.}
+      \label{fig:waterpxs}
+\end{figure}
+ 
+ % ------------------------------------------------
+\section{Retrieval Process}
+The retrieval algorithm is based on previous work done by Gerace {\it et al.} \cite{Gerace:2013} and Raqueno {\it et al.} \cite{Raqueno:2000}. The water surface reflectance product obtained after atmospheric correction from the previous stage is used as input to the retrieval algorithm. Each pixel in the reflectance product has an unknown concentration. A spectral matching technique is applied to predict this concentration by comparing the spectral shape of each pixel with the elements in a look-up table (LUT). The LUT is generated in HydroLight for different triplets of water constituent concentrations. Table~\ref{tab:LUTconc}shows the different concentration values for each CPA used to generate the LUT. An example of a LUT created in Hydrolight is shown in Figure~\ref{fig:LUT}, where each spectral curve is associated with a water pixel with a particular triplet of water constituent concentration. The spectral matching is made by a nonlinear optimization routine that solves nonlinear least-square problems using the ``lsqnonlin'' package of the MATLAB's Optimization Toolbox. 
+\begin{table}[!ht]
+\caption{ CPAs concentrations used to create the LUT in Hydrolight. \label{tab:LUTconc} } 
+\vspace{-.5cm}
+\centering\small
+\begin{tabular}{c|c|c}
+            \bfseries{$<CHL>$}    & \bfseries{$<SM>$}  & \bfseries{$a_{CDOM}(440)$}\\
+    $[ug/L]$      & $[mg/L]$ &  $[1/m]$\\ \hline \hline
+0.1   & 1.0  &  0.11\\
+1.0   & 2.0  &  0.15\\
+10.0   & 5.0  &  0.21\\
+40.0   & 10.0 &  0.6 \\
+90.0  & 25.0 &  1.0 \\
+110.0  & 45.0 &  1.2 \\
+150.0  & 50.0 &  --  \\     
+    \end{tabular}
+\end{table}
+\begin{figure}[!h]
+    \centering
+      \includegraphics[height=6cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2014_ASPRS_SOY/Images/LUT.eps}
+      \caption{LUT created in HydroLight}
+      \label{fig:LUT}
+\end{figure}
+
+The output of this process is a concentration mapping for each water constituent that spans the range of constituents levels in the scene. Preliminary results for concentration maps for each CPA over the Rochester Embayment, Rochester, NY are shown in Figure~\ref{fig:retrievalresults}. The expected trend of having low concentration of CPAs in the offshore of Lake Ontario and higher concentrations in the nearby ponds (Long Pond and Cranberry Pond) can be seen. 
+\begin{figure}[htb]
+\centering
+\includegraphics[trim=200 100 180 0,clip,height=5cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2014_RITResearchSymposium/Images/RetrievalResults.eps}
+   \caption{Retrieval preliminary results.}
+      \label{fig:retrievalresults}   
+\end{figure}
+
+Comparisons between retrieved CPAs concentrations and field measurements are shown in Figure~\ref{fig:chlcomp}, Figure~\ref{fig:tsscomp} and Figure~\ref{fig:cdomcomp} for four different stations in the area of study.
+\begin{figure}[htb]
+\centering
+    \includegraphics[height=5cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/IGARSS2014/paper/Images/chlcomp.eps} 
+    \caption{Comparison between measured and retrieved chlorophyll {\it a} concentration.}
+    \label{fig:chlcomp} 
+\end{figure}     
+
+\begin{figure}[htb]
+\centering
+    \includegraphics[height=5cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/IGARSS2014/paper/Images/tsscomp.eps}   
+    \caption{Comparison between measured and retrieved TSS concentration.}
+    \label{fig:tsscomp} 
+\end{figure}  
+
+\begin{figure}[htb]
+\centering
+    \includegraphics[height=5cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/IGARSS2014/paper/Images/cdomcomp.eps}    
+    \caption{Comparison between measured and retrieved CDOM concentration.}
+    \label{fig:cdomcomp} 
+\end{figure}  
+% -------------------------------------------------
+\section{Conclusions}
+\label{sec:conc}
+A retrieval process to simultaneously retrieve the CPAs using Landsat 8 images was described. The first step is to atmospherically correct the image using a model-based ELM that uses PIF extraction for the bright pixel determination and the radiative transfer model Hydrolight for the dark pixel. Then, an nonlinear optimization routine is used to estimate the CPAs concentration for each water pixel from the LUT created in Hydrolight. Initial results were presented that exhibit expected trend for the concentration in the lake and nearby ponds. A comparison with field measurements showed good agreement at low concentrations but differences at higher concentrations. Ongoing work is focusing on incorporation of the IOP differences between water bodies in the LUT optimization process.
+% -------------------------------------------------------------------------
+\bibliographystyle{IEEEbib}
+\bibliography{/Users/javier/Desktop/Javier/PHD_RIT/Latex/javier_bib}
+
+\end{document}

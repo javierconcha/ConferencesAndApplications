@@ -1,0 +1,107 @@
+\documentclass[11pt,letterpaper,sans]{moderncv}        
+\usepackage{amsmath,soul}
+\usepackage{paracol}
+\usepackage{geometry}
+\usepackage{soulpos}
+\usepackage{tikzpagenodes}
+\usetikzlibrary{intersections}
+
+\pagestyle{empty}
+\ulposdef{\ulnumaux}{%
+   $\underset{\saveulnum}{\rule[-.7ex]{\ulwidth}{.4pt}}$}
+\newcommand{\ulnum}[2]{%
+  \def\saveulnum{#1}%
+  \ulnumaux{#2}}
+
+\makeatletter
+\let\tikzpage=\oddpage@page
+\makeatother
+
+\newcounter{pagetest}
+\newlength{\tempa}
+\newlength{\tempb}
+\newlength{\tempc}
+
+\newcommand*{\myitem}[2]% #1=number or \thecounter, #2=text
+{\begingroup%
+\noindent\makebox[\labelwidth][r]{{#1}.}\hspace{\labelsep}%
+\advance \linewidth by -\labelwidth
+\advance \linewidth by -\labelsep
+\parbox[t]{\linewidth}{#2}%
+\endgroup}
+
+\newcommand*{\columnnote}[2][100]% #1=estimated number of lines overlap (optional), #2=text of note)
+{\settoheight{\tempa}{\parbox[c]{\linewidth}{#2}}%
+\setlength{\tempa}{2\tempa}% full height needed
+\begin{tikzpicture}[remember picture,overlay]
+\ifnum\value{pagetest}=\tikzpage\relax% reset to top of column 2
+\else{\coordinate (last) at (current page column 2 area.north west);}
+\setcounter{pagetest}{\tikzpage}\fi
+\coordinate (here) at (0pt,.6\baselineskip);
+\coordinate[above=\tempa] (remaining) at (current page column 2 area.south west);
+\pgfextracty{\tempb}{\pgfpointanchor{last}{center}}
+\pgfextracty{\tempc}{\pgfpointanchor{remaining}{center}}
+\ifdim\tempb<\tempc{\coordinate (remaining) at (last);}% use as much space as you have
+\setlength{\tempc}{\tempb}\fi
+\pgfextracty{\tempb}{\pgfpointanchor{here}{center}}
+\ifdim\tempb<\tempc{\coordinate (last) at (remaining);}% use as much space as you need
+\else
+\pgfextracty{\tempc}{\pgfpointanchor{last}{center}}
+\ifdim\tempb<\tempc\coordinate (last) at (last |- here);\fi% align text
+\fi
+\node[below right, inner sep=0pt] (note) at (last) {\parbox{\linewidth}{#2}};
+\coordinate[below=\baselineskip] (last) at (note.south west);
+\end{tikzpicture}%
+\setlength{\tempb}{#1\baselineskip}% insert gap in left column
+\ifdim\tempa>\tempb\addtolength{\tempa}{-\tempb}%
+\vspace{\tempa}\fi}
+
+\begin{document}
+\begin{paracol}{2}
+Here in the United States of America, we celebrate the \ulnum{1}{4th of July because it is a day}\columnnote[2.1]{\myitem{1}{
+\begin{description}
+\vspace{-3.75 ex}
+\item[A] NO CHANGE
+\item[B] 4th of July, the day
+\item[C] 4th of July which is the day
+\item[D] 4th of July, and is 
+\end{description}
+}}
+ dedicated to the spirit of independence that inspired early British Colonists to \ulnum{2}{wage war}\columnnote[2]{\myitem{2}{
+ Which of the following alternatives for the underlined portion would NOT be acceptable?
+ \begin{description}
+ \item[F] start a revolution
+ \item[G] revolt
+ \item[H] wage a strategic war
+ \item[J] to the waging war
+ \end{description}
+ }} against their overseas masters. If you look back on the history of that \ulnum{3}{day, however, it}\columnnote[2.1]{\myitem{3}{
+\begin{description}
+\vspace{-3.75 ex}
+\item[A] NO CHANGE
+\item[B] day, however it
+\item[C] day, because it
+\item[D] day. It
+\end{description}
+}}
+ celebrates the ratification of the Declaration of Independence. While this is an important milestone in establishing one of the first modern democracies, it is not as dramatic as the days celebrated by some other countries. \fbox{4}\columnnote[6]{\myitem{4}{
+At this point the writer is considering adding the following sentence --- \emph{`The fireworks on Independence Day and the Star Spangled Banner are more reminiscent of a revolutionary-war spirit than simply signing a document.'} --- should the writer make this addition here?
+ \begin{description}
+ \item[F] Yes, it is relevant to the focus of the paragraph, which is Independence Day
+ \item[G] Yes, it helps the reader get in the spirit of Independence Day
+ \item[H] No, it is distracting from the focus of this paragraph, which is the historical events that took place on July 4th, 1776
+ \item[J] No, this information does not belong in this essay
+ \end{description}}}
+
+Take for example the French `Bastille Day.' \ulnum{5}{This was a day that}\columnnote{\myitem{5}{
+\begin{description}
+\vspace{-3.75 ex}
+\item[A] NO CHANGE
+\item[B] This awesome day
+\item[C] They decided to make a day that
+\item[D] It
+\end{description}
+}}
+commemorates the storming of a royal fortress in the early days of the French Revolution.
+\end{paracol}
+\end{document}

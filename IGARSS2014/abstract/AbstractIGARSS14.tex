@@ -1,0 +1,167 @@
+% Template for IGARSS-2013 paper; to be used with:
+%          spconf.sty  - LaTeX style file, and
+%          IEEEbib.bst - IEEE bibliography style file.
+% --------------------------------------------------------------------------
+\documentclass{article}
+
+\usepackage{graphicx}
+\usepackage{epstopdf} % to convert eps to pdf
+
+\usepackage{spconf,amsmath,epsfig}
+
+% Example definitions.
+% --------------------
+\def\x{{\mathbf x}}
+\def\L{{\cal L}}
+
+% Title.
+% ------
+\title{A Model-Based ELM for Atmospheric Correction\\ over Case 2 Water with Landsat-8}
+%
+% Single address.
+% ---------------
+\name{Javier A. Concha}
+\address{	Center for Imaging Science\\ 
+	Rochester Institute of Technology\\
+	54 Lomb Memorial Dr., Rochester, NY 14623, USA\\
+	}
+%
+% For example:
+% ------------
+%\address{School\\
+%	Department\\
+%	Address}
+%
+% Two addresses (uncomment and modify for two-address case).
+% ----------------------------------------------------------
+%\twoauthors
+%  {A. Author-one, B. Author-two\sthanks{Thanks to XYZ agency for funding.}}
+%	{School A-B\\
+%	Department A-B\\
+%	Address A-B}
+%  {C. Author-three, D. Author-four\sthanks{The fourth author performed the work
+%	while at ...}}
+%	{School C-D\\
+%	Department C-D\\
+%	Address C-D}
+%
+\usepackage{setspace}
+%\singlespacing
+\onehalfspacing
+%\doublespacing
+%\setstretch{1.1}
+
+% Added 01-10-14 ----------------------------------------
+\usepackage{tikz} % for flow charts
+  \usetikzlibrary{shapes,arrows,positioning,shadows,calc}
+\usepackage{colortbl}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{multirow}
+
+
+% ----------------------------------------
+
+\begin{document}
+\onecolumn
+%\ninept
+%
+\maketitle
+%
+% -------------------------------------------
+\section{Introduction}
+\label{sec:intro}
+
+The Landsat-8 satellite, recently launched (February 2013), carries the next generation of Landsat sensors and extends over 40 years of continuous imaging acquisition. Landsat-8, with its improved spectral coverage and radiometric resolution, has the potential to dramatically improve our ability to simultaneously retrieve the three primary coloring agents (chlorophyll, colored dissolved organic material, and suspended material) from water bodies and considering its 30-meter resolution should be especially useful for studying the nearshore environment \cite{Gerace:2012}.
+
+In the Case 2 water problem, accurate atmospheric correction is essential, yet remains a significant source of water-constituent retrieval error particularly since the sensor-reaching signal due to water is very small compared to the signal from atmospheric effects and the black target assumption is not valid due to water-leaving signal in the NIR in turbid water \cite{Siegel:2000fv}.
+% --------------------------------------------------
+\section{Methodology}
+\label{sec:method}
+\begin{figure}[htb]
+    \centering
+    \includegraphics[height=6cm]{/Users/javier/Desktop/Javier/PHD_RIT/LDCM/Images/PIFmask.png}
+  \caption{PIF mask. Left: false color Landsat-8 image of downtown Rochester. Right: PIF mask applied showing only city pixels \label{fig:PIFmask} } 
+\end{figure}
+ In this work, a modified version of the empirical line method (ELM) has been developed, which utilizes reflectance from both an in-water radiative transfer model (HydroLight) and a reflectance product (Landsat surface reflectance product) to atmospherically correct Landsat-8 images. This method employs pseudo-invariant feature (PIF) pixel extraction \cite{Schott:1988} to mask urban landscape from the reflectance product for the bright pixel determination (city pixels). Figure \ref{fig:PIFmask} shows an example of a PIF mask created for downtown Rochester showing the city pixels only. For the dark pixel, HydroLight is used to obtain the field spectra that replace ground-truth measurements normally used in the ELM. The radiance values for the dark and bright pixels are extracted from the corresponding regions in the Landsat-8 image. %Initial results of this method are compared to results obtained from a traditional ELM and to ground-truth data as well.
+% \begin{figure}[htb]
+% 	\centering
+%   \begin{tikzpicture}[node distance=0.75cm, auto]
+%           \tikzset{
+%                   basenode/.style={rectangle,rounded corners,draw=black,very thick, inner sep=1em, minimum size=3em, text centered,text width=2cm},
+%                   productnode/.style={ellipse,rounded corners,draw=black, very thick, text centered,text width=1.5cm},
+%                   myarrow/.style={->,>=stealth',thick, double = black},
+%                   mylabel/.style={text width=7em, text centered}
+%           }
+%           % SWIR branch
+%           \node[basenode] (SWIR) {SWIR 2\\ Band};
+%           \node[basenode, below=of SWIR] (TS1) {Mask by Threshold};
+%           \node[align=left, right=0.0 of TS1] (C1) {Urban\\Veget.\\Water};
+%           \node[align=left, right=-0.15 of C1] (C2) {ON\\ON\\OFF};
+
+%           % Ratio branch
+%           \node[basenode, right=2.5cm of SWIR] (Ratio) {Ratio\\ NIR Band/ Red Band};
+%           \node[basenode, below=of Ratio] (TS2) {Mask by Threshold};
+%           \node[align=left, right=0.0 of TS2] (C3) {Urban\\Veget.\\Water};
+%           \node[align=left, right=-0.15 of C3] (C4) {ON\\OFF\\ON};
+
+%           % AND
+%           \path (TS1.south)--(TS2.south) node[pos=.5,below=2cm] (AND) {AND};
+
+
+%           % PIF Mask
+%           \node[basenode, below=of AND] (PIFMask){PIF Mask};
+%           \node[align=left, left=0.85 of PIFMask] (C5) {Urban\\Veget.\\Water};
+%           \node[align=left, right=-0.15 of C5] (C6) {ON\\OFF\\OFF};
+
+%           \node[basenode, below=of TS2,right=2.0cm of AND] (Image) {Image};
+%           \path (Image.south)--(PIFMask.east) node[below=of Image,right=2cm of PIFMask] (AND2) {AND};
+%           \node[basenode, right=2cm of AND2] (PIFIm){PIF Image};
+
+%           \draw[myarrow] (SWIR)--(TS1);
+%           \draw[myarrow] (Ratio)--(TS2);
+%           \draw[myarrow] (TS1)--(AND);
+%           \draw[myarrow] (TS2)--(AND);
+%           \draw[myarrow] (AND)--(PIFMask);
+%           \draw[myarrow] (Image)--(AND2);
+%           \draw[myarrow] (PIFMask)--(AND2);
+%           \draw[myarrow] (AND2)--(PIFIm);
+    
+%   \end{tikzpicture}
+% \caption{Illustration of the logic used to segment PIF features. \label{fig:PIFflowchart}}
+% \end{figure}
+% -------------------------------------------------
+\section{Conclusions}
+\label{sec:conc}
+\begin{figure}[htb]
+  \begin{minipage}[c]{0.48\linewidth}
+    \centering
+  \includegraphics[height=7cm]{/Users/javier/Desktop/Javier/PHD_RIT/LDCM/Images/waterpixelsrad.png}
+    % \vspace{1.5cm}
+    \centerline{(a) Water pixel radiance values}\medskip
+  \end{minipage}
+  \hfill
+  \begin{minipage}[d]{0.48\linewidth}
+    \centering
+  \includegraphics[height=7cm]{/Users/javier/Desktop/Javier/PHD_RIT/LDCM/Images/waterpixelsref.png}
+    % \vspace{1.5cm}
+    \centerline{(b) Water pixel reflectance values}\medskip
+  \end{minipage}
+  %
+  \caption{Water pixel spectra (a) before and (b) after atmospheric correction.}
+  \label{fig:refrad}
+\end{figure}
+Once the values of radiance and reflectance for both the bright and dark pixels are determined, the ``Empirical Line'' algorithm included in the ENVI software is used to apply the atmospheric correction technique developed in this research. Preliminary results from an area of water in the Rochester, NY region are shown in Figure~\ref{fig:refrad}. This figure shows the spectrum of the water pixels before (radiance values) and after (reflectance values) atmospheric correction. The values after atmospheric correction exhibit shapes that correspond with the shapes of the water pixels. 
+\begin{figure}[htb]
+  \centering
+  \includegraphics[height=7cm]{WaterPixelComparisonELMELMbased.eps}
+  \caption{Comparison between the traditional ELM and the ELM-based algorithm developed in this research. \label{fig:ELMcomp} } 
+\end{figure}
+
+These preliminary results are compared to results obtained from a traditional ELM.
+Figure~\ref{fig:ELMcomp} shows the comparison between the two algorithm for four different areas of water in the Rochester area (Cranberry pond, Long pond, near shore and off shore of the lake Ontario). The solid lines represent the reflectance values of water pixels after using the method developed in this research, while the dashed lines represent the reflectance values of water pixels after using a traditional ELM method. In conclusion, the atmospheric correction algorithm exhibits less than one percent difference in comparison to the results from the traditional ELM algorithm. A further validation with ground-truth data is anticipated at the end of this research. 
+% -------------------------------------------------------------------------
+\bibliographystyle{IEEEbib}
+\bibliography{/Users/javier/Desktop/Javier/PHD_RIT/Latex/javier_bib}
+
+\end{document}

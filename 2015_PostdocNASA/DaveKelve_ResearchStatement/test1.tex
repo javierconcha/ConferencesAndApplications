@@ -1,0 +1,31 @@
+\documentclass{book}
+\usepackage{amsmath,soul}
+\usepackage{parcolumns}
+\usepackage{soulpos}
+\ulposdef{\ulnumaux}{%
+   $\underset{\saveulnum}{\rule[-.7ex]{\ulwidth}{.4pt}}$}
+\newcommand{\ulnum}[2]{%
+  \def\saveulnum{#1}%
+  \ulnumaux{#2}}
+\begin{document}
+\begin{parcolumns}{2}
+\colchunk[1]{Here is a \ulnum{1}{block} of text that might end up being kind of long. It is usually on a \ulnum{2}{random topic}, though sometimes it is interesting. What is important is that certain sections need to be aligned with one another, and sometimes this might cause things to collide.}
+\colchunk[2]{
+\begin{enumerate}
+\item A block is single continuous body, sometimes composed of smaller parts.
+\item like golf, the art of the Renaissance, amoebas, or the Allegory of the Cave
+\end{enumerate}
+}
+\end{parcolumns}
+\begin{parcolumns}{2}
+\colchunk[1]{While in this example things are in \ulnum{3}{parallel} paragraphs, I would like the numbers on the right to be able to align with the underlined sections on the left. \ulnum{4}{That means in each column, there will be} a lot of blank space in \ulnum{5}{sections} where underlined sections are close together.\fbox{6}}
+\colchunk[2]{
+\begin{enumerate}
+\setcounter{enumi}{2}
+\item Here these paragraphs are nicely spaced side by side, but I don't need the text in column 2 to get affected by spacing in column 2, except that the top line of the comment should line line up with it's underlined section
+\item Maybe
+\item or other parts of the text where column 2 is longer than the space between it and the next number in column 1.
+\item Sometimes I might want to align text with a box too, though if there are two numbers on a line, it is ok for the text associated with them to be stacked in the other column, but this will mean a lot of space over there
+\end{enumerate}}
+\end{parcolumns}
+\end{document}

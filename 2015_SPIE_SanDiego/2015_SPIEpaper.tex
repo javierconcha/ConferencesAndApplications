@@ -72,34 +72,87 @@ Concentration range for Chl in the dataset used for the parameters of the band r
 
 Field data: SVC radiometer following the procedures suggested by Mobley, which include three different measurements, Ed, Lw, Lrefsky.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{METHODS}
+\label{sec:methods}
+% -----------------------------------------------------------
+\subsection{Study Area and Field Measurements}
+\begin{figure}[htbp!]
+  \centering
+  \includegraphics[height=8.0cm]{./Images/ROI_RocEmbayment130919}
+  \caption{$R_{rs}$ for the sites for the 09-19-2013 collection after applying the MoB-ELM atmospheric correction (Labels: LONGS: Long Pond south, CRANB: Cranberry Pond, ONTOS: Lake Ontario off-shore, and ONTNS: Lake Ontario near-shore).\label{fig:RrsROIs130919} } 
+\end{figure}
 
-Figure captions are centered below the figure or graph.  Figure captions start with the figure number in 9-point bold font, followed by a period; the text is in 9-point normal font; for example, ``{\footnotesize{Figure 3.}  Original image...}".  See Fig.~\ref{fig:example} for an example of a figure caption.  When the caption is too long to fit on one line, it should be justified to the right and left margins of the body of the text.  
+% -----------------------------------------------------------
+\subsection{Satellite Data}
 
-Tables are handled identically to figures, except that their captions appear above the table. 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{ATMOSPHERIC CORRECTION}
-The atmospheric correction of satellite imagery is a complex task to perform over water because the signal leaving the water that reaches the sensor is very small compared to the signal reaching the sensor from atmospheric scattering. Most of the atmospheric correction algorithms applied to ocean color satellites (i.e. SeaWiFS and MODIS) are not suitable for turbid coastal waters because the {\it black pixel assumption} (a.k.a. black target assumption) cannot be applied to these types of waters. Different modifications to these algorithms have been suggested~\cite{Mobley:1999}, but they still could fail over highly turbid waters. This work presents an alternative approach: an in-scene method based on the well-known empirical line method (ELM) (a.k.a. empirical line fit or ELF).
 \label{sec:atmcorr}  % \label{} allows reference to this section
+% -----------------------------------------------------------
+\subsection{SEADAS}
+% -----------------------------------------------------------
+\subsection{ACOLITE}
+% -----------------------------------------------------------
+\subsection{MOB-ELM}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{CPA RETRIEVAL}
+% -----------------------------------------------------------
+\subsection{Bio-Optical Algorithm}
+% -----------------------------------------------------------
+\subsection{LUT Approach}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{RESULTS AND DISCUSSION}
 \label{sec:results}  % \label{} allows reference to this section
-%%  Use following command to specify that graphics file is in 
-%%  a directory other than this LaTeX source file.
-%%  Note use of / to separate subdirectories, for UNIX and Windows OS.
-%%\graphicspath{{H:/HANSON/SPIESTY/}}
-%% tabular environment useful for creating an array of images  
-%-------------
-   \begin{figure}
-   \begin{center}
-   \begin{tabular}{c}
-   \includegraphics[height=7cm]{mcr3b.eps}
-   \end{tabular}
-   \end{center}
-   \caption[example] 
-%>>>> use \label inside caption to get Fig. number with \ref{}
-   { \label{fig:example} 
-Blah Blah.}
-   \end{figure} 
+% -----------------------------------------------------------
+\subsection{Comparison of Rrs}
+
+\begin{figure}[htbp!]
+  \centering
+  \includegraphics[height=8.0cm]{./Images/Collated2013262_2_band_1_D.png}
+  \caption{$R_{rs}$ for the sites for the 09-19-2013 collection after applying the MoB-ELM atmospheric correction (Labels: LONGS: Long Pond south, CRANB: Cranberry Pond, ONTOS: Lake Ontario off-shore, and ONTNS: Lake Ontario near-shore).\label{fig:RrsROIs130919} } 
+\end{figure}
+
+
+
+
+\begin{figure}[htbp!]
+  \begin{minipage}[c]{0.48\linewidth}
+  		\centering
+      \includegraphics[trim=70 50 0 0,clip,width=9.0cm]{./Images/13262_443_ACO_MOB}  
+  \end{minipage}
+  \hfill
+  \begin{minipage}[d]{0.48\linewidth}
+      \includegraphics[trim=70 50 0 0,clip,width=9.0cm]{./Images/13262_483_ACO_MOB}
+  \end{minipage}
+% 
+%% TSS
+  \begin{minipage}[c]{0.48\linewidth}
+  		\centering
+      \includegraphics[trim=70 50 0 0,clip,width=9.0cm]{./Images/13262_561_ACO_MOB}  
+  \end{minipage}
+  \hfill
+  \begin{minipage}[d]{0.48\linewidth}
+      \includegraphics[trim=70 50 0 0,clip,width=9.0cm]{./Images/13262_655_ACO_MOB}
+  \end{minipage}
+
+%% CDOM
+  \begin{minipage}[c]{1.00\linewidth}
+  		\centering
+      \includegraphics[trim=70 0 0 0,clip,width=9.0cm]{./Images/13262_865_ACO_MOB}  
+  \end{minipage}
+  % \hfill
+  % \begin{minipage}[d]{0.48\linewidth}
+  %     \includegraphics[trim=70 50 0 0,clip,width=9.0cm]{./Images/13262_443_ACO_MOB}
+  % \end{minipage}
+% 
+  \caption{Scatter plots showing the comparison of remote-sensing reflectance ($R_{rs}$) at 443, 483, 561, 655 and 865 nm, derived from the 09-29-2013 image over the Rochester Embayment (scene LC80160302013262LGN00) using the ACOLITE tool (x) and the MOB-ELM algorithm (y). Colors denote pixel densities, the dashed black line is the 1:1 line, and the Reduced Major Axis (RMA) regression line is drawn in red. \label{fig:13262RrsACO_MOB} } 
+\end{figure}
+% -----------------------------------------------------------
+\subsection{Comparison of Chlorophyll-{\it a}}
 %-------------
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \acknowledgments     %>>>> equivalent to \section*{ACKNOWLEDGMENTS}       

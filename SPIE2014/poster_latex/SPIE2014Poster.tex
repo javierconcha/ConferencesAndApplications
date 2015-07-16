@@ -1,0 +1,445 @@
+%\documentclass[final,t]{beamer}
+% more info: http://www-i6.informatik.rwth-aachen.de/~dreuw/latexbeamerposter.php
+\documentclass{beamer}
+\mode<presentation>
+{
+%  \usetheme{Warsaw}
+%  \usetheme{Aachen}
+%  \usetheme{Oldi6}
+%  \usetheme{I6td}
+%  \usetheme{I6dv}
+%  \usetheme{I6pd}
+%  \usetheme{I6pd2}
+%\usetheme{Icy}
+\usetheme{RIT6dvgreen}
+}
+% additional settings
+%\setbeamerfont{itemize}{size=\normalsize}
+%\setbeamerfont{itemize/enumerate body}{size=\normalsize}
+%\setbeamerfont{itemize/enumerate subbody}{size=\normalsize}
+
+\setbeamerfont{itemize}{size=\small}
+\setbeamerfont{itemize/enumerate body}{size=\small}
+\setbeamerfont{itemize/enumerate subbody}{size=\small}
+
+
+% additional packages
+\usepackage{times}
+\DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
+\usepackage{amsmath,amsthm, amssymb, latexsym}
+\usepackage{exscale}
+%\usepackage{subfig}
+\usepackage{booktabs, array}
+%\usepackage{rotating} %sideways environment
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+%\usepackage[orientation=landscape,size=custom,width=118,height=91,scale=1.9]{beamerposter}
+%\usepackage[orientation=landscape,size=custom,height=100,width=120,scale=1.2]{beamerposter}  %size=a0
+\usepackage[orientation=landscape,size=custom,height=106.68,width=91.44,scale=1.2]{beamerposter}  %size=a0
+%\listfiles
+%\graphicspath{{figures/}}
+% Display a grid to help align images
+%\beamertemplategridbackground[1cm]
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,positioning,shadows,calc,plotmarks}
+% \usepackage[footnotesize]{caption}
+\setbeamertemplate{caption}[numbered] % to add number to figures
+
+
+ 
+%\usepackage{caption}
+%\DeclareCaptionStyle{mystyle}{name=none}
+%\captionsetup[figure]{style=mystyle}
+\usepackage[]{graphicx}
+\usepackage{floatflt,subfigure}
+\setcounter{subfigure}{0}% Reset subfigure counter
+
+\usepackage{ragged2e}% for justify
+
+%%%% Added by Javier 04/21/14 %%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{filecontents}% http://ctan.org/pkg/filecontents
+\usepackage{silence}% http://ctan.org/pkg/silence
+\WarningFilter{latex}{Overwriting file}% Remove LaTeX warnings starting with "Overwriting file"
+\begin{filecontents*}{linereg.data}
+#x y
+0 4
+10 24
+\end{filecontents*} 
+
+\begin{filecontents*}{linereg2.data}
+#x y
+2 8
+8 20
+\end{filecontents*} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{ \huge A Model-Based ELM for Atmospheric Correction \\over Case 2 Water with Landsat 8}
+\author[]{Javier A. Concha and John R. Schott}
+\institute[Rochester Institute of Technology]{Digital Imaging and Remote Sensing Laboratory, Chester F. Carlson Center for Imaging Science\\ Rochester Institute of Technology, Rochester, New York, USA}
+% \date{\today}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% t
+\begin{document}
+\begin{frame}{} 
+  \begin{columns}[t]
+    
+
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% COLUMN 1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{column}{.3\linewidth}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%BLOCK 1 (column 1)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{block}{Introduction}
+%\noindent {\small Imaging spectrometer data can be represented as a three dimensional structure which encompasses both spatially and spectrally sampled data of a given scene.} 
+\justifying\small Landsat 8, with its improved spectral coverage and radiometric resolution, has the potential to dramatically improve our ability to simultaneously retrieve the three primary Color Producing Agents (CPAs) (chlorophyll, colored dissolved organic matter, and suspended minerals) from water bodies and considering its 30-meter resolution should be especially useful for studying the nearshore environment.\\
+\vspace{.5cm}
+In the Case 2 water problem, accurate atmospheric correction is essential, yet remains a significant source of water-constituent retrieval error particularly since the sensor-reaching signal, due to water, is very small compared to the signal from atmospheric effects. Furthermore, the standard black target assumption commonly used for open ocean studies is not valid in turbid water due to the presence of water-leaving signal in the near infrared (NIR).
+\vspace{.5cm}
+\end{block}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% BLOCK 2 (column 1)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      
+\begin{block}{Goal}
+\justifying\small An atmospheric correction algorithm is proposed based in the traditional empirical line method (ELM)~\cite{Gerace:2013,Gerace:2012}. This algorithm tries to avoid the need for field data acquisition at every satellite overpass by using pseudo-invariant feature (PIF) extraction for the reflectance values for the bright pixel. As for the dark pixel, the Hydrolight model is used to generate a reflectance spectrum where IOPs and concentration are available or can be reasonable estimated.
+\vspace{.5cm}
+\end{block}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% BLOCK 3 (column 1)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%INSERT K-NN+MST GRAPH BLOCK
+\begin{block}{The Retrieval Process}   
+%-------------------------------
+\begin{center}
+\begin{figure}[H]
+		\includegraphics[height=14cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2014_ASPRS_SOY/Images/RetProcess.pdf}
+		\caption{CPAs Retrieval Process}
+\end{figure}
+\hspace{12cm}{\scriptsize $*~$LUT: Look-up table}
+\end{center}
+\end{block}
+% ----------------------------------------------
+\begin{block}{Empirical Line Method (ELM)}
+\begin{itemize}
+	\item \small Linear relationship between radiance $L$ and reflectance $r_d$:
+\begin{equation}\label{eq:ELM}
+	L(\lambda)=m\times r_d(\lambda)+b
+\end{equation}
+
+\item \small At least two pixels from the scene: {\bf \small Dark} and {\bf \small Bright} Pixels
+
+\end{itemize}
+\begin{figure}[htb]
+	\centering
+\resizebox{15cm}{!}{%
+\begin{tikzpicture}[x=2.8ex,y=.7ex]
+ 	%axis
+	\draw (0,0) -- coordinate (x axis mid) (10,0);
+    \draw (0,0) -- coordinate (y axis mid) (0,30);
+    %ticks
+ %  	\foreach \x in {0,...,10}
+ %   		\draw (\x,1pt) -- (\x,-3pt)
+	% node[anchor=north] {\x};
+ %  	\foreach \y in {0,5,...,30}
+ %   		\draw (1pt,\y) -- (-3pt,\y) 
+ %   			node[anchor=east] {\y}; 
+    %labels      
+	\node[below=0ex] at (8,0) {\small $Band_i~~reflectance~(r_d)$};
+	\node[rotate=90] at (-.5,23) {\small $Band_i~~Radiance~(L)$};
+
+	\node[below=.2ex] at (-2.1,4.5) {\small $b=$offset};
+	\node[below=1.4ex] at (-2.1,4.0) {\scriptsize (path radiance)};
+	\draw[rotate=90,|<->|] (0,1) -- coordinate (x axis mid) (1,1);
+
+	\node[below=0ex] at (2,16) {\small Dark Object};
+	\draw[arrows=-triangle 45] (2,12.5) -- (2,9);
+
+	\node[below=0ex] at (4,21) {\small $m=$ Slope};
+	\draw[arrows=-triangle 45] (4,17.5) -- (5,14.5);
+
+	\node[below=0ex] at (7,28) {\small Bright Object};
+	\draw[arrows=-triangle 45] (7,24.5) -- (7.9,20.5);
+
+	\node[below=0ex] at (8,9) {\small $r_d=(L-b)/m$};
+
+	%plots
+	\draw plot 
+		file {linereg.data};
+	\draw plot[mark=*] 
+		file {linereg2.data};
+
+\end{tikzpicture}
+  }%close \resizebox
+\caption{Regression used in ELM to solve the linear relationship between reflectance $r_d$ and radiance $L$ using a dark and bright pixel from the scene. \label{fig:ELM}}
+\end{figure}
+%-------------------------------
+\vspace{-.5cm}
+\end{block}
+%-------------------------------
+\begin{block}{Landsat 8}
+\begin{figure}[htb]
+\begin{minipage}[c]{0.48\linewidth}
+\small
+\begin{itemize}
+	\item Optical satellite (passive)
+	\vspace{.2cm}
+	\item Multispectral: 4 VIS, 1 NIR, \\2 SWIR, 1 Pan, 2 Thermal
+	\vspace{.2cm}
+	\item Spatial resolution: 15/30/100m
+	\vspace{.2cm}
+	\item Temporal resolution: 16 days
+	\vspace{.2cm}
+	\item Bit depth: 12-bits quantization (4096 levels)
+	\vspace{.2cm}
+	\item Pushbroom satellite
+\end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.48\linewidth}
+
+  	\centering
+  	\includegraphics[height=8cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/Proposal/Images/LC80160302013262LGN00subset.jpg}
+  \caption{Portion of the Landsat 8 image to be corrected showing part of the Lake Ontario, nearby ponds and Downtown Rochester. \label{fig:Scene} } 
+
+\end{minipage}
+\end{figure}
+\vspace{-.5cm}
+\end{block}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{column}   
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% COLUMN 2      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ \begin{column}{.3\linewidth}  %.29\linewidth (3-columns) %0.46\linewidth (2-columns)
+%%%%%%%%%%%%%%%%%%%%%
+% BLOCK 1 (column 2) 
+%%%%%%%%%%%%%%%%%%%%%
+%-------------------------------
+
+%-------------------------------
+\begin{block}{Hydrolight}
+\small
+\begin{itemize}
+	\item In-water radiative transfer model\cite{MobleyHE}
+	\item Inputs: IOPs, concentrations, geometry, ...
+	\item Output: radiance distributions and derived quantities (irradiances, reflectances, K functions, etc.)
+	\item For the Dark Pixel and LUT generation
+\end{itemize}
+\vspace{1em}
+\begin{figure}[H]
+		\includegraphics[height=15cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2014_ASPRS_SOY/Images/HLdiagram.pdf}
+		\caption{Hydrolight model}
+\end{figure}
+\hspace{12cm}{\scriptsize $*~$IOPs: Inherent Optical Properties}
+% \vspace{1cm}
+\end{block}
+%-----------------------
+\begin{block}{Pseudo-Invariant Features (PIFs)}
+%-------------------------------
+\small
+\begin{itemize}
+	\item Targets whose reflectivity properties do not change rapidly between different times of collection\cite{Schott:1988} 
+	\item Example: urban feature
+	\item Used for bright pixel determination
+\end{itemize}
+
+\vspace{1cm}
+\begin{figure}[htb]
+	\centering
+\resizebox{18cm}{!}{%	
+  \begin{tikzpicture}[node distance=3ex, auto]
+          \tikzset{
+                  basenode/.style={rectangle,rounded corners,draw=black,very thick, inner sep=1em, minimum size=3em, text centered,text width=9ex},
+                  productnode/.style={ellipse,rounded corners,draw=black, very thick, text centered,text width=8ex},
+                  myarrow/.style={->,>=stealth',thick, double = black},
+                  mylabel/.style={text width=7em, text centered}
+          }
+          % SWIR branch
+          \node[basenode] (SWIR) {\small SWIR 2\\\small  Band};
+          \node[basenode, below=of SWIR] (TS1) {\small Mask by Threshold (upward)};
+          \node[align=left, right=0.0 of TS1] (C1) {\small Urban\\\small Veget.\\\small Water};
+          \node[align=left, right=-0.15 of C1] (C2) {\small ON\\\small ON\\\small OFF};
+
+          % Ratio branch
+          \node[basenode, right=14ex of SWIR] (Ratio) {\small Ratio\\\small  NIR Band/ Red Band};
+          \node[basenode, below=of Ratio] (TS2) {\small Mask by Threshold (downward)};
+          \node[align=left, right=0.0 of TS2] (C3) {\small Urban\\\small Veget.\\\small Water};
+          \node[align=left, right=-0.15 of C3] (C4) {\small ON\\\small OFF\\\small ON};
+
+          % AND
+          \path (TS1.south)--(TS2.south) node[pos=.5,below=7ex] (AND) {\small .AND.};
+
+
+          % PIF Mask
+          \node[basenode, below=of AND] (PIFMask){\small PIF Mask};
+          \node[align=left, left=2 of PIFMask] (C5) {\small Urban\\\small Veget.\\\small Water};
+          \node[align=left, right=-0.5 of C5] (C6) {\small ON\\\small OFF\\\small OFF};
+
+          \node[basenode, below=of TS2,right=7ex of AND] (Image) {\small Image};
+          \path (Image.south)--(PIFMask.east) node[below=of Image,right=7ex of PIFMask] (AND2) {\small .AND.};
+          \node[basenode, right=7ex of AND2] (PIFIm){\small PIF Image};
+
+          \draw[myarrow] (SWIR)--(TS1);
+          \draw[myarrow] (Ratio)--(TS2);
+          \draw[myarrow] (TS1)--(AND);
+          \draw[myarrow] (TS2)--(AND);
+          \draw[myarrow] (AND)--(PIFMask);
+          \draw[myarrow] (Image)--(AND2);
+          \draw[myarrow] (PIFMask)--(AND2);
+          \draw[myarrow] (AND2)--(PIFIm);
+  \end{tikzpicture}
+  }%close \resizebox
+\caption{Illustration of the logic used to segment PIF features. \label{fig:PIFflowchart}}
+\end{figure}
+%-------------------------------------
+%where $C_{real}(i)$ is the real constituent concentration of the $i^{th}$ curve , $C_ {ret}(i)$ is the retrieved constituent concentration of the $i^{th}$ curve obtained from the non-linear optimization algorithm, $C_{max}$ is the maximum possible value of concentration and $N$ is the total number of test samples or pixels in the synthetic image. The term $\frac{1}{N}\sum_{i=1}^{N} |C_{real}(i) - C_{ret}(i)|$ represents the average of all test samples.      
+%-------------------------------------      
+\vspace{1cm}
+\begin{figure}[htb]
+  \begin{minipage}[c]{0.48\linewidth}
+    \centering
+      \includegraphics[trim=30 0 30 0,clip,height=11cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/Proposal/Images/DTROCL8falsecolor.jpg}  
+    \vspace{.5cm}
+    \centerline{(a)}\medskip
+  \end{minipage}
+  \hfill
+  \begin{minipage}[d]{0.48\linewidth}
+    \centering
+      \includegraphics[trim=30 0 30 0,clip,height=11cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/Proposal/Images/PIFmaskApplied.jpg}
+    \vspace{.5cm}
+    \centerline{(b)}\medskip
+  \end{minipage}
+  \caption{PIF mask determination over downtown Rochester, NY. (a) False color image, with vegetation in red and (b) PIF mask applied to the RGB image. \label{fig:PIFmask} } 
+\end{figure}
+
+
+\begin{figure}[!ht]
+  \begin{minipage}[c]{0.48\linewidth}
+  	\centering
+  	\includegraphics[height=10cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/Proposal/Images/ZenithCorrection.eps}
+  \caption{Mean values for nine scenes of the Landsat 5 reflectance product after applying the master PIF mask. \label{fig:ZenithCorr} } 
+  \end{minipage}
+  \hfill
+  \begin{minipage}[d]{0.48\linewidth}
+  	\centering
+  	\includegraphics[height=10cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/Proposal/Images/ZenithCorrelation.eps}
+  \caption{Linear regression between reflectance values and solar zenith angle for band 1 of the Landsat 5 reflectance product. \label{fig:Band1Corr} } 
+   \end{minipage}
+\end{figure}
+
+\end{block} 
+\end{column}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%COLUMN 3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ \begin{column}{.3\linewidth}
+%%%%%%%%%%%%%%%%%%%%%        
+% Block 1 (column 3)      
+%%%%%%%%%%%%%%%%%%%%%
+% \vspace{.5cm}
+\begin{block}{Pseudo-Invariant Features (con't)}
+\begin{table}[!ht]
+\caption{ Zenith angle correction parameters for the Landsat 5 reflectance product for each band. \label{tab:ZenithCorr} } 
+\centering
+\scriptsize
+\begin{tabular}{l|c|c|c|c|c} 
+
+ \bfseries{Band n} & \bfseries{$m$}      & \bfseries{$y_0$}    & \bfseries{$R^2$}     & \bfseries{$RMSE$} & $y(x=45^\circ)$   \\ \hline \hline
+ Band 1 (Blue) 		& -0.000412 & 0.122631 & 0.937155 & 0.001705 &      0.1039\\
+ Band 2 (Green) 	& -0.000634 & 0.147424 & 0.934344 & 0.002685 &      0.1186\\
+ Band 3 (Red) 		& -0.000756 & 0.161421 & 0.976599 & 0.001869 &      0.1270\\
+ Band 4 (NIR) 		& -0.001316 & 0.220031 & 0.906946 & 0.006733 &      0.1601\\
+ Band 5 (SWIR 1) 	& -0.001148 & 0.217231 & 0.903702 & 0.005984 &      0.1650\\
+ Band 6 (SWIR 2) 	& -0.001159 & 0.206725 & 0.929626 & 0.005096 &      0.1539\\  
+ \end{tabular}
+\end{table}
+\end{block}
+%-------------------------------------
+\begin{block}{Model-based ELM}
+{\large \bf Bright Pixel}
+\begin{itemize}
+ 		\item Radiance: PIF from Landsat 8 image
+ 		\item Reflectance: PIF from Landsat reflectance product
+\end{itemize}
+\vspace{0.3cm}
+{\large \bf Dark Pixel}
+
+\begin{itemize}
+		\item Radiance: ROI over water from Landsat 8 image
+		\item Reflectance: Hydrolight
+\end{itemize}
+
+\begin{figure}[htb]
+  \centering
+		\includegraphics[height=8cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2014_RITResearchSymposium/Images/StudyArea.png}
+  \caption{ROI for the Dark Pixel \label{fig:ROIDark} } 
+\end{figure}
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=25cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/Proposal/Images/ELMpixelsENVI.pdf}
+  \caption{Bright and Dark pixels used in ENVI to apply ELM. (a) Data spectra and (b) Field spectra \label{fig:ELMpxsENVI} } 
+\end{figure}
+
+\end{block}
+\begin{block}{Results}
+  %-------------   
+\begin{figure}[htb]
+  \begin{minipage}[c]{0.48\linewidth}
+    \centering
+      \includegraphics[height=10cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/NESSF14/latex/WaterPixels_2.eps}
+      \caption{Water pixel spectra after applying the model-based ELM atmospheric correction method.}
+      \label{fig:waterpxs}
+    % \vspace{1.5cm}
+    % \centerline{(a)}\medskip
+  \end{minipage}
+  \hfill
+  \begin{minipage}[d]{0.48\linewidth}
+    \centering
+      \includegraphics[height=10cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/NESSF14/latex/WaterPixelComparisonELMELMbased}
+      \caption{Comparison between traditional ELM (dashed lines) and model-based ELM (solid lines).}
+      \label{fig:refcomp}
+    % \vspace{1.5cm}
+    % \centerline{(b)}\medskip
+  \end{minipage}
+  % \caption{Water pixel spectra: (a) after atmospheric correction and (b) comparison with traditional ELM method.}
+\end{figure} 
+\end{block}  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{block}{Conclusion}
+	
+\justifying\small This algorithm produces results comparable with a traditional ELM method. The differences are less than one percent reflectance unit ($<0.01\Rightarrow <1\%$) between the traditional ELM method and the model-based ELM method. While small, these differences could still have a significant impact on application such as water constituents retrieval so there is still need for improvement. A further validation with ground-truth data is anticipated for the future.
+\vspace{.3cm}
+\end{block}
+
+
+\begin{block}{References} 
+   
+ { \scriptsize 
+\setbeamertemplate{bibliography item}[text]
+				\bibliographystyle{spiebib}
+				\bibliography{/Users/javier/Desktop/Javier/PHD_RIT/Latex/javier_bib}
+}
+\end{block} 
+
+\end{column}
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{columns}
+\end{frame}
+
+\end{document}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-PDF-mode: t
+%%% End:
+
+%spelling checked

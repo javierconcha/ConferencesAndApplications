@@ -1,0 +1,158 @@
+% !BIB TS-program = biber
+
+%% start of file `template.tex'.
+%% Copyright 2006-2013 Xavier Danaux (xdanaux@gmail.com).
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License version 1.3c,
+% available at http://www.latex-project.org/lppl/.
+
+% possible options include 
+%	font size ('10pt', '11pt and '12pt')
+%	paper size ('a4paper', 'letterpaper', 'a5paper', 'legalpaper', 'executivepaper' and 'landscape') 
+%	font family ('sans' and 'roman')
+\documentclass[letterpaper,sans]{moderncv} 
+\renewcommand{\normalsize}{\fontsize{10.2pt}{12.5pt}\selectfont}
+
+\input{preamble}
+\usepackage{paracol}
+\usepackage{float}
+
+%\usepackage{cite}
+
+%\usepackage[margin=10pt,font=small,labelfont=bf]{caption}
+
+%\usepackage[margin=0.5in]{geometry}
+
+
+\begin{document}
+%\input{coverletter}
+%\newpage
+%\setlength\parindent{24pt}
+\makecvtitle
+%\noindent
+\vspace{-16mm}
+\columnratio{0.72,0.28}
+\begin{paracol}{2}
+%\setlength{\columnseprule}{0.4pt}
+\setlength{\columnsep}{2em}
+\begin{leftcolumn}
+I am interested in developing novel geospatial data systems and analytics to address relevant, global challenges. I have extensive, highly collaborative leadership experience applying fundamental remote sensing theory and emerging data analysis paradigms to complex, multidisciplinary problems.
+
+\section{Previous and Ongoing Work}
+
+\textbf{Structural calibration/validation with terrestrial laser scanning}
+
+As a National Science Foundation Graduate Research Fellow and Ph.D. student at Rochester Institute of Technology (RIT), I identified a critical knowledge gap in our understanding of emerging airborne laser scanning (ALS) technology. I proposed a research plan linking ALS to complementary terrestrial laser scanning (TLS) data (Fig. 1) to provide spatially explicit ground-truth data for calibration/validation in forest environments. I developed novel computer vision techniques to reconstruct geometric forest structure from low-resolution point cloud data \cite{spie2013dk,kelbe2015stem} (Fig. 2). To address the subsequent challenge of obscuration, I designed a view-invariant feature descriptor to perform marker-free registration of TLS data without knowledge of the initial sensor pose \cite{sl2013dk} (Fig. 3). A graph-theory framework was then integrated to compute transformation parameters between a network of disconnected scans (Fig. 4). Efforts focused on improving efficiencies for operational assessment. Outputs are being utilized to provide antecedent science data for NASA's HyspIRI mission \cite{spie2015wy} (Fig. 5) and to support the National Ecological Observatory Network's long-term environmental monitoring initiatives \cite{igarss2014jv}. Moreover, this has led to an improved understanding of the phenomenology of airborne small-footprint waveform laser scanning systems \cite{asprs2013kc-a,cjrs2013pr}. Leadership roles in national and international field campaigns have strengthened critical teamwork and communication skills. This work has generated significant interest, most recently appearing in the American Scientist. 
+\vspace{.2cm}
+
+\textbf{Multispectral imaging of historical artifacts}
+
+Concurrent with my Ph.D. research, I also established a core expertise in multispectral imaging and exploitation as an independent consultant. This emerged from my role leading a multidisciplinary team of students through the engineering cycle of a reflectance transformation imaging (RTI) device, designed to capture object texture through interactive illumination. I was subsequently invited to join a team of the leading scientists developing multispectral imaging technology to recover and preserve historical artifacts \cite{easton2013imaging}. I methodically identified and then solved complex multidisciplinary problems by linking my remote sensing background to applications in the humanities . With my respectful demeanor and well-spoken contributions, I motivated a distinguished team of senior researchers to put aside their differences and strive for common goals.  As a result, my responsibilities have grown: I am now the principal science team representative to the project's website development, a key liaison ensuring metadata management for large volumes of processed imagery, and the core scientist involved with supervised image processing. My primary focus is recovering erased writing from ancient, overwritten manuscripts using multispectral image processing and machine learning techniques \cite{easton2013statistical}. These algorithms, such as graph-based connectivity (Fig. 6), or statistical independent component analysis (Fig. 7) are effective at recovering hidden patterns and signals from high-dimensional data. These efforts have been crucial to the success of a number of high-profile international collaborations, with technical contributions resulting in several peer-reviewed publications in the cultural heritage domain. I am now training a network of undergraduate students at strategic partner institutions across the globe to disseminate these scientific advances. In the future I plan to extend this work by applying my technical training in multi-view imaging to extract measurements of 3-D structure. 
+
+\newpage
+\section{Proposed Research Plan}
+
+\textbf{Augmenting LandScan with high-resolution, socioeconomic, and temporal geoanalytics}
+\vspace{.2cm}
+
+Global population has exceeded a staggering 7 billion people, with an estimated net growth of 2.37 persons per second. In this era of unprecedented population growth, we face new and complex challenges in energy, health, and national security, which compel a response.  
+Fortunately, the development of key technologies has kept pace with burgeoning population-driven challenges. Predictive analytics (which apply deterministic modeling to forecast a single-point outcome) are quickly becoming outmoded by an emerging era of anticipatory intelligence. Driven by advances in big data and supercomputing, new analysis paradigms require cognitive, comprehensive, and complex data to anticipate and respond to less clearly-defined crises of national and global importance.
+\vspace{.2cm}
+
+One such ORNL development that has become critical in the anticipation and response to crises is LandScan, the ubiquitous global population product pioneered by the Geographic Information Science and Technology (GIST) group. %LandScan has been used to support relief efforts following national and global disasters, assess stability and prosperity in the wake of Afghanistan's withdrawal of troops, aid polio vaccination in Nigeria, and address challenges in urbanization and sustainable development. 
+In order to maintain relevance in a new era that seeks cognitive and comprehensive understanding of global human systems, I envision several key improvements congruent to my expertise.   
+\vspace{.2cm}
+
+The first improvement involves the integration of human geography data associated with population count and spatial distribution. Sociocultural and demographic information (e.g., infrastructure, economies, education, environment, medical facilities, etc.) provide critical information on stability, prosperity, and preparedness/vulnerability. These data could be integrated with LandScan to extend our understanding of human systems. % existing model of population count and distribution in order
+Perhaps even more salient, there is a compelling need to augment global population data with coincident environmental data that can be extracted from source imagery.  Natural and built environments are largely interdependent, and knowledge of one system is critical to understanding the second. For example, prediction of a reduced crop yield via spectral indicators could inform model-driven anticipation of human vulnerability. I have experience with global information products derived from remotely sensed imagery, e.g., land surface temperature, water stress, normalized difference vegetation index (NDVI), air pollution, etc. Integrating a comprehensive geospatial framework to unite these disparate data sources with LandScan could provide unprecedented opportunity for analyses at the interface between natural and built systems.
+\vspace{.2cm}
+
+Finally, two improvements in resolution- spatial and temporal- are addressed. The spatial resolution of LandScan Global is limited to 1 km, 10x coarser than LandScan USA. Resolution limitations of global geospatial data are widely known, limiting their utility for actionable intelligence and response.  Moreover, temporal analyses of LandScan population data are currently impossible given the evolving data processing techniques used to generate the product over its history. 
+%As a result, change detection may yield anomalies that are due to processing, rather than true population changes. 
+In order to observe patterns and anticipate behaviors and outcomes, however, temporal analyses are crucial. Thus, there is a compelling need to rectify this disparity and integrate the temporal dynamics of geospatial data with the analytical capability of GIS. 
+\vspace{.2cm}
+
+Research objectives thus are to assess the potential to: 
+\begin{itemize}
+\item Augment LandScan's population count (how many people?) and distribution (where are they?) with socio-economic data (who are these people? why?), 
+\item Integrate global environmental data, 
+\item Increase the spatial resolution of LandScan Global, and 
+\item Introduce temporal dynamics for observing change and anticipating outcomes.
+\end{itemize}
+\vspace{.2cm}
+
+\textbf{Development, Deployment, and Impact}
+\vspace{.2cm}
+ 
+
+I will engage my expertise in both foundational remote sensing science and emerging analysis paradigms to address these objectives. Source imagery will be updated to WorldView-3, DigitalGlobe's latest satellite sensor, which offers significant technical advances over its predecessor, the historic provider of LandScan imagery. WorldView-3 is the first multi-payload, ``super-spectral'' sensor of its kind. In addition to improved spatial resolution in the panchromatic (31 cm) and multispectral bands (1.24 m), WorldView-3 adds a sensor in the Shortwave Infrared (SWIR) region of the electromagnetic spectrum (Fig. 9). Eight SWIR spectral bands at 3.7 m spatial resolution provide new opportunity to observe and classify materials, and open the door to increasingly sophisticated image processing methods, such as those I have pioneered in cultural heritage domains. 
+\vspace{.2cm}
+
+Utilizing Worldview-3 imagery, I will improve the quantification and characterization of human settlements. Texture classification will be employed to identify building features, infrastructure, commerce, and agricultural patterns using the panchromatic band. Secondly, reference spectral reflectance libraries will be introduced to aid material classification within urban areas using spectral reflectance features obtained from the SWIR bands. A shift from tile rooftops to more modern materials, for example, could signal economic growth and prosperity in developing countries. Finally, Worldview-3's 13 km swath width will afford sufficient relief displacement to allow measurement of building height via photogrammetry. These three tools (texture, spectral analysis, and photogrammetry) will improve both the spatial disaggregation of population counts, and the cognitive understanding of socioeconomic/environmental attributes.  
+Moreover, to complement the synoptic view offered by satellite imagery, a wealth of nascent digital data (geotagged images, twitter trends, commodity prices, bank withdrawals, etc.) will be utilized to provide a potential ``citizen-level'' perspective. I will apply machine learning to recognize patterns in big data and improve socioeconomic understanding, in much the same way as I reveal traces of erased ink through analysis of high-dimensional spectral data. 
+\vspace{.2cm}
+
+Finally, several practical considerations: Operationalizing the LandScan model to support the visualization of dynamic data streams requires an efficient, automated, and robust workflow. Efficiency will be addressed by adapting the LandScan framework to Titan, ORNL's newest supercomputer. Titan provides an unprecedented opportunity to accelerate parallel tasks using the hybrid GPU-CPU architecture. Algorithms in C/C++ will be developed/adapted to this new hybrid architecture to provide 10x savings in speed. Automation will be prioritized in order to eliminate human-in-the-loop analyses, which have so far precluded LandScan's ability to provide dynamic temporal analysis of population. 
+My Ph.D. experiences operationalizing data collection and exploitation will be critical towards integrating algorithms that are physics-driven and invariant to subjective changes over space and time. Finally, WorldView-3's new CAVIS (Clouds, Aerosols, Vapors, Ice, and Snow) imager will provide atmospheric correction to improve source radiance data. These methodological improvements will streamline the LandScan algorithm chain. As a result, I envision LandScan transitioning from an annually updated population product to a dynamic visualization of global population and environment. 
+\vspace{.2cm}
+
+These developments will have widespread impact across domains. Integrating socioeconomic and temporal analytics will drive our lagging intelligence cycle from reactionary to anticipatory, by providing robust, actionable information products based on global population dynamics. By revealing changes in environmental and socioeconomic processes, we will be better poised to predict and prevent debilitating slow-onset crises. Moreover, this will enable improved response to unexpected emergencies by having robust, cognitive global population data available a priori. Finally, improved awareness will spur the optimization of existing human systems, increasing energy efficiencies and ushering in a more sustainable future. I will collaborate with strategic partners to optimize the development and deployment of these information products and to maximize their use potential. 
+\vspace{.2cm}
+
+This work will consolidate ORNL's leadership at the forefront the geospatial community by providing an unprecedented data set to support actionable intelligence and effective response to the growing number of population-driven crises. 
+With my extensive, collaborative technical leadership, I am well-poised to address these complex challenges. 
+
+\end{leftcolumn}
+
+\begin{rightcolumn}
+\vspace{6mm}
+
+    \includegraphics[width=1\linewidth]{airborne_smjpg}
+Figure 1: Synergistic perspective of terrestrial laser scanning used to calibrate/validate airborne laser scanning.
+\newline
+
+    \includegraphics[width=1\linewidth]{stemmodel_smjpg}
+Figure 2: I developed computer vision techniques to recover forest geometric structure \cite{kelbe2015stem}.
+\newline
+
+\vspace{\baselineskip}
+    \includegraphics[width=1\linewidth]{pairwise_sm}
+Figure 3: View-invariant features provide automatic spatial transformation of point cloud data into a common coordinate system \cite{sl2013dk}.
+\newline
+
+    \includegraphics[width=1\linewidth]{graphreg}
+Figure 4: Graph theory framework provides optimal transformation between a network of connected and disconnected scans.
+\newline
+
+    \includegraphics[width=1\linewidth]{oblique_sm.jpg}
+Figure 5: Simulation of NASA's next-generation Hyperspectral Infrared Imager (HyspIRI) data, with assessment of within-pixel structural variation on spectroscopy.
+\newline
+
+    \includegraphics[width=1\linewidth]{spectral3_smjpg}
+Figure 6: Graph-based models are effective at recovering hidden patterns from high-dimensional data. Here, graphical connectivity reveals unique spectral features from the historical manuscript in Fig. 8.
+\newline
+
+
+    \includegraphics[width=1\linewidth]{ICA3_smjpg}
+Figure 7: Statistical models such as independent component analysis (ICA) were applied to separate mixed spectral signals in order to reveal erased undertext writing.  
+\newline
+
+    \includegraphics[width=1\linewidth]{spectralunmixing}
+Figure 8:  Faint traces of erased ink (horizontal text) are recovered by multispectral imaging and analysis \cite{easton2013statistical}. 
+\newline
+\vspace{1cm}
+  
+  \includegraphics[width=1\linewidth]{WV3}
+Figure 9: WorldView-3 adds eight spectral bands in the Shortwave Infrared (SWIR) region, providing new opportunity to observe and classify materials (DigitalGlobe).
+
+%  \includegraphics[width=1\linewidth]{radiancepaths}
+%Figure 9: First-principles, physics-driven remote sensing theory will be prioritized to enable robust, temporal visualization of population (Schott, John. \emph{Remote Sensing}. New York: Oxford, 2007).
+%\vspace{.2cm}
+
+\end{rightcolumn}
+\end{paracol}
+\printbibliography
+
+
+\end{document}

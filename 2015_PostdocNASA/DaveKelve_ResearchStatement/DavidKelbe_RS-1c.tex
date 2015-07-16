@@ -1,0 +1,117 @@
+% !BIB TS-program = biber
+
+%% start of file `template.tex'.
+%% Copyright 2006-2013 Xavier Danaux (xdanaux@gmail.com).
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License version 1.3c,
+% available at http://www.latex-project.org/lppl/.
+
+% possible options include 
+%	font size ('10pt', '11pt and '12pt')
+%	paper size ('a4paper', 'letterpaper', 'a5paper', 'legalpaper', 'executivepaper' and 'landscape') 
+%	font family ('sans' and 'roman')
+\documentclass[11pt,letterpaper,sans]{moderncv}        
+
+\input{preamble}
+\usepackage{float}
+%\usepackage[margin=10pt,font=small,labelfont=bf]{caption}
+
+%\usepackage[margin=0.5in]{geometry}
+
+
+\begin{document}
+%\input{coverletter}
+%\newpage
+%\setlength\parindent{24pt}
+\makecvtitle
+%\noindent
+\vspace{-18mm}
+%\begin{parcolumns}[colwidths={1=12cm,2=6cm}]{2}
+%\colchunk[1]{
+
+I am interested in developing novel geospatial data systems and analytics to address complex, multidisciplinary, global challenges.  
+
+\section{Previous and Ongoing Work}
+
+\textbf{Linking terrestrial laser scanning}
+
+As a Ph.D. student at Rochester Institute of Technology (RIT), I identified a critical knowledge gap in our understanding and effective utilization of emerging airborne laser scanning technology. I proposed a research plan linking complementary terrestrial laser scanner data to provide spatially explicit ground-truth data for calibration/validation in forest environments, and was awarded a National Science Foundation Graduate Research Fellowship to pursue this initiative. As part of my research, I led multiple national and international field campaigns in conjunction with airborne remote sensing acquisition. This strengthened critical teamwork and communication skills. Outputs are being utilized to provide antecedent science data for NASA's HyspIRI mission and to support the National Ecological Observatory Network's long-term environmental monitoring initiatives. This work has generated significant interest, most recently appearing in the American Scientist. 
+\newline 
+
+\textbf{Multispectral imaging and exploitation}
+
+Eager to expand my expertise beyond laser scanning, I also established a core expertise in multispectral imaging and exploitation as an independent consultant: In 2012 I was invited to join a team of the leading scientists developing multispectral imaging technology to recover and preserve historical artifacts. I methodically identified and then solved complex multidisciplinary problems by linking my remote sensing background to applications in the humanities. With my respectful demeanor and well-spoken contributions, I motivated a distinguished team of senior researchers to put aside their differences and strive for common goals.  As a result, my responsibilities have grown: I am now the principal science team representative to the project's website development, a key liaison ensuring metadata management for large volumes of processed imagery, and the core scientist involved with supervised image processing. These efforts have been crucial to the success of a number of high-profile international collaborations, with technical contributions resulting in several peer-reviewed publications in the cultural heritage domains. I am now training a network of undergraduate students at strategic partner institutions across the globe to disseminate these scientific advances. 
+
+\section{Proposed Research Plans}
+
+\textbf{Augmenting LandScan with high-resolution, socioeconomic, and temporal geoanalytics}
+
+Global population has exceeded a staggering 7 billion people, with an estimated net growth of 2.37 persons per second. In this era of unprecedented population growth, we face new and complex challenges in energy, health, and national security, which compel a response.  
+Fortunately, the development of key technologies has kept pace with burgeoning population-driven challenges. Predictive analytics (which apply deterministic modeling to forecast a single-point outcome) are quickly becoming outmoded by an emerging era of anticipatory intelligence. Driven by advances in big data and supercomputing, new analysis paradigms require cognitive, comprehensive, and complex data to anticipate and respond to less clearly-defined crises of national and global importance. ORNL's position at the nexus of global problem-solving and unparalleled computational capability makes it well-poised to advance the state-of-the-art in this field. 
+\newline
+
+One such ORNL development that has become critical in the anticipation and response to crises is LandScan, the ubiquitous global population product pioneered by the Geographic Information Science and Technology (GIST) group. LandScan has been used to support relief efforts following national and global disasters, assess stability and prosperity in the wake of Afghanistan's withdrawal of troops, aid polio vaccination in Nigeria, and address challenges in urbanization and sustainable development. However, in order to maintain relevance in a new era that seeks cognitive and comprehensive understanding of global human systems, several key limitations need to be addressed. 
+\newline 
+
+The first limitation involves the absence of human geography data associated with population count and spatial distribution. Sociocultural and demographic information (e.g., infrastructure, economies, education, environment, medical facilities, etc.) provide critical information on stability, prosperity, and preparedness/vulnerability. These data should be integrated with LandScan's existing model of population count and distribution in order to extend our understanding of human systems. 
+Perhaps even more salient, there is a compelling need to augment global population data with coincident environmental data that can be extracted from source imagery.  Natural and built environments are largely interdependent, and knowledge of one system is crucial to understanding the second. For example, prediction of a reduced crop yield via spectral indicators should inform model-driven anticipation of human vulnerability. Existing protocols already produce global information products from remotely sensed imagery, e.g., land surface temperature, water stress, normalized difference vegetation index (NDVI), air pollution, etc. However, the absence of a comprehensive framework uniting these disparate data sources has so far prevented their integration for global understanding. Integrating LandScan with environmental data would provide an unprecedented opportunity to perform geospatial analyses at the interface between natural and built systems.
+\newline 
+
+Finally, two concerns of resolution- spatial and temporal- are addressed. The spatial resolution of LandScan Global is limited to 1 km, 10x coarser than LandScan USA. The obstacles facing relief teams due to resolution limitations of global geospatial data are widely known, limiting their utility for actionable intelligence and response.  Moreover, temporal analyses of the LandScan population data are currently impossible given the disparate and evolving data processing techniques used to generate the product over its history. As a result, change detection may yield anomalies that are due to processing, rather than true population changes. In order to observe patterns and anticipate behaviors and outcomes, however, temporal analyses are crucial. Thus, there is a compelling need to rectify this disparity and integrate the temporal dynamics of geospatial data with the analytical capability of GIS. 
+\newline 
+
+Research objectives are to assess the potential to: 
+\begin{itemize}
+\item Augment LandScan's population count (how many people?) and distribution (where are they?) with socio-economic data (who are these people? why?), 
+\item Integrate global environmental data, 
+\item Increase the spatial resolution of LandScan Global, and 
+\item Introduce temporal dynamics for observing change and anticipating outcomes.
+\end{itemize}
+\
+
+\textbf{Development, Deployment, and Impact}
+\newline 
+
+A combination of both foundational science and emerging, state-of-the-art technology will be used to address these objectives. WorldView-3, DigitalGlobe's latest satellite sensor, offers significant technical advances over its predecessor, which has historically provided imagery for LandScan. Launched in August 2014, WorldView-3 is the first multi-payload, ``super-spectral'' sensor of its kind. In addition to improved spatial resolution in the panchromatic (31 cm) and multispectral bands (1.24 m), WorldView-3 adds a sensor in the Shortwave Infrared (SWIR) region of the electromagnetic spectrum. Eight SWIR spectral bands at 3.7 m spatial resolution provide new opportunity to observe and classify materials, and open the door to increasingly sophisticated image processing methods. 
+\newline 
+
+\begin{table}
+
+  \includegraphics[width=1\linewidth]{WV3}
+Figure 1: WorldView-3 adds eight spectral bands in the Shortwave Infrared (SWIR) region, providing new opportunity to observe and classify materials (Digital Globe).
+\ 
+%  \captionof{figure}{your caption}
+
+Utilizing Worldview-3 imagery, I will apply previously unexploited processing and analysis techniques to improve the quantification and characterization of human settlements. Texture classification will be employed to identify building features, infrastructure, commerce, and agricultural patterns using the panchromatic band. Secondly, reference spectral reflectance libraries will be introduced to aid material classification within urban areas using spectral reflectance features obtained from the SWIR bands. A shift from tile rooftops to more modern materials, for example, could signal economic development and prosperity in developing countries. Finally, Worldview-3's 13 km swath width will afford sufficient relief displacement to allow measurement of building height via photogrammetry. These three tools (texture, spectral analysis, and photogrammetry) will significantly improve both the spatial disaggregation of population counts, and the cognitive understanding of socioeconomic/environmental attributes.  
+\newline
+
+Moreover, to complement the synoptic view offered by satellite imagery, a wealth of nascent digital data (geotagged images, twitter trends, commodity prices, bank withdrawals, etc.) will be utilized to provide a potential ``citizen-level'' perspective. I will draw upon machine learning algorithms to recognize patterns in big data and improve socioeconomic understanding. 
+The integration of these objectives over high spatio-temporal resolutions and at the global scale will not be trivial. Operationalizing the LandScan model to support the visualization of dynamic data streams requires an efficient, automated, and robust workflow. Efficiency will be addressed by adapting the LandScan framework to Titan, ORNL's newest supercomputer. Titan provides an unprecedented opportunity to accelerate parallel tasks using the hybrid GPU-CPU architecture. Algorithms in C/C++ will be developed/adapted to this new hybrid architecture to provide 10x savings in speed. Automation will be prioritized in order to eliminate human-in-the-loop analyses, which have so far precluded LandScan's ability to provide dynamic temporal analysis of population. This will be done by integrating robust image processing algorithms that are physics-driven and invariant to subjective changes over space and time. Finally, WorldView-3's new CAVIS (Clouds, Aerosols, Vapors, Ice, and Snow) imager will provide atmospheric correction to improve source radiance data. These methodological improvements will streamline the LandScan algorithm chain. As a result, LandScan will transition from an annually updated population product to a dynamic visualization of global population and environment. 
+\newline
+
+These developments will have widespread impact across a range of domains. Integrating socioeconomic and temporal analytics will drive our lagging intelligence cycle from reactionary to anticipatory, by providing robust, actionable information products based on global population dynamics. By revealing changes in environmental and socioeconomic processes, we will be better poised to predict and prevent debilitating slow-onset crises affecting vulnerable populations. Moreover, we will enable improved response to unexpected emergencies by having robust, cognitive global population data available a priori. Finally, improved awareness will spur the optimization of existing human systems, increasing energy efficiencies and ushering in a more sustainable future. I will collaborate with strategic partners to optimize the development and deployment of these information products and to maximize their use potential. 
+\newline 
+
+This work will consolidate ORNL's leadership at the forefront the geospatial community by providing an unprecedented data set to support actionable intelligence and effective response to the growing number of population-driven crises. 
+%}
+%\colchunk[2]{
+
+
+
+
+%}
+%\end{parcolumns}
+%\vspace{-32pt}
+%%\cvitem{}{No clearance but can obtain.}
+%%\input{interests}
+%\input{education}
+%\input{work}
+%\input{publications}
+%\input{advising}
+%\input{skills}
+%\input{service}
+%%\input{societies}
+%\input{honors}
+%\input{references}
+\end{document}

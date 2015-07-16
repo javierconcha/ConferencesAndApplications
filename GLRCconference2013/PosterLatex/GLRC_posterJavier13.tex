@@ -1,0 +1,311 @@
+%\documentclass[final,t]{beamer}
+% more info: http://www-i6.informatik.rwth-aachen.de/~dreuw/latexbeamerposter.php
+\documentclass[mathserif]{beamer}
+\mode<presentation>
+{
+%  \usetheme{Warsaw}
+%  \usetheme{Aachen}
+%  \usetheme{Oldi6}
+%  \usetheme{I6td}
+%  \usetheme{I6dv}
+%  \usetheme{I6pd}
+%  \usetheme{I6pd2}
+%\usetheme{Icy}
+\usetheme{RIT6dvgreen}
+}
+% additional settings
+%\setbeamerfont{itemize}{size=\normalsize}
+%\setbeamerfont{itemize/enumerate body}{size=\normalsize}
+%\setbeamerfont{itemize/enumerate subbody}{size=\normalsize}
+
+\setbeamerfont{itemize}{size=\small}
+\setbeamerfont{itemize/enumerate body}{size=\small}
+\setbeamerfont{itemize/enumerate subbody}{size=\small}
+
+
+% additional packages
+\usepackage{times}
+\DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
+\usepackage{amsmath,amsthm, amssymb, latexsym}
+\usepackage{exscale}
+%\usepackage{subfig}
+\usepackage{booktabs, array}
+%\usepackage{rotating} %sideways environment
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+%\usepackage[orientation=landscape,size=custom,width=118,height=91,scale=1.9]{beamerposter}
+%\usepackage[orientation=landscape,size=custom,height=100,width=120,scale=1.2]{beamerposter}  %size=a0
+\usepackage[orientation=landscape,size=custom,height=106.68,width=91.44,scale=1.2]{beamerposter}  %size=a0
+%\listfiles
+%\graphicspath{{figures/}}
+% Display a grid to help align images
+%\beamertemplategridbackground[1cm]
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+\usepackage[footnotesize]{caption}
+\setbeamertemplate{caption}[numbered] % to add number to figures
+
+
+ 
+%\usepackage{caption}
+%\DeclareCaptionStyle{mystyle}{name=none}
+%\captionsetup[figure]{style=mystyle}
+\usepackage[]{graphicx}
+\usepackage{floatflt,subfigure}
+\setcounter{subfigure}{0}% Reset subfigure counter
+
+\usepackage{ragged2e}% for justify
+
+
+
+\title{ \huge The Use of Landsat-8 for Monitoring of Fresh and Coastal Water}
+\author[]{Javier A. Concha. Advisor: Dr. John Schott}
+\institute[Rochester Institute of Technology]{Digital Imaging and Remote Sensing Laboratory \\ Chester F. Carlson Center for Imaging Science\\ Rochester Institute of Technology \\ Rochester, New York, USA}
+\date[Mar. 30 , 2012]{Mar. 30 , 2012}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% t
+\begin{document}
+\begin{frame}{} 
+  \begin{columns}[t]
+    
+
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% COLUMN 1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{column}{.3\linewidth}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%BLOCK 1 (column 1)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{block}{Abstract}
+%\noindent {\small Imaging spectrometer data can be represented as a three dimensional structure which encompasses both spatially and spectrally sampled data of a given scene.} 
+\justifying\small The Landsat Data Continuity Mission (LDCM; a.k.a. Landsat-8), recently launched (February 2013), is the next generation of Landsat satellite and continues with more than 40 years of continuing imaging acquisition, playing a critical role in monitoring, understanding and managing natural resources such as water. Landsat-8, with its improved spectral bands and radiometric resolution, has the potential to dramatically improve our ability to simultaneously retrieve the three primary coloring agents, chlorophyll (Chl), colored dissolved organic material (CDOM) and suspended material (SM) from water bodies. This work presents the results obtained so far. So far, the method have been tested in Landsat-5 images because Landsat-8 images are still not available.
+
+
+\vspace{1cm}
+\end{block}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% BLOCK 2 (column 1)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      
+\begin{block}{Introduction}
+   		
+
+\justifying\small In the Case 2 water problem, the sensor-reaching signal due to water is very small when compared to the signal due to the atmospheric effects. Therefore, adequate atmospheric correction becomes an important first step to accurately retrieving water parameters. As a first approach, a model based ELM atmospheric correction method converts sensor-reaching radiance to water leaving reflectance. This model employs pseudo invariant feature (PIF) pixels extraction from Landsat images along with HydroLight to obtain the data and field spectra. Further atmospheric compensation technique will be investigated.
+
+A look-up-table (LUT) methodology is implemented to retrieve the water parameters. The LUT is created using HydroLight.
+
+Collections of water samples when the satellite passes the Rochester area are considered for summer 2013. Concentration and inherent optical properties (IOPs) measurement  will help to validate the methods. 
+\vspace{1cm}
+\end{block}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% BLOCK 3 (column 1)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%INSERT K-NN+MST GRAPH BLOCK
+\begin{block}{The Retrieval Process}   
+%-------------------------------
+\begin{center}
+\begin{figure}
+	\includegraphics[width=20cm]{/Users/javier/Desktop/Javier/MASTER_RIT/SPIE2012/Slides/RetrievalProcess.png}
+	\caption{Retrieval Process \label{fig:RetProc}}
+\end{figure}
+\end{center}
+\vspace{1cm}
+%-------------------------------
+\begin{center}
+\begin{table}
+	\caption{LUT parameters for deep water and shallow water. \label{tab:LUTs}}
+      	\begin{tabular}{cc}
+        	\bfseries{Deep Water} & \bfseries{Shallow Water}\\ 
+		\footnotesize
+		\begin{tabular}{c|c|c}
+        		\bfseries{CHL}  	& \bfseries{SM}  & \bfseries{CDOM} \\ 
+		$[ug/L]$  		& $[mg/L]$ & 			\\ \hline \hline
+			0.25			& 0.25 	& 	0.25		\\
+			0.5			& 0.5		&	0.5		\\
+			1.0			& 1.0		&	0.75		\\
+			3.0			& 2.0		&	1.0		\\
+			5.0			& 4.0		&	2.0		\\
+			7.0			& 8.0		&	4.0		\\
+			12.0			& 10.0	&	7.0		\\
+			24.0			& 14.0	&	10.0		\\
+			46.0			& 20.0	&	12.0		\\
+			68.0			& 24.0	&	14.0 		\\    
+	 	\end{tabular}	&
+		\footnotesize
+		\begin{tabular}{c|l|l|l|l}
+        		\bfseries{Bottom} & \bfseries{CDOM}   & \multicolumn{3}{c}{ \bfseries{Depth} }	\\ 
+		\bfseries{Reflectance}	&		 	&  \multicolumn{3}{c}{ $[mt]$  }	 \\ \hline \hline
+			avg. macrophyte		& 0.16 	& 	0.1	& 2.25	& 6.0	\\
+			Ontario Sand			& 0.285	&	0.2	& 2.5	& 6.5	\\
+			avg. clean seagrass		& 0.41	&	0.3	& 2.75	& 7.0	\\
+			avg. dark sediment		& 0.535	&	0.4	& 3.0	& 7.5	\\
+			avg. seagrass			& 0.66	&	0.5	& 3.25	& 8.0	\\
+					- -			& - -		&	0.75	& 3.5	& 9.0	\\
+					- -			& - -		&	1.0	& 3.75	& 10.0	\\
+					- -			& - -		&	1.25	& 4.0	& 11.0	\\
+					- -			& - -		&	1.5	& 4.25	& 12.0	\\
+					- -			& - -		&	1.75 & 4.75	& - -	\\  
+					- -			& - -		&	2.0   & 5.0	& - -	\\   
+      		\end{tabular}\\ 
+      \end{tabular}
+\end{table}
+\end{center}
+\vspace{0.8cm}
+%-------------------------------
+
+\end{block}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{column}   
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% COLUMN 2      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ \begin{column}{.3\linewidth}  %.29\linewidth (3-columns) %0.46\linewidth (2-columns)
+%%%%%%%%%%%%%%%%%%%%%
+% BLOCK 1 (column 2) 
+%%%%%%%%%%%%%%%%%%%%%
+\begin{block}{The Retrieval Process (cont.)}
+\vspace{1cm}
+%-------------------------------
+\begin{figure}[t]
+\centering
+            \subfigure[]{\includegraphics[height=10cm]{/Users/javier/Desktop/Javier/MASTER_RIT/2011_THESIS/LUT/LUT_1/Images/LUT1HL4.eps}}%
+            \subfigure[]{\includegraphics[height=10cm]{/Users/javier/Desktop/Javier/MASTER_RIT/2011_THESIS/LUT/LUT_2/figures/LUT2HL4.eps}}
+            \caption[LUTs]{LUTs for deep (a) and shallow water (b). \label{fig:LUTs}}
+\end{figure}
+\vspace{0.8cm}
+%-------------------------------
+\justifying\small The error metric used to evaluate the retrieval process was defined as  
+\vspace{0.1cm}
+%-------------------------------------
+\begin{equation}
+\label{eq:error}
+	error =\frac{\displaystyle\frac{1}{N}\sum_{i=1}^{N} |C_{real}(i) - C_{ret}(i)|} {C_{max}}\times100 ~[\%]\, ,
+\end{equation}
+%-------------------------------------
+%where $C_{real}(i)$ is the real constituent concentration of the $i^{th}$ curve , $C_ {ret}(i)$ is the retrieved constituent concentration of the $i^{th}$ curve obtained from the non-linear optimization algorithm, $C_{max}$ is the maximum possible value of concentration and $N$ is the total number of test samples or pixels in the synthetic image. The term $\frac{1}{N}\sum_{i=1}^{N} |C_{real}(i) - C_{ret}(i)|$ represents the average of all test samples.      
+%-------------------------------------      
+\begin{equation}
+\label{eq:error}
+	error_{Bottom~Type} =\frac{TP} {N}\times100 ~[\%]\, ,
+\end{equation}
+\vspace{1cm}
+%-------------------------------------
+%where $TP$ is the number of true positives  or correctly identified bottom types. For example, if we try to retrieve 100 bottom types and only 90 of them are correctly identified, we have a $10\%$ error. In this study, error for both deep and shallow water cases below $10\%$ are considered acceptable.            
+%-------------------------------
+\begin{figure}[t]
+\centering
+            \subfigure[]{\includegraphics[height=10cm]{/Users/javier/Desktop/Javier/MASTER_RIT/2011_THESIS/LUT/LUT_1/Images/DeepWaterRetriError.eps}}%
+            \subfigure[]{\includegraphics[height=10cm]{/Users/javier/Desktop/Javier/MASTER_RIT/2011_THESIS/LUT/LUT_2/figures/ShallowWaterRetriError.eps}}
+            \caption[LUTs]  { \label{fig:errorNoAt} Error with no atmosphere effect.}
+\end{figure}
+%-------------------------------
+\vspace{1cm}
+\end{block} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{block}{Atmospheric Compensation Methods}
+\vspace{1cm}
+\begin{itemize}
+\item Empirical Line Method (ELM){\small\cite{Schott}}\\
+%-------------------------------
+\begin{figure}[t]
+\centering
+            \subfigure[]{\includegraphics[height=9.8cm]{/Users/javier/Desktop/Javier/MASTER_RIT/2011_THESIS/LUT/LUT_1/Images/errorELMDeep.eps}}%
+            \subfigure[]{\includegraphics[height=9.8cm]{/Users/javier/Desktop/Javier/MASTER_RIT/2011_THESIS/LUT/LUT_2/figures/errorELMShallow.png}}
+            \caption[LUTs]  {\label{fig:ELMerror} Retrieval error before and after using ELM for deep water case (a) and shallow water case (b).}
+\end{figure}
+\vspace{1cm}
+%-------------------------------
+\item Band Ratio Technique\cite{Gordon94}\\
+\begin{center}
+\begin{figure}
+	\includegraphics[width=20cm]{/Users/javier/Desktop/Javier/MASTER_RIT/SPIE2012/Slides/BandRatioProcess.png}
+	\caption{\label{fig:BandRatioProcess} Process to perform the band ratio method. }
+\end{figure}
+\end{center}
+\vspace{1cm}
+ %-------------    
+\justifying\small We define the ratio $\varepsilon$ as
+\begin{equation}
+\label{eq:epsilon}
+	\varepsilon_{7,8}^{VIS} =\frac{Darkest_{band~7}} {Darkest_{band~8}}
+\end{equation}
+\end{itemize}
+%-----------------------
+\vspace{1cm}
+\end{block}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{column}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%COLUMN 3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ \begin{column}{.3\linewidth}
+%%%%%%%%%%%%%%%%%%%%%        
+% Block 1 (column 3)      
+%%%%%%%%%%%%%%%%%%%%%
+\begin{block}{Atmospheric Compensation Methods (cont.)}
+  %-------------    
+   \begin{figure}[h!]
+ \centering
+   \includegraphics[height=10cm]{/Users/javier/Desktop/Javier/MASTER_RIT/2011_THESIS/LUT/LUT_1/Images/errorBandRatioDeep.png}
+ 	\caption{\label{fig:BandRatioError}Retrieval error before and after using Band Ratio technique for deep water case.}
+   \end{figure} 
+  %-------------
+\end{block}  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{block}{Sensitivity Analysis}
+\begin{itemize}
+\item ELM\\
+%-------------------------------
+\begin{figure}[t]
+\centering
+            \subfigure[]{\includegraphics[height=10cm]{/Users/javier/Desktop/Javier/MASTER_RIT/2011_THESIS/LUT/LUT_1/Images/errorCHLSMCDOM.eps}}%
+            \subfigure[]{\includegraphics[height=10cm]{/Users/javier/Desktop/Javier/MASTER_RIT/2011_THESIS/LUT/LUT_2/figures/error_CDOMDepthBRELM.eps}}
+           \caption{\label{fig:ELMsens} Sensitivity analysis of the ELM technique when the brightest pixel is varied.}
+\end{figure}
+%-------------------------------
+\item Band Ratio Technique\\
+\begin{figure}
+	\includegraphics[width=15cm]{/Users/javier/Desktop/Javier/MASTER_RIT/2011_THESIS/LUT/LUT_1/Images/SensBandRatioDeep.png}
+	\caption{\label{BandRationSens}  Sensitivity analysis of the band ratio technique when the estimated visibility is varied.}
+\end{figure}
+\end{itemize}
+ %-------------    
+\end{block}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{block}{Conclusion}
+	
+\justifying\small We have shown a retrieval process that uses a LUT-methodology and a non-linear optimization code for in-water parameters retrieval. This method has the advantage of using relatively small LUTs. The error associated with the retrieval process with and without atmospheric effects were analyzed and a sensitivity analysis was performed for the two atmospheric techniques presented. The ELM technique showed that it performs we as expected for both deep and shallow water cases, having error less than $10\%$. In addition, the Band Ratio technique increases the depth retrieval error above $10\%$, but it performs well for CDOM concentration and depth retrieval. The sensitivity analysis yielded that both atmospheric compensation techniques introduce error that exceed $10\%$ after a $10\%$ variation of their parameters.
+\end{block}
+
+
+\begin{block}{References} 
+   
+ { \scriptsize 
+\setbeamertemplate{bibliography item}[text]
+				\bibliographystyle{spiebib}
+				\bibliography{/Users/javier/Desktop/Javier/MASTER_RIT/master_bib}
+}
+\end{block} 
+
+\end{column}
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{columns}
+\end{frame}
+
+\end{document}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-PDF-mode: t
+%%% End:
+
+%spelling checked

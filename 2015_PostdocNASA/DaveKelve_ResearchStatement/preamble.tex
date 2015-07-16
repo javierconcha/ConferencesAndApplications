@@ -1,0 +1,102 @@
+% moderncv themes
+\moderncvstyle{casual}                             % style options are 'casual' (default), 'classic', 'oldstyle' and 'banking'
+\moderncvcolor{green}                               % color options 'blue' (default), 'orange', 'green', 'red', 'purple', 'grey' and 'black'
+%\renewcommand{\familydefault}{\sfdefault}         % to set the default font; use '\sfdefault' for the default sans serif font, '\rmdefault' for the default roman one, or any tex font name
+%\nopagenumbers{}                                  % uncomment to suppress automatic page numbering for CVs longer than one page
+           
+% character encoding
+%\usepackage[utf8]{inputenc}                       % if you are not using xelatex ou lualatex, replace by the encoding you are using
+%\usepackage{CJKutf8}                              % if you need to use CJK to typeset your resume in Chinese, Japanese or Korean
+
+% adjust the page margins
+\usepackage[top=2.cm, left=1.5cm, right=1.5cm, bottom=2cm]{geometry}
+%\setlength{\hintscolumnwidth}{3cm}                	% if you want to change the width of the column with the dates
+%\setlength{\makecvtitlenamewidth}{10cm}     	% for the 'classic' style, if you want to force the width allocated to your name and avoid line breaks. be careful though, the length is normally calculated to avoid any overlap with your personal info; use this at your own typographical risks...
+
+\usepackage{cvbib}
+
+% The formatted names to be bolded. {Romanczyk, P\bibinitperiod} is the one that is actually used for me
+\forcsvlist{\listadd\boldnames}
+  {{Kelbe, D.}, {Kelbe, D. J.}, {Kelbe, Dave}, {Kelbe, Dave}, {Kelbe, Dave\bibnamedelima J.},
+   {Kelbe, D\bibinitperiod\bibinitdelim J\bibinitperiod},{Kelbe, D\bibinitperiod}}
+
+\addbibresource{mypubs.bib}
+\addtocategory{papers}{cjrs2013pr, kelbe2015stem, kelbe2015marker, kelbe2015graph}
+\addtocategory{collab}{martin2014scythica, martin2014dexippus2, gruskova2015new}
+\addtocategory{refconferences}{sl2012pr,sl2012dk,igarss2014jv,igarss2014ip,igarss2014dk,easton2013statistical,paris2015precise,yao2015towards,sl2013pr,spie2013dk,asprs2013kc-a,asprs2013kc-l,spie2014kc,kelbe2013supervised,kato2013ground,spie2015wy,spie2015jf}
+%\addtocategory{conferences}{sl2013pr,spie2013dk,asprs2013kc-a,asprs2013kc-l,spie2014kc,kelbe2013supervised,kato2013ground,spie2015wy,spie2015jf}
+\addtocategory{presentations}{sl2013cs,agu2013pr,asprscny2014dk,easton2013imaging}
+\addtocategory{posters}{sl2013dk,agu2013ip,agu2013kc,agu2013cs,martin2013important}
+
+% my cv commands
+\newcommand{\paulcvitem}[3]{\cvitem{#1}{\small \textcolor{color1}{$\circ$} #2\hspace{0.5cm}#3}\vspace{-3pt}}
+\newcommand{\paulcvsubitem}[2]{\cvitem{#1}{\small \hspace{0.5cm}\textcolor{color1}{$\bullet$} #2}\vspace{-3pt}}
+\newcommand{\cvsep}[1]{\hspace{#1}\textcolor{color1}{$\bullet$}\hspace{#1}}
+%\newcommand{\courseworkentry}[2]{\cvitem{}{\small\begin{tabular}{p{7.0cm}p{0.4cm}p{6.85cm}} \raggedright\hangindent=1em #1 & &\raggedright\hangindent=1em #2\end{tabular}}\vspace{-4pt}}
+\newcommand{\courseworkentry}[2]{\cvitem{}{\small\begin{tabular}{p{6.9cm}p{0.4cm}p{6.9cm}} #1 & & #2\end{tabular}}\vspace{-4pt}}
+
+
+% force page numbers
+\usepackage{lastpage}
+\fancyfoot[r]{\color{color2}\pagenumberfont\strut\thepage/\pageref{LastPage}}
+
+\usepackage{float}
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+% set the settings for cvbib
+\input{header}
+
+\usepackage{ifthen}
+
+% redo cover letter styles
+\makeatletter
+\newcommand*{\recipientname}[1]{\def\@recipientname{#1}}
+\newcommand*{\recipientaddress}[1]{\def\@recipientaddress{#1}}
+\newcommand*{\coverlettersubject}[1]{\def\@coverlettersubject{#1}}
+\newcommand*{\coverletteraddress}[1]{\def\@coverletteraddress{#1}}
+\newcommand*{\coverletterphone}[1]{\def\@coverletterphone{#1}}
+%
+\renewcommand*{\makelettertitle}{%
+  % recompute lengths (in case we are switching from letter to resume, or vice versa)
+  \recomputeletterlengths%
+  % ensure footer with personal information
+  \makeletterfooter%
+  % author block
+  \hfill%
+  \begin{minipage}[t]{.6\textwidth}
+    \raggedleft%
+    {\bfseries \@firstname~\@lastname}\\\vspace{0.3em}%
+    {%
+    {% Address. First check for address from modern cv, then use cover letter address
+    \itshape%
+    \ifthenelse{\isundefined{\@addressstreet}}{%
+    \ifthenelse{\isundefined{\@coverletteraddress}}{}{\@coverletteraddress\\\vspace{0.1em}}%
+    }{\@addressstreet\\%
+    \ifthenelse{\isundefined{\@addresscity}}{}{\@addresscity%
+    \ifthenelse{\isundefined{\@addresscountry}}{}{,~\@addresscountry}\\}\vspace{0.1em}}
+    }
+    \emaillink{\@email}\\%
+    \ifthenelse{\isundefined{\@coverletterphone}}{}{\@coverletterphone\\}%
+    }
+    \vspace{0.6em}\@date\\
+  \end{minipage}\\\vspace{0.3em}
+  % recipient block
+  \raggedright%
+  \ifthenelse{\isundefined{\@recipientname}}{}{%
+  \ifthenelse{\isundefined{\@recipientaddress}}{\@recipientname\\}{{\bfseries\upshape\@recipientname}\\\addressfont\@recipientaddress\\}%
+  }
+  % date
+  %\hfill% US style
+%  \\[1em]% UK style
+  %\@date\\[2em]% US informal style: "April 6, 2006"; UK formal style: "05/04/2006"
+  % opening
+  %\raggedright%
+  \ifthenelse{\isundefined{\@coverlettersubject}}{}{\vspace{10pt}{\bfseries Subject:} \@coverlettersubject\\}
+  \@opening\\[1.5em]%
+  % ensure no extra spacing after \makelettertitle due to a possible blank line
+%  \ignorespacesafterend% not working
+  \hspace{0pt}\par\vspace{-\baselineskip}\vspace{-\parskip}}
+\makeatother
