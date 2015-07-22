@@ -23,6 +23,7 @@
 %  installations. 
 \usepackage[]{graphicx}
 \usepackage[percent]{overpic}
+% \usepackage[authoryear]{natbib}
 
 \title{Validation of the MoB-ELM Atmospheric Correction Algorithm for Landsat 8 over Case 2 Waters} 
 
@@ -108,6 +109,8 @@ Field data: SVC radiometer following the procedures suggested by Mobley, which i
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{RESULTS AND DISCUSSION}
 \label{sec:results}  % \label{} allows reference to this section
+
+There were four different algorithms analyzed in this study. Three of them are based in the standard algorithms based on the methods developed by Gordon and Wang \cite{Gordon:1994}. The fourth algorithm is based on the algorithm developed by Concha and Schott\cite{Concha2014SPIE}.
 % -----------------------------------------------------------
 \subsection{Comparison of Rrs}
 
@@ -564,7 +567,60 @@ Field data: SVC radiometer following the procedures suggested by Mobley, which i
   \end{minipage}    
 
 % 
-  \caption{Scatter plots showing the comparison of remote-sensing reflectance ($R_{rs}$) at 443, 483, 561, 655 and 865 nm, derived from the 09-29-2013 image over the Rochester Embayment (scene LC80160302013262LGN00) using the SeaDAS tool (x) and the MUMM algorithm  in SeaDAS (y). Colors denote pixel densities, the dashed black line is the 1:1 line, and the Reduced Major Axis (RMA) regression line is drawn in red. \label{fig:13262RrsSeaDAS_MoB-ELM} } 
+  \caption{Scatter plots showing the comparison of remote-sensing reflectance ($R_{rs}$) at 443, 483, 561, 655 and 865 nm, derived from the 09-29-2013 image over the Rochester Embayment (scene LC80160302013262LGN00) using the SeaDAS tool (x) and the MoB-ELM algorithm (y). Colors denote pixel densities, the dashed black line is the 1:1 line, and the Reduced Major Axis (RMA) regression line is drawn in red. \label{fig:13262RrsSeaDAS_MoB-ELM} } 
+\end{figure}
+%^^^^^^^^^^^^^^^^^^^  FIGURE ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+\begin{figure}[htbp!]
+  \begin{minipage}[c]{0.48\linewidth}
+  		\centering
+      \begin{overpic}[trim=250 310 250 0,clip,width=9cm]{./Images/2013262_ACOMOBSEAMUM_C_a_Acolite_MUMM.png}
+      \put (65,17) {\large A) $443nm$}
+      \end{overpic}  
+  \end{minipage}
+  \hfill
+  \begin{minipage}[d]{0.48\linewidth}
+  	\centering
+      \begin{overpic}[trim=250 310 250 0,clip,width=9cm]{./Images/2013262_ACOMOBSEAMUM_C_a_Acolite_MoB-ELM.png}
+      \put (65,17) {\large B) $483nm$}
+      \end{overpic}
+  \end{minipage}
+
+  \begin{minipage}[c]{0.48\linewidth}
+  		\centering
+      \begin{overpic}[trim=250 310 250 0,clip,width=9cm]{./Images/2013262_ACOMOBSEAMUM_C_a_Acolite_SeaDAS.png}
+      \put (65,17) {\large C) $561nm$}
+      \end{overpic}  
+  \end{minipage}
+  \hfill
+  \begin{minipage}[d]{0.48\linewidth}
+  	\centering
+      \begin{overpic}[trim=250 310 250 0,clip,width=9cm]{./Images/2013262_ACOMOBSEAMUM_C_a_MUMM_MoB-ELM.png}
+      \put (65,17) {\large D) $655nm$}
+      \end{overpic}
+  \end{minipage}
+
+  \begin{minipage}[c]{0.48\linewidth}
+  		\centering
+      \begin{overpic}[trim=250 310 250 0,clip,width=9cm]{./Images/2013262_ACOMOBSEAMUM_C_a_SeaDAS_MUMM.png}
+      \put (65,17) {\large E) $561nm$}
+      \end{overpic}  
+  \end{minipage}
+  \hfill
+  \begin{minipage}[d]{0.48\linewidth}
+  	\centering
+      \begin{overpic}[trim=250 310 250 0,clip,width=9cm]{./Images/2013262_ACOMOBSEAMUM_C_a_SeaDAS_MoB-ELM.png}
+      \put (65,17) {\large F) $655nm$}
+      \end{overpic}
+  \end{minipage}
+
+  \begin{minipage}[d]{1.0\linewidth}
+  	\centering
+      \begin{overpic}[trim=70 50 0 1450,clip,width=9cm]{./Images/2013262_ACOMOBSEAMUM_C_a_SeaDAS_MoB-ELM.png}
+      \end{overpic}
+  \end{minipage}    
+
+% 
+  \caption{$C_a$. \label{fig:13262Chlor} } 
 \end{figure}
 % -----------------------------------------------------------
 \subsection{Comparison of Chlorophyll-{\it a}}
