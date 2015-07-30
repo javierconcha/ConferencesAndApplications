@@ -55,6 +55,10 @@ Digital Imaging and Remote Sensig Lab\\Chester F. Carlson Center for Imaging Sci
 %% Added 07-29-15
 \usepackage{multirow}% http://ctan.org/pkg/multirow
 \usepackage{hhline}% http://ctan.org/pkg/hhline
+\usepackage{epstopdf}
+\epstopdfsetup{update} % only regenerate pdf files when eps file is newer
+\usepackage{amsmath,epsfig}
+\usepackage{hyperref}
  
   \begin{document} 
   \maketitle 
@@ -72,17 +76,40 @@ Landsat 8 is a promising candidate to address the remote sensing of inland and c
 \section{INTRODUCTION}
 \label{sec:intro}  % \label{} allows reference to this section
 
-The bands used for the SeaDAS processing were the SWIR1 and SWIR2 because there is some contribution from the NIR band due the highly turbid water in the ponds and water-leaving radiance signal cannot be considered negligible.
-
-Concentration range for Chl in the dataset used for the parameters of the band ratio algorithm does not contain high values > 50mg/L?
-
-Field data: SVC radiometer following the procedures suggested by Mobley, which include three different measurements, Ed, Lw, Lrefsky.
+Concentration range for Chl in the dataset used for the parameters of the band ratio algorithm does not contain high values $> 50mg/L?$
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{METHODS}
 \label{sec:methods}
 % -----------------------------------------------------------
+\subsection{Satellite Data}
+The Landsat 8 satellite was launched in February of 2013 as a joint initiative between the U.S. Geological Survey (USGS) and NASA. Two push-broom instruments are onboard the Landsat 8 satellite: the Operational Land Imager (OLI) and the Thermal Infrared Sensor (TIRS). The satellite has a 16-day repeat cycle with a scene size of 170 km north-south by 183 km east-west. The instrument of interest in this study is OLI. OLI is a optical sensor with a total of nine bands; four bands in the visible (band 1-4), one near infrared (NIR) band (band 5), two short-wave infrared (SWIR) bands (band 6-7), one panchromatic band (band 8) and one NIR band for the detection of cirrus clouds (band 9). Landsat 8 has a higher signal-to-noise ratio (SNR) and two new bands (band 1 and band 9) compared with its predecessors (e.g. Landsat 7’s ETM+ sensor). The specification of te OLI's bands are shown in \autoref{tab:L8specs}. The Landsat 8 image used in this study was acquired on 09-19-2013 (scene LC80160302013262LGN00). This Landsat 8 Level 1T data product was downloaded from the USGS EarthExplorer website (\url{https://earthexplorer.usgs.gov/}) in GeoTIFF format. The product was in digital numbers (DNs) and was converted to spectral radiance at the sensor's aperture using the radiometric calibration parameters in the metadata file (\_MTL.txt) provided with the product.
+
+
+\begin{table}[!ht]
+\caption{ OLI band's specifications. \label{tab:L8specs} } 
+\vspace{0.2cm}
+\centering
+\begin{tabular}{lccccl} 
+ % \bfseries{Band n} & \bfseries{$m$}      & \bfseries{$y_0$}    & \bfseries{$R^2$}     & \bfseries{$RMSE$} & $y(x=45^\circ)$   \\ \hline \hline
+ \hline
+Band  			&	Band 		& Band Center 	&	Band Width  &	GDS  	\\ 
+      			&   Number 	    &	$[nm]$ 		&	$[nm]$		& $[m]$ 	\\ \hline \hline
+Coastal/Aerosol & 	1 			&	443  		& 	16 			& 30	 	\\  	
+Blue 			& 	2 			&	483  		& 	60 			& 30	 	\\  	
+Green 			& 	3 			&	561  		& 	57 			& 30 	 	\\  	
+Red 			& 	4 			&	655  		& 	37 			& 30	 	\\  	
+NIR 			& 	5 			&	865  		& 	28			& 30	 	\\  	
+SWIR 1 			& 	6 			&	1609 		& 	85 			& 30	 	\\  	
+SWIR 2 			& 	7 			&	2201 		& 	187 		& 30	 	\\  	
+Panchromatic 	&	8 			&	590  		& 	180 		& 15	 	\\  	
+Cirrus 			&	9 			&	1375 		& 	20 			& 30	 	\\	\hline
+ \end{tabular}	
+\end{table}	
+% -----------------------------------------------------------
 \subsection{Study Area and Field Measurements}
+
+The study area is the Rochester Embayment, Rochester, NY (latitude: $43^\circ18'$N and longitude: $76^\circ42'$W). \autoref{fig:RrsROIs130919} shows a portion of a Landsat 8 image including the study area. This study area was chosen because it exhibits a wide range of CPA concentrations, including some eutrophic water bodies (ponds) with high concentration of CPAs, and oligomesotrophic water bodies (Lake Ontario) with low concentration of CPAs. A field collection that includes water samples and remote-sensing reflectance ($R_{rs}$) measurements was conducted at the same time of the sensor overpass. The $R_{rs}$ measurements were performed using a SVC HR-1024i instrument\cite{SVCHR1024i} following the method described by Mobley\cite{Mobley:1999} for measuring the spectra of the downwelling irradiance $E_d$, the surface reflected sky radiance $L_s$, and the water-leaving radiance $L_w$ for each site. Then, the water samples were analyzed in the lab, following SeaWiFS protocols\cite{Mueller1995} for obtaining chlorophyll-{\it a} concentration ($C_a$) and total suspended solid concentration (TSS). \autoref{tab:Sites} shows the different site names, location and the $C_a$ and $TSS$ for each site for the collection on 09-19-2013. Note the difference in concentration levels between the ponds (i.e. LONGN, LONGS and CRANB) and the lake (i.e. ONTNS, ONTOS and ONTEX) samples.
 
 % Site  &	$C_a$  &  	Latitude  &	Longitude
 % ONTNS & 	~~0.48 &	43.272159 &	-77.538274 	
@@ -97,49 +124,45 @@ Field data: SVC radiometer following the procedures suggested by Mobley, which i
 % BRADO & 	~~1.44 & 	43.325780 &	-77.706432 
 
 \begin{table}[!ht]
-\caption{ Sites. \label{tab:Sites} } 
+\caption{ Different sites for the collection on 09-19-2013. \label{tab:Sites} } 
+\vspace{0.2cm}
 \centering
-\scriptsize
-\begin{tabular}{c|l|l|c|c|c|c|c|c|c|c} 
+\begin{tabular}{lccccl} 
  % \bfseries{Band n} & \bfseries{$m$}      & \bfseries{$y_0$}    & \bfseries{$R^2$}     & \bfseries{$RMSE$} & $y(x=45^\circ)$   \\ \hline \hline
-Site  &	$C_a$  	   &  	Latitude  &	Longitude  \\ \hline \hline
-ONTNS & 	~~0.48 &	43.272159 &	-77.538274 \\  	
-ONTOS & 	~~0.96 &	43.308923 &	-77.540085 \\  	
-ONTEX & 	~~1.68 &	43.244892 &	-77.536671 \\  	
-RVRPI & 	~~2.88 &	43.259925 &	-77.601587 \\  	
-RVRPL & 	~~0.48 &	43.270990 &	-77.592282 \\  	
-LONGN & 	123.85 &	43.290836 &	-77.690662 \\  	
-LONGS & 	112.76 &	43.289182 &	-77.696458 \\  	
-CRANB & 	~64.08 &	43.299938 &	-77.692915 \\  	
-BRADI & 	~19.22 &	43.313675 &	-77.717531 \\  	
-BRADO & 	~~1.44 & 	43.325780 &	-77.706432 \\  
- \end{tabular}
+ \hline
+Site  &    	Latitude  &	Longitude  &	$C_a$  	   &	$TSS$  	& Description	\\ 
+      &    	          &			   &	$[mg/m^3]$ & $[g/m^3]$ 	& 	\\ \hline \hline
+ONTNS &    	43.272159 &	-77.538274 & 	~~0.48 & ~1.60	 		& Lake Ontario near-shore	\\  	
+ONTOS &    	43.308923 &	-77.540085 & 	~~0.96 & ~1.00	 		& Lake Ontario off-shore	\\  	
+ONTEX &    	43.244892 &	-77.536671 & 	~~1.68 & ~0.70 	 		& Lake Ontario extra	\\  	
+RVRPI &    	43.259925 &	-77.601587 & 	~~2.88 & ~2.10	 		& Genese River pier	\\  	
+RVRPL &    	43.270990 &	-77.592282 & 	~~0.48 & ~1.00	 		& Genese River plume	\\  	
+LONGN &    	43.290836 &	-77.690662 & 	123.85 & 48.00	 		& Long Pong north	\\  	
+LONGS &    	43.289182 &	-77.696458 & 	112.76 & 46.00	 		& Long Pond south	\\  	
+CRANB &    	43.299938 &	-77.692915 & 	~64.08 & 26.70	 		& Cranberry Pond	\\  	
+BRADIN&    	43.313675 &	-77.717531 & 	~19.22 & 13.10	 		& inside Braddock bay	\\  	
+BRADONT&	43.325780 &	-77.706432 & 	~~1.44 & ~2.00	  		& Braddock Bay, Lake Ontario side	\\  \hline
+ \end{tabular}	
 \end{table}	
-
-
-
-
-
 
 \begin{figure}[htbp!]
   \centering
-  \includegraphics[height=8.0cm]{./Images/ROI_RocEmbayment130919}
-  \caption{$R_{rs}$ for the sites for the 09-19-2013 collection after applying the MoB-ELM atmospheric correction (Labels: LONGS: Long Pond south, CRANB: Cranberry Pond, ONTOS: Lake Ontario off-shore, and ONTNS: Lake Ontario near-shore).\label{fig:RrsROIs130919} } 
+  \includegraphics[height=8.0cm]{./Images/ROI_RocEmbayment130919-eps-converted-to.pdf}
+  \caption{Landsat 8 image acquired on 09-19-2015 (scene LC80160302013262LGN00) showing the study area, the Rochester Embayment. The labels indicate the sites of the field collection (Labels: ONTNS: Lake Ontario near-shore, ONTOS: Lake Ontario off-shore, ONTEX: Lake Ontario extra, RVRPIER: Genese River pier, RVRPLM: Genese River plume, LONGN: Long Pong north, LONGS: Long Pond south, CRANB: Cranberry Pond, BRADIN: inside Braddock Bay, and BRADONT: Braddock Bay, Lake Ontario side).\label{fig:RrsROIs130919} } 
 \end{figure}
-
-% -----------------------------------------------------------
-\subsection{Satellite Data}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{ATMOSPHERIC CORRECTION}
 \label{sec:atmcorr}  % \label{} allows reference to this section
 % -----------------------------------------------------------
-\subsection{SEADAS}
-% -----------------------------------------------------------
-\subsection{ACOLITE}
-% -----------------------------------------------------------
 \subsection{MOB-ELM}
+% -----------------------------------------------------------
+\subsection{SEADAS-SWIR}
+The bands used for the SeaDAS processing were the SWIR1 and SWIR2 because there is some contribution from the NIR band due the highly turbid water in the ponds and water-leaving radiance signal cannot be considered negligible.
+% -----------------------------------------------------------
+\subsection{ACOLITE-SWIR}
+% -----------------------------------------------------------
+\subsection{SeaDAS-MUMM}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
