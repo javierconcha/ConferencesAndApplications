@@ -12,7 +12,7 @@
 %  The bibliography style file is called spiebib.bst, 
 %  which replaces the standard style unstr.bst.  
 
-\documentclass[]{spie}  %>>> use for US letter paper
+\documentclass[draft]{spie}  %>>> use for US letter paper
 %%\documentclass[a4paper]{spie}  %>>> use this instead for A4 paper
 %%\documentclass[nocompress]{spie}  %>>> to avoid compression of citations
 %% \addtolength{\voffset}{9mm}   %>>> moves text field down
@@ -77,6 +77,8 @@ Digital Imaging and Remote Sensig Lab\\Chester F. Carlson Center for Imaging Sci
 2 8
 8 20
 \end{filecontents*}
+
+\usepackage{url}
 
 % end of my packages
  
@@ -176,7 +178,7 @@ BRADONT&	43.325780 &	-77.706432 & 	~~1.44 & ~2.00	  		& Braddock Bay, Lake Ontar
 \label{sec:atmcorr}  % \label{} allows reference to this section
 % -----------------------------------------------------------
 \subsection{MoB-ELM}
-The first atmospheric correction tested in this study was the model-based empirical line method (MoB-ELM) developed by Concha and Schott\cite{Concha2014SPIE} for Landsat 8 imagery. The MoB-ELM atmospheric correction method uses a dark and bright object from the scene to determine a linear relationship between reflectance values and radiance values. Once this relationship is determined, the radiance values in the image are converted to radiance values using this relationship. The dark pixel is obtained from the radiative transfer model Hydrolight simulating  a water pixel in the scene with known CPAs concentrations and  inherent optical properties (IOPs). The bright pixel is obtained from the Landsat 8 reflectance product from USGS over a bright object in the scene or a average of bright pixels in the scene.
+The first atmospheric correction tested in this study was the model-based empirical line method (MoB-ELM) developed by Concha and Schott\cite{Concha2014SPIE} for Landsat 8 imagery. The MoB-ELM method is based on the traditional empirical line method (ELM)\cite{Smith:1999,Schott}. The ELM atmospheric correction method uses a dark and bright object from the scene to determine a linear relationship between reflectance values and radiance values. Once this relationship is determined for each band, the radiance values in the image are converted to radiance values using this relationship. This concept is illustrated in \autoref{fig:ELMregression}. In the MoB-ELM atmospheric correction method, the dark pixel is obtained from a run of the radiative transfer model Hydrolight simulating a water pixel in the scene with known CPAs concentrations and inherent optical properties (IOPs). The bright pixel is obtained from the Provisional Landsat 8 Surface Reflectance product\cite{L8SurfProduct2015} from USGS over a bright object in the scene or a average of bright pixels in the scene. The pixels used for the atmospheric correction of the Landsat 8 image used in this work are shown in \autoref{fig:MOBELMpxls}.
 \begin{figure}[htb]
 	\centering
 % \resizebox{9cm}{!}{%
@@ -211,7 +213,7 @@ The first atmospheric correction tested in this study was the model-based empiri
 		file {linereg2.data};
 
 \end{tikzpicture}
-\caption{Traditional ELM. Two pixels from the image, the bright and dark pixel, are used to solve a liner regression with a slope $m$ and offset $b$ in the $R_{rs}$, $L$ space. Once this relationship is established, each $L$ value in the image can be converted to $R_{rs}$ through $R_{rs}=(L-b)/m$. \label{fig:ELMregression}}
+\caption{MoB-ELM atmospheric correction method. The MoB-ELM method is based on the traditional empirical line method (ELM). Two pixels from the image, the bright and dark pixel, are used to solve a liner regression with a slope $m$ and offset $b$ in the $R_{rs}$, $L$ space. Once this relationship is established, each $L$ value in the image can be converted to $R_{rs}$ through $R_{rs}=(L-b)/m$. \label{fig:ELMregression}}
 \end{figure}
 
 \begin{figure}[htb]
@@ -230,23 +232,25 @@ The first atmospheric correction tested in this study was the model-based empiri
   \end{minipage}
   \caption{Example of the bright and dark pixel used in the MoB-ELM atmospheric correction method for Landsat 8 scene acquired on 09-19-2013.\label{fig:MOBELMpxls} } 
 \end{figure}
-
-
 % -----------------------------------------------------------
-\subsection{SEADAS-SWIR}
-The bands used for the SeaDAS processing were the SWIR1 and SWIR2 because there is some contribution from the NIR band due the highly turbid water in the ponds and water-leaving radiance signal cannot be considered negligible.
+\subsection{SeaDAS-SWIR}
+The second method analyzed in this work was the Gordon and Wang\cite{Gordon:1994} approach for atmospherically correct satellite data over water. This method is implemented in the l2gen tool of the the Sea-viewing Wide Field-of-View Sensor (SeaWiFS) Data Analysis System (SeaDAS) software package, distributed by NASA's Ocean Biology Processing Group (OBPG) (more info: \url{http://seadas.gsfc.nasa.gov/}). The l2gen tool processes heritage Ocean-Color sensor (e.g. MODIS, SeaWiFS, OCTS or CZCS) data (Level 1) and generates Level 2 geophysical products by applying atmospheric corrections and bio-optical algorithms to the sensor. The l2gen tool includes a set of different atmospheric correction methods and variations, the Gordon and Wang's algorithm among them. The capability for processing OLI data was made fully operational recently in the SeaDAS version 7.2\cite{Franz:2015}. 
+
+The atmospheric correction methods based on the Gordon and Wang approach use standard radiative transfer methods to compute and remove scattering by the air molecules and two bands where the water contribution is negligible to estimated the aerosol contribution in the rest of the bands. Formerly, two NIR bands were used for estimating the aerosol contribution, but a combination of NIR and SWIR bands can be used. The bands used in this study were the SWIR 1 and SWIR 2. The OLI's NIR band was not used because the water contribution in the NIR band cannot be considered negligible due to the presence of highly turbid waters in the scene (i.e. ponds). The processing includes the vicarious calibration for the OLI data described in Ref.~\citenum{Franz:2015}.
 % -----------------------------------------------------------
-\subsection{ACOLITE-SWIR}
+\subsection{Acolite-SWIR}
 % -----------------------------------------------------------
 \subsection{SeaDAS-MUMM}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{CPA RETRIEVAL}
-% -----------------------------------------------------------
-\subsection{Bio-Optical Algorithm}
+\section{Chlorophyll-{\it a} RETRIEVAL}
 % -----------------------------------------------------------
 \subsection{LUT Approach}
+from \cite{Concha2013IGARSS}.
+% -----------------------------------------------------------
+\subsection{Bio-Optical Algorithm}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{RESULTS AND DISCUSSION}
 \label{sec:results}  % \label{} allows reference to this section
@@ -1010,7 +1014,7 @@ $[nm]$		&	  		      &  		 	  &	  		&			&	   		&	     	&$[mg/m^3]$ & Method 1   	
   \begin{minipage}[c]{1.0\linewidth}
 		\centering
      	\begin{overpic}[trim=0 0 0 0,clip,width=12cm]{./Images/CHLmeavsret.png}
-    	\put(17,60){\includegraphics[trim=10 80 0 0,clip,width=4cm]{./Images/CHLmeavsretZOOM.png}}
+    	\put(17,65){\includegraphics[trim=10 80 0 0,clip,width=4.5cm]{./Images/CHLmeavsretZOOM.png}}
       \end{overpic}  
   \end{minipage}
   \caption{Comparison retrieved versus measured $R_{rs}$ for the sites on the 90-19-2013 collection. \label{fig:13262RrsMeaVSRet}} 
