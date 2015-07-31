@@ -12,7 +12,7 @@
 %  The bibliography style file is called spiebib.bst, 
 %  which replaces the standard style unstr.bst.  
 
-\documentclass[draft]{spie}  %>>> use for US letter paper
+\documentclass[]{spie}  %>>> use for US letter paper
 %%\documentclass[a4paper]{spie}  %>>> use this instead for A4 paper
 %%\documentclass[nocompress]{spie}  %>>> to avoid compression of citations
 %% \addtolength{\voffset}{9mm}   %>>> moves text field down
@@ -25,7 +25,9 @@
 \usepackage[percent]{overpic}
 % \usepackage[authoryear]{natbib}
 
-\title{Validation of the MoB-ELM Atmospheric Correction Algorithm for Landsat 8 over Case 2 Waters} 
+% \title{Validation of the MoB-ELM Atmospheric Correction Algorithm for Landsat 8 over Case 2 Waters} 
+
+\title{Atmospheric Correction for Landsat 8 over Case 2 Waters}
 
 %>>>> The author is responsible for formatting the 
 %  author list and their institutions.  Use  \skiplinehalf 
@@ -59,6 +61,24 @@ Digital Imaging and Remote Sensig Lab\\Chester F. Carlson Center for Imaging Sci
 \epstopdfsetup{update} % only regenerate pdf files when eps file is newer
 \usepackage{amsmath,epsfig}
 \usepackage{hyperref}
+
+
+\usepackage{tikz} % for flow charts
+  \usetikzlibrary{shapes,arrows,positioning,shadows,calc}
+
+\begin{filecontents*}{linereg.data}
+#x y
+0 4
+10 24
+\end{filecontents*} 
+
+\begin{filecontents*}{linereg2.data}
+#x y
+2 8
+8 20
+\end{filecontents*}
+
+% end of my packages
  
   \begin{document} 
   \maketitle 
@@ -155,7 +175,63 @@ BRADONT&	43.325780 &	-77.706432 & 	~~1.44 & ~2.00	  		& Braddock Bay, Lake Ontar
 \section{ATMOSPHERIC CORRECTION}
 \label{sec:atmcorr}  % \label{} allows reference to this section
 % -----------------------------------------------------------
-\subsection{MOB-ELM}
+\subsection{MoB-ELM}
+The first atmospheric correction tested in this study was the model-based empirical line method (MoB-ELM) developed by Concha and Schott\cite{Concha2014SPIE} for Landsat 8 imagery. The MoB-ELM atmospheric correction method uses a dark and bright object from the scene to determine a linear relationship between reflectance values and radiance values. Once this relationship is determined, the radiance values in the image are converted to radiance values using this relationship. The dark pixel is obtained from the radiative transfer model Hydrolight simulating  a water pixel in the scene with known CPAs concentrations and  inherent optical properties (IOPs). The bright pixel is obtained from the Landsat 8 reflectance product from USGS over a bright object in the scene or a average of bright pixels in the scene.
+\begin{figure}[htb]
+	\centering
+% \resizebox{9cm}{!}{%
+\begin{tikzpicture}[x=4ex,y=1ex]
+ 	%axis
+	\draw (0,0) -- coordinate (x axis mid) (10,0);
+    \draw (0,0) -- coordinate (y axis mid) (0,30);
+ 
+    %labels      
+	\node[below=0ex] at (8,0) {\small $Band_i~~remote-sensing~reflectance~(R_{rs})$};
+	\node[rotate=90] at (-.5,23) {\small $Band_i~~Radiance~(L)$};
+
+	\node[below=.2ex] at (-2.1,4.5) {\scriptsize $b=$offset};
+	\node[below=1.4ex] at (-2.1,4.0) {\scriptsize (path radiance)};
+	\draw[rotate=90,|<->|] (0,1) -- coordinate (x axis mid) (1,1);
+
+	\node[below=0ex] at (2,15) {\small Dark Object};
+	\draw[arrows=-triangle 45] (2,12.5) -- (2,9);
+
+	\node[below=0ex] at (4,20) {\small $m=$ Slope};
+	\draw[arrows=-triangle 45] (4,17.5) -- (5,14.5);
+
+	\node[below=0ex] at (7,27) {\small Bright Object};
+	\draw[arrows=-triangle 45] (7,24.5) -- (7.9,20.5);
+
+	\node[below=0ex] at (8,9) {\small $R_{rs}=(L-b)/m$};
+
+	%plots
+	\draw plot 
+		file {linereg.data};
+	\draw plot[mark=*] 
+		file {linereg2.data};
+
+\end{tikzpicture}
+\caption{Traditional ELM. Two pixels from the image, the bright and dark pixel, are used to solve a liner regression with a slope $m$ and offset $b$ in the $R_{rs}$, $L$ space. Once this relationship is established, each $L$ value in the image can be converted to $R_{rs}$ through $R_{rs}=(L-b)/m$. \label{fig:ELMregression}}
+\end{figure}
+
+\begin{figure}[htb]
+  \begin{minipage}[c]{0.48\linewidth}
+    \centering
+      \includegraphics[width=8cm]{./Images/ELMrad130929_150422}
+    % \vspace{1.5cm}
+    \centerline{(a)}\medskip
+  \end{minipage}
+  \hfill
+  \begin{minipage}[d]{0.48\linewidth}
+    \centering
+      \includegraphics[width=8cm]{./Images/ELMRrs130929_150422}
+    % \vspace{1.5cm}
+    \centerline{(b)}\medskip
+  \end{minipage}
+  \caption{Example of the bright and dark pixel used in the MoB-ELM atmospheric correction method for Landsat 8 scene acquired on 09-19-2013.\label{fig:MOBELMpxls} } 
+\end{figure}
+
+
 % -----------------------------------------------------------
 \subsection{SEADAS-SWIR}
 The bands used for the SeaDAS processing were the SWIR1 and SWIR2 because there is some contribution from the NIR band due the highly turbid water in the ponds and water-leaving radiance signal cannot be considered negligible.
@@ -945,7 +1021,7 @@ $[nm]$		&	  		      &  		 	  &	  		&			&	   		&	     	&$[mg/m^3]$ & Method 1   	
 %^^^^^^^^^^^^^^^^^^^  FIGURE ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 \begin{figure}[htbp!]
   \centering
-  \includegraphics[height=8.0cm]{./Images/13262_NRME_CHL.png}
+  \includegraphics[height=8.0cm]{./Images/13262_NRMSE_CHL.png}
   \caption{NRMSE for $C_a$.\label{fig:NRMSE130919} } 
 \end{figure}
 
