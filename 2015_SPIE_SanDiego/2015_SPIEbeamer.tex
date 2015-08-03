@@ -48,7 +48,16 @@
 
 % \setbeamertemplate{footline}[frame number]
 % \setbeamertemplate{footline}[page number]
-	
+
+% My packages
+% added on 08-03-15
+% http://www-ljk.imag.fr/membres/Jerome.Lelong/latex/appendixnumberbeamer.sty
+% Reference: http://tex.stackexchange.com/questions/2541/beamer-frame-numbering-in-appendix
+\usepackage{appendixnumberbeamer}
+% Add total frame count to slides, optional. From Stefan,
+% http://www.latex-community.org/forum/viewtopic.php?f=4&t=2173
+\expandafter\def\expandafter\insertshorttitle\expandafter{%
+  \insertshorttitle\hfill\insertframenumber\,/\,\inserttotalframenumber}	
 	
 % -------------------------------------- Slide 1 -----------------
 	\title[Atmospheric Correction L8]{Atmospheric Correction for Landsat 8 over Case 2 Waters}
@@ -121,8 +130,31 @@
 % \includegraphics[height=0.5cm]{/Users/javier/Desktop/Javier/MASTER_RIT/SPIE2012/Slides/rit_white_no_bar.jpg}
 \includegraphics[height=0.4cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2014_ASPRS_SOY/Images/RIT_LOGO.png}
 \end{textblock*}}
+% ----------------------------------- Slide ----------------------------------------------	
+\begin{frame}{\LARGE Motivation} 
+\vspace{-.5cm}
+\begin{columns}[c] % contents are top vertically aligned
+  	\begin{column}[T]{6cm} % each column can also be its own environment
+  		\vspace{0.5cm}
+      	\begin{itemize}
+      	\Large
+      		\item Ocean Color Satellites (e.g. MODIS, SeaWiFS): \\ \LARGE Global Studies
+      	\end{itemize}
+	\end{column}
 
+  	\begin{column}[T]{6cm} % each column can also be its own environment
+ 		\begin{figure}[H]
+ 			\includegraphics[height=3cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2014_ASPRS_SOY/Images/107325main_chloro_concentrate.jpg}
+ 		\end{figure}
+ 		\vspace{-0.7cm}
+ 		{\hspace{4.2cm}\tiny $*~$Credit: NASA}
+ 	\end{column}
+\end{columns}
 
+\begin{figure}[H]
+		\includegraphics[height=4cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2014_ASPRS_SOY/Images/DiffResol.png}
+\end{figure}
+\end{frame}
 % ----------------------------------- Slide ----------------------------------------------
 {
 \setbeamertemplate{footline}{} 
@@ -133,10 +165,35 @@
 
 \addtocounter{framenumber}{-1}
 }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Goal}
+\subsection*{Goal}
+% ----------------------------------- Slide ----------------------------------------------
+\begin{frame}{\LARGE Goal} 
+\begin{itemize}
+\LARGE
+
+\item To Use Landsat 8 to retrieve Color Producing Agents (CPAs):
+\begin{itemize}
+	\Large
+ 	\item chlorophyll
+ 	\item colored dissolved organic matter (CDOM)
+ 	\item suspended minerals (SM or TSS)
+ \end{itemize}
+\vspace{.5cm}
+\item Over Coastal and Inland Water (Case 2 Waters)
+\vspace{.5cm}
+\item Small/Medium Scale regions
+
+\end{itemize}
+
+\end{frame}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Background}
 % ------------------------------ SUBSECTION ----------------------------------------------
-\subsection{Atmospheric Correction: ELM}
+\subsection*{Atmospheric Correction: ELM}
 % ----------------------------------- Slide ----------------------------------------------
 \begin{frame}{\LARGE Atmospheric Correction} 
  \begin{columns}[c] % contents are top vertically aligned
@@ -161,10 +218,10 @@
 {\Large Empirical Line Method (ELM)} 
  \begin{columns}[c] % contents are top vertically aligned
   	\begin{column}[T]{5cm} % each column can also be its own environment
-  	{\centering \Large $L(\lambda)=m\times r_d(\lambda)+b$}\\
+  	{\centering \Large $L(\lambda)=m\times R_{rs}(\lambda)+b$}\\
   	\vspace{0.1cm}
   	where: \begin{tabbing} $L$: Radiance\\
-  	$r_d$: Reflectance\\
+  	$R_{rs}=\frac{Lw}{E_d}$: Remote-sensing\\ ~~~~~~~~~~~~~~~~~~reflectance\\
   	$m$: slope\\
   	$b$: offset
   	\end{tabbing}
@@ -172,7 +229,7 @@
     \begin{itemize}
     	\item Two pixels in the scene with known reflectance
     	\vspace{0.3cm}
-    	\item Linear relationship between radiance $L$ and reflectance $r_d$ 	
+    	% \item Linear relationship between radiance $L$ and reflectance $r_d$ 	
     \end{itemize}
      	\end{column}
   
@@ -181,35 +238,29 @@
 \begin{figure}[htb]
 	\centering
 \resizebox{7cm}{!}{%
-\begin{tikzpicture}[y=.2cm, x=.7cm]
+\begin{tikzpicture}[x=4ex,y=1ex]
  	%axis
 	\draw (0,0) -- coordinate (x axis mid) (10,0);
     \draw (0,0) -- coordinate (y axis mid) (0,30);
-    %ticks
- %  	\foreach \x in {0,...,10}
- %   		\draw (\x,1pt) -- (\x,-3pt)
-	% node[anchor=north] {\x};
- %  	\foreach \y in {0,5,...,30}
- %   		\draw (1pt,\y) -- (-3pt,\y) 
- %   			node[anchor=east] {\y}; 
+ 
     %labels      
-	\node[below=0ex] at (8,0) {$Band_i~~reflectance~(r_d)$};
-	\node[rotate=90] at (-.5,23) {$Band_i~~Radiance~(L)$};
+	\node[below=0ex] at (8,0) {\small $Band_i~~remote-sensing~reflectance~(R_{rs})$};
+	\node[rotate=90] at (-.5,23) {\small $Band_i~~Radiance~(L)$};
 
-	\node[below=.2ex] at (-2.1,4.5) {$b=$offset};
-	\node[below=1.4ex] at (-2.1,4.0) {(path radiance)};
-	\draw[rotate=90,|<->|] (0,1) -- coordinate (x axis mid) (1.2,1);
+	\node[below=.2ex] at (-2.1,4.5) {\scriptsize $b=$offset};
+	\node[below=1.4ex] at (-2.1,4.0) {\scriptsize (path radiance)};
+	\draw[rotate=90,|<->|] (0,1) -- coordinate (x axis mid) (1,1);
 
-	\node[below=0ex] at (2,15) {Dark Object};
+	\node[below=0ex] at (2,15) {\small Dark Object};
 	\draw[arrows=-triangle 45] (2,12.5) -- (2,9);
 
-	\node[below=0ex] at (4,20) {$m=$ Slope};
+	\node[below=0ex] at (4,20) {\small $m=$ Slope};
 	\draw[arrows=-triangle 45] (4,17.5) -- (5,14.5);
 
-	\node[below=0ex] at (7,27) {Bright Object};
+	\node[below=0ex] at (7,27) {\small Bright Object};
 	\draw[arrows=-triangle 45] (7,24.5) -- (7.9,20.5);
 
-	\node[below=0ex] at (8,9) {\large $r_d=(L-b)/m$};
+	\node[below=0ex] at (8,9) {\small $R_{rs}=(L-b)/m$};
 
 	%plots
 	\draw plot 
@@ -218,15 +269,15 @@
 		file {linereg2.data};
 
 \end{tikzpicture}
-  }%close \resizebox
-% \caption{Regression used in ELM to solve the linear relationship between reflectance $r_d$ and radiance $L$ using a dark and bright pixel from the scene. \label{fig:ELM}}
+% \caption{MoB-ELM atmospheric correction method. The MoB-ELM method is based on the traditional empirical line method (ELM). Two pixels from the image, the bright and dark pixel, are used to solve a liner regression with a slope $m$ and offset $b$ in the $R_{rs}$, $L$ space. Once this relationship is established, each $L$ value in the image can be converted to $R_{rs}$ through $R_{rs}=(L-b)/m$. \label{fig:ELMregression}
+} % end resize
 \end{figure}
 
      	\end{column}
 \end{columns}
 
 \end{frame}% ------------------------------ SUBSECTION ----------------------------------------------
-\subsection{Landsat 8}
+\subsection*{Landsat 8}
 % ----------------------------------- Slide ----------------------------------------------
 \begin{frame}{\LARGE Landsat 8 - OLI Specifications} 
 \vspace{-.5cm}
@@ -264,7 +315,7 @@
 \end{frame}
 % ----------------------------------- Slide ----------------------------------------------
 % ------------------------------ SUBSECTION ----------------------------------------------
-\subsection{Physics Model: Hydrolight}
+\subsection*{Physics Model: Hydrolight}
 \begin{frame}{\LARGE Hydrolight} 
 \centerline{\LARGE For the Dark Pixel and LUT generation}
 
@@ -274,67 +325,8 @@
 \hspace{5cm}{$*~$IOPs: Inherent Optical Properties}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Project}
-% ----------------------------------- Slide ----------------------------------------------
-% ------------------------------ SUBSECTION ----------------------------------------------
-\subsection{Goal}
-\begin{frame}{\LARGE Motivation} 
-\vspace{-.5cm}
-\begin{columns}[c] % contents are top vertically aligned
-  	\begin{column}[T]{6cm} % each column can also be its own environment
-  		\vspace{0.5cm}
-      	\begin{itemize}
-      	\Large
-      		\item Ocean Color Satellites (e.g. MODIS, SeaWiFS): \\ \LARGE Global Studies
-      	\end{itemize}
-	\end{column}
-
-  	\begin{column}[T]{6cm} % each column can also be its own environment
- 		\begin{figure}[H]
- 			\includegraphics[height=3cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2014_ASPRS_SOY/Images/107325main_chloro_concentrate.jpg}
- 		\end{figure}
- 		\vspace{-0.7cm}
- 		{\hspace{4.2cm}\tiny $*~$Credit: NASA}
- 	\end{column}
-\end{columns}
-
-\begin{figure}[H]
-		\includegraphics[height=4cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2014_ASPRS_SOY/Images/DiffResol.png}
-\end{figure}
-\end{frame}
-% ----------------------------------- Slide ----------------------------------------------
-\begin{frame}{\LARGE Goal} 
-\begin{itemize}
-\LARGE
-
-\item To Use Landsat 8 to retrieve Color Producing Agents (CPAs):
-\begin{itemize}
-	\Large
- 	\item chlorophyll
- 	\item colored dissolved organic matter (CDOM)
- 	\item suspended minerals (SM or TSS)
- \end{itemize}
-\vspace{.5cm}
-\item Over Coastal and Inland Water (Case 2 Waters)
-\vspace{.5cm}
-\item Small/Medium Scale regions
-
-\end{itemize}
-
-\end{frame}
-
-
-% ----------------------------------- Slide ----------------------------------------------
-% ------------------------------ SUBSECTION ----------------------------------------------
-\subsection{Retrieval Process}
-\begin{frame}{\LARGE Retrieval Process} 
-
-\begin{figure}[H]
-		\includegraphics[height=6cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2014_ASPRS_SOY/Images/RetProcess.pdf}
-\end{figure}
-\hspace{7.5cm}{\footnotesize $*~$LUT: Look-up table}
-\end{frame}
-
+\section{Atmospheric Correction}
+\subsection*{}
 % ----------------------------------- Slide ----------------------------------------------
 \begin{frame}{\LARGE Atmospheric Correction} 
 {\Large Model-Based ELM}
@@ -360,58 +352,6 @@
 \footnotetext[2]{Region of interest}
 
 \end{frame}
-
-% % ----------------------------------- Slide ----------------------------------------------
-% \begin{frame}{\LARGE Pseudo-Invariant Features (PIFs)} 
-% \begin{figure}[htb]
-% 	\centering
-
-% \resizebox{10cm}{!}{%	
-%   \begin{tikzpicture}[node distance=0.75cm, auto]
-%           \tikzset{
-%                   basenode/.style={rectangle,rounded corners,draw=black,very thick, inner sep=1em, minimum size=3em, text centered,text width=2cm},
-%                   productnode/.style={ellipse,rounded corners,draw=black, very thick, text centered,text width=1.5cm},
-%                   myarrow/.style={->,>=stealth',thick, double = black},
-%                   mylabel/.style={text width=7em, text centered}
-%           }
-%           % SWIR branch
-%           \node[basenode] (SWIR) {SWIR 2\\ Band};
-%           \node[basenode, below=of SWIR] (TS1) {Mask by Threshold (upward)};
-%           \node[align=left, right=0.0 of TS1] (C1) {Urban\\Veget.\\Water};
-%           \node[align=left, right=-0.15 of C1] (C2) {ON\\ON\\OFF};
-
-%           % Ratio branch
-%           \node[basenode, right=2.5cm of SWIR] (Ratio) {Ratio\\ NIR Band/ Red Band};
-%           \node[basenode, below=of Ratio] (TS2) {Mask by Threshold (downward)};
-%           \node[align=left, right=0.0 of TS2] (C3) {Urban\\Veget.\\Water};
-%           \node[align=left, right=-0.15 of C3] (C4) {ON\\OFF\\ON};
-
-%           % AND
-%           \path (TS1.south)--(TS2.south) node[pos=.5,below=2cm] (AND) {.AND.};
-
-
-%           % PIF Mask
-%           \node[basenode, below=of AND] (PIFMask){PIF Mask};
-%           \node[align=left, left=0.85 of PIFMask] (C5) {Urban\\Veget.\\Water};
-%           \node[align=left, right=-0.15 of C5] (C6) {ON\\OFF\\OFF};
-
-%           \node[basenode, below=of TS2,right=2.0cm of AND] (Image) {Image};
-%           \path (Image.south)--(PIFMask.east) node[below=of Image,right=2cm of PIFMask] (AND2) {.AND.};
-%           \node[basenode, right=2cm of AND2] (PIFIm){PIF Image};
-
-%           \draw[myarrow] (SWIR)--(TS1);
-%           \draw[myarrow] (Ratio)--(TS2);
-%           \draw[myarrow] (TS1)--(AND);
-%           \draw[myarrow] (TS2)--(AND);
-%           \draw[myarrow] (AND)--(PIFMask);
-%           \draw[myarrow] (Image)--(AND2);
-%           \draw[myarrow] (PIFMask)--(AND2);
-%           \draw[myarrow] (AND2)--(PIFIm);
-%   \end{tikzpicture}
-%   }%close \resizebox
-% % \caption{Illustration of the logic used to segment PIF features. \label{fig:PIFflowchart}}
-% \end{figure}
-% \end{frame}
 % ----------------------------------- Slide ----------------------------------------------
 \begin{frame}{\LARGE Atmospheric Correction} 
 {\Large Pseudo-Invariant Features -- Bright Pixel}
@@ -485,26 +425,31 @@
 \begin{frame}{\LARGE Atmospheric Correction} 
 {\Large Model-Based ELM}
 \centerline{\LARGE Bright and Dark Pixel}
+
 \begin{figure}[htb]
-  \centering
-  \includegraphics[width=12cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/Proposal/Images/ELMpixelsENVI.pdf}
-  % \caption{Bright and Dark pixels used in ENVI to apply ELM. (a) Data spectra and (b) Field spectra \label{fig:ELMpxsENVI} } 
+  \begin{minipage}[c]{0.48\linewidth}
+    \centering
+      \includegraphics[width=6cm]{./Images/ELMrad130929_150422}
+    \vspace{0.3cm}
+    \centerline{(a) Radiance}\medskip
+  \end{minipage}
+  \hfill
+  \begin{minipage}[d]{0.48\linewidth}
+    \centering
+      \includegraphics[width=6cm]{./Images/ELMRrs130929_150422}
+    \vspace{0.3cm}
+    \centerline{(b) $R_{rs}$}\medskip
+  \end{minipage}
+  % \caption{Example of the bright and dark pixel used in the MoB-ELM atmospheric correction method for Landsat 8 scene acquired on 09-19-2013.\label{fig:MOBELMpxls} } 
 \end{figure}
+
 \end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section[Chl-{\it a} Retrieval]{Chlorophyll-{\it} Retrieval}
+\subsection*{}
 % ----------------------------------- Slide ----------------------------------------------
-\begin{frame}{\LARGE Atmospheric Correction} 
-{\Large Model-Based ELM -- Results}
-\vspace{-.5cm}
-\begin{figure}[htb]
-\centering
-\includegraphics[height=6cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2014_RITResearchSymposium/Images/ELMcomparison-eps-converted-to.pdf}
-      
-\end{figure}
-\centerline{Comparison between traditional ELM (dashed lines)}
-\centerline{and model-based ELM (solid lines).}
-\end{frame}
-% ----------------------------------- Slide ----------------------------------------------
-\begin{frame}{\LARGE Retrieval Process} 
+\begin{frame}{\LARGE Chlorophyll-{\it a} Retrieval Process} 
 
 \begin{figure}[H]
 		\includegraphics[height=7cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2014_ASPRS_SOY/Images/RetProcess.pdf}
@@ -519,7 +464,7 @@
   \begin{columns}[c] % contents are top vertically aligned
   	\begin{column}[T]{6cm} % each column can also be its own environment
   	\vspace{0.2cm}
-    	\includegraphics[height=5cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2014_ASPRS_SOY/Images/LUT.eps}
+    	\includegraphics[height=5cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/LUTsmart130919_150422.eps}
     	    \vspace{0.2cm}
     		\centerline{LUT}
     		\centerline{(Known concentrations)}
@@ -528,113 +473,43 @@
   	\begin{column}[T]{6cm} % each column can also be its own environment
   	\vspace{0.2cm}
 	\scriptsize \addtolength{\tabcolsep}{-5pt}
-		\begin{tabular}{c|c|c|c}
-        		\bfseries{$<CHL>$}  	& \bfseries{$<SM>$}  & \bfseries{$a_{CDOM}(440)$} & \bfseries{$Backscatter$} \\
-		$[ug/L]$  		& $[mg/L]$ & 	$[1/m]$ &	\bfseries{$Fraction$}, $[\%]$	\\ \hline \hline
-0.1   & 1.0  &  0.11 &  0.5 \\
-0.5   & 2.0  &  0.15 &  1.0 \\
-1.0   & 5.0  &  0.21 &  1.5 \\
-3.0   & 10.0 &  0.6  &  2.0 \\
-10.0  & 25.0 &  1.0  &  --  \\
-20.0  & 45.0 &  1.2  &  --  \\
-40.0  & 50.0 &  --   &  --  \\
-60.0  & --   &  --   &  --  \\  
-90.0  & --   &  --   &  --  \\  
-110.0 & --   &  --   &  --  \\  
-135.0 & --   &  --   &  --  \\  
-150.0 & --   &  --   &  --  \\     
-	 	\end{tabular}
+\begin{table}[htb]
+% \caption{Input parameters for the LUT generation in Hydrolight for the Landsat 8 image acquired on 09-19-2013. \label{tab:LUTconc}} 
+\tiny
+\centering
+    \begin{tabular}{ccccc}
+    \hline \hline
+            IOPs Input & \bfseries{$C_a$} & \bfseries{$TSS$} & \bfseries{$a_{CDOM}(440nm)$} & \bfseries{$b_b/b$}    \\
+                   & $[mg~m^{-3}]$        & $[g~m^{-3}]$       &  $[1/m]$           & $[\%]$            \\ \hline \hline
+\multirow{8}{*}{ONTNS}  &  0.1    	& 1.0     &  0.11   &  0.3  \\
+   	&  0.5    	& 2.0   &  0.15   	&  0.4  \\
+    &  1.0    	& 5.0   &  0.21   	&  0.5  \\
+    &  3.0    	& 10.0  &  0.6    	&  0.6  \\ 
+    &  10.0     & --    &  --   	&  0.7  \\  
+    &  20.0     & --    &  --   	&  1.0  \\  
+    &  40.0     & --    &  --   	&  1.4  \\
+    &  --       & --    &  --   	&  2.0  \\ \hline
+
+\multirow{8}{*}{LONGS}   &  60.0   & 25.0    &  1.0    &  0.3  \\
+    &  90.0   & 45.0    &  1.2    &  0.4  \\
+    &  110.0  & 50.0    &  --     &  0.5  \\
+    &  --     & --      &  --     &  0.6  \\  
+    &  --     & --      &  --     &  0.7  \\  
+    &  --     & --      &  --     &  1.0  \\   
+    &  --     & --      &  --     &  1.4  \\  
+    &  --     & --      &  --     &  2.0  \\  \hline \hline
+% --      &  135.0  & --      &  --     &  --   \\  
+% --      &  150.0  & --      &  --     &  --   \\ \hline 
+    \end{tabular}
+  \end{table}
      	\end{column}
 \end{columns}
 % \end{block}
 \end{frame}
-% ----------------------------------- Slide ----------------------------------------------
-\begin{frame}{\LARGE Retrieval} 
-{\vspace{0.1cm} \Large LUT and Water Pixels}
- \begin{columns}[c] % contents are top vertically aligned
-  	\begin{column}[T]{6.5cm} % each column can also be its own environment
-    \includegraphics[height=5cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2014_ASPRS_SOY/Images/LUT.eps}
-    	    \vspace{0.2cm}
-    		\centerline{LUT}
-    		\centerline{(Known concentrations)}
-     	\end{column}
-  
-  	\begin{column}[T]{6.5cm} % each column can also be its own environment
-    \includegraphics[height=5cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2014_ASPRS_SOY/Images/waterpixels.eps}
-    	    \vspace{0.2cm}
-    		\centerline{Water Pixels}
-    		\centerline{(Unknown concentrations)}
-     	\end{column}
-\end{columns}
-\end{frame}
-% ----------------------------------- Slide ----------------------------------------------
-\begin{frame}{\LARGE Retrieval} 
-{\vspace{0.1cm} \Large Preliminary Results}
 
-\begin{figure}[htb]
-\centering
-\includegraphics[height=6cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2014_RITResearchSymposium/Images/RetrievalResults.eps}
-      
-\end{figure}
-% \centerline{Comparison between traditional ELM (dashed lines)}
-% \centerline{and model-based ELM (solid lines).}
-\end{frame}
-% ----------------------------------- Slide ----------------------------------------------
-% ------------------------------ SUBSECTION ----------------------------------------------
-\subsection{Field Collection and Lab Measurements}
-\begin{frame}{\LARGE Field Collection} 
-\begin{figure}[htb]
-  \centering
-  \includegraphics[width=8cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/Proposal/Images/groundtruth-sitenames-no-ends.jpg}
-  % \caption{Sites in the Rochester Embayment for the water sample collection on September, $19^{th}$, 2013.\label{fig:0910913Sites} } 
-\end{figure}
-\end{frame}
-% ----------------------------------- Slide ----------------------------------------------
-\begin{frame}{\LARGE Field Collection (con't)} 
-\vspace{-1cm}
-\begin{figure}[htb]
-\centering
-\includegraphics[height=7cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2014_ASPRS_SOY/Images/Collection.pdf}
-      
-\end{figure}
-% \centerline{Comparison between traditional ELM (dashed lines)}
-% \centerline{and model-based ELM (solid lines).}
-\end{frame}
-% ----------------------------------- Slide ----------------------------------------------
-\begin{frame}{\LARGE Lab Measurements} 
-\vspace{-1cm}
-\begin{figure}[htb]
-\centering
-\includegraphics[height=7cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2014_ASPRS_SOY/Images/LabMeasurements.pdf}
-      
-\end{figure}
-% \centerline{Comparison between traditional ELM (dashed lines)}
-% \centerline{and model-based ELM (solid lines).}
-\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusions}
 \subsection*{Conclusions}
-% ----------------------------------- Slide----------------------------------------------
-\begin{frame}{\LARGE Future Work} 
-\begin{itemize}
-\Large
-\setbeamercovered{transparent}
-    \uncover<2->{
-	\item Enhancement of atmospheric correction and retrieval process}
-	\vspace{.5cm}
-	\uncover<3->{
-	\item Include a glint correction}
-	\vspace{.5cm}
-	\uncover<4->{
-	\item To try retrieval in a different water body}
-	\vspace{.5cm}
-	\uncover<5->{
-	\item Validation by comparing with products from ocean color satellites}
-	\vspace{.5cm}
-	\uncover<6->{
-	\item Integration with Hydrodynamics models}
-\end{itemize}
-\end{frame}
 % ----------------------------------- Slide ----------------------------------------------
 \begin{frame}{\LARGE Take Home Points} 
 \begin{itemize}
@@ -679,11 +554,46 @@
 
 \begin{figure}[htb]
 \centering
-\includegraphics[height=5cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2014_ASPRS_SOY/Images/LC80160302013262LGN00.jpg}
+\includegraphics[height=5cm,clip=true]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/Proposal/Images/L8Glint.png}
 \end{figure}
 
 \end{frame}
 }
-
+% #################################################################################
+% ########################## END PRESENTATION #####################################
+% #################################################################################
+\appendix
+\section{Additional Material}
 % ----------------------------------- Slide ----------------------------------------------
+% ------------------------------ SUBSECTION ----------------------------------------------
+\subsection*{Field Collection and Lab Measurements}
+\begin{frame}{\LARGE Field Collection} 
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/Proposal/Images/groundtruth-sitenames-no-ends.jpg}
+  % \caption{Sites in the Rochester Embayment for the water sample collection on September, $19^{th}$, 2013.\label{fig:0910913Sites} } 
+\end{figure}
+\end{frame}
+% ----------------------------------- Slide ----------------------------------------------
+\begin{frame}{\LARGE Field Collection (con't)} 
+\vspace{-1cm}
+\begin{figure}[htb]
+\centering
+\includegraphics[height=7cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2014_ASPRS_SOY/Images/Collection.pdf}
+      
+\end{figure}
+% \centerline{Comparison between traditional ELM (dashed lines)}
+% \centerline{and model-based ELM (solid lines).}
+\end{frame}
+% ----------------------------------- Slide ----------------------------------------------
+\begin{frame}{\LARGE Lab Measurements} 
+\vspace{-1cm}
+\begin{figure}[htb]
+\centering
+\includegraphics[height=7cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2014_ASPRS_SOY/Images/LabMeasurements.pdf}
+      
+\end{figure}
+% \centerline{Comparison between traditional ELM (dashed lines)}
+% \centerline{and model-based ELM (solid lines).}
+\end{frame}
 \end{document} % EEEEEEEEEEENNNNNNNNNNNNNNDDDDDDDDDDDD
