@@ -35,8 +35,7 @@
 	% \usetheme{Boadilla}
 	\setbeamertemplate{navigation symbols}{} 
 	% \useoutertheme{infolines} 
-\setbeamertemplate{footline}{\hbox{\vspace{0.1cm} \insertshortauthor \hspace*{3.0cm} \insertshorttitle \hspace*{4.0cm} \hfill\insertframenumber/\inserttotalframenumber}} 
-
+\setbeamertemplate{footline}{\hbox{\vspace{0.1cm} \insertshortauthor \hspace*{3.5cm} \insertshorttitle \hspace*{4.6cm} \hfill\insertframenumber}} 
 
 \def\braces#1{[#1]} % to define square parenthesis 
 	
@@ -51,11 +50,34 @@
 % \setbeamertemplate{footline}[page number]
 	
 	
-	% -------------------------------------- Slide 1
+% -------------------------------------- Slide 1 -----------------
 	\title[Atmospheric Correction L8]{Atmospheric Correction for Landsat 8 over Case 2 Waters}
 	\author[Javier A. Concha]{\Large Javier A. Concha, John Schott\\\vspace{1cm}}
 	\institute{\footnotesize Digital Imaging and Remote Sensing Lab\\Chester F. Carlson Center for Imaging Science\\ Rochester Institute of Technology}
 	\date{\today}
+
+\AtBeginSection[ ]
+{	\setbeamertemplate{footline}{} 	
+	\begin{frame}{\LARGE Outline} 
+	\LARGE
+		\tableofcontents[currentsection]
+	\end{frame}
+
+\addtocounter{framenumber}{-1}	
+
+\setbeamertemplate{footline}{\hbox{\vspace{0.1cm} \insertshortauthor \hspace*{3.5cm} \insertshorttitle \hspace*{4.6cm} \hfill\insertframenumber}} 
+}	
+
+% \AtBeginSubsection[ ]
+% {		
+% 	\begin{frame}{\LARGE Outline} 
+% 		\tableofcontents[currentsection,currentsubsection]
+% 	\end{frame}
+% \addtocounter{framenumber}{-1}	
+% }		
+\newcounter{tmpc} % for resume counter
+%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&	
 	
 \begin{document}
 {	
@@ -102,28 +124,15 @@
 
 
 % ----------------------------------- Slide ----------------------------------------------
+{
+\setbeamertemplate{footline}{} 
 \begin{frame}{\LARGE Outline} 
+\LARGE
 	\tableofcontents
 \end{frame}
 
 \addtocounter{framenumber}{-1}
-
-% \AtBeginSection[ ]
-% {		
-% 	\begin{frame}{\LARGE Outline} 
-% 		\tableofcontents[currentsection]
-% 	\end{frame}
-
-% \addtocounter{framenumber}{-1}	
-% }	
-
-\AtBeginSubsection[ ]
-{		
-	\begin{frame}{\LARGE Outline} 
-		\tableofcontents[currentsection,currentsubsection]
-	\end{frame}
-\addtocounter{framenumber}{-1}	
-}	
+}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Background}
 % ------------------------------ SUBSECTION ----------------------------------------------
@@ -603,14 +612,9 @@
 % \centerline{and model-based ELM (solid lines).}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Future Work and Take Home Points}
-% ------------------------------ SUBSECTION ----------------------------------------------
-\subsection{}
-\begin{frame}{\LARGE Outline} 
-	\tableofcontents[currentsection]
-\end{frame}
-\addtocounter{framenumber}{-1}
-% ----------------------------------- Slide ----------------------------------------------
+\section{Conclusions}
+\subsection*{Conclusions}
+% ----------------------------------- Slide----------------------------------------------
 \begin{frame}{\LARGE Future Work} 
 \begin{itemize}
 \Large
