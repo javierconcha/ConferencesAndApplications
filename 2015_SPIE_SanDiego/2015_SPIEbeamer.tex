@@ -1,4 +1,4 @@
-	\documentclass[]{beamer}
+	\documentclass[draft]{beamer}
 	\usepackage[latin1]{inputenc}
 	\usepackage{textpos}
 	\usepackage{graphics}
@@ -176,7 +176,7 @@
 \section{Goal}
 \subsection*{Goal}
 % ----------------------------------- Slide ----------------------------------------------
-\begin{frame}{\LARGE Goal} 
+\begin{frame}{\LARGE Big Picture} 
 \begin{itemize}
 \LARGE
 
@@ -191,6 +191,18 @@
 \item Over Coastal and Inland Water (Case 2 Waters)
 \vspace{.5cm}
 \item Small/Medium Scale regions
+
+\end{itemize}
+
+\end{frame}
+
+% ----------------------------------------------
+\begin{frame}{\LARGE Goal} 
+\begin{itemize}
+\LARGE
+
+\item Compare Our Method to Standard Products
+\item Compare with Field Data
 
 \end{itemize}
 
@@ -452,21 +464,7 @@
 \end{frame}
 
 % --- slide ------------------------------------------------
-\begin{frame}{\LARGE Atmospheric Correction}{\Large \cite{Gordon:1994} Methods (con't)}
-\Large
-\begin{block}{Reflectance at the TOA, $\rho_t$}
-\begin{equation}\label{eq:rho_t}
-  \rho_t(\lambda) = \rho_r(\lambda) + \rho_a(\lambda) + \rho_{ra}(\lambda) + T_v[\rho_w(\lambda) + \rho_{wc}(\lambda)]\notag
-\end{equation}
-\end{block}
-\vspace{.3cm}
-\begin{itemize}\itemsep.2cm
-	\item{ \cite{Gordon:1994} estimate $\rho_a(\lambda) + \rho_{ra}(\lambda)$ in the visible (VIS) using an estimation of $\rho_a(\lambda) + \rho_{ra}(\lambda)$ in the near infrared (NIR).}
-\end{itemize}
-
-\end{frame}
-% --- slide ------------------------------------------------
-\begin{frame}{\LARGE Atmospheric Correction}{\Large \cite{Gordon:1994} Methods (con't)}
+\begin{frame}{\LARGE Atmospheric Correction}{\Large \cite{Gordon:1994} Methods}
 
 \begin{figure}[htb]
   \centering
@@ -704,45 +702,7 @@
 
 \end{frame}
 
-% ----------------------------------- Slide ----------------------------------------------
-\begin{frame}{\LARGE Atmospheric Correction}{\Large Methods Comparison}
-% \centerline{\LARGE Bright and Dark Pixel}
 
-\begin{table}[!ht]
-% \caption{ Comparison different methods for retrieving $R_{rs}$. \label{tab:RrsCompMethod} } 
-\centering
-\tiny
-\begin{tabular}{cllcccccccc} 
- % \bfseries{Band n} & \bfseries{$m$}      & \bfseries{$y_0$}    & \bfseries{$R^2$}     & \bfseries{$RMSE$} & $y(x=45^\circ)$   \\ \hline \hline
-Band		&   Method 1      &  Method 2	  &	Slope  	&	Offset  &	$R^2 $  &	N      	&	RMSE    	\\ 
-$[nm]$		&	  		      &  		 	  &	  		&			&	   		&	     	&$[mg/m^3]$ 	\\	\hline \hline
-\multirow{6}{*}{443}&Acolite-SWIR&MoB-ELM     &	0.9444 	&	-0.0047 &	0.8791 	&	144047  &	0.0054  	\\
-			&   SeaDAS-SWIR   &  MoB-ELM      &	0.8664 	&	-0.0007 &	0.7637 	&	141563  &	0.0019  	\\
-			&   SeaDAS-MUMM   &  MoB-ELM      &	0.8811 	&	-0.0018 &	0.7474 	&	144947  &	0.0029  	\\
-			&   Acolite-SWIR  &  SeaDAS-SWIR  &	1.1437 	&	-0.0053 &	0.7804 	&	145186  &	0.0038  	\\
-			&   Acolite-SWIR  &  SeaDAS-MUMM  &	1.0600 	&	-0.0032 &	0.8554 	&	147730  &	0.0026  	\\
-			&   SeaDAS-SWIR   &  SeaDAS-MUMM  &	0.9175 	&	~0.0018 &	0.8456 	&	145315  &	0.0014  	\\  \hline
-\multirow{6}{*}{448}&Acolite-SWIR&MoB-ELM     &	0.9353 	&	-0.0030 &	0.9302 	&	144077  &	0.0037  	\\
-			&   SeaDAS-SWIR   &  MoB-ELM      &	0.8547 	&	~0.0002 &	0.8454 	&	142116  &	0.0014  	\\
-			&   SeaDAS-MUMM   &  MoB-ELM      &	0.8639 	&	-0.0007 &	0.8408 	&	145138  &	0.0022  	\\ 
-			&   Acolite-SWIR  &  SeaDAS-SWIR  &	1.1269 	&	-0.0041 &	0.8739 	&	145692  &	0.0028  	\\
-			&   Acolite-SWIR  &  SeaDAS-MUMM  &	1.0693 	&	-0.0024 &	0.9175 	&	147837  &	0.0018  	\\
-			&   SeaDAS-SWIR   &  SeaDAS-MUMM  &	0.9441 	&	~0.0015 &	0.9122 	&	145888  &	0.0012  	\\ \hline
-\multirow{6}{*}{561}&Acolite-SWIR&  MoB-ELM   &	1.0183 	&	-0.0011 &	0.9044 	&	144192  &	0.0011  	\\
-	 		&   SeaDAS-SWIR   &  MoB-ELM      &	1.0043 	&	~0.0001 &	0.7828 	&	143288  &	0.0009  	\\
-	 		&   SeaDAS-MUMM   &  MoB-ELM      &	1.0611 	&	-0.0010 &	0.8468 	&	145339  &	0.0009  	\\
-	 		&   Acolite-SWIR  &  SeaDAS-SWIR  &	1.0307 	&	-0.0013 &	0.8233 	&	146761  &	0.0013  	\\
-	 		&   Acolite-SWIR  &  SeaDAS-MUMM  &	0.9663 	&	-0.0001 &	0.8968 	&	148040  &	0.0007  	\\
-	  		&   SeaDAS-SWIR   &  SeaDAS-MUMM  &	0.9374 	&	~0.0011 &	0.8728 	&	147116  &	0.0010  	\\ \hline
-\multirow{6}{*}{655}&Acolite-SWIR&MoB-ELM     &	1.1703 	&	-0.0017 &	0.8592 	&	144108  &	0.0013  	\\
-	 		&   SeaDAS-SWIR   &  MoB-ELM      &	1.2158 	&	-0.0004 &	0.7708 	&	142375  &	0.0007  	\\
-	 		&   SeaDAS-MUMM   &  MoB-ELM      &	1.2403 	&	-0.0008 &	0.6841 	&	145340  &	0.0009  	\\ 
-	 		&   Acolite-SWIR  &  SeaDAS-SWIR  &	0.9628 	&	-0.0011 &	0.7090 	&	145798  &	0.0014  	\\
-	 		&   Acolite-SWIR  &  SeaDAS-MUMM  &	0.9700 	&	-0.0008 &	0.7880 	&	147956  &	0.0010  	\\
-	 		&   SeaDAS-SWIR   &  SeaDAS-MUMM  &	1.0063 	&	~0.0004 &	0.7964 	&	146144  &	0.0007  	\\
- \end{tabular}
-\end{table}
-\end{frame}
 % ----------------------------------- Slide ----------------------------------------------
 \begin{frame}{\LARGE Atmospheric Correction} 
 {\Large Comparison with Field Data}
@@ -984,57 +944,17 @@ The normalized root mean squared error (NRMSE) for $R_{rs}(\lambda)$:
 
 \end{frame}
 % ----------------------------------- Slide ----------------------------------------------
-\begin{frame}{\LARGE Chl-{\it a} Retrieval}{\Large Methods Comparison}
-
+\begin{frame}{\LARGE Chl-{\it a} Retrieval}{\Large Comparison with Field Data}
 %^^^^^^^^^^^^^^^^^^^  FIGURE ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 \begin{figure}[htbp!]
-  \begin{minipage}[c]{0.325\linewidth}
-  		\centering
-      \begin{overpic}[trim=0 250 0 0,clip,width=3.5cm]{./Images/2013262_ACOMOBSEAMUM_C_a_Acolite-SWIR_SeaDAS-MUMM.png}
+  \begin{minipage}[c]{1.0\linewidth}
+		\centering
+     	\begin{overpic}[trim=0 0 0 0,clip,width=7cm]{./Images/CHLmeavsret.png}
+    	% \put(17,62){\includegraphics[trim=10 80 0 0,clip,width=2.5cm]{./Images/CHLmeavsretZOOM.png}}
       \end{overpic}  
   \end{minipage}
-  \hfill
-  \begin{minipage}[d]{0.325\linewidth}
-  	\centering
-      \begin{overpic}[trim=0 250 0 0,clip,width=3.5cm]{./Images/2013262_ACOMOBSEAMUM_C_a_Acolite-SWIR_MoB-ELM.png}
-      \end{overpic}
-  \end{minipage}
-  \hfill
-  \begin{minipage}[c]{0.325\linewidth}
-  		\centering
-      \begin{overpic}[trim=0 250 0 0,clip,width=3.5cm]{./Images/2013262_ACOMOBSEAMUM_C_a_Acolite-SWIR_SeaDAS-SWIR.png}
-      \end{overpic}  
-  \end{minipage}
-
-  \begin{minipage}[d]{0.325\linewidth}
-  	\centering
-      \begin{overpic}[trim=0 250 0 0,clip,width=3.5cm]{./Images/2013262_ACOMOBSEAMUM_C_a_SeaDAS-MUMM_MoB-ELM.png}
-      \end{overpic}
-  \end{minipage}
-  \hfill
-  \begin{minipage}[c]{0.325\linewidth}
-  		\centering
-      \begin{overpic}[trim=0 250 0 0,clip,width=3.5cm]{./Images/2013262_ACOMOBSEAMUM_C_a_SeaDAS-SWIR_SeaDAS-MUMM.png}
-      \end{overpic}  
-  \end{minipage}
-  \hfill
-  \begin{minipage}[d]{0.325\linewidth}
-  	\centering
-      \begin{overpic}[trim=0 250 0 0,clip,width=3.5cm]{./Images/2013262_ACOMOBSEAMUM_C_a_SeaDAS-SWIR_MoB-ELM.png}
-      \end{overpic}
-  \end{minipage}
-
-  \begin{minipage}[d]{1.0\linewidth}
-  	\centering
-      \begin{overpic}[trim=0 0 0 1500,clip,width=3.5cm]{./Images/2013262_ACOMOBSEAMUM_C_a_SeaDAS-SWIR_MoB-ELM.png}
-      \end{overpic}
-  \end{minipage}    
-
-  % \caption{$C_a$ comparison among all the four method analyzed in this work. \label{fig:13262Chlor} } 
+  % \caption{Comparison retrieved versus measured $R_{rs}$ for the sites on the 90-19-2013 collection. \label{fig:13262RrsMeaVSRet}} 
 \end{figure}
-
-
-
 \end{frame}
 
 % ----------------------------------- Slide ----------------------------------------------
@@ -1051,19 +971,7 @@ The normalized root mean squared error (NRMSE) for $C_a$ is defined as
 
 \end{frame}
 
-% ----------------------------------- Slide ----------------------------------------------
-\begin{frame}{\LARGE Chl-{\it a} Retrieval}{\Large Comparison with Field Data}
-%^^^^^^^^^^^^^^^^^^^  FIGURE ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-\begin{figure}[htbp!]
-  \begin{minipage}[c]{1.0\linewidth}
-		\centering
-     	\begin{overpic}[trim=0 0 0 0,clip,width=7cm]{./Images/CHLmeavsret.png}
-    	\put(17,62){\includegraphics[trim=10 80 0 0,clip,width=2.5cm]{./Images/CHLmeavsretZOOM.png}}
-      \end{overpic}  
-  \end{minipage}
-  % \caption{Comparison retrieved versus measured $R_{rs}$ for the sites on the 90-19-2013 collection. \label{fig:13262RrsMeaVSRet}} 
-\end{figure}
-\end{frame}
+
 % ----------------------------------- Slide ----------------------------------------------
 \begin{frame}{\LARGE Chl-{\it a} Retrieval}{\Large Comparison with Field Data}
 
@@ -1087,10 +995,10 @@ The normalized root mean squared error (NRMSE) for $C_a$ is defined as
 	\item Landsat 8 has a great potential to help in fresh and coastal water quality studies}
 	\vspace{\baselineskip}
 	\uncover<3->{
-	\item Atmospheric correction over water is an essential step}
+	\item Standard Atmospheric Correction algorithms do not work in highly turbid waters}
 	\vspace{\baselineskip}
 	\uncover<4->{
-	\item Hydrolight is an excellent tool BUT needs specific water characteristics}
+	\item MoB-ELM is a potential solution, but it is a local solution, not global}
 \end{itemize}
 \end{frame}
  % ----------------------------------- Slide ----------------------------------------------
@@ -1313,4 +1221,96 @@ where:\\
   \bibliographystyle{apalike}
   \bibliography{/Users/javier/Desktop/Javier/PHD_RIT/Latex/javier_bib}
 \end{frame}
+% ----------------------------------- Slide ----------------------------------------------
+\begin{frame}{\LARGE Atmospheric Correction}{\Large Methods Comparison}
+% \centerline{\LARGE Bright and Dark Pixel}
+
+\begin{table}[!ht]
+% \caption{ Comparison different methods for retrieving $R_{rs}$. \label{tab:RrsCompMethod} } 
+\centering
+\tiny
+\begin{tabular}{cllcccccccc} 
+ % \bfseries{Band n} & \bfseries{$m$}      & \bfseries{$y_0$}    & \bfseries{$R^2$}     & \bfseries{$RMSE$} & $y(x=45^\circ)$   \\ \hline \hline
+Band		&   Method 1      &  Method 2	  &	Slope  	&	Offset  &	$R^2 $  &	N      	&	RMSE    	\\ 
+$[nm]$		&	  		      &  		 	  &	  		&			&	   		&	     	&$[mg/m^3]$ 	\\	\hline \hline
+\multirow{6}{*}{443}&Acolite-SWIR&MoB-ELM     &	0.9444 	&	-0.0047 &	0.8791 	&	144047  &	0.0054  	\\
+			&   SeaDAS-SWIR   &  MoB-ELM      &	0.8664 	&	-0.0007 &	0.7637 	&	141563  &	0.0019  	\\
+			&   SeaDAS-MUMM   &  MoB-ELM      &	0.8811 	&	-0.0018 &	0.7474 	&	144947  &	0.0029  	\\
+			&   Acolite-SWIR  &  SeaDAS-SWIR  &	1.1437 	&	-0.0053 &	0.7804 	&	145186  &	0.0038  	\\
+			&   Acolite-SWIR  &  SeaDAS-MUMM  &	1.0600 	&	-0.0032 &	0.8554 	&	147730  &	0.0026  	\\
+			&   SeaDAS-SWIR   &  SeaDAS-MUMM  &	0.9175 	&	~0.0018 &	0.8456 	&	145315  &	0.0014  	\\  \hline
+\multirow{6}{*}{448}&Acolite-SWIR&MoB-ELM     &	0.9353 	&	-0.0030 &	0.9302 	&	144077  &	0.0037  	\\
+			&   SeaDAS-SWIR   &  MoB-ELM      &	0.8547 	&	~0.0002 &	0.8454 	&	142116  &	0.0014  	\\
+			&   SeaDAS-MUMM   &  MoB-ELM      &	0.8639 	&	-0.0007 &	0.8408 	&	145138  &	0.0022  	\\ 
+			&   Acolite-SWIR  &  SeaDAS-SWIR  &	1.1269 	&	-0.0041 &	0.8739 	&	145692  &	0.0028  	\\
+			&   Acolite-SWIR  &  SeaDAS-MUMM  &	1.0693 	&	-0.0024 &	0.9175 	&	147837  &	0.0018  	\\
+			&   SeaDAS-SWIR   &  SeaDAS-MUMM  &	0.9441 	&	~0.0015 &	0.9122 	&	145888  &	0.0012  	\\ \hline
+\multirow{6}{*}{561}&Acolite-SWIR&  MoB-ELM   &	1.0183 	&	-0.0011 &	0.9044 	&	144192  &	0.0011  	\\
+	 		&   SeaDAS-SWIR   &  MoB-ELM      &	1.0043 	&	~0.0001 &	0.7828 	&	143288  &	0.0009  	\\
+	 		&   SeaDAS-MUMM   &  MoB-ELM      &	1.0611 	&	-0.0010 &	0.8468 	&	145339  &	0.0009  	\\
+	 		&   Acolite-SWIR  &  SeaDAS-SWIR  &	1.0307 	&	-0.0013 &	0.8233 	&	146761  &	0.0013  	\\
+	 		&   Acolite-SWIR  &  SeaDAS-MUMM  &	0.9663 	&	-0.0001 &	0.8968 	&	148040  &	0.0007  	\\
+	  		&   SeaDAS-SWIR   &  SeaDAS-MUMM  &	0.9374 	&	~0.0011 &	0.8728 	&	147116  &	0.0010  	\\ \hline
+\multirow{6}{*}{655}&Acolite-SWIR&MoB-ELM     &	1.1703 	&	-0.0017 &	0.8592 	&	144108  &	0.0013  	\\
+	 		&   SeaDAS-SWIR   &  MoB-ELM      &	1.2158 	&	-0.0004 &	0.7708 	&	142375  &	0.0007  	\\
+	 		&   SeaDAS-MUMM   &  MoB-ELM      &	1.2403 	&	-0.0008 &	0.6841 	&	145340  &	0.0009  	\\ 
+	 		&   Acolite-SWIR  &  SeaDAS-SWIR  &	0.9628 	&	-0.0011 &	0.7090 	&	145798  &	0.0014  	\\
+	 		&   Acolite-SWIR  &  SeaDAS-MUMM  &	0.9700 	&	-0.0008 &	0.7880 	&	147956  &	0.0010  	\\
+	 		&   SeaDAS-SWIR   &  SeaDAS-MUMM  &	1.0063 	&	~0.0004 &	0.7964 	&	146144  &	0.0007  	\\
+ \end{tabular}
+\end{table}
+\end{frame}
+% ----------------------------------- Slide ----------------------------------------------
+\begin{frame}{\LARGE Chl-{\it a} Retrieval}{\Large Methods Comparison}
+
+%^^^^^^^^^^^^^^^^^^^  FIGURE ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+\begin{figure}[htbp!]
+  \begin{minipage}[c]{0.325\linewidth}
+  		\centering
+      \begin{overpic}[trim=0 250 0 0,clip,width=3.5cm]{./Images/2013262_ACOMOBSEAMUM_C_a_Acolite-SWIR_SeaDAS-MUMM.png}
+      \end{overpic}  
+  \end{minipage}
+  \hfill
+  \begin{minipage}[d]{0.325\linewidth}
+  	\centering
+      \begin{overpic}[trim=0 250 0 0,clip,width=3.5cm]{./Images/2013262_ACOMOBSEAMUM_C_a_Acolite-SWIR_MoB-ELM.png}
+      \end{overpic}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[c]{0.325\linewidth}
+  		\centering
+      \begin{overpic}[trim=0 250 0 0,clip,width=3.5cm]{./Images/2013262_ACOMOBSEAMUM_C_a_Acolite-SWIR_SeaDAS-SWIR.png}
+      \end{overpic}  
+  \end{minipage}
+
+  \begin{minipage}[d]{0.325\linewidth}
+  	\centering
+      \begin{overpic}[trim=0 250 0 0,clip,width=3.5cm]{./Images/2013262_ACOMOBSEAMUM_C_a_SeaDAS-MUMM_MoB-ELM.png}
+      \end{overpic}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[c]{0.325\linewidth}
+  		\centering
+      \begin{overpic}[trim=0 250 0 0,clip,width=3.5cm]{./Images/2013262_ACOMOBSEAMUM_C_a_SeaDAS-SWIR_SeaDAS-MUMM.png}
+      \end{overpic}  
+  \end{minipage}
+  \hfill
+  \begin{minipage}[d]{0.325\linewidth}
+  	\centering
+      \begin{overpic}[trim=0 250 0 0,clip,width=3.5cm]{./Images/2013262_ACOMOBSEAMUM_C_a_SeaDAS-SWIR_MoB-ELM.png}
+      \end{overpic}
+  \end{minipage}
+
+  \begin{minipage}[d]{1.0\linewidth}
+  	\centering
+      \begin{overpic}[trim=0 0 0 1500,clip,width=3.5cm]{./Images/2013262_ACOMOBSEAMUM_C_a_SeaDAS-SWIR_MoB-ELM.png}
+      \end{overpic}
+  \end{minipage}    
+  % \caption{$C_a$ comparison among all the four method analyzed in this work. \label{fig:13262Chlor} } 
+\end{figure}
+
+\end{frame}
+
+
+
 \end{document} % EEEEEEEEEEENNNNNNNNNNNNNNDDDDDDDDDDDD
