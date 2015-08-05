@@ -1,4 +1,4 @@
-	\documentclass[draft]{beamer}
+	\documentclass[]{beamer}
 	\usepackage[latin1]{inputenc}
 	\usepackage{textpos}
 	\usepackage{graphics}
@@ -183,9 +183,9 @@
 \item To Use Landsat 8 to retrieve Color Producing Agents (CPAs):
 \begin{itemize}
 	\Large
- 	\item chlorophyll
- 	\item colored dissolved organic matter (CDOM)
- 	\item suspended minerals (SM or TSS)
+ 	\item chlorophyll-{\it a} ($C_a$)
+ 	\item colored dissolved organic matter ($CDOM$)
+ 	\item suspended minerals ($SM$ or $TSS$)
  \end{itemize}
 \vspace{.5cm}
 \item Over Coastal and Inland Water (Case 2 Waters)
@@ -197,12 +197,12 @@
 \end{frame}
 
 % ----------------------------------------------
-\begin{frame}{\LARGE Goal} 
-\begin{itemize}
+\begin{frame}{\LARGE Goal of this Study} 
+\begin{itemize}\itemsep.5cm
 \LARGE
 
-\item Compare Our Method to Standard Products
-\item Compare with Field Data
+\item To compare our atmospheric correction method with NASA's standard products
+\item To compare all methods with Field Data
 
 \end{itemize}
 
@@ -232,23 +232,18 @@
 \hspace{4cm}{\scriptsize $*~$Images from: http://www.oceanopticsbook.info/}
 \end{frame}
 % ----------------------------------- Slide ----------------------------------------------
-\begin{frame}{\LARGE Atmospheric Correction}
-{\Large Empirical Line Method (ELM)} 
+\begin{frame}{\LARGE Atmospheric Correction}{\Large Empirical Line Method (ELM)} 
  \begin{columns}[c] % contents are top vertically aligned
   	\begin{column}[T]{5cm} % each column can also be its own environment
-  	{\centering \Large $L(\lambda)=m\times R_{rs}(\lambda)+b$}\\
+  	\centering \Large $L(\lambda)=m\times R_{rs}(\lambda)+b$\\
   	\vspace{0.1cm}
+  	\large
   	where: \begin{tabbing} $L$: Radiance\\
   	$R_{rs}=\frac{Lw}{E_d}$: Remote-sensing\\ ~~~~~~~~~~~~~~~~~~reflectance\\
   	$m$: slope\\
   	$b$: offset
   	\end{tabbing}
   	% \vspace{0.3cm}
-    \begin{itemize}
-    	\item Two pixels in the scene with known reflectance
-    	\vspace{0.3cm}
-    	% \item Linear relationship between radiance $L$ and reflectance $r_d$ 	
-    \end{itemize}
      	\end{column}
   
   	\begin{column}[T]{7cm} % each column can also be its own environment
@@ -294,6 +289,13 @@
      	\end{column}
 \end{columns}
 
+\vspace{.5cm}
+\begin{itemize}
+	\Large
+	\item Two pixels in the scene with known reflectance: Bright and Dark pixels
+	\vspace{0.3cm}
+	% \item Linear relationship between radiance $L$ and reflectance $r_d$ 	
+\end{itemize}
 \end{frame}% ------------------------------ SUBSECTION ----------------------------------------------
 \subsection*{Landsat 8}
 % ----------------------------------- Slide ----------------------------------------------
@@ -347,7 +349,7 @@
 \subsection*{}
 % ----------------------------------- Slide ----------------------------------------------
 \begin{frame}{\LARGE Atmospheric Correction} 
-{\Large Model-Based ELM}
+{\Large RIT's Model-Based ELM}
 
 \begin{block}{\LARGE Bright Pixel}
  	\begin{itemize}
@@ -441,7 +443,7 @@
 \end{frame}
 % ----------------------------------- Slide ----------------------------------------------
 \begin{frame}{\LARGE Atmospheric Correction} 
-{\Large Model-Based ELM}
+{\Large RIT's Model-Based ELM}
 \centerline{\LARGE Bright and Dark Pixel}
 
 \begin{figure}[htb]
@@ -464,12 +466,12 @@
 \end{frame}
 
 % --- slide ------------------------------------------------
-\begin{frame}{\LARGE Atmospheric Correction}{\Large \cite{Gordon:1994} Methods}
+\begin{frame}{\LARGE Atmospheric Correction}{\large NASA's \cite{Gordon:1994} Methods}
 
 \begin{figure}[htb]
   \centering
   \includegraphics[width=8cm,clip=true]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/Proposal/Images/epsilonvslambdaGordon.png}
-  \caption{$\varepsilon(\lambda,\lambda_{NIR2})$ values in natural logaritmic scale for different aerosol models and relative humidity (Source: \cite{Gordon:1997}). \label{fig:epsilonvslambda} } 
+  \caption{$\varepsilon(\lambda,\lambda_{NIR2}) = \frac{\rho_{as}(\lambda)}{\rho_{as}(\lambda_{NIR2})}$ values in natural logaritmic scale for different aerosol models and relative humidity (Source: \cite{Gordon:1997}). \label{fig:epsilonvslambda} } 
   % \vspace{0.5cm}
 \end{figure}
 
@@ -479,19 +481,28 @@
 
 % ----------------------------------- Slide ----------------------------------------------
 \begin{frame}{\LARGE Atmospheric Correction}{\Large Methods Comparison}
-\begin{itemize}
-	\item MoB-ELM
-	\item Gordon and Wang:
+\LARGE
+\begin{itemize}\itemsep.5cm
+	\item Our method (RIT): MoB-ELM
+	\item Gordon and Wang's methods (NASA):
 	\begin{itemize}
+	\Large
 		\item SeaDAS-SWIR
 		\item SeaDAS-MUMM
 		\item Acolite-SWIR
 	\end{itemize}
 \end{itemize}
 
+\begin{block}{\large Gordon and Wang's tools}
+\large
+{\bf SEADAS:} NASA's Package for Ocean Color\\
+
+{\bf ACOLITE:} Royal Belgian Institute of Natural Science
+\end{block}
+
 \end{frame}
 % ----------------------------------- Slide ----------------------------------------------
-\begin{frame}{\LARGE Atmospheric Correction}{\Large Methods Comparison}
+\begin{frame}{\LARGE Atmospheric Correction}{\Large Methods Comparison @ $443nm$}
 \tiny
 %^^^^^^^^^^^^^^^^^^^  FIGURE ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 \begin{figure}[htbp!]
@@ -536,7 +547,7 @@
 \end{frame}
 
 % ----------------------------------- Slide ----------------------------------------------
-\begin{frame}{\LARGE Atmospheric Correction}{\Large Methods Comparison}
+\begin{frame}{\LARGE Atmospheric Correction}{\Large Methods Comparison @ $561nm$}
 \tiny
 %^^^^^^^^^^^^^^^^^^^  FIGURE ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 \begin{figure}[htbp!]
@@ -583,7 +594,7 @@
 \end{frame}
 
 % ----------------------------------- Slide ----------------------------------------------
-\begin{frame}{\LARGE Atmospheric Correction}{\Large Methods Comparison}
+\begin{frame}{\LARGE Atmospheric Correction}{\Large Methods Comparison @ $443nm$}
 \tiny
 
 %^^^^^^^^^^^^^^^^^^^  FIGURE ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -643,7 +654,7 @@
 \end{frame}
 
 % ----------------------------------- Slide ----------------------------------------------
-\begin{frame}{\LARGE Atmospheric Correction}{\Large Methods Comparison}
+\begin{frame}{\LARGE Atmospheric Correction}{\Large Methods Comparison @ $561nm$}
 \tiny
 %^^^^^^^^^^^^^^^^^^^  FIGURE ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 \begin{figure}[htbp!]
@@ -754,14 +765,17 @@
 {\Large Comparison with Field Data}
 % \centerline{\LARGE Bright and Dark Pixel}
 
-The normalized root mean squared error (NRMSE) for $R_{rs}(\lambda)$:
-
-\begin{equation}
+\begin{block}{$R_{rs}(\lambda)$ normalized root mean squared error (NRMSE)}
+	\begin{equation}
 \label{eq:NRMSE}
 	NRMSE =\frac{\sqrt{\frac{1}{N}\sum_{n=1}^N{\left[R_{rs}(\lambda)_{ret}(n) - R_{rs}(\lambda)_{mea}(n)\right]^2}}}{max\{R_{rs}(\lambda)_{mea}(n)\} - min\{R_{rs}(\lambda)_{mea}(n)\}}\times100 ~[\%]
 \end{equation}
+\end{block}
 
-\noindent where $R_{rs}(\lambda)_{ret}$ is the retrieved $R_{rs}(\lambda)$, $R_{rs}(\lambda)_{mea}$ is the measured $R_{rs}(\lambda)$, and $n=1\dots N$ is the number of measured concentrations.
+\noindent where:\\
+		$R_{rs}(\lambda)_{ret}$: retrieved\\
+	 	$R_{rs}(\lambda)_{mea}$: measured $R_{rs}(\lambda)$\\
+	 	$n=1\dots N$: number of samples.
 
 \end{frame}
 % ----------------------------------- Slide ----------------------------------------------
@@ -816,15 +830,14 @@ The normalized root mean squared error (NRMSE) for $R_{rs}(\lambda)$:
 \end{frame}
 % ----------------------------------- Slide ----------------------------------------------
 
-\begin{frame}{\LARGE Chl-{\it a} Retrieval} 
-{\vspace{0.1cm} \Large LUT from Hydrolight}
+\begin{frame}{\LARGE Chl-{\it a} Retrieval}{\vspace{0.1cm} \large RIT's Spectral Matching and LUT Algorithm}
 % \begin{block}{\footnotesize LUT}
   \begin{columns}[c] % contents are top vertically aligned
   	\begin{column}[T]{6cm} % each column can also be its own environment
   	\vspace{0.2cm}
     	\includegraphics[height=5cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/LUTsmart130919_150422.eps}
     	    \vspace{0.2cm}
-    		\centerline{LUT}
+    		\centerline{LUT from Hydrolight}
     		\centerline{(Known concentrations)}
     \end{column}
   	\hspace{.3cm}
@@ -866,18 +879,19 @@ The normalized root mean squared error (NRMSE) for $R_{rs}(\lambda)$:
 \end{frame}
 
 % ----------------------------------- Slide ----------------------------------------------
-\begin{frame}{\LARGE Chl-{\it a} Retrieval}{\Large NASA's OC3 Algorithm}
+\begin{frame}{\LARGE Chl-{\it a} Retrieval}{\vspace{0.1cm} \Large NASA's OC3 Algorithm}
 
 
 % \begin{block}{\footnotesize LUT}
 \begin{columns}[c] % contents are top vertically aligned
-  	\begin{column}[T]{6cm} % each column can also be its own environment
-  	\vspace{0.2cm}
-    	\includegraphics[height=5cm]{./Images/OC4_OReilly.png}
+  	\begin{column}[T]{5cm} % each column can also be its own environment
+  	\vspace{0.4cm}
+    	\includegraphics[height=5cm]{./Images/OC4_OReilly.png}\\
+    	*\cite{OReilly2000}
     \end{column}
-  	\hspace{.3cm}
-  	\begin{column}[T]{6cm} % each column can also be its own environment
-  	% \vspace{0.2cm}
+  	% \hspace{.3cm}
+  	\begin{column}[T]{6.5cm} % each column can also be its own environment
+  	\vspace{0.2cm}
 	% \scriptsize \addtolength{\tabcolsep}{-5pt}
 		\begin{equation}
 			\begin{gathered}
@@ -890,10 +904,6 @@ The normalized root mean squared error (NRMSE) for $R_{rs}(\lambda)$:
     \end{column}
 \end{columns}
 % \end{block}
-
-
-
-
 
 \end{frame}
 
@@ -939,7 +949,7 @@ The normalized root mean squared error (NRMSE) for $R_{rs}(\lambda)$:
   		\end{overpic}
   	\end{minipage}
 
-  \caption{$C_a.$ \label{fig:chlor_a} } 
+  % \caption{$C_a.$ \label{fig:chlor_a} } 
 \end{figure}
 
 \end{frame}
@@ -960,14 +970,18 @@ The normalized root mean squared error (NRMSE) for $R_{rs}(\lambda)$:
 % ----------------------------------- Slide ----------------------------------------------
 \begin{frame}{\LARGE Chl-{\it a} Retrieval}{\Large Comparison with Field Data}
 
-The normalized root mean squared error (NRMSE) for $C_a$ is defined as
+\begin{block}{$C_a$ normalized root mean squared error (NRMSE)}
 
 \begin{equation}
 \label{eq:NRMSEchl}
 	NRMSE =\frac{\sqrt{\frac{1}{N}\sum_{n=1}^N{\left[C_{ret}(n) - C_{mea}(n)\right]^2}}}{max\{C_{mea}(n)\} - min\{C_{mea}(n)\}}\times100 ~[\%]
 \end{equation}
+\end{block}
 
-\noindent where $C_{ret}$ is the retrieved concentration, $C_{mea}$ is the measured concentration, and $n=1\dots N$ is the number of measured concentrations.
+\noindent where:\\
+$C_{ret}$: retrieved concentration\\
+$C_{mea}$: measured concentration\\
+$n=1\dots N$: number of samples.
 
 \end{frame}
 
