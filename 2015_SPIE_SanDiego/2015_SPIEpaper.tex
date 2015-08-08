@@ -80,6 +80,12 @@ Digital Imaging and Remote Sensig Lab\\Chester F. Carlson Center for Imaging Sci
 
 \usepackage{url}
 
+% Select what to do with todonotes: 
+% \usepackage[disable]{todonotes} % notes not showed
+\usepackage[draft]{todonotes}   % notes showed
+\setlength{\marginparwidth}{2cm}
+% \usepackage[textwidth=3.7cm]{todonotes}
+
 % end of my packages
  
   \begin{document} 
@@ -310,6 +316,14 @@ The second chlorophyll-{\it a} retrieval algorithm was the standard NASA algorit
 \label{sec:results}  % \label{} allows reference to this section
 % -----------------------------------------------------------
 \subsection{Comparison of Rrs}
+The four atmospheric correction methods (MoB-ELM, SeDAS-SWIR, Acolite-SWIR and SeaDAS-MUMM) described in Section~\ref{sec:atmcorr} are compared in this section. These algorithm were applied to the 09-19-2013 Landsat 8 image. A mask was created to mask out all pixels but water pixels. These mask was created by thresholding the Landsat 8's SWIR 2 band. \autoref{fig:Rrs443} and \autoref{fig:Rrs561} show the $R_{rs}$ for band 1 and 3 for these methods. When analyzed visually, the similarities among the methods are higher in band 3 than band 1. For band 1, SeaDAS-SWIR and SeaDAS-MUMM look similar in both the lake and ponds. Also, the SeaDAS-SWIR method exhibits some noise in band 1. This is caused due to the low SNR in SWIR bands used for the atmospheric correction. Note that there are some bottom effect in the lake's shoreline causing all methods to retrieve high $R_{rs}$ in those areas, which is not the case. This should be taken in account for future processing by masking the areas where the water are clear to enough that the bottom can be seen.
+
+Another comparison of $R_{rs}$ at $443nm$ and $561nm$ among all four atmospheric correction methods is shown in \autoref{fig:13262Rrs443} and \autoref{fig:13262Rrs561} as scatter plots with regression line in red solid lines. Again, all the methods show more similarities in band 3 than band 1, which is corroborated by the smaller offset values for band 3 than band 1, which translates to more closeness to the $1:1$ line. This indicates that there are a higher correlation for band 3 than band 1 for all methods. \autoref{tab:RrsCompMethod} shows the slope and offset for the regression lines and the goodness of fit $R^2$ values for the comparison among all methods and for all bands. The $R^2$ values show a good correlation for all cases in the range from $0.7090$ to $0.9302$\todo{highlight min and max values in table}. \autoref{tab:RrsCompMethod} also shows the number of valid pixels retrieved $N$ and the root mean squared error (RMSE) between the methods compared. 
+
+All methods produced negative $R_{r}$ values. This negative values indicates that the atmosphere contribution has been over estimated. These negative values are shown in \autoref{tab:RrsCompMethod} as percentage of the total of water pixels for each method compared. These negative values were not used in the comparison. Finally, \autoref{tab:RrsCompMethod} shows the percentage of total number of water pixels used in the comparison (labeled as Used $[\%]$). It can be seen that the Gordon and Wang's based methods generate more negative values compared with the MoB-ELM method overall. 
+
+\autoref{fig:13262RrsCompField} shows a comparison between $R_{rs}$ spectra measured in the field with retrieved $R_{rs}$ spectra from the four atmospheric correction methods.
+
 The normalized root mean squared error (NRMSE) for $R_{rs}(\lambda)$ is defined as
 
 \begin{equation}
@@ -319,7 +333,7 @@ The normalized root mean squared error (NRMSE) for $R_{rs}(\lambda)$ is defined 
 
 \noindent where $R_{rs}(\lambda)_{ret}$ is the retrieved $R_{rs}(\lambda)$, $R_{rs}(\lambda)_{mea}$ is the measured $R_{rs}(\lambda)$, and $n=1\dots N$ is the number of measured concentrations.
 
-
+More data have been acquired and further validation is needed.
 
 % \begin{figure}[htbp!]
 %   \centering
@@ -367,7 +381,7 @@ The normalized root mean squared error (NRMSE) for $R_{rs}(\lambda)$ is defined 
   		\end{overpic}
   	\end{minipage}
 
-  \caption{$R_{rs}$ 443.\label{fig:Rrs443} } 
+  \caption{Remote-sensing reflectance ($R_{rs}$) at $443nm$ from the 09-19-2013 image over the Rochester Embayment (scene LC80160302013262LGN00) processed using the MoB-ELM, SeaDAS-SWIR, Acolite-SWIR and SeaDAS-MUMM.\label{fig:Rrs443} } 
 \end{figure}
 % %^^^^^^^^^^^^^^^^^^^  FIGURE ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 % \begin{figure}[htbp!]
@@ -453,7 +467,7 @@ The normalized root mean squared error (NRMSE) for $R_{rs}(\lambda)$ is defined 
   		\end{overpic}
   	\end{minipage}
 
-  \caption{$R_{rs}$ 561.\label{fig:Rrs561} } 
+  \caption{Remote-sensing reflectance ($R_{rs}$) at $561nm$ from the 09-19-2013 image over the Rochester Embayment (scene LC80160302013262LGN00) processed using the MoB-ELM, SeaDAS-SWIR, Acolite-SWIR and SeaDAS-MUMM..\label{fig:Rrs561} } 
 \end{figure}
 %^^^^^^^^^^^^^^^^^^^  FIGURE ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 % \begin{figure}[htbp!]
@@ -526,8 +540,10 @@ The normalized root mean squared error (NRMSE) for $R_{rs}(\lambda)$ is defined 
 % MUMM        MoB-ELM     655   42.49     0.00        56      .0.6841     0.7091      1.2403  -0.0008     0.6841      145340     0.0009   
  
 \begin{table}[!ht]
-\caption{ Comparison different methods for retrieving $R_{rs}$. \label{tab:RrsCompMethod} } 
+\vspace{.3cm}
+\caption{ Comparison of the different atmospheric correction methods for retrieving $R_{rs}$ with the slope and offset for the regression lines and their respective goodness of fit values. \label{tab:RrsCompMethod} } 
 \centering
+\vspace{.2cm}
 \scriptsize
 \begin{tabular}{cllcccccccc} 
  % \bfseries{Band n} & \bfseries{$m$}      & \bfseries{$y_0$}    & \bfseries{$R^2$}     & \bfseries{$RMSE$} & $y(x=45^\circ)$   \\ \hline \hline
@@ -666,7 +682,7 @@ $[nm]$		&	  		      &  		 	  &	  		&			&	   		&	     	&$[mg/m^3]$ & Method 1   	
   \end{minipage}    
 
 % 
-  \caption{Scatter plots showing the comparison of remote-sensing reflectance ($R_{rs}$) at 561 nm, derived from the 09-29-2013 image over the Rochester Embayment (scene LC80160302013262LGN00) using the the different methods. Colors denote pixel densities, the dashed black line is the 1:1 line, and the Reduced Major Axis (RMA) regression line is drawn in red. \label{fig:13262Rrs655} } 
+  \caption{Scatter plots showing the comparison of remote-sensing reflectance ($R_{rs}$) at 561 nm, derived from the 09-29-2013 image over the Rochester Embayment (scene LC80160302013262LGN00) using the the different methods. Colors denote pixel densities, the dashed black line is the 1:1 line, and the Reduced Major Axis (RMA) regression line is drawn in red. \label{fig:13262Rrs561} } 
 \end{figure}
 
 % %^^^^^^^^^^^^^^^^^^^  FIGURE ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -977,7 +993,7 @@ $[nm]$		&	  		      &  		 	  &	  		&			&	   		&	     	&$[mg/m^3]$ & Method 1   	
   % \end{minipage}    
 
 % 
-  \caption{Comparison of $R_{rs}$ for the sites on the 90-19-2013 collection. \label{fig:13262RrsComp}} 
+  \caption{Comparison of $R_{rs}$ for the sites on the 90-19-2013 collection. \label{fig:13262RrsCompField}} 
 \end{figure}
 
 
