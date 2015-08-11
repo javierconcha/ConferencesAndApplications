@@ -1,4 +1,4 @@
-	\documentclass[draft]{beamer}
+	\documentclass[]{beamer}
 	\usepackage[latin1]{inputenc}
 	\usepackage{textpos}
 	\usepackage{graphics}
@@ -35,6 +35,7 @@
 	\usetheme{Frankfurt}
 	% \usetheme{Boadilla}
 	\setbeamertemplate{navigation symbols}{} 
+	\setbeamertemplate{mini frames}{}
 	% \useoutertheme{infolines} 
 \setbeamertemplate{footline}{\hbox{\vspace{0.1cm} \insertshortauthor \hspace*{3.5cm} \insertshorttitle \hspace*{4.6cm} \hfill\insertframenumber}} 
 
@@ -117,8 +118,8 @@
 	   \tikz\node[opacity=0.3]{ \includegraphics[width=65mm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2014_ASPRS_SOY/Images/landsat8-earth.jpg}};
 	\end{textblock*}
 
-	\begin{textblock*}{12cm}(3.7cm,0cm)
-	   \scriptsize Presented to: DIRS Meeting
+	\begin{textblock*}{12cm}(.5cm,0cm)
+	   \scriptsize Presented to: Earth Observing Systems XX Conference, SPIE San Diego, 2015 
 	\end{textblock*}
 	
 	\end{frame}
@@ -234,17 +235,19 @@
 \vspace{-.5cm}
 \begin{itemize}
 \LARGE
-	\item Optical satellite (passive)
+
+	\item Multispectral: 4 VIS, 1 NIR, 2 SWIR
 	\vspace{.2cm}
-	\item Multispectral: 4 VIS, 1 NIR, 2 SWIR, 1 Pan
-	\vspace{.2cm}
-	\item Spatial resolution: 15/30/100m
+	\item Spatial resolution: 30
 	\vspace{.2cm}
 	\item Temporal resolution: 16 days
 	\vspace{.2cm}
 	\item Bit depth: 12-bits quantization (4096 levels)
 	\vspace{.2cm}
 	\item Pushbroom satellite
+	\vspace{.2cm}
+	\item Improved signal-to-noise ratio
+
 \end{itemize}
 
 \end{frame}
@@ -258,11 +261,26 @@
 % \end{frame}
 % ----------------------------------- Slide ----------------------------------------------
 \begin{frame}{\LARGE Landsat 8 Image} 
+
+
 \begin{figure}[htb]
-  \centering
-  \includegraphics[width=8cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/Proposal/Images/groundtruth-sitenames-no-ends.jpg}
-  % \caption{Sites in the Rochester Embayment for the water sample collection on September, $19^{th}$, 2013.\label{fig:0910913Sites} } 
+  \begin{minipage}[c]{0.6\linewidth}
+    \centering
+      \includegraphics[trim=0 0 0 0,clip,height=6.5cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/Proposal/Images/groundtruth-sitenames-no-ends.jpg}  
+  \end{minipage}
+  \hfill
+  \begin{minipage}[d]{0.3\linewidth}
+    \centering
+      \includegraphics[trim=0 0 0 0,clip,height=3cm,angle=90]{./Images/JavierSampling.JPG}
+  \end{minipage}
+  % \caption{PIF mask determination. (a) False color image, with vegetation in red and (b) PIF mask over downtown Rochester. \label{fig:PIFmask} } 
 \end{figure}
+
+% \begin{figure}[htb]
+%   \centering
+%   \includegraphics[width=8cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/Proposal/Images/groundtruth-sitenames-no-ends.jpg}
+%   % \caption{Sites in the Rochester Embayment for the water sample collection on September, $19^{th}$, 2013.\label{fig:0910913Sites} } 
+% \end{figure}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Atmospheric Correction}
@@ -880,7 +898,7 @@
     \end{column}
   	% \hspace{.3cm}
   	\begin{column}[T]{6.5cm} % each column can also be its own environment
-  	\vspace{0.2cm}
+  	\vspace{1cm}
 	% \scriptsize \addtolength{\tabcolsep}{-5pt}
 		\begin{equation*}
 			\begin{gathered}
@@ -991,6 +1009,16 @@ $n=1\dots N$: number of samples.
 \subsection*{Conclusions}
 % ----------------------------------- Slide ----------------------------------------------
 \begin{frame}{\LARGE Summary}
+\Large
+\begin{itemize}\itemsep.5cm
+\setbeamercovered{transparent}
+    \uncover<2->{
+	\item Two kind of atmospheric algorithms were tested: MoB-ELM (RIT) and Gordon and Wang's (NASA)}
+	\uncover<3->{
+	\item MoB-ELM: Based on ELM with Bright and Dark pixel from models }
+	\uncover<4->{
+	\item The retrieval of Chlorophyll-{\it a} was applied for both outcomes}
+\end{itemize}
 
 
 \end{frame}
@@ -1026,9 +1054,9 @@ $n=1\dots N$: number of samples.
 \setbeamertemplate{headline}{}
 \begin{frame}[noframenumbering] 
 
-\vspace{\baselineskip}
-\centerline{\Large Thanks for your attention!}
-	\vspace{\baselineskip}
+% \vspace{\baselineskip}
+% \centerline{\Large Thanks for your attention!}
+	% \vspace{\baselineskip}
 
 % \centerline{\Huge QUESTIONS?}
 \uncover <2->{\centerline{\Huge QUESTIONS?}}
@@ -1038,9 +1066,10 @@ $n=1\dots N$: number of samples.
 
 \begin{figure}[htb]
 \centering
-\includegraphics[height=5cm,clip=true]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/Proposal/Images/L8Glint.png}
+\includegraphics[height=6cm]{./Images/AlgaBloom}
 \end{figure}
-
+\vspace{-.5cm}
+{\hspace{8cm} \tiny $*~$Credit: NASA}
 \end{frame}
 }
 % #################################################################################
