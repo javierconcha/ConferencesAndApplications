@@ -103,22 +103,13 @@ Landsat 8 is a promising candidate to address the remote sensing of inland and c
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{INTRODUCTION}
 \label{sec:intro}  % \label{} allows reference to this section
-Topic:\\
-Ocean color studies at a global scale, such chlorophyll-{\it a} level trends in oceans, can be solved by the heritage Ocean Color satellites (e.g. SeaWiFS, MODIS) data. These satellites satisfied the spatial requirement for these kinds of studies. However, when the region of interests include coastal or inland waters, which could be considered Case 2 water, their spatial resolution of thousand of meters are not enough to solved smaller water bodies. These kinds of waters are important for us, because it is these kinds of waters that we have the most interaction with, like for drinking or recreation. Since its launch in 2013, Landsat 8 has created big expectations in the ocean color community. Its spatial resolution of $30m$ and its improved signal-to-noise ratio (SNR) compared with its predecessors make Landsat 8 a perfect candidate to be used in coastal and inland water studies. 
+Ocean color studies at a global scale, such chlorophyll-{\it a} level trends in oceans, can be solved by the heritage Ocean Color satellites (e.g. SeaWiFS, MODIS) data. These satellites satisfied the spatial requirement for these kinds of studies. However, when the region of interests include coastal or inland waters, which could be considered Case 2 water, their spatial resolution of thousand of meters are not enough to solved smaller water bodies. These kinds of waters are important for us, because it is these kinds of waters that we have the most interaction with, like for drinking or recreation. Since its launch in 2013, the Operational Land Imager (OLI) instrument onboard of Landsat 8 has created big expectations in the ocean color community. Its spatial resolution of $30m$ and its improved signal-to-noise ratio (SNR) compared with its predecessors make Landsat 8 a perfect candidate to be used in coastal and inland water studies. 
 
-The atmospheric correction for Case 2 waters is a ongoing problem that has not be solved with just one approach for all cases, as opposed to Case 1 waters, where the NASA's standard algorithm for atmospheric correction based on Gordon and Wang (1994)\cite{Gordon:1994} are proved to work well in most cases. Some efforts have been made to demonstrate the advantage of using Landsat 8 for ocean color measurements in coastal waters that use the Gordon and Wang's approach\cite{Vanhellemont2014a,Vanhellemont2014,Vanhellemont:2015,Franz:2015}. 
+The NASA's standard algorithms for atmospheric correction based on Gordon and Wang (1994)\cite{Gordon:1994} are proved to work well in Case 1 waters where there are at least two wavelengths with a water-leaving signal negligible or known. Therefore, these algorithms could be considered a global solution for Case 1 waters, i.e. the could be applied in most cases. The wavelengths used for clear waters (Case 1) are in general in the near infrared (NIR) part of the spectrum of light. For highly turbid water (Case 2) or highly productive Case 1 waters, a combination of wavelengths in the NIR and shortwave infrared (SWIR), or two SWIR wavelengths can be used\cite{Wang:2007,Wang:2007dz,Wang2009}. Some efforts have been made to demonstrate the feasibility of using Landsat 8 for ocean color measurements in coastal waters that apply the Gordon and Wang's approach\cite{Vanhellemont2014a,Vanhellemont2014,Vanhellemont:2015,Franz:2015} for the atmospheric correction using the NIR and SWIR 1 bands or the SWIR 1 and SWIR 2 bands. One problem with using the Gordon and Wang's approach is that it requires a sufficient SNR over waters in order to discriminate the water-leaving signal from the instrument noise. This could be particular important for OLI since it has a lower SNR than the heritage ocean color instruments have, and so derived ocean color products can be noisy.
 
+Concha and Schott (2014)\cite{Concha2014SPIE} developed the model-based empirical line method (MoB-ELM) as an alternative for the standard atmospheric correction algorithms that does not rely in a negligible water-leaving signal assumption, and therefore it is not sensitive to the SNR. The MoB-ELM algorithm uses a bright and dark pixel from the image to perform the atmospheric correction. One of the goals of this work is to compare the MoB-ELM with the standard algorithms as well as with {\it in situ} data. These comparisons are made in remote-sensing reflectance $R_{rs}$ units. 
 
-
-Question: How Landsat 8 retrieval compared with standard algorithms?
-
-Question: Global product?
-
-The NASA's standard bio-optical algorithms OC2, OC3, OC4 and OCI\cite{OReilly2000,Hu:2012} for the retrieval of chlorophyll-{\it a} were developed mainly for Case 1 waters, where the main driver is chlorophyll-{\it a}. The {\it in situ} data used to develop for the .  for  Concentration range for Chl in the dataset used for the parameters of the band ratio algorithm does not contain high values $> 50mg/L?$
-
-Concha and Schott (2014)\cite{Concha2013IGARSS} developed an algorithm for the simultaneous retrieval of color producing agents (CPAs;chlorophyll-{\it a}, minerals, and colored dissolved organic matter (CDOM)) based on spectral matching and LUT.
-
-We believe...
+Additionally, this study presents a comparison of chlorophyll-{\it a} concentrations ($C_a$) retrieved from the standard atmospheric correction algorithms and from the MoB-ELM algorithms. The NASA's standard bio-optical algorithms OC2, OC3, OC4\cite{OReilly2000} and OCI\cite{Hu:2012} for the retrieval of chlorophyll-{\it a} were developed mainly for Case 1 waters, where the main driver is chlorophyll-{\it a}. The {\it in situ} data used to develop these algorithms does not contain enough data for high concentration of color producing agents (CPAs;chlorophyll-{\it a}, minerals, and colored dissolved organic matter (CDOM)), and therefore these data are not representative of Case 2 waters. Concha and Schott (2014)\cite{Concha2013IGARSS} developed an algorithm for the simultaneous retrieval of color producing agents based on spectral matching and LUT. The Concha and Schott's approach does not depend in a global {\it in situ} dataset.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{METHODS}
@@ -1166,12 +1157,14 @@ The next step was to apply the algorithms described in Section~\ref{sec:chlretri
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusions}
 \label{sec:conc}  % \label{} allows reference to this section
-There were four different atmospheric correction algorithms analyzed in this study. Three of them are based in the NASA's standard algorithms based on the methods developed by Gordon and Wang \cite{Gordon:1994}. The fourth algorithm is based on the algorithm developed by Concha and Schott\cite{Concha2014SPIE} and Gerace et al.\cite{Gerace:2012}.
+There were four different atmospheric correction algorithms analyzed in this study. Three of them are based in the NASA's standard algorithms based on the methods developed by Gordon and Wang \cite{Gordon:1994}. The fourth algorithm is based on the algorithm developed by Concha and Schott\cite{Concha2014SPIE}.
+
+The NASA bio-optical algorithms fail in Case 2 waters. 
 
 These results demonstrate that for Case 2 waters, the solution needs to be regional and not global, as it is the case in Case 1 waters.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \acknowledgments     %>>>> equivalent to \section*{ACKNOWLEDGMENTS}       
-The authors would like to extend a special thanks to the United States Geological Survey (USGS) for its sponsorship that has made this effort possible.
+The authors would like to extend a special thanks to the United States Geological Survey (USGS) for its sponsorship (contract number G12PC00065) that has made this effort possible.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%% References %%%%%
 
