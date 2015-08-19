@@ -12,7 +12,7 @@
 %  The bibliography style file is called spiebib.bst, 
 %  which replaces the standard style unstr.bst.  
 
-\documentclass[]{spie}  %>>> use for US letter paper
+\documentclass[draft]{spie}  %>>> use for US letter paper
 %%\documentclass[a4paper]{spie}  %>>> use this instead for A4 paper
 %%\documentclass[nocompress]{spie}  %>>> to avoid compression of citations
 %% \addtolength{\voffset}{9mm}   %>>> moves text field down
@@ -103,10 +103,22 @@ Landsat 8 is a promising candidate to address the remote sensing of inland and c
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{INTRODUCTION}
 \label{sec:intro}  % \label{} allows reference to this section
+Topic:\\
+Ocean color studies at a global scale, such chlorophyll-{\it a} level trends in oceans, can be solved by the heritage Ocean Color satellites (e.g. SeaWiFS, MODIS) data. These satellites satisfied the spatial requirement for these kinds of studies. However, when the region of interests include coastal or inland waters, which could be considered Case 2 water, their spatial resolution of thousand of meters are not enough to solved smaller water bodies. These kinds of waters are important for us, because it is these kinds of waters that we have the most interaction with, like for drinking or recreation. Since its launch in 2013, Landsat 8 has created big expectations in the ocean color community. Its spatial resolution of $30m$ and its improved signal-to-noise ratio (SNR) compared with its predecessors make Landsat 8 a perfect candidate to be used in coastal and inland water studies. 
 
-Concentration range for Chl in the dataset used for the parameters of the band ratio algorithm does not contain high values $> 50mg/L?$
+The atmospheric correction for Case 2 waters is a ongoing problem that has not be solved with just one approach for all cases, as opposed to Case 1 waters, where the NASA's standard algorithm for atmospheric correction based on Gordon and Wang (1994)\cite{Gordon:1994} are proved to work well in most cases. Some efforts have been made to demonstrate the advantage of using Landsat 8 for ocean color measurements in coastal waters that use the Gordon and Wang's approach\cite{Vanhellemont2014a,Vanhellemont2014,Vanhellemont:2015,Franz:2015}. 
 
-Retrieval of color producing agents (CPAs;chlorophyll-{\it a}, minerals, and colored dissolved organic matter (CDOM)).
+
+
+Question: How Landsat 8 retrieval compared with standard algorithms?
+
+Question: Global product?
+
+The NASA's standard bio-optical algorithms OC2, OC3, OC4 and OCI\cite{OReilly2000,Hu:2012} for the retrieval of chlorophyll-{\it a} were developed mainly for Case 1 waters, where the main driver is chlorophyll-{\it a}. The {\it in situ} data used to develop for the .  for  Concentration range for Chl in the dataset used for the parameters of the band ratio algorithm does not contain high values $> 50mg/L?$
+
+Concha and Schott (2014)\cite{Concha2013IGARSS} developed an algorithm for the simultaneous retrieval of color producing agents (CPAs;chlorophyll-{\it a}, minerals, and colored dissolved organic matter (CDOM)) based on spectral matching and LUT.
+
+We believe...
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{METHODS}
