@@ -1150,18 +1150,20 @@ The next step was to apply the algorithms described in Section~\ref{sec:chlretri
 \begin{figure}[htbp!]
   \centering
   \includegraphics[height=8.0cm]{./Images/13262_NRMSE_CHL.png}
-  \caption{NRMSE for $C_a$.\label{fig:NRMSE130919CHL} } 
+  \caption{NRMSE for $C_a$. The $R_{rs}$ results from the MoB-ELM were used for the Concha and Schott's retrieval of $C_a$, while the results of the rest of the atmospheric correction algorithms were used for the NASA's bio-optical algorithm. The MoB-ELM results combined with the Concha and Schott's $C_a$ retrieval give the best results.\label{fig:NRMSE130919CHL} } 
 \end{figure}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusions}
 \label{sec:conc}  % \label{} allows reference to this section
-There were four different atmospheric correction algorithms analyzed in this study. Three of them are based in the NASA's standard algorithms based on the methods developed by Gordon and Wang \cite{Gordon:1994}. The fourth algorithm is based on the algorithm developed by Concha and Schott\cite{Concha2014SPIE}.
+There were four different atmospheric correction algorithms analyzed in this study. Three of them are based in the NASA's standard algorithms based on the methods developed by Gordon and Wang\cite{Gordon:1994}. The fourth algorithm is based on the MoB-ELM algorithm developed by Concha and Schott\cite{Concha2014SPIE}. The remote-sensing reflectances retrieved from these atmospheric correction algorithms were compared against each other. There are better agreements in band 3 and 4 than in bands 1 and 2 for all algorithms, which can be concluded from the RMSE (\autoref{tab:Sites}). When compared with {\it in situ} data, the MoB-ELM and Gordon and Wang's algorithm from SeaDAS (SeaDAS-SWIR) show similar results for all bands (\autoref{fig:NRMSE130919_RRS}). The results from the Gordon and Wang's algorithm from Acolite (Acolite-SWIR) shows the largest disagreement (\autoref{fig:NRMSE130919_RRS}).
 
-The NASA bio-optical algorithms fail in Case 2 waters. 
+When retrieved chlorophyll-{\it a} concentrations ($C_a$) are compared with {\it in situ}, the results from the Concha and Schott's approach perform so much better than the rest of the algorithms(\autoref{fig:NRMSE130919CHL}). These results show that the NASA's bio-optical algorithms fail in Case 2 waters. This was expected since these algorithms were developed with the lack of {\it in situ} data representative of Case 2 waters with high concentration of color producing agents (CPAs).
 
-These results demonstrate that for Case 2 waters, the solution needs to be regional and not global, as it is the case in Case 1 waters.
+These results demonstrate that for Case 2 waters, the solution for the ocean color measurements needs to be local and not global, as opposed to Case 1 waters. This local solution, the combined MoB-ELM algorithm with Concha and Schott's $C_a$ retrieval algorithm, requires some knowledge of the waters to be studied, such as inherent optical properties (IOPs) and CPA concentration in at least one site.
+
+Further validation needs to be done. This implies to apply the algorithms to more images and compare the results. Also, more {\it in situ} data need to be collected for comparison.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \acknowledgments     %>>>> equivalent to \section*{ACKNOWLEDGMENTS}       
 The authors would like to extend a special thanks to the United States Geological Survey (USGS) for its sponsorship (contract number G12PC00065) that has made this effort possible.
