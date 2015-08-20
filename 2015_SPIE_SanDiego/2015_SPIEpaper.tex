@@ -93,11 +93,36 @@ Digital Imaging and Remote Sensig Lab\\Chester F. Carlson Center for Imaging Sci
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \begin{abstract}
-Landsat 8 is a promising candidate to address the remote sensing of inland and coastal waters (Case 2 waters) due to its improved signal-to-noise ratio (SNR), spectral resolution, 12-bit quantization, and high spatial resolution. Atmospheric correction is essential for remote sensing of water since the signal from the water reaching the sensor is small compared to atmospheric scattering. Standard atmospheric correction algorithms fail over highly turbid Case 2 waters because the black pixel assumption, i.e. the signal leaving the water is zero beyond the near infrared (NIR), is not always satisfied. We developed a new atmospheric correction algorithm, the model-based ELM (MoB-ELM), for Landsat 8 imagery based on the empirical line method (ELM) that does not rely on the black pixel assumption. This algorithm uses pseudo-invariant features (PIF) from the image, ground-truth data, and water-leaving reflectances from an in-water radiative transfer model (Hidrolight) to determine reflectance and radiance values of the bright and dark pixels used in the ELM method.  We compare the results with in situ remote sensing reflectance measurements for different water bodies that exhibit a range of optical properties. We calculate reflectance errors for each band taking the in situ data as ground-truth, and then compare them to results from standard atmospheric correction algorithms. These reflectance errors are small in all the visible bands for a wide range of concentrations. These results show that our atmospheric correction algorithm allows one to use Landsat 8 to study Case 2 waters as an alternative to traditional ocean color satellites (e.g. MODIS, SeaWiFS). 
+% Background/motivation/context
+The most interaction between humankind and water occurs in coastal and inland waters (Case 2 waters) at a scale of tens or hundred of meters, but there is not yet an ocean color product at this spatial scale.
+% 
+Landsat 8 is a promising candidate to address the remote sensing of these kinds of waters due to its improved signal-to-noise ratio (SNR), spectral resolution, 12-bit quantization, and high spatial resolution. 
+% 
+% Atmospheric correction is essential for remote sensing of water since the signal from the water reaching the sensor is small compared to atmospheric scattering.  
+% 
+% Aim/objectives(s)/problem statement
+Standard atmospheric correction algorithms developed for heritage ocean color instruments (e.g. MODIS, SeaWiFS) require a sufficient SNR in two bands where the water-leaving signal is negligible, which is not always possible, particularly for Landsat 8's bands.
+% 
+The model-based empirical line method (MoB-ELM) atmospheric algorithm for Landsat 8 imagery does not rely on this assumption.
+
+% Approach/method(s)/procedure(s)/materials
+In this work, we evaluate the performance of this algorithm.
+% 
+We compare the MoB-ELM algorithm with {\it in situ} data and with three standard atmospheric correction algorithms.
+% 
+% Results
+The results from our algorithm are comparable with the standard algorithms in some bands when comparing remote-sensing reflectances. 
+% 
+When compared with {\it in situ} remote-sensing reflectance, the MoB-ELM perform similar to the standard algorithm in most cases. 
+% 
+A comparison of retrieved chlorophyll-{\it a} concentration was perform as well, showing that the MoB-ELM outperform the rest.
+% 
+% Conclusion(s)/implications
+These results show that our atmospheric correction algorithm allows one to use Landsat 8 to study Case 2 waters as an alternative to heritage ocean color satellites. 
 \end{abstract}
 
 %>>>> Include a list of keywords after the abstract 
-\keywords{Atmospheric Correction, Case 2 Water, Landsat 8, Inland and Coastal Water, Empirical Line Method, Operational Land Imager, OLI, Ocean Color}
+\keywords{Atmospheric Correction, Case 2 Waters, Landsat 8, Inland and Coastal Water, OLI, Ocean Color}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
