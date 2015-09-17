@@ -1,4 +1,4 @@
-	\documentclass[]{beamer}
+\documentclass[]{beamer}
 	\usepackage[latin1]{inputenc}
 	\usepackage{textpos}
 	\usepackage{graphics}
@@ -281,6 +281,79 @@
 %   \includegraphics[width=8cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/Proposal/Images/groundtruth-sitenames-no-ends.jpg}
 %   % \caption{Sites in the Rochester Embayment for the water sample collection on September, $19^{th}$, 2013.\label{fig:0910913Sites} } 
 % \end{figure}
+\end{frame}
+
+% --- slide ------------------------------------------------
+\begin{frame}{\LARGE Landsat 8 Image} 
+\begin{figure}[htb]
+  	\centering
+  	\includegraphics[height=7cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/Proposal/Images/LC80160302013262LGN00subset.jpg}
+  % \caption{Portion of the Landsat 8 image to be corrected showing part of the Lake Ontario, nearby ponds and Downtown Rochester. \label{fig:Scene} } 
+\end{figure}
+\centering
+\vspace{-.3cm}
+09/19/13
+\end{frame}
+% --- slide ------------------------------------------------
+\begin{frame}{\LARGE Landsat 8}{\vspace{0.1cm} \Large Comparison with Landsat 5}
+\begin{figure}[htb]
+  	\centering
+  	\includegraphics[height=5cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/Proposal/Images/NoiseComparison.png}
+  % \caption{Portion of the Landsat 8 image to be corrected showing part of the Lake Ontario, nearby ponds and Downtown Rochester. \label{fig:Scene} } 
+\end{figure}
+\vspace{-.3cm}
+\large
+~~~~~~~~~~~~~Landsat 8~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Landsat 5
+\vspace{-.3cm}
+~~~~~~~~~~~(09/29/2014)~~~~~~~~~~~~~~~~~~~~~~~~(04/24/2000)
+\end{frame}
+%%%%%%%%%%%%%%%%%%% SECTION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Data Collection}
+% --- slide ------------------------------------------------
+\begin{frame}{\LARGE Field Data Collection}{\vspace{0.1cm} \Large Area of Study}
+\begin{figure}[htb]
+  \centering
+	\includegraphics[height=7cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/Proposal/Images/AreaOfStudy1.pdf} 
+  % \caption{Sites in the Rochester Embayment for the water sample collection on September, $19^{th}$, 2013.\label{fig:0910913Sites} } 
+\end{figure}
+\end{frame}
+% --- slide ------------------------------------------------
+\begin{frame}{\LARGE Field Data Collection (con't)}{\vspace{0.1cm} \Large Area of Study}
+\begin{figure}[htb]
+  	\centering
+  	\includegraphics[height=6cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/Proposal/Images/AreaOfStudy2.pdf}
+\end{figure}
+\end{frame}
+% --- slide ------------------------------------------------
+\begin{frame}{\LARGE Field Data Collection (con't)}
+\vspace{-1cm}
+\begin{figure}[htb]
+\centering
+\includegraphics[height=7cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2014_ASPRS_SOY/Images/Collection.pdf}
+      
+\end{figure}
+% \centerline{Comparison between traditional ELM (dashed lines)}
+% \centerline{and model-based ELM (solid lines).}
+\end{frame}
+% --- slide ------------------------------------------------
+\begin{frame}{\LARGE Field Data Collection (con't)}{\Large Lab Measurements} 
+\vspace{-1cm}
+\begin{figure}[htb]
+\centering
+\includegraphics[height=7cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2014_ASPRS_SOY/Images/LabMeasurements.pdf}
+      
+\end{figure}
+% \centerline{Comparison between traditional ELM (dashed lines)}
+% \centerline{and model-based ELM (solid lines).}
+\end{frame}
+% --- slide ------------------------------------------------
+\begin{frame}{\LARGE Field Data Collection (con't)}{\vspace{0.1cm} \Large 2013 and 2014 Seasons}
+\begin{table}[htb]
+  
+  \centering
+  \includegraphics[width=11cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/Proposal/Images/Collect1314.png}
+  \label{tab:collect}
+\end{table}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Atmospheric Correction}
@@ -897,8 +970,55 @@
 \end{frame}
 
 % ----------------------------------- Slide ----------------------------------------------
-\begin{frame}{\LARGE CPA Retrieval Process} 
 
+\begin{frame}{\LARGE Chl-{\it a} Retrieval}{\vspace{0.1cm} \large RIT's Spectral Matching and LUT Algorithm}
+
+  	\begin{columns}[c] % contents are top vertically aligned
+  		\begin{column}[T]{6cm} % each column can also be its own environment
+  		\vspace{0.2cm}
+    		\includegraphics[height=5cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/LUTsmart130919_150422.eps}
+    	    \vspace{0.2cm}
+    		\centerline{LUT from Hydrolight}
+    		\centerline{(Known concentrations)}
+    	\end{column}
+  		\hspace{-0.3cm}
+  		\begin{column}[T]{6cm} % each column can also be its own environment
+  		\vspace{0.2cm}
+  			\includegraphics[height=5cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/ROI130919_150422}
+  			\vspace{0.2cm}
+    		\centerline{Water Pixels from Image}
+    		\centerline{(Unknown concentrations)}	
+     	\end{column}
+	\end{columns}
+\end{frame}
+% --- slide ------------------------------------------------
+\begin{frame}{\LARGE Retrieval Algorithm} 
+{\vspace{0.05cm} \Large Non-linear Optimization Routine}
+\vspace{-0.2cm}
+\begin{block}{\bf \texttt{lsqnonlin} in Matlab}
+	Solve nonlinear least-squares problems\\
+	\vspace{.2cm}
+		$\underset{x}{min}\parallel f(x) \parallel^2_2=\underset{x}{min}(f_1(x)^2+f_2(x)^2+f_3(x)^2+...+f_m(x)^2)$\\
+		\vspace{.2cm}
+		with $f$ a vector with $m$ number of bands
+\end{block}
+
+\begin{block}{\bf Syntax:}
+	$[x]~=~lsqnonlin(@MyFn,x_0,LUT,R_{rs},LUTconc)$\\
+		\vspace{-.2cm}
+		$...$\\
+		$f = MyFn(x_0,LUT,R_{rs},LUTconc)$\\
+		$f(x)=R_{rs}-F$\\
+		\vspace{.2cm}
+		where:\\
+		$x_0$: initial concentrations of CPAs\\
+		$R_{rs}$: pixel with unknown concentrations\\
+		$F$: estimated curve from the LUT using {\bf trilinear interpolation}\\
+\end{block}
+\end{frame}
+% ----------------------------------- Slide ----------------------------------------------
+\begin{frame}{\LARGE CPA Retrieval Process}{\vspace{0.1cm}\Large Results 09-19-13}
+\vspace{-0.3cm}
 \begin{figure}[htbp!]
   \begin{minipage}[a]{0.485\linewidth}
   	\hspace{-0.5cm}
@@ -926,8 +1046,8 @@
 
 
 % ----------------------------------- Slide ----------------------------------------------
-\begin{frame}{\LARGE CPA Retrieval Process} 
-
+\begin{frame}{\LARGE CPA Retrieval Process}{\vspace{.1cm}\Large Results 09-29-14}
+\vspace{-0.3cm}
 \begin{figure}[htbp!]
   \begin{minipage}[c]{0.49\linewidth}
   \hspace{-0.5cm}
@@ -1116,31 +1236,33 @@ $n=1\dots N$: number of samples.
 % ----------------------------------- Slide ----------------------------------------------
 \begin{frame}{\LARGE Summary}
 \Large
-\begin{itemize}\itemsep.5cm
+\begin{itemize}\itemsep.4cm
 \setbeamercovered{transparent}
     \uncover<2->{
-	\item Two kinds of atmospheric algorithms were tested: MoB-ELM (RIT) and Gordon and Wang's (NASA)}
+	\item We developed an atmospheric correction algorithm: MoB-ELM }
 	\uncover<3->{
 	\item MoB-ELM: Based on ELM with Bright and Dark pixel from models }
 	\uncover<4->{
-	\item The retrieval of Chlorophyll-{\it a} was applied for both outcomes}
+	\item We developed an CPA retrieval: Spectral Matching and LUT}
+	\uncover<5->{
+	\item Comparison with standard algorithms}
 \end{itemize}
 
 
 \end{frame}
 % ----------------------------------- Slide ----------------------------------------------
 \begin{frame}{\LARGE Conclusions} 
-\begin{itemize}
+\begin{itemize}\itemsep.4cm
 \Large
 \setbeamercovered{transparent}
     \uncover<2->{
 	\item Landsat 8 has a great potential to help in fresh and coastal water quality studies}
-	\vspace{\baselineskip}
 	\uncover<3->{
 	\item Standard Atmospheric Correction algorithms do not work in highly turbid waters}
-	\vspace{\baselineskip}
 	\uncover<4->{
 	\item MoB-ELM is a potential solution. It can be applied to many cases, but not all of them}
+	\uncover<5->{
+	\item Retrieval Algorithm is a good solution when some knowledge is available}
 \end{itemize}
 \end{frame}
  % ----------------------------------- Slide ----------------------------------------------
