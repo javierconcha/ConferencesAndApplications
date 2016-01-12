@@ -48,6 +48,9 @@
 \usepackage[nostamp]{draftwatermark}
 \SetWatermarkLightness{0.8}
 \SetWatermarkScale{4}
+
+\usepackage[percent]{overpic}
+\usepackage{morefloats} % for the error "Too many unprocessed floats"
 %%% END MY PACKAGES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \journal{Remote Sensing of Environment}
@@ -153,9 +156,9 @@ We developed a process to retrieve CPAs from Landsat 8 imagery over Case 2 water
 \subsection{Retrieval Process Overview}
 The retrieval process described in this work was first introduced by \citet{Concha2013IGARSS} and is based on previous work done by \citet{Raqueno:2000}, \citet{Gerace:2012}, \citet{Pahlevan:2012b} and \citet{Gerace:2013}. A flow diagram of the process is illustrated in \autoref{fig:retrieval}. In short, the retrieval process works as follows. First, the radiance image from the satellite is atmospherically corrected and transformed to $R_{rs}$ spectra, as shown in the diagram. At this point the $R_{rs}$ spectra of water pixels in the scene with unknown CPAs concentrations are compared with a LUT of $R_{rs}$ spectra with known CPAs concentrations. This comparison is made by using a spectrum-matching technique \citep{Raqueno:2000,Mobley:2005} that calculates the root mean squared error (RMSE) to find the closest match in the LUT. The end products are maps of CPAs concentrations (see \autoref{fig:retrieval}). Each step in this retrieval process is described in more detail below.
 
-\begin{figure}[htbp!]
-	\centering
-    \includegraphics[height=8cm]{./Images/Retrieval_RMSE.pdf}
+\begin{figure}[htb]
+  \centering
+    \includegraphics[height=8cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/ThesisPhD/Images/UltimateProcess.pdf}
     \caption{Retrieval process flow diagram. The radiance image from the satellite is first corrected for atmospheric effects, having as result $R_{rs}$ spectra for each water pixel in the image. Then, a spectrum-matching methodology is used to find the closest match in the least-squared sense for the water pixels with unknown CPAs concentration in the LUT of water pixels with known CPAs concentration. The final result is a concentration map for each CPA.  \label{fig:retrieval} }
 \end{figure}
 
@@ -505,37 +508,44 @@ The MoB-ELM atmospheric correction algorithm discussed above was applied to the 
 
 After atmospherically correcting the Landsat 8 image, the retrieval of CPAs algorithm is applied to the area of study. The results of the retrieval for the 09-19-2013 scene is illustrated in the left-hand side of \autoref{fig:CPAsMaps130919} as a concentration map for each CPA. These maps exhibit the expected trend of low concentrations in the lake and higher concentrations in the ponds. The right-hand side of \autoref{fig:CPAsMaps130919} shows a comparison between measured concentration from the field and retrieved concentration obtained from the retrieval for each CPA for the different sites in the area of study. The dashed line represents the 1:1 line. 
 
-\begin{figure}[htbp!]
+\begin{figure}[htb!]
   \begin{minipage}[c]{0.55\linewidth}
   		\centering
-      \includegraphics[trim=0 20 0 30,clip,height=6.8cm]{./Images/CHLmap130919_150420}  
+      \begin{overpic}[trim=140 0 0 0,clip,width=8.0cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/ThesisPhD/Images/CHLmap130919masked.png} \put (5,20) {(a)}
+      \end{overpic} 
   \end{minipage}
   \hfill
-  \begin{minipage}[d]{0.35\linewidth}
-      \includegraphics[trim=40 0 0 20,clip,height=5.5cm]{./Images/CHLretvsmea130919_150420}
-  \end{minipage}
-% 
+  \begin{minipage}[d]{0.38\linewidth}
+      \begin{overpic}[trim=40 0 0 25,clip,height=5.0cm]{./Images/CHLretvsmea130919_150420} \put (20,65) {(b)}
+      \end{overpic}
+  \end{minipage}\\
+\vspace{.3cm} \\
 %% TSS
   \begin{minipage}[c]{0.55\linewidth}
   		\centering
-      \includegraphics[trim=0 30 0 10,clip,height=6.8cm]{./Images/TSSmap130919_150420}  
+      \begin{overpic}[trim=140 0 0 0,clip,width=8.0cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/ThesisPhD/Images/TSSmap130919masked.png} \put (5,20) {(c)}
+      \end{overpic} 
   \end{minipage}
   \hfill
-  \begin{minipage}[d]{0.35\linewidth}
-      \includegraphics[trim=40 0 0 0,clip,height=5.5cm]{./Images/TSSretvsmea130919_150420}
-  \end{minipage}
+  \begin{minipage}[d]{0.38\linewidth}
+      \begin{overpic}[trim=40 0 0 25,clip,height=5.0cm]{./Images/TSSretvsmea130919_150420} \put (20,65) {(d)}
+      \end{overpic}
+  \end{minipage}\\
+\vspace{.05cm} \\
 
 %% CDOM
   \begin{minipage}[c]{0.55\linewidth}
   		\centering
-      \includegraphics[trim=0 0 0 30,clip,height=6.8cm]{./Images/CDOMmap130919_150420}  
+      \begin{overpic}[trim=140 0 0 0,clip,width=8.0cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/ThesisPhD/Images/CDOmap130919masked.png} \put (5,20) {(e)}
+      \end{overpic}  
   \end{minipage}
   \hfill
-  \begin{minipage}[d]{0.35\linewidth}
-      \includegraphics[trim=40 0 0 0,clip,height=5.5cm]{./Images/CDOMretvsmea130919_150420}
+  \begin{minipage}[d]{0.38\linewidth}
+      \begin{overpic}[trim=40 0 0 25,clip,height=5.0cm]{./Images/CDOMretvsmea130919_150420} \put (20,65) {(f)}
+      \end{overpic}
   \end{minipage}
 % 
-  \caption{CPA retrieval results for the Landsat 8 image acquired on 09-19-2013 (scene LC80160302013262LGN00). Concentration maps (left) and measured vs retrieved plots (right). The dashed line represent the 1:1 line. (Labels: LongS: Long Pond south, Cranb: Cranberry Pond, OntOS: Lake Ontario off-shore, and OntNS: Lake Ontario near-shore). \label{fig:CPAsMaps130919} } 
+  \caption{CPA retrieval results for the Landsat 8 image acquired on 09-19-2013 (scene LC80160302013262LGN00). Concentration maps in log scale (left) and measured versus retrieved plots (right) for (a,b) $C_a$, (c,d) TSS and (e,f) CDOM. The dashed line represent the 1:1 line. (Labels: LongS: Long Pond south, Cranb: Cranberry Pond, OntOS: Lake Ontario off-shore, and OntNS: Lake Ontario near-shore). \label{fig:CPAsMaps130919} } 
 \end{figure}
 
 % Preliminary results for concentration maps for each CPA over the Rochester Embayment, Rochester, NY are shown in \autoref{fig:CPAsMaps}  The expected trend of having low concentration of CPAs in the offshore of Lake Ontario and higher concentrations in the nearby ponds (Long Pond and Cranberry Pond) can be seen. 
@@ -547,37 +557,48 @@ After atmospherically correcting the Landsat 8 image, the retrieval of CPAs algo
 %% CHL
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[htbp!]
-  \begin{minipage}[c]{1.0\linewidth}
-  		\centering
-      \includegraphics[trim=0 0 0 30,clip,height=7cm]{./Images/CHLmap140929_150420}  
+\begin{figure}[htb!]
+  \begin{minipage}[c]{0.49\linewidth}
+      \centering
+      \begin{overpic}[trim=140 0 0 120,clip,width=8cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/ThesisPhD/Images/CHLmap140929masked.png} \put (5,20) {(a)}
+      \end{overpic}   
+  \end{minipage}
+  \hfill
+  \begin{minipage}[c]{0.49\linewidth}
+      \centering
+      \begin{overpic}[trim=140 0 0 120,clip,width=8.0cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/ThesisPhD/Images/CHLmap150916masked_2.png} \put (5,20) {(b)}
+      \end{overpic}   
   \end{minipage}\\
-  % \hfill
-  % \begin{minipage}[d]{0.45\linewidth}
-      % \includegraphics[height=5.5cm]{./Images/CHLretvsmea140929_150420}
-  % \end{minipage}
+  \vspace{.3cm}\\
 
 %% TSS
-  \begin{minipage}[c]{1.0\linewidth}
-  		\centering
-      \includegraphics[trim=0 0 0 30,clip,height=7cm]{./Images/TSSmap140929_150420}  
+  \begin{minipage}[c]{0.49\linewidth}
+      \centering
+      \begin{overpic}[trim=140 0 0 120,clip,width=8cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/ThesisPhD/Images/TSSmap140929masked.png} \put (5,20) {(c)}
+      \end{overpic}   
+  \end{minipage}
+  \hfill
+  \begin{minipage}[c]{0.49\linewidth}
+      \centering
+      \begin{overpic}[trim=140 0 0 120,clip,width=8.0cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/ThesisPhD/Images/TSSmap150916masked_2.png} \put (5,20) {(d)}
+      \end{overpic}   
   \end{minipage}\\
-  % \hfill
-  % \begin{minipage}[d]{0.45\linewidth}
-      % \includegraphics[height=5.5cm]{./Images/TSSretvsmea140929_150420}
-  % \end{minipage}
+  \vspace{.3cm}\\
 
 %% CDOM
-  \begin{minipage}[c]{1.0\linewidth}
-  		\centering
-      \includegraphics[trim=0 0 0 30,clip,height=7cm]{./Images/CDOMmap140929_150420}  
-  \end{minipage}\\
-  % \hfill
-  % \begin{minipage}[d]{0.45\linewidth}
-      % \includegraphics[height=5.5cm]{./Images/CDOMretvsmea140929_150420}
-  % \end{minipage}
+  \begin{minipage}[c]{0.49\linewidth}
+      \centering
+      \begin{overpic}[trim=140 0 0 120,clip,width=8cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/ThesisPhD/Images/CDOmap140929masked.png} \put (5,20) {(e)}
+      \end{overpic}   
+  \end{minipage}
+  \hfill
+  \begin{minipage}[c]{0.49\linewidth}
+      \centering
+      \begin{overpic}[trim=140 0 0 120,clip,width=8.0cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/ThesisPhD/Images/CDOmap150916masked_2.png} \put (5,20) {(f)}
+      \end{overpic}   
+  \end{minipage}
 
-  \caption{CPA concentration maps for Landsat 8 image acquired on 09-29-2014 (scene LC80170302014272LGN00).\label{fig:CPAsMaps140929} } 
+  \caption{CPA concentration maps in log scale for Landsat 8 image acquired on 09-29-2014 (scene LC80170302014272LGN00) (left) and 09-16-2015 (scene LC80170302015259LGN00) (right) over the Rochester Embayment for (a,b) $C_a$, (c,d) TSS and (e,f) CDOM.\label{fig:CPAsMaps140929} } 
 \end{figure}
 
 % %%%%%%%%%%%%%%%%%%% SECTION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -596,31 +617,40 @@ The numerical results are summarized in \autoref{fig:RMSE} where the root mean s
 
 \noindent where $C_{ret}$ is the retrieved CPA concentration (i.e. $C_a$, $TSS$ or $a_{CDOM}(440nm)$), $C_{mea}$ is the measured CPA concentration, and $n=1,...,N$ is the $n$th site from a total of $N$ sites for both days. The RMSE percentage of range values are approximately $10\%$ for $C_a$ and $TSS$, and about $5\%$ for $a_{CDOM}(440nm)$. These errors are consistent with the expected errors reported by \citet{Gerace:2013}. 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[htb]
+%^^^^^^^^^^^^^^^^^^^  FIGURE ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+\begin{figure}[htb!]
   \begin{minipage}[c]{0.32\linewidth}
+  \centering
   % CHL
-      \includegraphics[trim=40 0 80 0,clip,height=5.1cm]{./Images/CHLretvsmea150423}  
+      \begin{overpic}[trim=0 0 0 0,clip,width=5.1cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/CHLretvsmea151211.png} \put (85,55) {(a)}
+      \end{overpic}   
   \end{minipage}
+  \hfill
   % TSS
   \begin{minipage}[d]{0.32\linewidth}
-      \includegraphics[trim=40 0 80 0,clip,height=5.1cm]{./Images/TSSretvsmea150423}
+  \centering
+      \begin{overpic}[trim=0 0 0 0,clip,width=5.1cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/TSSretvsmea151211.png} \put (85,55) {(b)}
+      \end{overpic}   
   \end{minipage}
+  \hfill
   % CDOM
   \begin{minipage}[c]{0.32\linewidth}
-      \includegraphics[trim=40 0 80 0,clip,height=5.1cm]{./Images/CDOMretvsmea150423}  
+  \centering
+      \begin{overpic}[trim=0 0 0 0,clip,width=5.1cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/CDOMretvsmea151211.png} \put (85,55) {(c)}
+      \end{overpic}   
   \end{minipage}
 
-  \caption{Landsat 8's retrieved vs measured CPA concentration for the 09-19-2014 and 09-29-2015 scenes with regression line (solid red line) and goodness of fit values. The dashed line represents the 1:1 line. \label{fig:CPAsRetVSMea} } 
+  \caption[Landsat 8's retrieved vs measured CPA concentration for the 09-19-2013 and 09-29-2014 scenes]{Landsat 8's retrieved vs measured CPA concentration for the 09-19-2013 ($\ast$), 09-29-2014 ($\triangle$), and 09-16-2015 ($\circ$) scenes with regression line (solid red line) and goodness of fit values for (a) chlorophyll, (b) sediments, and (c) CDOM. The dashed line represents the 1:1 line. \label{fig:CPAsRetVSMea} } 
 \end{figure}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%^^^^^^^^^^^^^^^^^^^  FIGURE ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 \begin{figure}[htb]
-	\centering
-      \includegraphics[height=5cm]{./Images/RMSE_ret150421}
+  \centering
+      \begin{overpic}[height=5cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/RMSE_ret151211.png}
       % \vspace{-.4cm}
-      \caption{RMSE expressed as percentage of range for each CPA. \label{fig:RMSE}}
-      % \vspace{-.4cm}
+      % \put (4.5,27.8) {\rotatebox{90}{N}}
+      \end{overpic} 
+      \caption{NRMSE for each CPA for the 09-19-2013, 09-29-2014 and 09-16-2015 scenes. \label{fig:RMSE}}
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%% SECTION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
