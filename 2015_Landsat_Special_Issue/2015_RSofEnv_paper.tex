@@ -17,8 +17,8 @@
 \usepackage{amsmath,epsfig}
 
 % Select what to do with todonotes: 
-% \usepackage[disable]{todonotes} % notes not showed
-\usepackage[draft]{todonotes}   % notes showed
+\usepackage[disable]{todonotes} % notes not showed
+% \usepackage[draft]{todonotes}   % notes showed
 \setlength{\marginparwidth}{2cm}
 % \usepackage[textwidth=3.7cm]{todonotes}
 
@@ -156,7 +156,7 @@ We developed a process to retrieve CPAs from Landsat 8 imagery over Case 2 water
 \section{Methods}
 % ============================================================
 \subsection{Retrieval Process Overview}
-The retrieval process described in this work was first introduced by \citet{Concha2013IGARSS} and is based on previous work done by \citet{Raqueno:2000}, \citet{Gerace:2012}, \citet{Pahlevan:2012b} and \citet{Gerace:2013}. A flow diagram of the process is illustrated in \autoref{fig:retrieval}. In short, the retrieval process works as follows. First, the radiance image from the satellite is atmospherically corrected and transformed to $R_{rs}$ spectra, as shown in the diagram. At this point the $R_{rs}$ spectra of water pixels in the scene with unknown CPAs concentrations are compared with a LUT of $R_{rs}$ spectra with known CPA concentrations. This comparison is made by using a spectrum-matching technique \citep{Raqueno:2000,Mobley:2005} that calculates the root mean squared error (RMSE) to find the closest match in the LUT. The end products are maps of CPAs concentrations (see \autoref{fig:retrieval}). Each step in this retrieval process is described in more detail below.
+The retrieval process described in this work was first introduced by \citet{Concha2013IGARSS} and \citet{ConchaThesis2015} and is based on previous work done by \citet{Raqueno:2000}, \citet{Gerace:2012}, \citet{Pahlevan:2012b} and \citet{Gerace:2013}. A flow diagram of the process is illustrated in \autoref{fig:retrieval}. In short, the retrieval process works as follows. First, the radiance image from the satellite is atmospherically corrected and transformed to $R_{rs}$ spectra, as shown in the diagram. At this point the $R_{rs}$ spectra of water pixels in the scene with unknown CPAs concentrations are compared with a LUT of $R_{rs}$ spectra with known CPA concentrations. This comparison is made by using a spectrum-matching technique \citep{Raqueno:2000,Mobley:2005} that calculates the root mean squared error (RMSE) to find the closest match in the LUT. The end products are maps of CPAs concentrations (see \autoref{fig:retrieval}). Each step in this retrieval process is described in more detail below.
 
 \begin{figure}[htb]
   \centering
@@ -503,7 +503,7 @@ The output of this process is a concentration mapping for each water constituent
 \subsection{Ground Truth Data Collection and Lab Measurements}
 \label{subsec:FieldLabMea}
 
-Field measurements were collected to support this study. Water samples were collected for each site in dark Nalgene bottles. Additionally, $R_{rs}$ spectra were measured using an SVC instrument \citep{SVCHR1024i} following the procedures suggested by \citet{Mobley:1999} and \citet{Mueller1995}. Location for each site was recorded using a GPS. After collection, these water samples were analyzed in the lab at the Rochester Institute of Technology (RIT), and concentration and IOPs for each CPA were measured following the procedures described by \citet{Mitchell2002}. These measurements are utilized as input to Ecolight for the LUT generation of the retrieval process and the black pixel determination for the MoB-ELM atmospheric correction algorithm. Also, some are utilized for validation of the retrieval process. The $C_a$ and $TSS$ measurements were validated by comparing with measurements analyzed by a credible lab (Monroe County Environmental Laboratory). This comparison between labs showed agreement in the measurements for a total of 71 samples with a $R^2=0.97$ and $R^2=0.78$ for $C_a$ and $TSS$, respectively.
+Field measurements were collected to support this study. Water samples were collected for each site in dark Nalgene bottles. Additionally, $R_{rs}$ spectra were measured using an SVC instrument \citep{SVCHR1024i} following the procedures suggested by \citet{Mobley:1999} and \citet{Mueller1995}. Location for each site was recorded using a GPS. After collection, these water samples were analyzed in the lab at the Rochester Institute of Technology (RIT), and concentration and IOPs for each CPA were measured following the procedures described by \citet{Mitchell2002}. These measurements are utilized as input to Ecolight for the LUT generation of the retrieval process and the black pixel determination for the MoB-ELM atmospheric correction algorithm. Also, some are utilized for validation of the retrieval process. The $C_a$ and $TSS$ measurements were validated by comparing with measurements analyzed by a credible lab (Monroe County Environmental Laboratory). This comparison between labs showed agreement in the measurements for a total of 71 samples with a $R^2=0.97$ and $R^2=0.78$ for $C_a$ and $TSS$, respectively \citep{ConchaThesis2015}.
 
 %%%%%%%%%%%%%%%%%%% SECTION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results and Discussion}
