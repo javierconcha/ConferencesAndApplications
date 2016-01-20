@@ -51,6 +51,8 @@
 
 \usepackage[percent]{overpic}
 \usepackage{morefloats} % for the error "Too many unprocessed floats"
+
+\usepackage{multirow}
 %%% END MY PACKAGES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \journal{Remote Sensing of Enviro~nment}
@@ -361,9 +363,9 @@ For the CDOM component, the absorption specification $a_{CDOM}(\lambda)$ was inp
 
 The SM mass-specific absorption coefficient was determined in the same fashion as for the chlorophyll mass-specific absorption coefficient from lab measurements of the ONTNS water sample. The SM mass-specific absorption coefficients are shown in \autoref{fig:IOPs}.(e). The SM mass-specific scattering coefficients are the same used by \citet{Raqueno:2000} and \citet{Raqueno:2003} for the same area of study and are shown in \autoref{fig:IOPs}.(f). An FF phase function with backscatter fraction 0.010 was selected as the scattering phase function for the SM. The details about the selection of this specific phase function will be described below.
 
-One of the input parameters needed by Ecolight is the scattering phase function for each component. Ecolight includes by default discretized Fournier-Forand phase function for given backscatter fraction values, $b_b/b$, where $b$ is the total scattering coefficient (for all directions) and $b_b$ is the scattering coefficient only in the backward direction. $b_b/b$ could have discretized values between $0.0001$ and $0.50$ (i.e. [$0.01\%$-$50\%$]). There was no empirical information available about $b_b/b$ so the following approach was used to determine the scattering phase function for both the chlorophyll-{\it a} and the SM components. A LUT of $R_{rs}$ with different scattering phase functions was created in the following fashion: one Ecolight run was obtained for each discretized Fournier-Forand phase functions from the library of phase functions supplied with Ecolight 5.2, but maintained the rest of the input parameters to Ecolight the same, i.e. concentrations, IOPs, surface and bottom boundary conditions, atmospheric conditions, and geometry. These parameters correspond to the ONTNS water sample described above. The different $R_{rs}$ spectra in the LUT were compared with the $R_{rs}$ for ONTNS measured {\it in situ}. The best match was determined by choosing the lowest root mean squared error (RMSE) between the $R_{rs}$ for the ONTNS water sample measured {\it in situ} and the simulated $R_{rs}$ spectra for the ONTNS water sample. It was determined that the best match corresponds to the $R_{rs}$ in the LUT generated with a discretized Fournier-Forand phase function with a backscatter equal to $0.010$, i.e. $1\%$ of backscatter fraction (file name: FFbb010.dpf). 
+One of the input parameters needed by Ecolight is the scattering phase function for each component. Ecolight includes by default discretized Fournier-Forand phase function for given backscatter fraction values, $b_b/b$, where $b$ is the total scattering coefficient (for all directions) and $b_b$ is the scattering coefficient only in the backward direction. $b_b/b$ could have discretized values between $0.0001$ and $0.50$ (i.e. [$0.01\%$-$50\%$]). There was no empirical information available about $b_b/b$ so the following approach was used to estimate the scattering phase function for both the chlorophyll-{\it a} and the SM components. A LUT of $R_{rs}$ with different scattering phase functions was created in the following fashion: one Ecolight run was obtained for each discretized Fournier-Forand phase functions from the library of phase functions supplied with Ecolight 5.2, but maintained the rest of the input parameters to Ecolight the same, i.e. concentrations, IOPs, surface and bottom boundary conditions, atmospheric conditions, and geometry. These parameters correspond to the ONTNS water sample described above. The different $R_{rs}$ spectra in the LUT were compared with the $R_{rs}$ for ONTNS measured {\it in situ}. The best match was determined by choosing the lowest root mean squared error (RMSE) between the $R_{rs}$ for the ONTNS water sample measured {\it in situ} and the simulated $R_{rs}$ spectra for the ONTNS water sample. It was determined that the best match corresponds to the $R_{rs}$ in the LUT generated with a discretized Fournier-Forand phase function with a backscatter equal to $0.010$, i.e. $1\%$ of backscatter fraction (file name: FFbb010.dpf). 
 
-The following parameters were input to Ecolight in order to simulate the Landsat 8 acquisition conditions. The illumination conditions were input to Ecolight by specifying the solar zenith angle and day of the year that matched the Landsat 8 image. Internal sources and inelastic scatter were not included in the simulations, as we did not have this information. The wavelength range was $[400~nm,1000~nm]$, with a $1~nm$ step. Default values for the air-water surface conditions were used, with a windspeed equal to $5~m/s$, a real index of refraction equal to $n=1.34$, and the semi-empirical sky model (based on RADTRAN-X). Recall that Hydrolight uses a Cox-Munk air-water surface model that parameterizes gravity and capillary waves via the wind speed \citep{MobleyHEtech}. Finally, the bottom boundary condition used in Ecolight was ``the water column is infinitely deep.''
+The following parameters were input to Ecolight in order to simulate the Landsat 8 acquisition conditions. The illumination conditions were input to Ecolight by specifying the solar zenith angle and day of the year that matched the Landsat 8 image. Internal sources and inelastic scatter were not included in the simulations, as we did not have this information. The wavelength range was $[400~nm,1000~nm]$, with a $5~nm$ step, i.e. 120 wavelengths. Default values for the air-water surface conditions were used, with a windspeed equal to $5~m/s$, a real index of refraction equal to $n=1.34$, and the semi-empirical sky model (based on RADTRAN-X). Recall that Hydrolight uses a Cox-Munk air-water surface model that parameterizes gravity and capillary waves via the wind speed \citep{MobleyHEtech}. Finally, the bottom boundary condition used in Ecolight was ``the water column is infinitely deep.''
 
 \begin{figure}[htb!]
     \begin{minipage}[c]{0.48\linewidth}
@@ -421,7 +423,7 @@ The following parameters were input to Ecolight in order to simulate the Landsat
     % \caption{SM mass-specific absorption (a) and scattering (b) coefficient spectra used for the determination of the $R_{rs}$ spectra of the dark pixel in Ecolight. \label{fig:SMcoef} }
 \end{figure}
 
-The best match from the LUT of $R_{rs}$ with different phase functions was used as the $R_{rs}$ spectra of the dark pixel in the MoB-ELM method. This $R_{rs}$ is further spectrally sampled to the Landsat 8 spectral response. \autoref{fig:MOBELMpxls}.(b)\todo{change ONTOS to ONTNS in fig.}~ shows this $R_{rs}$ spectra as a black dashed line. Using a $R_{rs}$ generated in Hydrolight (i.e. a model-based dark pixel) instead of an {\it in situ} dark target in the MoB-ELM helps account for differences between atmospheric correction and the Hydrolight-based LUT used for retrieving the CPA concentrations (explained in the following Section \ref{subsec:LUT}).
+Ecolight is run once with all the inputs described above and the spectral $R_{rs}$ for the dark pixel is obtained. This spectral $R_{rs}$ is a function of 120 wavelengths, and therefore, it needs to be spectrally sampled to the OLI's band-averaged relative spectral response (RSR) to obtain the values for the OLI's eight bands. \autoref{fig:MOBELMpxls}.(b)\todo{change ONTOS to ONTNS in fig.}~ shows this $R_{rs}$ spectra as a black dashed line. Using a $R_{rs}$ generated in Ecolight (i.e. a model-based dark pixel) instead of an {\it in situ} dark target in the MoB-ELM helps account for differences between atmospheric correction and the Hydrolight-based LUT used for retrieving the CPA concentrations (explained in the following Section \ref{subsec:LUT}).
 
 The radiance spectra for the dark pixel is obtained from an ROI in the Landsat 8 radiance image that includes the ONTNS station. Statistics are computed in this dark region, and the mean values in each band is used as the radiance spectra for the dark pixel. This radiance spectra for the dark pixel is shown in \autoref{fig:MOBELMpxls}.(a) as a black dashed line.
 
@@ -429,36 +431,30 @@ As a review, \autoref{fig:MOBELMpxls} shows the different spectra used to perfor
 % ---------------------------------------------------------------
 \subsection{LUT Generation}
 \label{subsec:LUT}
-A LUT of $R_{rs}$ is generated in Ecolight for different combinations of CPA concentrations and scattering phase functions. \autoref{tab:LUTconc2} shows the different parameters used to create the LUT for the 2013 scene in Ecolight. The range of CPA concentrations was selected based on {\it in situ} and historical data from the water bodies in the scene. Ecolight was used in the same fashion as in the black pixel determination for the MoB-ELM (Section \ref{subsubsec:blackpixel}). Two different sets of IOPs (mass-specific absorption and scattering spectra) were used, one set for modeling the open lake conditions (low concentration of CPAs) from the lab measurements for the ONTNS site, and one set for modeling the ponds condition (high concentration of CPAs) from the lab measurements for the LONGS site\todo{show IOPs figures}. These IOPs are labeled in \autoref{tab:LUTconc2} as ``ONTNS'' for the open lake conditions and as ``LONGS'' for the ponds' conditions. \autoref{tab:LUTconc2} also shows the CPAs concentration used to create the LUT in Ecolight. Furthermore, different discretized Fournier-Forand phase functions with four different $b_b/b$ values (i.e. $0.5$, $1.0$, $1.5$ and $2.0\%$) were used for the Chlorophyll-{\it a} and SM scattering phase functions.
+A LUT of $R_{rs}$ is generated in Ecolight for different combinations of CPA concentrations and scattering phase functions. \autoref{tab:LUTconc2} shows the different parameters used to create the LUT for the 2013 scene in Ecolight. The range of CPA concentrations was selected based on {\it in situ} and historical data from the water bodies in the scene. Ecolight was used in the same fashion as in the black pixel determination for the MoB-ELM (Section \ref{subsubsec:blackpixel}). In order to represent all the different kinds of waters in the scene in the LUT, two different sets of IOPs were used, one set for modeling the open lake conditions (low concentration of CPAs) based on the lab measurements for the ONTNS site, and other set for modeling the ponds condition (high concentration of CPAs) based on the lab measurements for the LONGS site\todo{show IOPs figures}. These IOPs are labeled in \autoref{tab:LUTconc2} as ``ONTNS'' for the open lake conditions and as ``LONGS'' for the ponds' conditions. \autoref{tab:LUTconc2} also shows the CPAs concentration used to create the LUT in Ecolight. Furthermore, different discretized Fournier-Forand phase functions with four different $b_b/b$ values (i.e. $0.5$, $1.0$, $1.5$ and $2.0\%$) were used for the Chlorophyll-{\it a} and SM scattering phase functions.
 
 \begin{table}[htb]
 \caption{Input parameters for the LUT generation in Ecolight for the Landsat 8 image acquired on 09-19-2013. \label{tab:LUTconc2}} 
 \small
 \centering
-		\begin{tabular}{c|c|c|c|c}
-		\hline \hline
-        		IOPs Input & \bfseries{$C_a$} & \bfseries{$TSS$} & \bfseries{$a_{CDOM}(440~nm)$} & \bfseries{$b_b/b$}   	\\
-				           & $[mg~m^{-3}]$			  & $[g~m^{-3}]$ 			 & 	$[1/m]$ 					& $[\%]$		  	  	\\ \hline \hline
-ONTNS 	&  0.1  	& 1.0  		&  0.11		&  0.3 	\\
--- 		&  0.5  	& 2.0  		&  0.15		&  0.4 	\\
---    	&  1.0  	& 5.0  		&  0.21		&  0.5 	\\
---    	&  3.0  	& 10.0		&  0.6 		&  0.6 	\\ 
--- 		&  10.0     & -- 		&  --		&  0.7	\\	
---    	&  20.0     & -- 		&  --		&  1.0	\\	
---    	&  40.0     & -- 		&  --		&  1.4	\\
---    	&  --       & -- 		&  --		&  2.0	\\ \hline
+    \begin{tabular}{ccccc}
+    \hline \hline
+    \multirow{2}{*}{IOPs Input} & \bfseries{$C_a$}    & \bfseries{$TSS$}  & \bfseries{$a_{CDOM}(440)$} & \bfseries{$b_b/b$}\\
+               & $[mg~m^{-3}]$      & $[g~m^{-3}]$      &   $[1/m]$                  &  $[\%]$           \\ \hline \hline
+\multirow{7}{*}{ONTNS} & 0.1   & 1.0  &  0.11 &  0.5 \\
+                       & 0.5   & 2.0  &  0.15 &  1.0 \\
+                       & 1.0   & 5.0  &  0.21 &  1.4 \\
+                       & 3.0   & 10.0 &  0.6  &  2.0 \\
+                       & 10.0  & --   &  --   &  --  \\
+                       & 20.0  & --   &  --   &  --  \\
+                       & 40.0  & --   &  --   &  --  \\ \hline
 
-LONGS 	&  60.0  	& 25.0		&  1.0 		&  0.3  \\
---    	&  90.0  	& 45.0		&  1.2 		&  0.4  \\
---    	&  110.0 	& 50.0		&  --  		&  0.5  \\
---    	&  --   	& --    	&  --  		&  0.6  \\  
---    	&  --   	& --   		&  --  		&  0.7 	\\  
---    	&  --   	& --   		&  --  		&  1.0 	\\   
---    	&  --   	& --   		&  --  		&  1.4 	\\  
---    	&  --   	& --   		&  --  		&  2.0 	\\  \hline \hline
-% --    	&  135.0	& --   		&  --  		&  --  	\\  
-% --    	&  150.0	& --   		&  --  		&  --  	\\ \hline 
-	 	\end{tabular}
+\multirow{5}{*}{LONGS} & 60.0  & 25.0 & 1.0   &  0.5 \\  
+                       & 90.0  & 45.0 & 1.2   &  1.0 \\  
+                       & 110.0 & 50.0 & --    &  1.4 \\  
+                       & 135.0 & --   & --    &  2.0 \\  
+                       & 150.0 & --   & --    &  --  \\  \hline \hline    
+    \end{tabular}
 	\end{table}
 
 Then, the LUT of $R_{rs}$ obtained from Ecolight is spectrally sampled to the OLI's spectral response. As an example, the LUT created with the parameters shown in \autoref{tab:LUTconc2} in Ecolight for the Landsat 8 image acquired on 09-19-2013 is shown in \autoref{fig:Rrsused}.(a). This particular LUT has $1170$ elements spectrally sampled to the OLI's spectral response.
@@ -466,19 +462,48 @@ Then, the LUT of $R_{rs}$ obtained from Ecolight is spectrally sampled to the OL
 % ============================================================
 \subsection{Retrieval Algorithm} 
 \label{subsec:Retrieval}
-The retrieval of CPAs concentrations is based in the work done by \citet{Gerace:2013}. A spectral-matching technique was applied with the purpose of finding the closest match to a given water $R_{rs}$ spectra within the LUT of $R_{rs}$ from Ecolight. In this work, the spectral matching was performed by minimizing the root mean squared error (RMSE), which is defined as\todo{Update with latest approach!}
+The retrieval is divided in two stages. The first one uses the root mean squared error (RMSE) to fix the IOP set (ponds or lake) and the phase function. The RMSE is calculated between the water pixel and each element in the LUT, and the one with the smallest RMSE is selected as the first candidate. The IOP set and the phase function associated with this candidate is chosen as the IOP set and the phase function for the water pixel.
 
+The second stage of the retrieval uses a non-linear optimization to estimate the CPA concentrations of the water pixel. Only the elements in the LUT with the same IOP set and phase function selected from the first stage are utilized in this stage. The water pixel is input to a non-linear optimization routine to estimate the CPA concentration through a trilinear interpolation within the LUT's elements. This method gives continuous concentration values. The RMSE and the non-linear optimization are described below.
+% -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  
+\subsubsection{Root Mean Square Error}
+In this work, the RMSE is defined as
 \begin{equation}
-  RMSE(i) = \sqrt{\frac{1}{M}\sum_{m=1}^M\left[\widetilde{R}_{rs}(i,\lambda_m)-R_{rs}(\lambda_m)\right]^2}
+  RMSE(i) = \sqrt{\frac{1}{m}\sum_1^m\left[\widetilde{R}_{rs}(i,\lambda_m)-R_{rs}(\lambda_m)\right]^2}
 \end{equation}
+where $\widetilde{R}_{rs}(i,\lambda_m)$ is the $i$th database spectrum from the LUT at wavelength band $m$ and $R_{rs}(\lambda_m)$ is the spectrum for a particular water pixel from the image.
 
-\noindent where $\widetilde{R}_{rs}(i,\lambda_m)$ is the $i$th $R_{rs}$ spectrum from the LUT at wavelength band $m$ and $R_{rs}(\lambda_m)$ is the water $R_{rs}$ spectrum at wavelength band $m$ from the atmospherically corrected Landsat 8 image. For each water pixel in the atmospherically corrected Landsat 8 image, the RMSE value is calculated for every $i$th element in the LUT. Then, the element of the LUT that results in the smallest RMSE value is chosen as the CPA concentrations for that particular water pixel. This method gives discretized values for the concentrations equal to the values used to create the LUT. The output is a concentration mapping for each CPA.
+% -----------------------------------------
+\subsubsection{Non-linear Optimization}
+The spectral matching is made by a least square error minimization algorithm using the ``\texttt{lsqnonlin}'' package of the MATLAB's Optimization Toolbox. \texttt{lsqnonlin} solves least-squares problems, including nonlinear data-fitting problems \citep{MatlabHelp}. If $f(x)$ is a user-defined vector function defined as
+\begin{equation}
+  f(x)=
+  \left[
+    \begin{array}{c}
+      f_1(x) \\
+      f_2(x) \\
+      \vdots \\
+      f_m(x) \\
+    \end{array}
+  \right],
+\end{equation}
+with $x$ a vector. \texttt{lsqnonlin} tries to minimize the function
+\begin{equation}
+  \underset{x}{min}\parallel f(x) \parallel^2_2=\underset{x}{min}(f_1(x)^2+f_2(x)^2+f_3(x)^2+...+f_m(x)^2)
+\end{equation}
+In this case, $x$ includes the three CPA concentrations and the function $f(x)$ is the difference between the water spectra $R_{rs}$ for each pixel and an estimated curve $F$ from the LUT, this is
+\begin{equation}
+  f = R_{rs} - F
+\end{equation}
+where $F$ is obtained from a trilinear interpolation based on the CPA concentrations of the LUT. The dimension $m$ is the number of bands. In other words, for each pixel in the image, \texttt{lsqnonlin} tries to find a function that minimizes the error between the measured value and an interpolated spectra from the LUT. \texttt{lsqnonlin} stops the search after reaching a certain threshold. 
+
+The output of this process is a concentration mapping for each water constituent that spans the range of constituents levels in the scene. 
 
 % % ============================================================
 \subsection{Ground Truth Data Collection and Lab Measurements}
 \label{subsec:FieldLabMea}
 
-Field measurements were collected to support this study. Water samples were collected for each site in dark Nalgene bottles. Additionally, $R_{rs}$ spectra were measured using an ASD and a SVC instrument\todo{add citation for instruments}. Location for each site was recorded using a GPS. After collection, these water samples were analyzed in the lab at the Rochester Institute of Technology (RIT), and concentration and IOPs for each CPA were measured following the procedures described by \citet{Mueller1995}. These measurements are utilized as input to Ecolight for the LUT generation of the retrieval process and the black pixel determination for the MoB-ELM atmospheric correction algorithm. Also, some are utilized for validation of the retrieval process. The $C_a$ and $TSS$ measurements were validated by comparing with measurements analyzed by a credible lab (Monroe County Environmental Laboratory). This comparison between labs showed agreement in the measurements.
+Field measurements were collected to support this study. Water samples were collected for each site in dark Nalgene bottles. Additionally, $R_{rs}$ spectra were measured using an SVC instrument \citep{SVCHR1024i} following the procedures suggested by \citet{Mobley:1999} and \citet{Mueller1995}. Location for each site was recorded using a GPS. After collection, these water samples were analyzed in the lab at the Rochester Institute of Technology (RIT), and concentration and IOPs for each CPA were measured following the procedures described by \citet{Mitchell2002}. These measurements are utilized as input to Ecolight for the LUT generation of the retrieval process and the black pixel determination for the MoB-ELM atmospheric correction algorithm. Also, some are utilized for validation of the retrieval process. The $C_a$ and $TSS$ measurements were validated by comparing with measurements analyzed by a credible lab (Monroe County Environmental Laboratory). This comparison between labs showed agreement in the measurements for a total of 71 samples with a $R^2=0.97$ and $R^2=0.78$ for $C_a$ and $TSS$, respectively.
 
 %%%%%%%%%%%%%%%%%%% SECTION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results and Discussion}
@@ -607,7 +632,7 @@ After atmospherically correcting the Landsat 8 image, the retrieval of CPAs algo
 A second image acquired on 09-29-2014 (scene LC80170302014272LGN00) was processed using the alternative method mentioned in the \S2. In this case, the bright pixel target is generated from an Ecolight run simulating the Cranberry Pond, which is the most eutrophic pond, and therefore, the brightest water pixel.
 The concentration maps for this second scene are illustrated in left-hand side of \autoref{fig:CPAsMaps140929} again showing reasonable patterns in the lake and ponds. Finally, a third image was processed in similar fashion to the 2013 image and the results are shown in the right-hand side of \autoref{fig:CPAsMaps140929}. Note that glint effects were not specifically compensated for in the atmospheric correction process and future efforts using the urban region bright target approach will need to compensate for glint when it is present.
 
-\autoref{fig:CPAsRetVSMea} shows the comparison between predicted and observed values for all sample sites from the three scenes, along with a regression line fitted to the data and its respective goodness of fit values. The $R^2$ value of the regression for all CPAs are high. Note that dark targets on all days and the bright target on the 2014 date are forced to match by the MoB-ELM process. The results are very encouraging showing good quantitative agreement across a very wide range of concentrations. Note that the purpose of the relations shown in \autoref{fig:CPAsRetVSMea} are exclusively for determining agreement between {\it in situ} and retrieved data, and these relations were not used for the retrieval.
+\autoref{fig:CPAsRetVSMea} shows the comparison between predicted and observed values for all sample sites from the three scenes, along with a regression line fitted to the data and its respective goodness of fit values. The $R^2$ value of the regression for all CPAs are high for a total of $N=14$ samples. Note that dark targets on all days and the bright target on the 2014 date are forced to match by the MoB-ELM process. The results are very encouraging showing good quantitative agreement across a very wide range of concentrations. Note that the purpose of the relations shown in \autoref{fig:CPAsRetVSMea} are exclusively for determining agreement between {\it in situ} and retrieved data, and these relations were not used for the retrieval.
 
 The numerical results are summarized in \autoref{fig:RMSE} where the root mean squared error (RMSE) in predicted CPA concentration is normalized by the range in concentrations to estimate overall performance, i.e. the normalized RMSE (NRMSE) for the CPA concentration, defined as
 
@@ -656,7 +681,7 @@ The numerical results are summarized in \autoref{fig:RMSE} where the root mean s
 
 %%%%%%%%%%%%%%%%%%% SECTION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusions}
-The retrieval results shown in this study are promising for the use of Landsat 8 for monitoring of coastal and inland waters. The retrieval process was applied to three Landsat 8 scenes over the same study area and compared with field measurements. Maps of CPA concentrations show the expected trends of low concentration in the lake and higher concentration in the ponds. The retrieval was validated with ground-truth data taken at the same time as the satellite overpass. The comparison with field measurements exhibit error comparable with previous performance predictions for Landsat 8 \citep{Gerace:2013}. An advantage of this retrieval algorithm is that it retrieves simultaneously all three CPAs.
+This work presented a CPA retrieval using Landsat 8 data based a spectrum matching and LUT approach. The retrieval results shown in this study are promising for the use of Landsat 8 for monitoring of coastal and inland waters. The retrieval process was applied to three Landsat 8 scenes over the same study area and compared with field measurements. Maps of CPA concentrations show the expected trends of low concentration in the lake and higher concentration in the ponds. The retrieval was validated with ground-truth data taken at the same time as the satellite overpass. The comparison with field measurements exhibit error comparable with previous performance predictions for Landsat 8 \citep{Gerace:2013}. An advantage of this retrieval algorithm is that it retrieves simultaneously all three CPAs. This is accomplished because every combination of CPAs has associated a unique spectral $R_{rs}$ generated in Ecolight.
 
 The MoB-ELM atmospheric correction algorithm presented here tries to avoid the use of field reflectance ground-truth as commonly used in the traditional ELM method. In the MoB-ELM, the bright pixel is obtained from either the Landsat reflectance product over a bright target in the scene or from an Ecolight run simulating a water body with high concentration of CPAs in the scene. The dark pixel is obtained from an Ecolight run simulating a water body with low concentration of CPAs present in the scene. This algorithm does not require zero water signal in the NIR bands, so it could be applied to highly turbid waters. This algorithm assumes that the atmosphere is the same and uniform over the area of study.
 
@@ -672,7 +697,9 @@ Some pixels from the lake shoreline include signal from the bottom causing outli
 
 For further validation, this method needs to be applied to more scenes over the same area of study or to a different area of study where sufficient ground-truth data are available to increase the number of samples to be compared. Additionally, the results from the MoB-ELM and the retrieval algorithm will be compared with standard products derived from ocean color satellites (NASA OBPG standard ocean color products).
 
-To date, there are no other sources of free access, open to the international science community, satellite imagery with similar spatial resolution or similar standard product (e.g. MODIS chl-a product) to compare with. Therefore, a direct comparison of results from our approach with typical algorithms over water bodies smaller than one kilometer is not possible. This is a challenge that needs to be addressed since there is a particular interest from local communities for monitoring water bodies that are not resolvable by current ocean color satellites. This is the case of the ponds included in this study, which are less than one kilometer in size. This fact makes Landsat 8 a pioneer in the retrieval of water quality parameters over medium to small water bodies. This also opens a need for more field measurement collection (i.e. IOPs, $R_{rs}$ and concentrations) on a regular basis where water quality needs to be assessed for the validation of products derived from moderate spatial resolution sensors such a Landsat 8 and the upcoming Sentinel 2. 
+To date, there are no other sources of free access, open to the international science community, satellite imagery with similar spatial resolution or similar standard product (e.g. MODIS chl-a product) to compare with Landsat 8. Therefore, a direct comparison of results from our approach with typical algorithms over water bodies smaller than one kilometer is not possible. This is a challenge that needs to be addressed since there is a particular interest from local communities for monitoring water bodies that are not resolvable by current ocean color satellites due to coarse spatial resolution. This is the case of the ponds included in this study, which are less than one kilometer in size. This fact makes Landsat 8 a step forward in the retrieval of water quality parameters over medium to small water bodies. This also opens a need for more field measurement collection (i.e. IOPs, $R_{rs}$ and concentrations) on a regular basis where water quality needs to be assessed for the validation of products derived from moderate spatial resolution sensors such as Landsat 8 and Sentinel 2. 
+
+Landsat 8's radiometric resolution, new coastal and cirrus band, slightly narrower bands, and improved SNR allow a better retrieval of water quality information from inland and coastal water compared with its predecessors, i.e. Landsat 1-7. The authors also recognize that its 16-day repeat coverage and the lack of a red edge band suitable for phycocyanin still pose major limitations for its operational use in the water studies. However, Landsat 8 is definitely preparing the path for future missions with high spatial resolutions.
 % Challenges
 
 %%%%%%%%%%%%%%%%%%% SECTION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
