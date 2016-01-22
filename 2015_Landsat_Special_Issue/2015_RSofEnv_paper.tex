@@ -350,7 +350,7 @@ LONGS & 112.76 & 46.0 & 1.1953 \\
 %   \caption{Landsat 8 scene over the Rochester Embayment for the water sample collection on 09-29-2014 (scene LC80170302014272LGN00).\label{fig:092914Sites} } 
 % \end{figure}
 
-The absorption properties for the component chlorophyll-{\it a} were input by user-supplied data files containing mass-specific absorption coefficients as a function of wavelength. This mass-specific absorption spectra is shown in \autoref{fig:IOPs}.(a)\todo{typo in a* units!}. This data was obtained from lab measurements of absorption coefficient spectra for the water sample ONTNS with a spectrophotometric method following SeaWiFS protocols \citep{Mueller1995}. The spectrophotometric method yields absorption coefficients, which are converted to mass-specific absorption coefficients by dividing the absorption coefficients spectra by its concentration ($C_a$). This $C_a$ was determined in lab by a spectrophotometric method as well. For the chlorophyll-{\it a} scattering properties, the same mass-specific scattering coefficient data used in \citet{Raqueno:2000} and \citet{Raqueno:2003} were utilized. These data were characterized through laboratory studies as part of a data collection on May 20, 1999 over the same area of study. These data were used because not current scattering measurements were available over the area of study. These data are shown in \autoref{fig:IOPs}.(b). A Fournier-Forand (FF) phase function with a backscatter fraction of 0.010 was selected as the scattering phase function for chlorophyll-{\it a}. The details about the selection of this specific phase function will be described below.
+The absorption properties for the component chlorophyll-{\it a} were input by user-supplied data files containing mass-specific absorption coefficients as a function of wavelength. This mass-specific absorption spectra is shown in \autoref{fig:IOPs}.(a). This data was obtained from lab measurements of absorption coefficient spectra for the water sample ONTNS with a spectrophotometric method following SeaWiFS protocols \citep{Mueller1995}. The spectrophotometric method yields absorption coefficients, which are converted to mass-specific absorption coefficients by dividing the absorption coefficients spectra by its concentration ($C_a$). This $C_a$ was determined in lab by a spectrophotometric method as well. For the chlorophyll-{\it a} scattering properties, the same mass-specific scattering coefficient data used in \citet{Raqueno:2000} and \citet{Raqueno:2003} were utilized. These data were characterized through laboratory studies as part of a data collection on May 20, 1999 over the same area of study. These data were used because not current scattering measurements were available over the area of study. These data are shown in \autoref{fig:IOPs}.(b). A Fournier-Forand (FF) phase function with a backscatter fraction of 0.010 was selected as the scattering phase function for chlorophyll-{\it a}. The details about the selection of this specific phase function will be described below.
 
 For the CDOM component, the absorption specification $a_{CDOM}(\lambda)$ was input following the format required by Ecolight. First, the absorption coefficients were determined by spectrophotometric lab measurements for the ONTNS water sample. These data are shown in \autoref{fig:IOPs}.(c). Then, the data were normalized by the absorption value $a(\lambda_0)=0.1151~[1/m]$ at the reference wavelength $\lambda_0=440~nm$, so that $a^*(\lambda_0)=1$. These normalized data are shown in \autoref{fig:IOPs}.(d) as purple dots. An exponential curve with the following equation
 
@@ -370,14 +370,14 @@ The following parameters were input to Ecolight in order to simulate the Landsat
 \begin{figure}[htb!]
     \begin{minipage}[c]{0.48\linewidth}
       \centering
-      \includegraphics[height=6cm]{./Images/CHLaastJavier.eps}
+      \includegraphics[height=6cm]{./Images/ONTNS_chlaast.eps}
       % \caption{Chlorophyll mass-specific absorption spectra used for the determination of the $R_{rs}$ spectra of the dark pixel in Ecolight. \label{fig:CHLaast} } 
     \centerline{(a)}\medskip
     \end{minipage}  
     \hfill
     \begin{minipage}[c]{0.48\linewidth}
       \centering
-      \includegraphics[height=6cm]{./Images/CHLbastRolo.eps}
+      \includegraphics[height=6cm]{./Images/Rolo_chlbast.eps}
       % \caption{Chlorophyll mass-specific scattering spectra used for the determination of the $R_{rs}$ spectra of the dark pixel in Ecolight. \label{fig:CHLbast} } 
       \centerline{(b)}\medskip
     \end{minipage}  
@@ -405,14 +405,14 @@ The following parameters were input to Ecolight in order to simulate the Landsat
 % \begin{figure}[htbp!]
   \begin{minipage}[c]{0.48\linewidth}
       \centering
-      \includegraphics[height=5.5cm]{./Images/SMaastJavier.eps}
+      \includegraphics[height=5.5cm]{./Images/ONTNS_SMaast.eps}
       % \caption{SM mass-specific absorption spectra used for the determination of the $R_{rs}$ spectra of the dark pixel in Ecolight. \label{fig:SMaast} } 
       \centerline{(e)}\medskip
     \end{minipage}  
     \hfill
     \begin{minipage}[c]{0.48\linewidth}
       \centering
-      \includegraphics[height=5.5cm]{./Images/SMbastRolo.eps}
+      \includegraphics[height=5.5cm]{./Images/Rolo_SMbast.eps}
       % \caption{SM mass-specific scattering spectra used for the determination of the $R_{rs}$ spectra of the dark pixel in HydroLight. \label{fig:SMbast} } 
       \centerline{(f)}\medskip
     \end{minipage}
@@ -423,7 +423,7 @@ The following parameters were input to Ecolight in order to simulate the Landsat
     % \caption{SM mass-specific absorption (a) and scattering (b) coefficient spectra used for the determination of the $R_{rs}$ spectra of the dark pixel in Ecolight. \label{fig:SMcoef} }
 \end{figure}
 
-Ecolight is run once with all the inputs described above and the spectral $R_{rs}$ for the dark pixel is obtained. This spectral $R_{rs}$ is a function of 120 wavelengths, and therefore, it needs to be spectrally sampled to the OLI's band-averaged relative spectral response (RSR) to obtain the values for the OLI's eight bands. \autoref{fig:MOBELMpxls}.(b)\todo{change ONTOS to ONTNS in fig.}~ shows this $R_{rs}$ spectra as a black dashed line. Using a $R_{rs}$ generated in Ecolight (i.e. a model-based dark pixel) instead of an {\it in situ} dark target in the MoB-ELM helps account for differences between atmospheric correction and the Hydrolight-based LUT used for retrieving the CPA concentrations (explained in the following Section \ref{subsec:LUT}).
+Ecolight is run once with all the inputs described above and the spectral $R_{rs}$ for the dark pixel is obtained. This spectral $R_{rs}$ is a function of 120 wavelengths, and therefore, it needs to be spectrally sampled to the OLI's band-averaged relative spectral response (RSR) to obtain the values for the OLI's eight bands. \autoref{fig:MOBELMpxls}.(b) shows this $R_{rs}$ spectra as a black dashed line. Using a $R_{rs}$ generated in Ecolight (i.e. a model-based dark pixel) instead of an {\it in situ} dark target in the MoB-ELM helps account for differences between atmospheric correction and the Hydrolight-based LUT used for retrieving the CPA concentrations (explained in the following Section \ref{subsec:LUT}).
 
 The radiance spectra for the dark pixel is obtained from an ROI in the Landsat 8 radiance image that includes the ONTNS station. Statistics are computed in this dark region, and the mean values in each band is used as the radiance spectra for the dark pixel. This radiance spectra for the dark pixel is shown in \autoref{fig:MOBELMpxls}.(a) as a black dashed line.
 
