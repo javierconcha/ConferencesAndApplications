@@ -138,13 +138,13 @@ We developed a process to retrieve CPAs from Landsat 8 imagery over Case 2 water
 \begin{figure}[htbp!]
   	\begin{minipage}[c]{0.48\linewidth}
     	\centering
-    	\includegraphics[trim=30 350 30 350,clip,width=8cm]{./Images/WholeImage130919}
+    	\includegraphics[trim=30 350 30 350,clip,width=8cm]{./Images/WholeImage130919.eps}
     	\centerline{(a)}\medskip
   	\end{minipage}
   	\hfill
   	\begin{minipage}[d]{0.48\linewidth}
     	\centering
-    	\includegraphics[trim=0 150 30 50,width=8cm]{./Images/WaterAndDTROC}
+    	\includegraphics[trim=0 150 30 50,width=8cm]{./Images/WaterAndDTROC.eps}
     	\centerline{(b)}\medskip
     \end{minipage}	
 
@@ -159,7 +159,7 @@ The retrieval process described in this work was first introduced by \citet{Conc
 
 \begin{figure}[htb]
   \centering
-    \includegraphics[height=8cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/ThesisPhD/Images/UltimateProcess.pdf}
+    \includegraphics[height=8cm]{./Images/UltimateProcess.pdf}
     \caption{Retrieval process flow diagram. The radiance image from the satellite is first corrected for atmospheric effects, having as result $R_{rs}$ spectra for each water pixel in the image. Then, a spectrum-matching methodology is used to find the closest match in the least-squared sense for the water pixels with unknown CPAs concentration in the LUT of water pixels with known CPAs concentration. The final result is a concentration map for each CPA.  \label{fig:retrieval} }
 \end{figure}
 
@@ -299,14 +299,14 @@ Once the master PIF mask is applied to the Provisional Landsat 8 Surface Reflect
 \begin{figure}[htb]
   \begin{minipage}[c]{0.48\linewidth}
     \centering
-      \includegraphics[width=8cm]{./Images/ELMrad130929_150422}
+      \includegraphics[width=8cm]{./Images/ELMrad130929_150422.eps}
     % \vspace{1.5cm}
     \centerline{(a)}\medskip
   \end{minipage}
   \hfill
   \begin{minipage}[d]{0.48\linewidth}
     \centering
-      \includegraphics[width=8cm]{./Images/ELMRrs130929_150422}
+      \includegraphics[width=8cm]{./Images/ELMRrs130929_150422.eps}
     % \vspace{1.5cm}
     \centerline{(b)}\medskip
   \end{minipage}
@@ -519,7 +519,7 @@ The MoB-ELM atmospheric correction algorithm discussed above was applied to the 
   \hfill
   \begin{minipage}[d]{0.49\linewidth}
     \centering
-      \includegraphics[height=6cm]{./Images/ROI130919_150422}
+      \includegraphics[height=6cm]{./Images/ROI130919_150422.eps}
       \centerline{(b)}\medskip
   \end{minipage} 
 
@@ -533,37 +533,37 @@ After atmospherically correcting the Landsat 8 image, the retrieval of CPAs algo
 \begin{figure}[htb!]
   \begin{minipage}[c]{0.55\linewidth}
   		\centering
-      \begin{overpic}[trim=140 0 0 0,clip,width=8.0cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/ThesisPhD/Images/CHLmap130919masked.png} \put (5,20) {(a)}
+      \begin{overpic}[trim=0 0 0 0,clip,width=8.0cm]{./Images/CHLmap130919masked.eps} \put (5,25) {(a)}
       \end{overpic} 
   \end{minipage}
   \hfill
   \begin{minipage}[d]{0.38\linewidth}
-      \begin{overpic}[trim=40 0 0 25,clip,height=5.0cm]{./Images/CHLretvsmea130919_150420} \put (20,65) {(b)}
+      \begin{overpic}[trim=40 0 0 25,clip,height=5.0cm]{./Images/CHLretvsmea130919_150420.eps} \put (20,65) {(b)}
       \end{overpic}
   \end{minipage}\\
-\vspace{.3cm} \\
+% \vspace{.1cm} \\
 %% TSS
   \begin{minipage}[c]{0.55\linewidth}
   		\centering
-      \begin{overpic}[trim=140 0 0 0,clip,width=8.0cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/ThesisPhD/Images/TSSmap130919masked.png} \put (5,20) {(c)}
+      \begin{overpic}[trim=0 0 0 0,clip,width=8.0cm]{./Images/TSSmap130919masked.eps} \put (5,25) {(c)}
       \end{overpic} 
   \end{minipage}
   \hfill
   \begin{minipage}[d]{0.38\linewidth}
-      \begin{overpic}[trim=40 0 0 25,clip,height=5.0cm]{./Images/TSSretvsmea130919_150420} \put (20,65) {(d)}
+      \begin{overpic}[trim=40 0 0 25,clip,height=5.0cm]{./Images/TSSretvsmea130919_150420.eps} \put (20,65) {(d)}
       \end{overpic}
   \end{minipage}\\
-\vspace{.05cm} \\
+% \vspace{.05cm} \\
 
 %% CDOM
   \begin{minipage}[c]{0.55\linewidth}
   		\centering
-      \begin{overpic}[trim=140 0 0 0,clip,width=8.0cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/ThesisPhD/Images/CDOmap130919masked.png} \put (5,20) {(e)}
+      \begin{overpic}[trim=0 0 0 0,clip,width=8.0cm]{./Images/CDOmap130919masked.eps} \put (5,25) {(e)}
       \end{overpic}  
   \end{minipage}
   \hfill
   \begin{minipage}[d]{0.38\linewidth}
-      \begin{overpic}[trim=40 0 0 25,clip,height=5.0cm]{./Images/CDOMretvsmea130919_150420} \put (20,65) {(f)}
+      \begin{overpic}[trim=40 0 0 25,clip,height=5.0cm]{./Images/CDOMretvsmea130919_150420.eps} \put (20,65) {(f)}
       \end{overpic}
   \end{minipage}
 % 
@@ -582,41 +582,41 @@ After atmospherically correcting the Landsat 8 image, the retrieval of CPAs algo
 \begin{figure}[htb!]
   \begin{minipage}[c]{0.49\linewidth}
       \centering
-      \begin{overpic}[trim=140 0 0 120,clip,width=8cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/ThesisPhD/Images/CHLmap140929masked.png} \put (5,20) {(a)}
+      \begin{overpic}[trim=0 0 0 0,clip,width=8cm]{./Images/CHLmap140929masked.eps} \put (5,20) {(a)}
       \end{overpic}   
   \end{minipage}
   \hfill
   \begin{minipage}[c]{0.49\linewidth}
       \centering
-      \begin{overpic}[trim=140 0 0 120,clip,width=8.0cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/ThesisPhD/Images/CHLmap150916masked_2.png} \put (5,20) {(b)}
+      \begin{overpic}[trim=0 0 0 0,clip,width=8.0cm]{./Images/CHLmap150916masked_2.eps} \put (5,20) {(b)}
       \end{overpic}   
   \end{minipage}\\
-  \vspace{.3cm}\\
+  % \vspace{.3cm}\\
 
 %% TSS
   \begin{minipage}[c]{0.49\linewidth}
       \centering
-      \begin{overpic}[trim=140 0 0 120,clip,width=8cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/ThesisPhD/Images/TSSmap140929masked.png} \put (5,20) {(c)}
+      \begin{overpic}[trim=0 0 0 0,clip,width=8cm]{./Images/TSSmap140929masked.eps} \put (5,20) {(c)}
       \end{overpic}   
   \end{minipage}
   \hfill
   \begin{minipage}[c]{0.49\linewidth}
       \centering
-      \begin{overpic}[trim=140 0 0 120,clip,width=8.0cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/ThesisPhD/Images/TSSmap150916masked_2.png} \put (5,20) {(d)}
+      \begin{overpic}[trim=0 0 0 0,clip,width=8.0cm]{./Images/TSSmap150916masked_2.eps} \put (5,20) {(d)}
       \end{overpic}   
   \end{minipage}\\
-  \vspace{.3cm}\\
+  % \vspace{.3cm}\\
 
 %% CDOM
   \begin{minipage}[c]{0.49\linewidth}
       \centering
-      \begin{overpic}[trim=140 0 0 120,clip,width=8cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/ThesisPhD/Images/CDOmap140929masked.png} \put (5,20) {(e)}
+      \begin{overpic}[trim=0 0 0 0,clip,width=8cm]{./Images/CDOmap140929masked.eps} \put (5,20) {(e)}
       \end{overpic}   
   \end{minipage}
   \hfill
   \begin{minipage}[c]{0.49\linewidth}
       \centering
-      \begin{overpic}[trim=140 0 0 120,clip,width=8.0cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/ThesisPhD/Images/CDOmap150916masked_2.png} \put (5,20) {(f)}
+      \begin{overpic}[trim=0 0 0 0,clip,width=8.0cm]{./Images/CDOmap150916masked_2.eps} \put (5,20) {(f)}
       \end{overpic}   
   \end{minipage}
 
@@ -647,21 +647,21 @@ The numerical results are summarized in \autoref{fig:RMSE} where the root mean s
   \begin{minipage}[c]{0.32\linewidth}
   \centering
   % CHL
-      \begin{overpic}[trim=0 0 0 0,clip,width=5.1cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/CHLretvsmea151211.png} \put (85,55) {(a)}
+      \begin{overpic}[trim=0 0 0 0,clip,width=5.1cm]{./Images/CHLretvsmea151211.eps} \put (85,55) {(a)}
       \end{overpic}   
   \end{minipage}
   \hfill
   % TSS
   \begin{minipage}[d]{0.32\linewidth}
   \centering
-      \begin{overpic}[trim=0 0 0 0,clip,width=5.1cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/TSSretvsmea151211.png} \put (85,55) {(b)}
+      \begin{overpic}[trim=0 0 0 0,clip,width=5.1cm]{./Images/TSSretvsmea151211.eps} \put (85,55) {(b)}
       \end{overpic}   
   \end{minipage}
   \hfill
   % CDOM
   \begin{minipage}[c]{0.32\linewidth}
   \centering
-      \begin{overpic}[trim=0 0 0 0,clip,width=5.1cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/CDOMretvsmea151211.png} \put (85,55) {(c)}
+      \begin{overpic}[trim=0 0 0 0,clip,width=5.1cm]{./Images/CDOMretvsmea151211.eps} \put (85,55) {(c)}
       \end{overpic}   
   \end{minipage}
 
@@ -671,7 +671,7 @@ The numerical results are summarized in \autoref{fig:RMSE} where the root mean s
 %^^^^^^^^^^^^^^^^^^^  FIGURE ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 \begin{figure}[htb]
   \centering
-      \begin{overpic}[height=5cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/RMSE_ret151211.png}
+      \begin{overpic}[height=5cm]{./Images/RMSE_ret151211.eps}
       % \vspace{-.4cm}
       % \put (4.5,27.8) {\rotatebox{90}{N}}
       \end{overpic} 
@@ -744,11 +744,11 @@ The authors would like to extend a special thanks to the United States Geologica
 \bibliography{javier_bib}
 
 
-\listoffigures
-% \addcontentsline{toc}{chapter}{List of Figures}
+% \listoffigures
+% % \addcontentsline{toc}{chapter}{List of Figures}
 
-\listoftables
-% \addcontentsline{toc}{chapter}{List of Tables}
+% \listoftables
+% % \addcontentsline{toc}{chapter}{List of Tables}
 
 
 \end{document}

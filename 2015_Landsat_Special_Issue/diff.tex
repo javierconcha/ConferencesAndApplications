@@ -1,7 +1,7 @@
 % \documentclass[twocolumn,3p]{elsarticle}
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL 2015_RSofEnv_paperSUBMITTED.tex   Tue Dec 22 18:44:01 2015
-%DIF ADD 2015_RSofEnv_paper.tex            Fri Jan 22 01:38:12 2016
+%DIF ADD 2015_RSofEnv_paper.tex            Fri Jan 22 01:52:00 2016
 \documentclass[onecolumn,3p,letterpaper]{elsarticle}
 % \usepackage{setspace} % added by JC 
 % \doublespacing % added by JC
@@ -798,56 +798,24 @@ A LUT of $R_{rs}$ is generated in Ecolight for different combinations of CPA con
 \caption{Input parameters for the LUT generation in Ecolight for the Landsat 8 image acquired on 09-19-2013. \label{tab:LUTconc2}} 
 \small
 \centering
-    \DIFdelbeginFL %DIFDELCMD < \begin{tabular}{c|c|c|c|c}
-%DIFDELCMD < 		%%%
-\DIFdelendFL \DIFaddbeginFL \begin{tabular}{ccccc}
-    \DIFaddendFL \hline \hline
-    \DIFdelbeginFL \DIFdelFL{IOPs Input }\DIFdelendFL \DIFaddbeginFL \multirow{2}{*}{IOPs Input} \DIFaddendFL & \bfseries{$C_a$}    & \bfseries{$TSS$}  & \DIFdelbeginFL %DIFDELCMD < \bfseries{$a_{CDOM}(440nm)$} %%%
-\DIFdelendFL \DIFaddbeginFL \bfseries{$a_{CDOM}(440)$} \DIFaddendFL & \bfseries{$b_b/b$}\\
+    \begin{tabular}{ccccc}
+    \hline \hline
+    \multirow{2}{*}{IOPs Input} & \bfseries{$C_a$}    & \bfseries{$TSS$}  & \bfseries{$a_{CDOM}(440)$} & \bfseries{$b_b/b$}\\
                & $[mg~m^{-3}]$      & $[g~m^{-3}]$      &   $[1/m]$                  &  $[\%]$           \\ \hline \hline
-\DIFdelbeginFL \DIFdelFL{ONTNS 	}\DIFdelendFL \DIFaddbeginFL \multirow{7}{*}{ONTNS} \DIFaddendFL & 0.1   & 1.0  &  0.11 &  \DIFdelbeginFL \DIFdelFL{0.3 	}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{0.5 }\DIFaddendFL \\
-                       \DIFdelbeginFL \DIFdelFL{-- 		}\DIFdelendFL & 0.5   & 2.0  &  0.15 &  \DIFdelbeginFL \DIFdelFL{0.4 	}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{1.0 }\DIFaddendFL \\
-                       \DIFdelbeginFL \DIFdelFL{--    	}\DIFdelendFL & 1.0   & 5.0  &  0.21 &  \DIFdelbeginFL \DIFdelFL{0.5 	}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{1.4 }\DIFaddendFL \\
-                       \DIFdelbeginFL \DIFdelFL{--    	}\DIFdelendFL & 3.0   & 10.0 &  0.6  &  \DIFdelbeginFL \DIFdelFL{0.6 	}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{2.0 }\DIFaddendFL \\
-                       \DIFdelbeginFL \DIFdelFL{-- 		}\DIFdelendFL & 10.0  & --   &  --   &  \DIFdelbeginFL \DIFdelFL{0.7	}%DIFDELCMD < \\	
-%DIFDELCMD < %%%
-\DIFdelendFL --  \DIFaddbeginFL \\
-                       \DIFaddendFL & 20.0  & --   &  --   &  \DIFdelbeginFL \DIFdelFL{1.0	}%DIFDELCMD < \\	
-%DIFDELCMD < %%%
-\DIFdelendFL --  \DIFaddbeginFL \\
-                       \DIFaddendFL & 40.0  & --   &  --   &  \DIFdelbeginFL \DIFdelFL{1.4	}%DIFDELCMD < \\
-%DIFDELCMD < %%%
-\DIFdelendFL --  \DIFdelbeginFL %DIFDELCMD < &  %%%
-\DIFdelFL{--       }%DIFDELCMD < & %%%
-\DIFdelFL{-- 		}%DIFDELCMD < &  %%%
-\DIFdelFL{--		}%DIFDELCMD < &  %%%
-\DIFdelFL{2.0	}\DIFdelendFL \\ \hline
+\multirow{7}{*}{ONTNS} & 0.1   & 1.0  &  0.11 &  0.5 \\
+                       & 0.5   & 2.0  &  0.15 &  1.0 \\
+                       & 1.0   & 5.0  &  0.21 &  1.4 \\
+                       & 3.0   & 10.0 &  0.6  &  2.0 \\
+                       & 10.0  & --   &  --   &  --  \\
+                       & 20.0  & --   &  --   &  --  \\
+                       & 40.0  & --   &  --   &  --  \\ \hline
 
-\DIFdelbeginFL \DIFdelFL{LONGS 	}\DIFdelendFL \DIFaddbeginFL \multirow{5}{*}{LONGS} \DIFaddendFL & 60.0  & 25.0 & 1.0   &  \DIFdelbeginFL \DIFdelFL{0.3  }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{0.5 }\DIFaddendFL \\  
-                       \DIFdelbeginFL \DIFdelFL{--    	}\DIFdelendFL & 90.0  & 45.0 & 1.2   &  \DIFdelbeginFL \DIFdelFL{0.4  }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{1.0 }\DIFaddendFL \\  
-                       \DIFdelbeginFL \DIFdelFL{--    	}\DIFdelendFL & 110.0 & 50.0 & --    &  \DIFdelbeginFL \DIFdelFL{0.5  }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{1.4 }\DIFaddendFL \\  
-                       \DIFdelbeginFL \DIFdelFL{--    	}\DIFdelendFL & \DIFdelbeginFL \DIFdelFL{--   	}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{135.0 }\DIFaddendFL & --   & --    &  \DIFdelbeginFL \DIFdelFL{0.6  }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{2.0 }\DIFaddendFL \\  
-                       \DIFdelbeginFL \DIFdelFL{--    	}\DIFdelendFL & \DIFdelbeginFL \DIFdelFL{--   	}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{150.0 }\DIFaddendFL & --   & --    &  \DIFdelbeginFL \DIFdelFL{0.7 	}%DIFDELCMD < \\  
-%DIFDELCMD < %%%
-\DIFdelendFL --  \DIFdelbeginFL %DIFDELCMD < &  %%%
-\DIFdelFL{--   	}%DIFDELCMD < & %%%
-\DIFdelFL{--   		}%DIFDELCMD < &  %%%
-\DIFdelFL{--  		}%DIFDELCMD < &  %%%
-\DIFdelFL{1.0 	}\DIFdelendFL \\  \DIFdelbeginFL \DIFdelFL{--    	}%DIFDELCMD < &  %%%
-\DIFdelFL{--   	}%DIFDELCMD < & %%%
-\DIFdelFL{--   		}%DIFDELCMD < &  %%%
-\DIFdelFL{--  		}%DIFDELCMD < &  %%%
-\DIFdelFL{1.4 	}%DIFDELCMD < \\  
-%DIFDELCMD < %%%
-\DIFdelFL{--    	}%DIFDELCMD < &  %%%
-\DIFdelFL{--   	}%DIFDELCMD < & %%%
-\DIFdelFL{--   		}%DIFDELCMD < &  %%%
-\DIFdelFL{--  		}%DIFDELCMD < &  %%%
-\DIFdelFL{2.0 	}%DIFDELCMD < \\  %%%
-\DIFdelendFL \hline \hline    
-    %DIF <  --    	&  135.0	& --   		&  --  		&  --  	\\  
-%DIF <  --    	&  150.0	& --   		&  --  		&  --  	\\ \hline 
-	 	\end{tabular}
+\multirow{5}{*}{LONGS} & 60.0  & 25.0 & 1.0   &  0.5 \\  
+                       & 90.0  & 45.0 & 1.2   &  1.0 \\  
+                       & 110.0 & 50.0 & --    &  1.4 \\  
+                       & 135.0 & --   & --    &  2.0 \\  
+                       & 150.0 & --   & --    &  --  \\  \hline \hline    
+    \end{tabular}
 	\end{table}
 
 Then, the LUT of $R_{rs}$ obtained from Ecolight is spectrally sampled to the OLI's spectral response. As an example, the LUT created with the parameters shown in \autoref{tab:LUTconc2} in Ecolight for the Landsat 8 image acquired on 09-19-2013 is shown in \DIFdelbegin %DIFDELCMD < \autoref{fig:LUT}%%%
@@ -895,7 +863,7 @@ For each water pixel in the atmospherically corrected Landsat 8 image, the RMSE 
 
 %DIF >  -----------------------------------------
 \subsubsection{\DIFadd{Non-linear Optimization}}
-\DIFadd{The spectral matching is made by a least square error minimization algorithm using the ``}\texttt{\DIFadd{lsqnonlin}}\DIFadd{'' package of the MATLAB's Optimization Toolbox. }\texttt{\DIFadd{lsqnonlin}} \DIFadd{solves least-squares problems, including nonlinear data-fitting problems \mbox{%DIFAUXCMD
+\DIFadd{The spectral matching is made by a least square error minimization algorithm using the }\texttt{\DIFadd{lsqnonlin}}\DIFadd{ package of the MATLAB's Optimization Toolbox. }\texttt{\DIFadd{lsqnonlin}} \DIFadd{solves least-squares problems, including nonlinear data-fitting problems \mbox{%DIFAUXCMD
 \citep{MatlabHelp}}%DIFAUXCMD
 . If $f(x)$ is a user-defined vector function defined as
 }\begin{equation}
@@ -991,7 +959,7 @@ After atmospherically correcting the Landsat 8 image, the retrieval of CPAs algo
   		\centering
       \DIFdelbeginFL %DIFDELCMD < \includegraphics[trim=0 20 0 30,clip,height=6.8cm]{./Images/CHLmap130919_150420}  
 %DIFDELCMD <   %%%
-\DIFdelendFL \DIFaddbeginFL \begin{overpic}[trim=140 0 0 0,clip,width=8.0cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/ThesisPhD/Images/CHLmap130919masked.png} \put \DIFaddFL{(5,20) }{\DIFaddFL{(a)}}
+\DIFdelendFL \DIFaddbeginFL \begin{overpic}[trim=140 0 0 0,clip,width=8.0cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/ThesisPhD/Images/CHLmap130919masked.png} \put (5,20) {\DIFaddFL{(a)}}
       \end{overpic} 
   \DIFaddendFL \end{minipage}
   \hfill
@@ -999,7 +967,7 @@ After atmospherically correcting the Landsat 8 image, the retrieval of CPAs algo
 %DIFDELCMD <       \includegraphics[trim=40 0 0 20,clip,height=5.5cm]{./Images/CHLretvsmea130919_150420}
 %DIFDELCMD <   %%%
 \DIFdelendFL \DIFaddbeginFL \begin{minipage}[d]{0.38\linewidth}
-      \begin{overpic}[trim=40 0 0 25,clip,height=5.0cm]{./Images/CHLretvsmea130919_150420} \put \DIFaddFL{(20,65) }{\DIFaddFL{(b)}}
+      \begin{overpic}[trim=40 0 0 25,clip,height=5.0cm]{./Images/CHLretvsmea130919_150420} \put (20,65) {\DIFaddFL{(b)}}
       \end{overpic}
   \DIFaddendFL \end{minipage}%DIF <  
 \DIFaddbeginFL \\
@@ -1009,7 +977,7 @@ After atmospherically correcting the Landsat 8 image, the retrieval of CPAs algo
   		\centering
       \DIFdelbeginFL %DIFDELCMD < \includegraphics[trim=0 30 0 10,clip,height=6.8cm]{./Images/TSSmap130919_150420}  
 %DIFDELCMD <   %%%
-\DIFdelendFL \DIFaddbeginFL \begin{overpic}[trim=140 0 0 0,clip,width=8.0cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/ThesisPhD/Images/TSSmap130919masked.png} \put \DIFaddFL{(5,20) }{\DIFaddFL{(c)}}
+\DIFdelendFL \DIFaddbeginFL \begin{overpic}[trim=140 0 0 0,clip,width=8.0cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/ThesisPhD/Images/TSSmap130919masked.png} \put (5,20) {\DIFaddFL{(c)}}
       \end{overpic} 
   \DIFaddendFL \end{minipage}
   \hfill
@@ -1017,7 +985,7 @@ After atmospherically correcting the Landsat 8 image, the retrieval of CPAs algo
 %DIFDELCMD <       \includegraphics[trim=40 0 0 0,clip,height=5.5cm]{./Images/TSSretvsmea130919_150420}
 %DIFDELCMD <   %%%
 \DIFdelendFL \DIFaddbeginFL \begin{minipage}[d]{0.38\linewidth}
-      \begin{overpic}[trim=40 0 0 25,clip,height=5.0cm]{./Images/TSSretvsmea130919_150420} \put \DIFaddFL{(20,65) }{\DIFaddFL{(d)}}
+      \begin{overpic}[trim=40 0 0 25,clip,height=5.0cm]{./Images/TSSretvsmea130919_150420} \put (20,65) {\DIFaddFL{(d)}}
       \end{overpic}
   \DIFaddendFL \end{minipage}\DIFaddbeginFL \\
 \vspace{.05cm} \\
@@ -1028,7 +996,7 @@ After atmospherically correcting the Landsat 8 image, the retrieval of CPAs algo
   		\centering
       \DIFdelbeginFL %DIFDELCMD < \includegraphics[trim=0 0 0 30,clip,height=6.8cm]{./Images/CDOMmap130919_150420}  
 %DIFDELCMD <   %%%
-\DIFdelendFL \DIFaddbeginFL \begin{overpic}[trim=140 0 0 0,clip,width=8.0cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/ThesisPhD/Images/CDOmap130919masked.png} \put \DIFaddFL{(5,20) }{\DIFaddFL{(e)}}
+\DIFdelendFL \DIFaddbeginFL \begin{overpic}[trim=140 0 0 0,clip,width=8.0cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/ThesisPhD/Images/CDOmap130919masked.png} \put (5,20) {\DIFaddFL{(e)}}
       \end{overpic}  
   \DIFaddendFL \end{minipage}
   \hfill
@@ -1036,7 +1004,7 @@ After atmospherically correcting the Landsat 8 image, the retrieval of CPAs algo
 %DIFDELCMD <       \includegraphics[trim=40 0 0 0,clip,height=5.5cm]{./Images/CDOMretvsmea130919_150420}
 %DIFDELCMD <   %%%
 \DIFdelendFL \DIFaddbeginFL \begin{minipage}[d]{0.38\linewidth}
-      \begin{overpic}[trim=40 0 0 25,clip,height=5.0cm]{./Images/CDOMretvsmea130919_150420} \put \DIFaddFL{(20,65) }{\DIFaddFL{(f)}}
+      \begin{overpic}[trim=40 0 0 25,clip,height=5.0cm]{./Images/CDOMretvsmea130919_150420} \put (20,65) {\DIFaddFL{(f)}}
       \end{overpic}
   \DIFaddendFL \end{minipage}
 % 
@@ -1060,13 +1028,13 @@ After atmospherically correcting the Landsat 8 image, the retrieval of CPAs algo
       \DIFaddendFL \centering
       \DIFdelbeginFL %DIFDELCMD < \includegraphics[trim=0 0 0 30,clip,height=7cm]{./Images/CHLmap140929_150420}  
 %DIFDELCMD <   %%%
-\DIFdelendFL \DIFaddbeginFL \begin{overpic}[trim=140 0 0 120,clip,width=8cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/ThesisPhD/Images/CHLmap140929masked.png} \put \DIFaddFL{(5,20) }{\DIFaddFL{(a)}}
+\DIFdelendFL \DIFaddbeginFL \begin{overpic}[trim=140 0 0 120,clip,width=8cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/ThesisPhD/Images/CHLmap140929masked.png} \put (5,20) {\DIFaddFL{(a)}}
       \end{overpic}   
   \DIFaddendFL \end{minipage}
   \DIFaddbeginFL \hfill
   \begin{minipage}[c]{0.49\linewidth}
       \centering
-      \begin{overpic}[trim=140 0 0 120,clip,width=8.0cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/ThesisPhD/Images/CHLmap150916masked_2.png} \put \DIFaddFL{(5,20) }{\DIFaddFL{(b)}}
+      \begin{overpic}[trim=140 0 0 120,clip,width=8.0cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/ThesisPhD/Images/CHLmap150916masked_2.png} \put (5,20) {\DIFaddFL{(b)}}
       \end{overpic}   
   \end{minipage}\DIFaddendFL \\
   %DIF <  \hfill
@@ -1083,13 +1051,13 @@ After atmospherically correcting the Landsat 8 image, the retrieval of CPAs algo
       \DIFaddendFL \centering
       \DIFdelbeginFL %DIFDELCMD < \includegraphics[trim=0 0 0 30,clip,height=7cm]{./Images/TSSmap140929_150420}  
 %DIFDELCMD <   %%%
-\DIFdelendFL \DIFaddbeginFL \begin{overpic}[trim=140 0 0 120,clip,width=8cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/ThesisPhD/Images/TSSmap140929masked.png} \put \DIFaddFL{(5,20) }{\DIFaddFL{(c)}}
+\DIFdelendFL \DIFaddbeginFL \begin{overpic}[trim=140 0 0 120,clip,width=8cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/ThesisPhD/Images/TSSmap140929masked.png} \put (5,20) {\DIFaddFL{(c)}}
       \end{overpic}   
   \DIFaddendFL \end{minipage}
   \DIFaddbeginFL \hfill
   \begin{minipage}[c]{0.49\linewidth}
       \centering
-      \begin{overpic}[trim=140 0 0 120,clip,width=8.0cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/ThesisPhD/Images/TSSmap150916masked_2.png} \put \DIFaddFL{(5,20) }{\DIFaddFL{(d)}}
+      \begin{overpic}[trim=140 0 0 120,clip,width=8.0cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/ThesisPhD/Images/TSSmap150916masked_2.png} \put (5,20) {\DIFaddFL{(d)}}
       \end{overpic}   
   \end{minipage}\DIFaddendFL \\
   %DIF <  \hfill
@@ -1106,7 +1074,7 @@ After atmospherically correcting the Landsat 8 image, the retrieval of CPAs algo
       \DIFaddendFL \centering
       \DIFdelbeginFL %DIFDELCMD < \includegraphics[trim=0 0 0 30,clip,height=7cm]{./Images/CDOMmap140929_150420}  
 %DIFDELCMD <   %%%
-\DIFdelendFL \DIFaddbeginFL \begin{overpic}[trim=140 0 0 120,clip,width=8cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/ThesisPhD/Images/CDOmap140929masked.png} \put \DIFaddFL{(5,20) }{\DIFaddFL{(e)}}
+\DIFdelendFL \DIFaddbeginFL \begin{overpic}[trim=140 0 0 120,clip,width=8cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/ThesisPhD/Images/CDOmap140929masked.png} \put (5,20) {\DIFaddFL{(e)}}
       \end{overpic}   
   \DIFaddendFL \end{minipage}
   \DIFdelbeginFL %DIFDELCMD < \\
@@ -1118,7 +1086,7 @@ After atmospherically correcting the Landsat 8 image, the retrieval of CPAs algo
 \DIFdelendFL \DIFaddbeginFL \hfill
   \begin{minipage}[c]{0.49\linewidth}
       \centering
-      \begin{overpic}[trim=140 0 0 120,clip,width=8.0cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/ThesisPhD/Images/CDOmap150916masked_2.png} \put \DIFaddFL{(5,20) }{\DIFaddFL{(f)}}
+      \begin{overpic}[trim=140 0 0 120,clip,width=8.0cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/ThesisPhD/Images/CDOmap150916masked_2.png} \put (5,20) {\DIFaddFL{(f)}}
       \end{overpic}   
   \end{minipage}
 \DIFaddendFL 
@@ -1163,7 +1131,7 @@ The numerical results are summarized in \autoref{fig:RMSE} where the root mean s
   \DIFaddendFL % CHL
       \DIFdelbeginFL %DIFDELCMD < \includegraphics[trim=40 0 80 0,clip,height=5.1cm]{./Images/CHLretvsmea150423}  
 %DIFDELCMD <   %%%
-\DIFdelendFL \DIFaddbeginFL \begin{overpic}[trim=0 0 0 0,clip,width=5.1cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/CHLretvsmea151211.png} \put \DIFaddFL{(85,55) }{\DIFaddFL{(a)}}
+\DIFdelendFL \DIFaddbeginFL \begin{overpic}[trim=0 0 0 0,clip,width=5.1cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/CHLretvsmea151211.png} \put (85,55) {\DIFaddFL{(a)}}
       \end{overpic}   
   \DIFaddendFL \end{minipage}
   \DIFaddbeginFL \hfill
@@ -1172,7 +1140,7 @@ The numerical results are summarized in \autoref{fig:RMSE} where the root mean s
   \DIFdelbeginFL %DIFDELCMD < \includegraphics[trim=40 0 80 0,clip,height=5.1cm]{./Images/TSSretvsmea150423}
 %DIFDELCMD <   %%%
 \DIFdelendFL \DIFaddbeginFL \centering
-      \begin{overpic}[trim=0 0 0 0,clip,width=5.1cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/TSSretvsmea151211.png} \put \DIFaddFL{(85,55) }{\DIFaddFL{(b)}}
+      \begin{overpic}[trim=0 0 0 0,clip,width=5.1cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/TSSretvsmea151211.png} \put (85,55) {\DIFaddFL{(b)}}
       \end{overpic}   
   \DIFaddendFL \end{minipage}
   \DIFaddbeginFL \hfill
@@ -1181,7 +1149,7 @@ The numerical results are summarized in \autoref{fig:RMSE} where the root mean s
   \DIFdelbeginFL %DIFDELCMD < \includegraphics[trim=40 0 80 0,clip,height=5.1cm]{./Images/CDOMretvsmea150423}  
 %DIFDELCMD <   %%%
 \DIFdelendFL \DIFaddbeginFL \centering
-      \begin{overpic}[trim=0 0 0 0,clip,width=5.1cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/CDOMretvsmea151211.png} \put \DIFaddFL{(85,55) }{\DIFaddFL{(c)}}
+      \begin{overpic}[trim=0 0 0 0,clip,width=5.1cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/CDOMretvsmea151211.png} \put (85,55) {\DIFaddFL{(c)}}
       \end{overpic}   
   \DIFaddendFL \end{minipage}
 
@@ -1276,11 +1244,11 @@ The authors would like to extend a special thanks to the United States Geologica
 \DIFaddbegin 
 
 
-\listoffigures
-%DIF >  \addcontentsline{toc}{chapter}{List of Figures}
+%DIF >  \listoffigures
+%DIF >  % \addcontentsline{toc}{chapter}{List of Figures}
 
-\listoftables
-%DIF >  \addcontentsline{toc}{chapter}{List of Tables}
+%DIF >  \listoftables
+%DIF >  % \addcontentsline{toc}{chapter}{List of Tables}
 \DIFaddend 
 
 
