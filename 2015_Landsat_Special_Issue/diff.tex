@@ -1,7 +1,7 @@
 % \documentclass[twocolumn,3p]{elsarticle}
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL 2015_RSofEnv_paperSUBMITTED.tex   Tue Dec 22 18:44:01 2015
-%DIF ADD 2015_RSofEnv_paper.tex            Wed Jan 20 00:50:27 2016
+%DIF ADD 2015_RSofEnv_paper.tex            Fri Jan 22 01:38:12 2016
 \documentclass[onecolumn,3p,letterpaper]{elsarticle}
 % \usepackage{setspace} % added by JC 
 % \doublespacing % added by JC
@@ -20,13 +20,8 @@
 \usepackage{amsmath,epsfig}
 
 % Select what to do with todonotes: 
-%DIF 20-21c20-21
-%DIF < \usepackage[disable]{todonotes} % notes not showed
-%DIF < % \usepackage[draft]{todonotes}   % notes showed
-%DIF -------
-% \usepackage[disable]{todonotes} % notes not showed %DIF > 
-\usepackage[draft]{todonotes}   % notes showed %DIF > 
-%DIF -------
+\usepackage[disable]{todonotes} % notes not showed
+% \usepackage[draft]{todonotes}   % notes showed
 \setlength{\marginparwidth}{2cm}
 % \usepackage[textwidth=3.7cm]{todonotes}
 
@@ -57,23 +52,23 @@
 \end{filecontents}
 \fi\endgroup
 
-\usepackage[nostamp]{draftwatermark}
-\SetWatermarkLightness{0.8}
-\SetWatermarkScale{4}
-%DIF 51a51-55
+%DIF 48-50c48-55
+%DIF < \usepackage[nostamp]{draftwatermark}
+%DIF < \SetWatermarkLightness{0.8}
+%DIF < \SetWatermarkScale{4}
+%DIF -------
+% \usepackage[nostamp]{draftwatermark} %DIF > 
+% \SetWatermarkLightness{0.8} %DIF > 
+% \SetWatermarkScale{4} %DIF > 
  %DIF > 
 \usepackage[percent]{overpic} %DIF > 
 \usepackage{morefloats} % for the error "Too many unprocessed floats" %DIF > 
  %DIF > 
 \usepackage{multirow} %DIF > 
-
-\usepackage{xcolor}% or package color
 %DIF -------
 %%% END MY PACKAGES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%DIF < \journal{Remote Sensing of Environment}
-%DIF -------
-\journal{Remote Sensing of Enviro~nment} %DIF > 
+\journal{Remote Sensing of Environment}
 %DIF PREAMBLE EXTENSION ADDED BY LATEXDIFF
 %DIF UNDERLINE PREAMBLE %DIF PREAMBLE
 \RequirePackage[normalem]{ulem} %DIF PREAMBLE
@@ -101,7 +96,9 @@
 
 \begin{document}
 
-\linenumbers
+\DIFdelbegin %DIFDELCMD < \linenumbers
+%DIFDELCMD < %%%
+\DIFdelend %DIF >  \linenumbers
 
 \begin{frontmatter}
 
@@ -141,7 +138,7 @@ A model-based empirical line method (MoB-ELM) algorithm was developed to atmosph
 %
 This MoB-ELM atmospheric correction algorithm uses pseudo-invariant features (PIFs) from the image, ground-truth data and the Hydrolight model.
 %Results
-The retrieval algorithm was applied over two Landsat 8 scenes and shows a root mean squared error (RMSE) as a percentage of range of about $10\%$ for Chlorophyll-{\it a} and total suspended solid (TSS), and about $5\%$ for colored dissolved organic matter (CDOM) when compared with ground-truth data. The CPA concentration maps exhibit expected trends of low concentrations in clear water and higher concentrations in turbid water.
+The retrieval algorithm was applied over \DIFdelbegin \DIFdel{two }\DIFdelend \DIFaddbegin \DIFadd{three }\DIFaddend Landsat 8 scenes and shows a \DIFaddbegin \DIFadd{normalized }\DIFaddend root mean squared error (\DIFdelbegin \DIFdel{RMSE) as a percentage of range of about $10\%$ }\DIFdelend \DIFaddbegin \DIFadd{NRMSE) of about $14\%$ }\DIFaddend for Chlorophyll-{\it a}\DIFdelbegin \DIFdel{and total suspended solid }\DIFdelend \DIFaddbegin \DIFadd{, $11\%$ for total suspended solids }\DIFaddend (TSS), and \DIFdelbegin \DIFdel{about $5\%$ }\DIFdelend \DIFaddbegin \DIFadd{$7\%$ }\DIFaddend for colored dissolved organic matter (CDOM) when compared with ground-truth data. The CPA concentration maps exhibit expected trends of low concentrations in clear water and higher concentrations in turbid water.
 %Conclusions
 
 These results demonstrate that the developed algorithm allows the simultaneous mapping of concentration of all CPAs in Case 2 waters and over areas where the \DIFdelbegin \DIFdel{standard algorithms }\DIFdelend \DIFaddbegin \DIFadd{traditional algorithms fail or }\DIFaddend are not available due to spatial resolution.
@@ -152,8 +149,10 @@ Therefore, this study shows that the Landsat 8 satellite can be utilized over Ca
 
 \begin{keyword}
 Landsat 8\sep color producing agents\sep CPAs \sep Case 2 Waters \sep retrieval
-\MSC[2015] 00-01\sep  99-00
-\end{keyword}
+\DIFdelbegin %DIFDELCMD < \MSC[2015] %%%
+\DIFdel{00-01}%DIFDELCMD < \sep  %%%
+\DIFdel{99-00
+}\DIFdelend \end{keyword}
 
 \end{frontmatter}
 %%%%%%%%%%%%%%%%%%% SECTION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -526,7 +525,7 @@ Once the master PIF mask is applied to the Provisional Landsat 8 Surface Reflect
   \caption{Example of the bright and dark pixel used in the MoB-ELM atmospheric correction method for Landsat 8 scene acquired on 09-19-2013.\label{fig:MOBELMpxls} } 
 \end{figure}
 
-\DIFaddbegin \DIFadd{A different approach that uses a bright target from the water pixels in the scene instead of the urban features (i.e. PIFs) was also evaluated. An example of this pixel could be the most eutrophic pond in the scene. The $R_{rs}$ of this bright pixel is generated in Ecolight using IOPs and concentrations from the field. Then, the radiance values of this bright pixel is obtained from the corresponding region in the Landsat 8 radiance image. This approach is attractive when a wide range of water quality conditions are present and concentration measurements are available of bright and dark water targets. This approach may improve results where glint is present as it compensates for not only atmospheric effects but any other approximately linear phenomena that would modify the reflected energy leaving the water volume. An explanation of how Ecolight is utilized to generate the spectral $R_{rs}$ of a water pixel can be found in the following section.
+\DIFaddbegin \DIFadd{A different approach that uses a bright target from the water pixels in the scene instead of the urban features (i.e. PIFs) was also evaluated. An example of this pixel could be the most eutrophic pond in the scene. The $R_{rs}$ of this bright pixel is generated in Ecolight using IOPs and concentrations from the field. Then, the radiance value of this bright pixel is obtained from the corresponding region in the Landsat 8 radiance image. This approach is attractive when a wide range of water quality conditions are present and concentration measurements are available of bright and dark water targets. This approach may improve results where glint is present as it compensates for not only atmospheric effects but any other approximately linear phenomena that would modify the reflected energy leaving the water volume. An explanation of how Ecolight is utilized to generate the spectral $R_{rs}$ of a water pixel can be found in the following section.
 }
 
 \DIFaddend % ---------------------------------------------------------------
@@ -543,7 +542,7 @@ The Landsat surface reflectance product cannot be used for the dark pixel target
 \citep{MobleyHE}}%DIFAUXCMD
 }\DIFaddend . Note that Ecolight uses exactly the same inputs as Hydrolight.
 
-The dark pixel is taken from a region of interest (ROI) over water present in the Landsat 8 radiance image with a low concentration of CPAs. \DIFaddbegin \DIFadd{It is worth mentioning that this dark pixel is not necessary the darkest pixel in the scene nor one with zero reflectance. }\DIFaddend Inherent optical properties (IOPs) and CPA concentration measurements taken in the field (or estimated from ancillary sources) for the same ROI are input to Ecolight. The field and lab measurements are described in the Results and Discussion section (Section \ref{sec:Results}) below. The ``Case 2 model'' in Ecolight is used to generate a $R_{rs}$ spectra for the dark pixel to be used in the MoB-ELM method. This Case 2 model is a generic four-component (pure water, chlorophyll-bearing particles, CDOM, and mineral particles) IOP model \DIFdelbegin \DIFdel{(\mbox{%DIFAUXCMD
+The dark pixel is taken from a region of interest (ROI) over water present in the Landsat 8 radiance image with a low concentration of CPAs. \DIFaddbegin \DIFadd{It is worth mentioning that this dark pixel is not necessarily the darkest pixel in the scene nor one with zero reflectance. }\DIFaddend Inherent optical properties (IOPs) and CPA concentration measurements taken in the field (or estimated from ancillary sources) for the same ROI are input to Ecolight. The field and lab measurements are described in the Results and Discussion section (Section \ref{sec:Results}) below. The ``Case 2 model'' in Ecolight is used to generate a $R_{rs}$ spectra for the dark pixel to be used in the MoB-ELM method. This Case 2 model is a generic four-component (pure water, chlorophyll-bearing particles, CDOM, and mineral particles) IOP model \DIFdelbegin \DIFdel{(\mbox{%DIFAUXCMD
 \cite{MobleyHEtech}}%DIFAUXCMD
 )}\DIFdelend \DIFaddbegin \DIFadd{\mbox{%DIFAUXCMD
 \citep{MobleyHEtech}}%DIFAUXCMD
@@ -589,7 +588,8 @@ LONGS & 112.76 & 46.0 & 1.1953 \\
 %DIF >  \end{figure}
 
 The absorption properties for the component chlorophyll-{\it a} were input by user-supplied data files containing mass-specific absorption coefficients as a function of wavelength. This mass-specific absorption spectra is shown in \DIFdelbegin %DIFDELCMD < \autoref{fig:CHLcoef}%%%
-\DIFdelend \DIFaddbegin \autoref{fig:IOPs}\DIFaddend .(a)\todo{typo in a* units!}. This data was obtained from lab measurements of absorption coefficient spectra for the water sample ONTNS with a spectrophotometric method following SeaWiFS protocols \DIFdelbegin \DIFdel{(\mbox{%DIFAUXCMD
+\DIFdelend \DIFaddbegin \autoref{fig:IOPs}\DIFaddend .(a)\DIFdelbegin %DIFDELCMD < \todo{typo in a* units!}%%%
+\DIFdelend . This data was obtained from lab measurements of absorption coefficient spectra for the water sample ONTNS with a spectrophotometric method following SeaWiFS protocols \DIFdelbegin \DIFdel{(\mbox{%DIFAUXCMD
 \cite{Mueller1995}}%DIFAUXCMD
 )}\DIFdelend \DIFaddbegin \DIFadd{\mbox{%DIFAUXCMD
 \citep{Mueller1995}}%DIFAUXCMD
@@ -601,7 +601,7 @@ and \mbox{%DIFAUXCMD
 \citet{Raqueno:2000} }%DIFAUXCMD
 and \mbox{%DIFAUXCMD
 \citet{Raqueno:2003} }%DIFAUXCMD
-}\DIFaddend were utilized. These data were characterized through laboratory studies as part of a data collection on May 20, 1999 over the same area of study. These data \DIFaddbegin \DIFadd{were used because there were not current scattering measurements available over the area of study. These data }\DIFaddend are shown in \DIFdelbegin %DIFDELCMD < \autoref{fig:CHLcoef}%%%
+}\DIFaddend were utilized. These data were characterized through laboratory studies as part of a data collection on May 20, 1999 over the same area of study. These data \DIFaddbegin \DIFadd{were used because not current scattering measurements were available over the area of study. These data }\DIFaddend are shown in \DIFdelbegin %DIFDELCMD < \autoref{fig:CHLcoef}%%%
 \DIFdelend \DIFaddbegin \autoref{fig:IOPs}\DIFaddend .(b). A Fournier-Forand (FF) phase function with a backscatter fraction of 0.010 was selected as the scattering phase function for chlorophyll-{\it a}. The details about the selection of this specific phase function will be described below.
 
 \DIFdelbegin %DIFDELCMD < \begin{figure}[htb]
@@ -722,14 +722,14 @@ The \DIFdelbegin \DIFdel{best match from the LUT of }\DIFdelend \DIFaddbegin \DI
 \begin{figure}[htb!]
     \begin{minipage}[c]{0.48\linewidth}
       \centering
-      \includegraphics[height=6cm]{./Images/CHLaastJavier.eps}
+      \includegraphics[height=6cm]{./Images/ONTNS_chlaast.eps}
       %DIF >  \caption{Chlorophyll mass-specific absorption spectra used for the determination of the $R_{rs}$ spectra of the dark pixel in Ecolight. \label{fig:CHLaast} } 
     \centerline{(a)}\medskip
     \end{minipage}  
     \hfill
     \begin{minipage}[c]{0.48\linewidth}
       \centering
-      \includegraphics[height=6cm]{./Images/CHLbastRolo.eps}
+      \includegraphics[height=6cm]{./Images/Rolo_chlbast.eps}
       %DIF >  \caption{Chlorophyll mass-specific scattering spectra used for the determination of the $R_{rs}$ spectra of the dark pixel in Ecolight. \label{fig:CHLbast} } 
       \centerline{(b)}\medskip
     \end{minipage}  
@@ -757,14 +757,14 @@ The \DIFdelbegin \DIFdel{best match from the LUT of }\DIFdelend \DIFaddbegin \DI
 %DIF >  \begin{figure}[htbp!]
   \begin{minipage}[c]{0.48\linewidth}
       \centering
-      \includegraphics[height=5.5cm]{./Images/SMaastJavier.eps}
+      \includegraphics[height=5.5cm]{./Images/ONTNS_SMaast.eps}
       %DIF >  \caption{SM mass-specific absorption spectra used for the determination of the $R_{rs}$ spectra of the dark pixel in Ecolight. \label{fig:SMaast} } 
       \centerline{(e)}\medskip
     \end{minipage}  
     \hfill
     \begin{minipage}[c]{0.48\linewidth}
       \centering
-      \includegraphics[height=5.5cm]{./Images/SMbastRolo.eps}
+      \includegraphics[height=5.5cm]{./Images/Rolo_SMbast.eps}
       %DIF >  \caption{SM mass-specific scattering spectra used for the determination of the $R_{rs}$ spectra of the dark pixel in HydroLight. \label{fig:SMbast} } 
       \centerline{(f)}\medskip
     \end{minipage}
@@ -775,7 +775,8 @@ The \DIFdelbegin \DIFdel{best match from the LUT of }\DIFdelend \DIFaddbegin \DI
     %DIF >  \caption{SM mass-specific absorption (a) and scattering (b) coefficient spectra used for the determination of the $R_{rs}$ spectra of the dark pixel in Ecolight. \label{fig:SMcoef} }
 \end{figure}
 
-\DIFadd{Ecolight is run once with all the inputs described above and the spectral }\DIFaddend $R_{rs}$ \DIFdelbegin \DIFdel{with different phase functions was used as the $R_{rs}$ spectra of }\DIFdelend \DIFaddbegin \DIFadd{for }\DIFaddend the dark pixel \DIFdelbegin \DIFdel{in the MoB-ELM method. This }\DIFdelend \DIFaddbegin \DIFadd{is obtained. This spectral }\DIFaddend $R_{rs}$ is \DIFdelbegin \DIFdel{further }\DIFdelend \DIFaddbegin \DIFadd{a function of 120 wavelengths, and therefore, it needs to be }\DIFaddend spectrally sampled to the \DIFdelbegin \DIFdel{Landsat 8 spectral response }\DIFdelend \DIFaddbegin \DIFadd{OLI's band-averaged relative spectral response (RSR) to obtain the values for the OLI's eight bands}\DIFaddend . \autoref{fig:MOBELMpxls}.(b)\todo{change ONTOS to ONTNS in fig.}~ shows this $R_{rs}$ spectra as a black dashed line. Using a $R_{rs}$ generated in \DIFdelbegin \DIFdel{Hydrolight }\DIFdelend \DIFaddbegin \DIFadd{Ecolight }\DIFaddend (i.e. a model-based dark pixel) instead of an {\it in situ} dark target in the MoB-ELM helps account for differences between atmospheric correction and the Hydrolight-based LUT used for retrieving the CPA concentrations (explained in the following Section \ref{subsec:LUT}).
+\DIFadd{Ecolight is run once with all the inputs described above and the spectral }\DIFaddend $R_{rs}$ \DIFdelbegin \DIFdel{with different phase functions was used as the $R_{rs}$ spectra of }\DIFdelend \DIFaddbegin \DIFadd{for }\DIFaddend the dark pixel \DIFdelbegin \DIFdel{in the MoB-ELM method. This }\DIFdelend \DIFaddbegin \DIFadd{is obtained. This spectral }\DIFaddend $R_{rs}$ is \DIFdelbegin \DIFdel{further }\DIFdelend \DIFaddbegin \DIFadd{a function of 120 wavelengths, and therefore, it needs to be }\DIFaddend spectrally sampled to the \DIFdelbegin \DIFdel{Landsat 8 spectral response }\DIFdelend \DIFaddbegin \DIFadd{OLI's band-averaged relative spectral response (RSR) to obtain the values for the OLI's eight bands}\DIFaddend . \autoref{fig:MOBELMpxls}.(b) \DIFdelbegin %DIFDELCMD < \todo{change ONTOS to ONTNS in fig.}%%%
+\DIFdel{~ }\DIFdelend shows this $R_{rs}$ spectra as a black dashed line. Using a $R_{rs}$ generated in \DIFdelbegin \DIFdel{Hydrolight }\DIFdelend \DIFaddbegin \DIFadd{Ecolight }\DIFaddend (i.e. a model-based dark pixel) instead of an {\it in situ} dark target in the MoB-ELM helps account for differences between atmospheric correction and the Hydrolight-based LUT used for retrieving the CPA concentrations (explained in the following Section \ref{subsec:LUT}).
 
 The radiance spectra for the dark pixel is obtained from an ROI in the Landsat 8 radiance image that includes the ONTNS station. Statistics are computed in this dark region, and the mean values in each band is used as the radiance spectra for the dark pixel. This radiance spectra for the dark pixel is shown in \autoref{fig:MOBELMpxls}.(a) as a black dashed line.
 
@@ -797,24 +798,56 @@ A LUT of $R_{rs}$ is generated in Ecolight for different combinations of CPA con
 \caption{Input parameters for the LUT generation in Ecolight for the Landsat 8 image acquired on 09-19-2013. \label{tab:LUTconc2}} 
 \small
 \centering
-    \begin{tabular}{ccccc}
-    \hline \hline
-    \multirow{2}{*}{IOPs Input} & \bfseries{$C_a$}    & \bfseries{$TSS$}  & \bfseries{$a_{CDOM}(440)$} & \bfseries{$b_b/b$}\\
+    \DIFdelbeginFL %DIFDELCMD < \begin{tabular}{c|c|c|c|c}
+%DIFDELCMD < 		%%%
+\DIFdelendFL \DIFaddbeginFL \begin{tabular}{ccccc}
+    \DIFaddendFL \hline \hline
+    \DIFdelbeginFL \DIFdelFL{IOPs Input }\DIFdelendFL \DIFaddbeginFL \multirow{2}{*}{IOPs Input} \DIFaddendFL & \bfseries{$C_a$}    & \bfseries{$TSS$}  & \DIFdelbeginFL %DIFDELCMD < \bfseries{$a_{CDOM}(440nm)$} %%%
+\DIFdelendFL \DIFaddbeginFL \bfseries{$a_{CDOM}(440)$} \DIFaddendFL & \bfseries{$b_b/b$}\\
                & $[mg~m^{-3}]$      & $[g~m^{-3}]$      &   $[1/m]$                  &  $[\%]$           \\ \hline \hline
-\multirow{7}{*}{ONTNS} & 0.1   & 1.0  &  0.11 &  0.5 \\
-                       & 0.5   & 2.0  &  0.15 &  1.0 \\
-                       & 1.0   & 5.0  &  0.21 &  1.4 \\
-                       & 3.0   & 10.0 &  0.6  &  2.0 \\
-                       & 10.0  & --   &  --   &  --  \\
-                       & 20.0  & --   &  --   &  --  \\
-                       & 40.0  & --   &  --   &  --  \\ \hline
+\DIFdelbeginFL \DIFdelFL{ONTNS 	}\DIFdelendFL \DIFaddbeginFL \multirow{7}{*}{ONTNS} \DIFaddendFL & 0.1   & 1.0  &  0.11 &  \DIFdelbeginFL \DIFdelFL{0.3 	}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{0.5 }\DIFaddendFL \\
+                       \DIFdelbeginFL \DIFdelFL{-- 		}\DIFdelendFL & 0.5   & 2.0  &  0.15 &  \DIFdelbeginFL \DIFdelFL{0.4 	}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{1.0 }\DIFaddendFL \\
+                       \DIFdelbeginFL \DIFdelFL{--    	}\DIFdelendFL & 1.0   & 5.0  &  0.21 &  \DIFdelbeginFL \DIFdelFL{0.5 	}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{1.4 }\DIFaddendFL \\
+                       \DIFdelbeginFL \DIFdelFL{--    	}\DIFdelendFL & 3.0   & 10.0 &  0.6  &  \DIFdelbeginFL \DIFdelFL{0.6 	}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{2.0 }\DIFaddendFL \\
+                       \DIFdelbeginFL \DIFdelFL{-- 		}\DIFdelendFL & 10.0  & --   &  --   &  \DIFdelbeginFL \DIFdelFL{0.7	}%DIFDELCMD < \\	
+%DIFDELCMD < %%%
+\DIFdelendFL --  \DIFaddbeginFL \\
+                       \DIFaddendFL & 20.0  & --   &  --   &  \DIFdelbeginFL \DIFdelFL{1.0	}%DIFDELCMD < \\	
+%DIFDELCMD < %%%
+\DIFdelendFL --  \DIFaddbeginFL \\
+                       \DIFaddendFL & 40.0  & --   &  --   &  \DIFdelbeginFL \DIFdelFL{1.4	}%DIFDELCMD < \\
+%DIFDELCMD < %%%
+\DIFdelendFL --  \DIFdelbeginFL %DIFDELCMD < &  %%%
+\DIFdelFL{--       }%DIFDELCMD < & %%%
+\DIFdelFL{-- 		}%DIFDELCMD < &  %%%
+\DIFdelFL{--		}%DIFDELCMD < &  %%%
+\DIFdelFL{2.0	}\DIFdelendFL \\ \hline
 
-\multirow{5}{*}{LONGS} & 60.0  & 25.0 & 1.0   &  0.5 \\  
-                       & 90.0  & 45.0 & 1.2   &  1.0 \\  
-                       & 110.0 & 50.0 & --    &  1.4 \\  
-                       & 135.0 & --   & --    &  2.0 \\  
-                       & 150.0 & --   & --    &  --  \\  \hline \hline    
-    \end{tabular}
+\DIFdelbeginFL \DIFdelFL{LONGS 	}\DIFdelendFL \DIFaddbeginFL \multirow{5}{*}{LONGS} \DIFaddendFL & 60.0  & 25.0 & 1.0   &  \DIFdelbeginFL \DIFdelFL{0.3  }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{0.5 }\DIFaddendFL \\  
+                       \DIFdelbeginFL \DIFdelFL{--    	}\DIFdelendFL & 90.0  & 45.0 & 1.2   &  \DIFdelbeginFL \DIFdelFL{0.4  }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{1.0 }\DIFaddendFL \\  
+                       \DIFdelbeginFL \DIFdelFL{--    	}\DIFdelendFL & 110.0 & 50.0 & --    &  \DIFdelbeginFL \DIFdelFL{0.5  }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{1.4 }\DIFaddendFL \\  
+                       \DIFdelbeginFL \DIFdelFL{--    	}\DIFdelendFL & \DIFdelbeginFL \DIFdelFL{--   	}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{135.0 }\DIFaddendFL & --   & --    &  \DIFdelbeginFL \DIFdelFL{0.6  }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{2.0 }\DIFaddendFL \\  
+                       \DIFdelbeginFL \DIFdelFL{--    	}\DIFdelendFL & \DIFdelbeginFL \DIFdelFL{--   	}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{150.0 }\DIFaddendFL & --   & --    &  \DIFdelbeginFL \DIFdelFL{0.7 	}%DIFDELCMD < \\  
+%DIFDELCMD < %%%
+\DIFdelendFL --  \DIFdelbeginFL %DIFDELCMD < &  %%%
+\DIFdelFL{--   	}%DIFDELCMD < & %%%
+\DIFdelFL{--   		}%DIFDELCMD < &  %%%
+\DIFdelFL{--  		}%DIFDELCMD < &  %%%
+\DIFdelFL{1.0 	}\DIFdelendFL \\  \DIFdelbeginFL \DIFdelFL{--    	}%DIFDELCMD < &  %%%
+\DIFdelFL{--   	}%DIFDELCMD < & %%%
+\DIFdelFL{--   		}%DIFDELCMD < &  %%%
+\DIFdelFL{--  		}%DIFDELCMD < &  %%%
+\DIFdelFL{1.4 	}%DIFDELCMD < \\  
+%DIFDELCMD < %%%
+\DIFdelFL{--    	}%DIFDELCMD < &  %%%
+\DIFdelFL{--   	}%DIFDELCMD < & %%%
+\DIFdelFL{--   		}%DIFDELCMD < &  %%%
+\DIFdelFL{--  		}%DIFDELCMD < &  %%%
+\DIFdelFL{2.0 	}%DIFDELCMD < \\  %%%
+\DIFdelendFL \hline \hline    
+    %DIF <  --    	&  135.0	& --   		&  --  		&  --  	\\  
+%DIF <  --    	&  150.0	& --   		&  --  		&  --  	\\ \hline 
+	 	\end{tabular}
 	\end{table}
 
 Then, the LUT of $R_{rs}$ obtained from Ecolight is spectrally sampled to the OLI's spectral response. As an example, the LUT created with the parameters shown in \autoref{tab:LUTconc2} in Ecolight for the Landsat 8 image acquired on 09-19-2013 is shown in \DIFdelbegin %DIFDELCMD < \autoref{fig:LUT}%%%
@@ -835,26 +868,38 @@ Then, the LUT of $R_{rs}$ obtained from Ecolight is spectrally sampled to the OL
 %DIFDELCMD < 
 
 %DIFDELCMD < %%%
-\DIFdelend 
-% ============================================================
+\DIFdelend % ============================================================
 \subsection{Retrieval Algorithm} 
 \label{subsec:Retrieval}
-\DIFaddbegin \DIFadd{The retrieval is divided in two stages. The first one uses the root mean squared error (RMSE) to fix the IOP set (ponds or lake) and the phase function. The RMSE is calculated between the water pixel and each element in the LUT, and the one with the smallest RMSE is selected as the first candidate. The IOP set and the phase function associated with this candidate is chosen as the IOP set and the phase function for the water pixel. }\DIFaddend
+The retrieval \DIFdelbegin \DIFdel{of CPAs concentrations is based in }\DIFdelend \DIFaddbegin \DIFadd{is divided in two stages. The first one uses the root mean squared error (RMSE) to fix the IOP set (ponds or lake) and the phase function. The RMSE is calculated between the water pixel and each element in the LUT, and the one with the smallest RMSE is selected as the first candidate. The IOP set and the phase function associated with this candidate are chosen as the IOP set and the phase function for the water pixel.
+}
 
-\DIFaddbegin \DIFadd{The second stage of the retrieval uses a non-linear optimization to estimate the CPA concentrations of the water pixel. Only the elements in the LUT with the same IOP set and phase function selected from the first stage are utilized in this stage. The water pixel is input to a non-linear optimization routine to estimate the CPA concentration through a trilinear interpolation within the LUT's elements. This method gives continuous concentration values. The RMSE and the non-linear optimization are described below. }\DIFaddend
-% -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  
-\DIFaddbegin \subsubsection{\DIFadd{Root Mean Square Error} }\DIFaddend
-\DIFaddbegin \DIFadd{In this work, the RMSE is defined as  }\DIFaddend
-\begin{equation}
-  RMSE(i) = \sqrt{\frac{1}{m}\sum_1^m\left[\widetilde{R}_{rs}(i,\lambda_m)-R_{rs}(\lambda_m)\right]^2}
-\end{equation}
-\DIFaddbegin \DIFadd{where $\widetilde{R}_{rs}(i,\lambda_m)$ is the $i$th database spectrum from the LUT at wavelength band $m$ and $R_{rs}(\lambda_m)$ is the spectrum for a particular water pixel from the image. }\DIFaddend
+\DIFadd{The second stage of }\DIFaddend the \DIFdelbegin \DIFdel{work done by }%DIFDELCMD < \cite*{Gerace:2013}%%%
+\DIFdel{. A spectral-matching technique was applied with the purpose of finding the closest match to a given water $R_{rs}$ spectra within the LUT of $R_{rs}$ from Ecolight. }\DIFdelend \DIFaddbegin \DIFadd{retrieval uses a non-linear optimization to estimate the CPA concentrations of the water pixel. Only the elements in the LUT with the same IOP set and phase function selected from the first stage are utilized in this stage. The water pixel is input to a non-linear optimization routine to estimate the CPA concentration through a trilinear interpolation within the LUT's elements. This method gives continuous concentration values. The RMSE and the non-linear optimization are described below.
+%DIF >  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  
+}\subsubsection{\DIFadd{Root Mean Square Error}}
+\DIFaddend In this work, the \DIFdelbegin \DIFdel{spectral matching was performed by minimizing the root mean squared error (RMSE ), which }\DIFdelend \DIFaddbegin \DIFadd{RMSE }\DIFaddend is defined as
+\DIFdelbegin %DIFDELCMD < 
 
-% -----------------------------------------
-\DIFaddbegin  \subsubsection{\DIFadd{Non-linear Optimization}}\DIFaddend
-\DIFaddbegin \DIFadd{The spectral matching is made by a least square error minimization algorithm using the ``\texttt{lsqnonlin}'' package of the MATLAB's Optimization Toolbox. \texttt{lsqnonlin} solves least-squares problems, including nonlinear data-fitting problems}\DIFaddend \citep{MatlabHelp}. \DIFaddbegin \DIFadd{If $f(x)$ is a user-defined vector function defined as}\DIFaddend
-\begin{equation}
-  f(x)=
+%DIFDELCMD < %%%
+\DIFdelend \begin{equation}
+  RMSE(i) = \DIFdelbegin \DIFdel{\sqrt{\frac{1}{M}\sum_{m=1}^M\left[\widetilde{R}_{rs}(i,\lambda_m)-R_{rs}(\lambda_m)\right]^2}
+}\DIFdelend \DIFaddbegin \DIFadd{\sqrt{\frac{1}{m}\sum_1^m\left[\widetilde{R}_{rs}(i,\lambda_m)-R_{rs}(\lambda_m)\right]^2}
+}\DIFaddend \end{equation}
+\DIFdelbegin %DIFDELCMD < 
+
+%DIFDELCMD < \noindent %%%
+\DIFdelend where $\widetilde{R}_{rs}(i,\lambda_m)$ is the $i$th \DIFdelbegin \DIFdel{$R_{rs}$ }\DIFdelend \DIFaddbegin \DIFadd{database }\DIFaddend spectrum from the LUT at wavelength band $m$ and $R_{rs}(\lambda_m)$ is the \DIFdelbegin \DIFdel{water $R_{rs}$ spectrum at wavelength band $m$ from the atmospherically corrected Landsat 8 image.
+For each water pixel in the atmospherically corrected Landsat 8 image, the RMSE value is calculated for every $i$th element in the LUT. Then, the element }\DIFdelend \DIFaddbegin \DIFadd{spectrum for a particular water pixel from the image.
+}
+
+%DIF >  -----------------------------------------
+\subsubsection{\DIFadd{Non-linear Optimization}}
+\DIFadd{The spectral matching is made by a least square error minimization algorithm using the ``}\texttt{\DIFadd{lsqnonlin}}\DIFadd{'' package of the MATLAB's Optimization Toolbox. }\texttt{\DIFadd{lsqnonlin}} \DIFadd{solves least-squares problems, including nonlinear data-fitting problems \mbox{%DIFAUXCMD
+\citep{MatlabHelp}}%DIFAUXCMD
+. If $f(x)$ is a user-defined vector function defined as
+}\begin{equation}
+  \DIFadd{f(x)=
   \left[
     \begin{array}{c}
       f_1(x) \\
@@ -863,19 +908,23 @@ Then, the LUT of $R_{rs}$ obtained from Ecolight is spectrally sampled to the OL
       f_m(x) \\
     \end{array}
   \right],
-\end{equation}
-\DIFaddbegin \DIFadd{with $x$ a vector. \texttt{lsqnonlin} tries to minimize the function}\DIFaddend
-\begin{equation}
-  \underset{x}{min}\parallel f(x) \parallel^2_2=\underset{x}{min}(f_1(x)^2+f_2(x)^2+f_3(x)^2+...+f_m(x)^2)
-\end{equation}
-\DIFaddbegin \DIFadd{In this case, $x$ includes the three CPA concentrations and the function $f(x)$ is the difference between the water spectra $R_{rs}$ for each pixel and an estimated curve $F$ from the LUT, this is}\DIFaddend
-\begin{equation}
-  f = R_{rs} - F
-\end{equation}
-\DIFaddbegin \DIFadd{where $F$ is obtained from a trilinear interpolation based on the CPA concentrations of the LUT. The dimension $m$ is the number of bands. In other words, for each pixel in the image, \texttt{lsqnonlin} tries to find a function that minimizes the error between the measured value and an interpolated spectra from the LUT. \texttt{lsqnonlin} stops the search after reaching a certain threshold.}\DIFaddend  
+}\end{equation}
+\DIFadd{with $x$ a vector. }\texttt{\DIFadd{lsqnonlin}} \DIFadd{tries to minimize the function
+}\begin{equation}
+  \DIFadd{\underset{x}{min}\parallel f(x) \parallel^2_2=\underset{x}{min}(f_1(x)^2+f_2(x)^2+f_3(x)^2+...+f_m(x)^2)
+}\end{equation}
+\DIFadd{In this case, $x$ includes the three CPA concentrations and the function $f(x)$ is the difference between the water spectra $R_{rs}$ for each pixel and an estimated curve $F$ from the LUT, this is
+}\begin{equation}
+  \DIFadd{f = R_{rs} - F
+}\end{equation}
+\DIFadd{where $F$ is obtained from a trilinear interpolation based on the CPA concentrations }\DIFaddend of the LUT\DIFdelbegin \DIFdel{that results in the smallest RMSE value is chosen as the CPA concentrations for that particular water pixel. This method gives discretized values for }\DIFdelend \DIFaddbegin \DIFadd{. The dimension $m$ is }\DIFaddend the \DIFdelbegin \DIFdel{concentrations equal to the values used to create the LUT. The output }\DIFdelend \DIFaddbegin \DIFadd{number of bands. In other words, for each pixel in the image, }\texttt{\DIFadd{lsqnonlin}} \DIFadd{tries to find a function that minimizes the error between the measured value and an interpolated spectra from the LUT. }\texttt{\DIFadd{lsqnonlin}} \DIFadd{stops the search after reaching a certain threshold. 
+}
 
-\DIFaddbegin \DIFadd{The output of this process is a concentration mapping for each water constituent that spans the range of constituents levels in the scene.}\DIFaddend 
-% % ============================================================
+\DIFadd{The output of this process }\DIFaddend is a concentration mapping for each \DIFdelbegin \DIFdel{CPA. 
+}\DIFdelend \DIFaddbegin \DIFadd{water constituent that spans the range of constituents levels in the scene. 
+}
+
+\DIFaddend % % ============================================================
 %DIF <  \subsection{Ground Truth Data Collection and Lab Measurements}
 %DIF <  \label{subsec:FieldLabMea}
 %DIF < %%%%%%%%%%%%%%%%%% SECTION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -942,7 +991,7 @@ After atmospherically correcting the Landsat 8 image, the retrieval of CPAs algo
   		\centering
       \DIFdelbeginFL %DIFDELCMD < \includegraphics[trim=0 20 0 30,clip,height=6.8cm]{./Images/CHLmap130919_150420}  
 %DIFDELCMD <   %%%
-\DIFdelendFL \DIFaddbeginFL \begin{overpic}[trim=140 0 0 0,clip,width=8.0cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/ThesisPhD/Images/CHLmap130919masked.png} \put (5,20) {\DIFaddFL{(a)}}
+\DIFdelendFL \DIFaddbeginFL \begin{overpic}[trim=140 0 0 0,clip,width=8.0cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/ThesisPhD/Images/CHLmap130919masked.png} \put \DIFaddFL{(5,20) }{\DIFaddFL{(a)}}
       \end{overpic} 
   \DIFaddendFL \end{minipage}
   \hfill
@@ -950,7 +999,7 @@ After atmospherically correcting the Landsat 8 image, the retrieval of CPAs algo
 %DIFDELCMD <       \includegraphics[trim=40 0 0 20,clip,height=5.5cm]{./Images/CHLretvsmea130919_150420}
 %DIFDELCMD <   %%%
 \DIFdelendFL \DIFaddbeginFL \begin{minipage}[d]{0.38\linewidth}
-      \begin{overpic}[trim=40 0 0 25,clip,height=5.0cm]{./Images/CHLretvsmea130919_150420} \put (20,65) {\DIFaddFL{(b)}}
+      \begin{overpic}[trim=40 0 0 25,clip,height=5.0cm]{./Images/CHLretvsmea130919_150420} \put \DIFaddFL{(20,65) }{\DIFaddFL{(b)}}
       \end{overpic}
   \DIFaddendFL \end{minipage}%DIF <  
 \DIFaddbeginFL \\
@@ -960,7 +1009,7 @@ After atmospherically correcting the Landsat 8 image, the retrieval of CPAs algo
   		\centering
       \DIFdelbeginFL %DIFDELCMD < \includegraphics[trim=0 30 0 10,clip,height=6.8cm]{./Images/TSSmap130919_150420}  
 %DIFDELCMD <   %%%
-\DIFdelendFL \DIFaddbeginFL \begin{overpic}[trim=140 0 0 0,clip,width=8.0cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/ThesisPhD/Images/TSSmap130919masked.png} \put (5,20) {\DIFaddFL{(c)}}
+\DIFdelendFL \DIFaddbeginFL \begin{overpic}[trim=140 0 0 0,clip,width=8.0cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/ThesisPhD/Images/TSSmap130919masked.png} \put \DIFaddFL{(5,20) }{\DIFaddFL{(c)}}
       \end{overpic} 
   \DIFaddendFL \end{minipage}
   \hfill
@@ -968,7 +1017,7 @@ After atmospherically correcting the Landsat 8 image, the retrieval of CPAs algo
 %DIFDELCMD <       \includegraphics[trim=40 0 0 0,clip,height=5.5cm]{./Images/TSSretvsmea130919_150420}
 %DIFDELCMD <   %%%
 \DIFdelendFL \DIFaddbeginFL \begin{minipage}[d]{0.38\linewidth}
-      \begin{overpic}[trim=40 0 0 25,clip,height=5.0cm]{./Images/TSSretvsmea130919_150420} \put (20,65) {\DIFaddFL{(d)}}
+      \begin{overpic}[trim=40 0 0 25,clip,height=5.0cm]{./Images/TSSretvsmea130919_150420} \put \DIFaddFL{(20,65) }{\DIFaddFL{(d)}}
       \end{overpic}
   \DIFaddendFL \end{minipage}\DIFaddbeginFL \\
 \vspace{.05cm} \\
@@ -979,7 +1028,7 @@ After atmospherically correcting the Landsat 8 image, the retrieval of CPAs algo
   		\centering
       \DIFdelbeginFL %DIFDELCMD < \includegraphics[trim=0 0 0 30,clip,height=6.8cm]{./Images/CDOMmap130919_150420}  
 %DIFDELCMD <   %%%
-\DIFdelendFL \DIFaddbeginFL \begin{overpic}[trim=140 0 0 0,clip,width=8.0cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/ThesisPhD/Images/CDOmap130919masked.png} \put (5,20) {\DIFaddFL{(e)}}
+\DIFdelendFL \DIFaddbeginFL \begin{overpic}[trim=140 0 0 0,clip,width=8.0cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/ThesisPhD/Images/CDOmap130919masked.png} \put \DIFaddFL{(5,20) }{\DIFaddFL{(e)}}
       \end{overpic}  
   \DIFaddendFL \end{minipage}
   \hfill
@@ -987,7 +1036,7 @@ After atmospherically correcting the Landsat 8 image, the retrieval of CPAs algo
 %DIFDELCMD <       \includegraphics[trim=40 0 0 0,clip,height=5.5cm]{./Images/CDOMretvsmea130919_150420}
 %DIFDELCMD <   %%%
 \DIFdelendFL \DIFaddbeginFL \begin{minipage}[d]{0.38\linewidth}
-      \begin{overpic}[trim=40 0 0 25,clip,height=5.0cm]{./Images/CDOMretvsmea130919_150420} \put (20,65) {\DIFaddFL{(f)}}
+      \begin{overpic}[trim=40 0 0 25,clip,height=5.0cm]{./Images/CDOMretvsmea130919_150420} \put \DIFaddFL{(20,65) }{\DIFaddFL{(f)}}
       \end{overpic}
   \DIFaddendFL \end{minipage}
 % 
@@ -1011,13 +1060,13 @@ After atmospherically correcting the Landsat 8 image, the retrieval of CPAs algo
       \DIFaddendFL \centering
       \DIFdelbeginFL %DIFDELCMD < \includegraphics[trim=0 0 0 30,clip,height=7cm]{./Images/CHLmap140929_150420}  
 %DIFDELCMD <   %%%
-\DIFdelendFL \DIFaddbeginFL \begin{overpic}[trim=140 0 0 120,clip,width=8cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/ThesisPhD/Images/CHLmap140929masked.png} \put (5,20) {\DIFaddFL{(a)}}
+\DIFdelendFL \DIFaddbeginFL \begin{overpic}[trim=140 0 0 120,clip,width=8cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/ThesisPhD/Images/CHLmap140929masked.png} \put \DIFaddFL{(5,20) }{\DIFaddFL{(a)}}
       \end{overpic}   
   \DIFaddendFL \end{minipage}
   \DIFaddbeginFL \hfill
   \begin{minipage}[c]{0.49\linewidth}
       \centering
-      \begin{overpic}[trim=140 0 0 120,clip,width=8.0cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/ThesisPhD/Images/CHLmap150916masked_2.png} \put (5,20) {\DIFaddFL{(b)}}
+      \begin{overpic}[trim=140 0 0 120,clip,width=8.0cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/ThesisPhD/Images/CHLmap150916masked_2.png} \put \DIFaddFL{(5,20) }{\DIFaddFL{(b)}}
       \end{overpic}   
   \end{minipage}\DIFaddendFL \\
   %DIF <  \hfill
@@ -1034,13 +1083,13 @@ After atmospherically correcting the Landsat 8 image, the retrieval of CPAs algo
       \DIFaddendFL \centering
       \DIFdelbeginFL %DIFDELCMD < \includegraphics[trim=0 0 0 30,clip,height=7cm]{./Images/TSSmap140929_150420}  
 %DIFDELCMD <   %%%
-\DIFdelendFL \DIFaddbeginFL \begin{overpic}[trim=140 0 0 120,clip,width=8cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/ThesisPhD/Images/TSSmap140929masked.png} \put (5,20) {\DIFaddFL{(c)}}
+\DIFdelendFL \DIFaddbeginFL \begin{overpic}[trim=140 0 0 120,clip,width=8cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/ThesisPhD/Images/TSSmap140929masked.png} \put \DIFaddFL{(5,20) }{\DIFaddFL{(c)}}
       \end{overpic}   
   \DIFaddendFL \end{minipage}
   \DIFaddbeginFL \hfill
   \begin{minipage}[c]{0.49\linewidth}
       \centering
-      \begin{overpic}[trim=140 0 0 120,clip,width=8.0cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/ThesisPhD/Images/TSSmap150916masked_2.png} \put (5,20) {\DIFaddFL{(d)}}
+      \begin{overpic}[trim=140 0 0 120,clip,width=8.0cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/ThesisPhD/Images/TSSmap150916masked_2.png} \put \DIFaddFL{(5,20) }{\DIFaddFL{(d)}}
       \end{overpic}   
   \end{minipage}\DIFaddendFL \\
   %DIF <  \hfill
@@ -1057,7 +1106,7 @@ After atmospherically correcting the Landsat 8 image, the retrieval of CPAs algo
       \DIFaddendFL \centering
       \DIFdelbeginFL %DIFDELCMD < \includegraphics[trim=0 0 0 30,clip,height=7cm]{./Images/CDOMmap140929_150420}  
 %DIFDELCMD <   %%%
-\DIFdelendFL \DIFaddbeginFL \begin{overpic}[trim=140 0 0 120,clip,width=8cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/ThesisPhD/Images/CDOmap140929masked.png} \put (5,20) {\DIFaddFL{(e)}}
+\DIFdelendFL \DIFaddbeginFL \begin{overpic}[trim=140 0 0 120,clip,width=8cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/ThesisPhD/Images/CDOmap140929masked.png} \put \DIFaddFL{(5,20) }{\DIFaddFL{(e)}}
       \end{overpic}   
   \DIFaddendFL \end{minipage}
   \DIFdelbeginFL %DIFDELCMD < \\
@@ -1069,7 +1118,7 @@ After atmospherically correcting the Landsat 8 image, the retrieval of CPAs algo
 \DIFdelendFL \DIFaddbeginFL \hfill
   \begin{minipage}[c]{0.49\linewidth}
       \centering
-      \begin{overpic}[trim=140 0 0 120,clip,width=8.0cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/ThesisPhD/Images/CDOmap150916masked_2.png} \put (5,20) {\DIFaddFL{(f)}}
+      \begin{overpic}[trim=140 0 0 120,clip,width=8.0cm]{/Users/javier/Desktop/Javier/PHD_RIT/Latex/ThesisPhD/Images/CDOmap150916masked_2.png} \put \DIFaddFL{(5,20) }{\DIFaddFL{(f)}}
       \end{overpic}   
   \end{minipage}
 \DIFaddendFL 
@@ -1083,15 +1132,15 @@ After atmospherically correcting the Landsat 8 image, the retrieval of CPAs algo
 % Note that the image to be analyzed needs to only include a bright target and not necessary a big urban area in order to determine the bright pixel from the Landsat surface reflectance product.\\
 
 A second image acquired on 09-29-2014 (scene LC80170302014272LGN00) \DIFdelbegin \DIFdel{(}%DIFDELCMD < \autoref{fig:092914Sites}%%%
-\DIFdel{) was analyzed in a similar fashion except that the reflectance of }\DIFdelend \DIFaddbegin \DIFadd{was processed using the alternative method mentioned in }\DIFaddend the \DIFaddbegin \S2\DIFadd{. In this case, the }\DIFaddend bright pixel target \DIFdelbegin \DIFdel{was also predicted by Ecolight using data for the most eutrophic pond (Cranberry Pond). This approach is attractive when a wide range of water quality conditions are present and concentration measurements are available of bright and dark water targets. This approach may improve results where glint is present as it compensates for not only atmospheric effects but any other approximately linear phenomena that would modify the reflected energy leaving the water volume}\DIFdelend \DIFaddbegin \DIFadd{is generated from an Ecolight run simulating the Cranberry Pond, which is the most eutrophic pond, and therefore, the brightest water pixel.
-The concentration maps for this second scene are illustrated in left-hand side of }\autoref{fig:CPAsMaps140929} \DIFadd{again showing reasonable patterns in the lake and ponds. Finally, a third image was processed in similar fashion to the 2013 image and the results are shown in the right-hand side of }\autoref{fig:CPAsMaps140929}\DIFaddend . Note that glint effects were not specifically compensated for in the atmospheric correction process and future efforts using the urban region bright target approach will need to compensate for glint when it is present.
+\DIFdel{) was analyzed in a similar fashion except that the reflectance of the }\DIFdelend \DIFaddbegin \DIFadd{was processed using the alternative method mentioned in }\S2\DIFadd{. In this case, the }\DIFaddend bright pixel target \DIFdelbegin \DIFdel{was also predicted by Ecolight using data for the most eutrophic pond (Cranberry Pond). This approach is attractive when a wide range of water quality conditions are present and concentration measurements are available of bright and dark water targets. This approach may improve results where glint is present as it compensates for not only atmospheric effects but any other approximately linear phenomena that would modify the reflected energy leaving the water volume}\DIFdelend \DIFaddbegin \DIFadd{is generated from an Ecolight run simulating the Cranberry Pond, which is the most eutrophic pond, and therefore, the brightest water pixel.
+The concentration maps for this second scene are illustrated in the left-hand side of }\autoref{fig:CPAsMaps140929} \DIFadd{again showing reasonable patterns in the lake and ponds. Finally, a third image was processed in a similar fashion to the 2013 image and the results are shown in the right-hand side of }\autoref{fig:CPAsMaps140929}\DIFaddend . Note that glint effects were not specifically compensated for in the atmospheric correction process and future efforts using the urban region bright target approach will need to compensate for glint when it is present.
 \DIFdelbegin \DIFdel{The concentration maps for this second scene are illustrated in }%DIFDELCMD < \autoref{fig:CPAsMaps140929} %%%
 \DIFdel{again showing reasonable patterns in the lake and ponds. }\DIFdelend \DIFaddbegin 
 
 \DIFaddend \autoref{fig:CPAsRetVSMea} shows the comparison between predicted and observed values for all sample sites \DIFdelbegin \DIFdel{on both days}\DIFdelend \DIFaddbegin \DIFadd{from the three scenes}\DIFaddend , along with a regression line fitted to the data and its respective goodness of fit values. The $R^2$ value of the regression for all CPAs are high \DIFaddbegin \DIFadd{for a total of $N=14$ samples}\DIFaddend . Note that dark targets on \DIFdelbegin \DIFdel{both }\DIFdelend \DIFaddbegin \DIFadd{all }\DIFaddend days and the bright target on the 2014 date are forced to match by the MoB-ELM process. The results are very encouraging showing good quantitative agreement across a very wide range of concentrations. \DIFaddbegin \DIFadd{Note that the purpose of the relations shown in }\autoref{fig:CPAsRetVSMea} \DIFadd{are exclusively for determining agreement between }{\it \DIFadd{in situ}} \DIFadd{and retrieved data, and these relations were not used for the retrieval.
 }\DIFaddend 
 
-The numerical results are summarized in \autoref{fig:RMSE} where the root mean squared error (RMSE) in predicted \DIFaddbegin \DIFadd{CPA }\DIFaddend concentration is normalized by the range in concentrations to estimate overall performance, i.e. \DIFaddbegin \DIFadd{the normalized RMSE (NRMSE) for the CPA concentration, defined as
+The numerical results are summarized in \autoref{fig:RMSE} where the root mean squared error (RMSE) in predicted \DIFaddbegin \DIFadd{CPA }\DIFaddend concentration is normalized by the range in concentrations to estimate overall performance, i.e. \DIFaddbegin \DIFadd{the normalized RMSE (NRMSE) for the CPA concentration, is defined as
 }\DIFaddend 
 
 \begin{equation}
@@ -1099,7 +1148,7 @@ The numerical results are summarized in \autoref{fig:RMSE} where the root mean s
 	\DIFdelbegin \DIFdel{RMSE~percentage~of~range }\DIFdelend \DIFaddbegin \DIFadd{NRMSE }\DIFaddend =\frac{\sqrt{\frac{1}{N}\sum_{n=1}^N{\left[C_{ret}(n) - C_{mea}(n)\right]^2}}}{max\{C_{mea}(n)\} - min\{C_{mea}(n)\}}\times100 ~[\%]
 \end{equation}
 
-\noindent where $C_{ret}$ is the retrieved CPA concentration (i.e. $C_a$, $TSS$ or \DIFdelbegin \DIFdel{$a_{CDOM}(440nm)$}\DIFdelend \DIFaddbegin \DIFadd{$a_{CDOM}(440~nm)$}\DIFaddend ), $C_{mea}$ is the measured CPA concentration, and $n=1,...,N$ is the $n$th site from a total of $N$ sites for \DIFdelbegin \DIFdel{both }\DIFdelend \DIFaddbegin \DIFadd{all }\DIFaddend days. The RMSE percentage of range values are approximately $10\%$ for $C_a$ and $TSS$, and about $5\%$ for $a_{CDOM}(440nm)$. These errors are consistent with the expected errors reported by \DIFdelbegin %DIFDELCMD < \cite*{Gerace:2013}%%%
+\noindent where $C_{ret}$ is the retrieved CPA concentration (i.e. $C_a$, $TSS$ or \DIFdelbegin \DIFdel{$a_{CDOM}(440nm)$}\DIFdelend \DIFaddbegin \DIFadd{$a_{CDOM}(440~nm)$}\DIFaddend ), $C_{mea}$ is the measured CPA concentration, and $n=1,...,N$ is the $n$th site from a total of $N$ sites for \DIFdelbegin \DIFdel{both }\DIFdelend \DIFaddbegin \DIFadd{all }\DIFaddend days. The \DIFdelbegin \DIFdel{RMSE percentage of range }\DIFdelend \DIFaddbegin \DIFadd{NRMSE }\DIFaddend values are approximately \DIFdelbegin \DIFdel{$10\%$ }\DIFdelend \DIFaddbegin \DIFadd{$14\%$ }\DIFaddend for $C_a$\DIFdelbegin \DIFdel{and }\DIFdelend \DIFaddbegin \DIFadd{, $11\%$ for }\DIFaddend $TSS$, and about \DIFdelbegin \DIFdel{$5\%$ }\DIFdelend \DIFaddbegin \DIFadd{$7\%$ }\DIFaddend for $a_{CDOM}(440nm)$. These errors are consistent with the expected errors reported by \DIFdelbegin %DIFDELCMD < \cite*{Gerace:2013}%%%
 \DIFdelend \DIFaddbegin \DIFadd{\mbox{%DIFAUXCMD
 \citet{Gerace:2013}}%DIFAUXCMD
 }\DIFaddend . 
@@ -1114,7 +1163,7 @@ The numerical results are summarized in \autoref{fig:RMSE} where the root mean s
   \DIFaddendFL % CHL
       \DIFdelbeginFL %DIFDELCMD < \includegraphics[trim=40 0 80 0,clip,height=5.1cm]{./Images/CHLretvsmea150423}  
 %DIFDELCMD <   %%%
-\DIFdelendFL \DIFaddbeginFL \begin{overpic}[trim=0 0 0 0,clip,width=5.1cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/CHLretvsmea151211.png} \put (85,55) {\DIFaddFL{(a)}}
+\DIFdelendFL \DIFaddbeginFL \begin{overpic}[trim=0 0 0 0,clip,width=5.1cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/CHLretvsmea151211.png} \put \DIFaddFL{(85,55) }{\DIFaddFL{(a)}}
       \end{overpic}   
   \DIFaddendFL \end{minipage}
   \DIFaddbeginFL \hfill
@@ -1123,7 +1172,7 @@ The numerical results are summarized in \autoref{fig:RMSE} where the root mean s
   \DIFdelbeginFL %DIFDELCMD < \includegraphics[trim=40 0 80 0,clip,height=5.1cm]{./Images/TSSretvsmea150423}
 %DIFDELCMD <   %%%
 \DIFdelendFL \DIFaddbeginFL \centering
-      \begin{overpic}[trim=0 0 0 0,clip,width=5.1cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/TSSretvsmea151211.png} \put (85,55) {\DIFaddFL{(b)}}
+      \begin{overpic}[trim=0 0 0 0,clip,width=5.1cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/TSSretvsmea151211.png} \put \DIFaddFL{(85,55) }{\DIFaddFL{(b)}}
       \end{overpic}   
   \DIFaddendFL \end{minipage}
   \DIFaddbeginFL \hfill
@@ -1132,7 +1181,7 @@ The numerical results are summarized in \autoref{fig:RMSE} where the root mean s
   \DIFdelbeginFL %DIFDELCMD < \includegraphics[trim=40 0 80 0,clip,height=5.1cm]{./Images/CDOMretvsmea150423}  
 %DIFDELCMD <   %%%
 \DIFdelendFL \DIFaddbeginFL \centering
-      \begin{overpic}[trim=0 0 0 0,clip,width=5.1cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/CDOMretvsmea151211.png} \put (85,55) {\DIFaddFL{(c)}}
+      \begin{overpic}[trim=0 0 0 0,clip,width=5.1cm]{/Users/javier/Desktop/Javier/PHD_RIT/ConferencesAndApplications/2015_Landsat_Special_Issue/Images/CDOMretvsmea151211.png} \put \DIFaddFL{(85,55) }{\DIFaddFL{(c)}}
       \end{overpic}   
   \DIFaddendFL \end{minipage}
 
@@ -1224,6 +1273,15 @@ The authors would like to extend a special thanks to the United States Geologica
 % \bibliographystyle{elsarticle-num}
 % \bibliographystyle{apalike}
 \bibliography{javier_bib}
+\DIFaddbegin 
+
+
+\listoffigures
+%DIF >  \addcontentsline{toc}{chapter}{List of Figures}
+
+\listoftables
+%DIF >  \addcontentsline{toc}{chapter}{List of Tables}
+\DIFaddend 
 
 
 \end{document}

@@ -45,9 +45,9 @@
 \end{filecontents}
 \fi\endgroup
 
-\usepackage[nostamp]{draftwatermark}
-\SetWatermarkLightness{0.8}
-\SetWatermarkScale{4}
+% \usepackage[nostamp]{draftwatermark}
+% \SetWatermarkLightness{0.8}
+% \SetWatermarkScale{4}
 
 \usepackage[percent]{overpic}
 \usepackage{morefloats} % for the error "Too many unprocessed floats"
@@ -55,11 +55,11 @@
 \usepackage{multirow}
 %%% END MY PACKAGES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\journal{Remote Sensing of Enviro~nment}
+\journal{Remote Sensing of Environment}
 
 \begin{document}
 
-\linenumbers
+% \linenumbers
 
 \begin{frontmatter}
 
@@ -99,7 +99,7 @@ A model-based empirical line method (MoB-ELM) algorithm was developed to atmosph
 %
 This MoB-ELM atmospheric correction algorithm uses pseudo-invariant features (PIFs) from the image, ground-truth data and the Hydrolight model.
 %Results
-The retrieval algorithm was applied over two Landsat 8 scenes and shows a root mean squared error (RMSE) as a percentage of range of about $10\%$ for Chlorophyll-{\it a} and total suspended solid (TSS), and about $5\%$ for colored dissolved organic matter (CDOM) when compared with ground-truth data. The CPA concentration maps exhibit expected trends of low concentrations in clear water and higher concentrations in turbid water.
+The retrieval algorithm was applied over three Landsat 8 scenes and shows a normalized root mean squared error (NRMSE) of about $14\%$ for Chlorophyll-{\it a}, $11\%$ for total suspended solids (TSS), and $7\%$ for colored dissolved organic matter (CDOM) when compared with ground-truth data. The CPA concentration maps exhibit expected trends of low concentrations in clear water and higher concentrations in turbid water.
 %Conclusions
 
 These results demonstrate that the developed algorithm allows the simultaneous mapping of concentration of all CPAs in Case 2 waters and over areas where the traditional algorithms fail or are not available due to spatial resolution.
@@ -110,7 +110,6 @@ Therefore, this study shows that the Landsat 8 satellite can be utilized over Ca
 
 \begin{keyword}
 Landsat 8\sep color producing agents\sep CPAs \sep Case 2 Waters \sep retrieval
-\MSC[2015] 00-01\sep  99-00
 \end{keyword}
 
 \end{frontmatter}
@@ -641,7 +640,7 @@ The numerical results are summarized in \autoref{fig:RMSE} where the root mean s
 	NRMSE =\frac{\sqrt{\frac{1}{N}\sum_{n=1}^N{\left[C_{ret}(n) - C_{mea}(n)\right]^2}}}{max\{C_{mea}(n)\} - min\{C_{mea}(n)\}}\times100 ~[\%]
 \end{equation}
 
-\noindent where $C_{ret}$ is the retrieved CPA concentration (i.e. $C_a$, $TSS$ or $a_{CDOM}(440~nm)$), $C_{mea}$ is the measured CPA concentration, and $n=1,...,N$ is the $n$th site from a total of $N$ sites for all days. The RMSE percentage of range values are approximately $10\%$ for $C_a$ and $TSS$, and about $5\%$ for $a_{CDOM}(440nm)$. These errors are consistent with the expected errors reported by \citet{Gerace:2013}. 
+\noindent where $C_{ret}$ is the retrieved CPA concentration (i.e. $C_a$, $TSS$ or $a_{CDOM}(440~nm)$), $C_{mea}$ is the measured CPA concentration, and $n=1,...,N$ is the $n$th site from a total of $N$ sites for all days. The NRMSE values are approximately $14\%$ for $C_a$, $11\%$ for $TSS$, and about $7\%$ for $a_{CDOM}(440nm)$. These errors are consistent with the expected errors reported by \citet{Gerace:2013}. 
 
 %^^^^^^^^^^^^^^^^^^^  FIGURE ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 \begin{figure}[htb!]
@@ -743,6 +742,13 @@ The authors would like to extend a special thanks to the United States Geologica
 % \bibliographystyle{elsarticle-num}
 % \bibliographystyle{apalike}
 \bibliography{javier_bib}
+
+
+\listoffigures
+% \addcontentsline{toc}{chapter}{List of Figures}
+
+\listoftables
+% \addcontentsline{toc}{chapter}{List of Tables}
 
 
 \end{document}
