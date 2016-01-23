@@ -17,33 +17,35 @@
 \usepackage{amsmath,epsfig}
 
 % Select what to do with todonotes: 
-\usepackage[disable]{todonotes} % notes not showed
-% \usepackage[draft]{todonotes}   % notes showed
-\setlength{\marginparwidth}{2cm}
+% \usepackage[disable]{todonotes} % notes not showed
+% % \usepackage[draft]{todonotes}   % notes showed
+% \setlength{\marginparwidth}{2cm}
 % \usepackage[textwidth=3.7cm]{todonotes}
 
-\usepackage{tikz} % for flow charts
-  \usetikzlibrary{shapes,arrows,positioning,shadows,calc}
+% \usepackage{tikz} % for flow charts
+%   \usetikzlibrary{shapes,arrows,positioning,shadows,calc}
+%   \usetikzlibrary{external}
+%   \tikzexternalize
 
-\begingroup\newif\ifmy
-\IfFileExists{linereg.data}{}{\mytrue}
-\ifmy
-\begin{filecontents}{linereg.data}
-#x
-0 4
-10 24
-\end{filecontents}
-\fi\endgroup
+% \begingroup\newif\ifmy
+% \IfFileExists{linereg.data}{}{\mytrue}
+% \ifmy
+% \begin{filecontents}{linereg.data}
+% #x
+% 0 4
+% 10 24
+% \end{filecontents}
+% \fi\endgroup
 
-\begingroup\newif\ifmy
-\IfFileExists{linereg2.data}{}{\mytrue}
-\ifmy
-\begin{filecontents}{linereg2.data}
-#x y
-2 8
-8 20
-\end{filecontents}
-\fi\endgroup
+% \begingroup\newif\ifmy
+% \IfFileExists{linereg2.data}{}{\mytrue}
+% \ifmy
+% \begin{filecontents}{linereg2.data}
+% #x y
+% 2 8
+% 8 20
+% \end{filecontents}
+% \fi\endgroup
 
 % \usepackage[nostamp]{draftwatermark}
 % \SetWatermarkLightness{0.8}
@@ -127,7 +129,7 @@ Most of the atmospheric correction algorithms for open oceans (Case 1 waters) ar
 % Landsat 8
 The Landsat program has been monitoring the earth for more than four decades, being the longest uninterrupted data set available. The Landsat satellites' main mission is to image the land areas of the earth, therefore, there are typically few images available for open oceans. This is one of the reasons why Landsat satellites have been underutilized by the ocean color community for the study of water bodies. In addition, the Landsat instruments have generally had broad bands and a low signal-to-noise ratio (SNR) when compared to ocean color satellites such as SeaWiFS and MODIS. However, Landsat 8 could fulfill a niche in the ocean color community for coastal and inland water body studies where a $1000~m$ spatial resolution is not suitable. This is where Landsat 8 has a valuable potential for water quality studies in more optically complex water bodies (Case 2 or high productive Case 1 waters). 
 
-Landsat 8 is the newest generation of Landsat satellites with two state-of-the-art instruments onboard, the Operational Land Imager (OLI) and the Thermal InfraRed Scanner (TIRS) \citep{Irons:2012}. With its 12-bit quantization and improved SNR, OLI is a big improvement to the Landsat mission. In addition, OLI includes a new coastal aerosol band (Band 1: $443~nm$) that increased the spectral resolution of the instrument. These improvements are the main drivers for the hypothesis that the Landsat 8 satellite will have a better performance in water quality studies than its predecessors. \citet{Roy:2014} stated this potential use of Landsat 8 for fresh and coastal water studies, mainly due to a reported SNR that exceeded expectations and the new coastal band.\todo{develop more} 
+Landsat 8 is the newest generation of Landsat satellites with two state-of-the-art instruments onboard, the Operational Land Imager (OLI) and the Thermal InfraRed Scanner (TIRS) \citep{Irons:2012}. With its 12-bit quantization and improved SNR, OLI is a big improvement to the Landsat mission. In addition, OLI includes a new coastal aerosol band (Band 1: $443~nm$) that increased the spectral resolution of the instrument. These improvements are the main drivers for the hypothesis that the Landsat 8 satellite will have a better performance in water quality studies than its predecessors. \citet{Roy:2014} stated this potential use of Landsat 8 for fresh and coastal water studies, mainly due to a reported SNR that exceeded expectations and the new coastal band.
 
 \citet{Gerace:2013} demonstrated that the spectral coverage and radiometric resolution of OLI should dramatically improve our ability to simultaneously retrieve the CPA's concentration from water bodies. \citet{Vanhellemont2014} and \citet{Vanhellemont:2015} created a tool to apply the standard algorithm for atmospheric correction over water developed by \citet{Gordon:1994} to Landsat 8 over turbid and extremely turbid waters. In \citet{Vanhellemont:2015}, after atmospheric correction, they used the end product for detection of high concentrations of black sediments, but neither concentration values nor comparison with field measurements were reported. \citet{Franz:2015} describes an implementation of the atmospheric corrections developed by \citet{Gordon:1994} applied to Landsat 8 in the SeaWiFS Data Analysis System (SeaDAS) software package (URL: \url{http://seadas.gsfc.nasa.gov/}). A comparison of the Landsat 8's retrieved $R_{rs}$ and chlorophyll-{\it a} concentration over Chesapeake Bay with results from MODIS, SeaWiFS and {\it in situ} historical chlorophyll-{\it a} measurements is presented showing a relatively good agreement. Though again, no direct comparison to simultaneously measured values were available.
 % Standard retrieval algorithms
@@ -175,40 +177,46 @@ An overview of the atmospheric correction method used in the work is described b
 
 \noindent where $L$ is the radiance reaching the sensor, $m$ is the slope of the line, $R_{rs}$ is the remote-sensing reflectance of the target, and $b=L_u$ is the y-intercept, with $L_u$ being the upwelled radiance (a.k.a. path radiance). $L$ and $R_{rs}$ in \autoref{eq:ELM} are the known radiance values from the image and the ground-truth data from the field, respectively. In order to solve for the unknown $m$ and $b$ values in \autoref{eq:ELM}, at least two pixels are needed. These two pixels are known as the {\it bright} and {\it dark} pixels because they are chosen from a bright and dark object in the scene in order to represent the whole range of values in the scene. The concept behind the traditional ELM is illustrated in \autoref{fig:ELMregression} showing a plot of $R_{rs}$ versus radiance $L$ values for the $ith$ band, $Band_{i}$. This linear equation is solved for each band independently. After $m$ and $b$ have been determined, the $R_{rs}$ of each water pixel in each band can be calculated from its $L$ value in the image using $R_{rs}=(L-b)/m$. Note that the ELM assumes that the atmosphere is uniform across the region of the image over which it is applied, and the images need to be checked for haze and atmospheric uniformity over the area of study. This is accomplished by checking visually if the SWIR 2 band and band 9 (cirrus band) look uniform over the area of study.
 
+% \begin{figure}[htb]
+%   \centering
+% % \resizebox{9cm}{!}{%
+% \begin{tikzpicture}[x=4ex,y=1ex]
+%   %axis
+%   \draw (0,0) -- coordinate (x axis mid) (10,0);
+%     \draw (0,0) -- coordinate (y axis mid) (0,30);
+ 
+%     %labels      
+%   \node[below=0ex] at (8,0) {\small $Band_i~~remote-sensing~reflectance~(R_{rs})$};
+%   \node[rotate=90] at (-.5,23) {\small $Band_i~~Radiance~(L)$};
+
+%   \node[below=.2ex] at (-2.1,4.5) {\scriptsize $b=$y-intercept};
+%   \node[below=1.4ex] at (-2.1,4.0) {\scriptsize (path radiance)};
+%   \draw[rotate=90,|<->|] (0,1) -- coordinate (x axis mid) (1,1);
+
+%   \node[below=0ex] at (2,15) {\small Dark Object};
+%   \draw[arrows=-triangle 45] (2,12.5) -- (2,9);
+
+%   \node[below=0ex] at (4,20) {\small $m=$ Slope};
+%   \draw[arrows=-triangle 45] (4,17.5) -- (5,14.5);
+
+%   \node[below=0ex] at (7,27) {\small Bright Object};
+%   \draw[arrows=-triangle 45] (7,24.5) -- (7.9,20.5);
+
+%   \node[below=0ex] at (8,9) {\small $R_{rs}=(L-b)/m$};
+
+%   %plots
+%   \draw plot 
+%     file {linereg.data};
+%   \draw plot[mark=*] 
+%     file {linereg2.data};
+
+% \end{tikzpicture}
+% \caption{Traditional ELM. Two pixels from the image, the bright and dark pixel, are used to solve a linear equation with a slope $m$ and y-intercept $b$ in the $R_{rs}$, $L$ space. Once this relationship is established, each $L$ value in the image can be converted to $R_{rs}$ through $R_{rs}=(L-b)/m$. \label{fig:ELMregression}}
+% \end{figure}
+
 \begin{figure}[htb]
 	\centering
-% \resizebox{9cm}{!}{%
-\begin{tikzpicture}[x=4ex,y=1ex]
- 	%axis
-	\draw (0,0) -- coordinate (x axis mid) (10,0);
-    \draw (0,0) -- coordinate (y axis mid) (0,30);
- 
-    %labels      
-	\node[below=0ex] at (8,0) {\small $Band_i~~remote-sensing~reflectance~(R_{rs})$};
-	\node[rotate=90] at (-.5,23) {\small $Band_i~~Radiance~(L)$};
-
-	\node[below=.2ex] at (-2.1,4.5) {\scriptsize $b=$y-intercept};
-	\node[below=1.4ex] at (-2.1,4.0) {\scriptsize (path radiance)};
-	\draw[rotate=90,|<->|] (0,1) -- coordinate (x axis mid) (1,1);
-
-	\node[below=0ex] at (2,15) {\small Dark Object};
-	\draw[arrows=-triangle 45] (2,12.5) -- (2,9);
-
-	\node[below=0ex] at (4,20) {\small $m=$ Slope};
-	\draw[arrows=-triangle 45] (4,17.5) -- (5,14.5);
-
-	\node[below=0ex] at (7,27) {\small Bright Object};
-	\draw[arrows=-triangle 45] (7,24.5) -- (7.9,20.5);
-
-	\node[below=0ex] at (8,9) {\small $R_{rs}=(L-b)/m$};
-
-	%plots
-	\draw plot 
-		file {linereg.data};
-	\draw plot[mark=*] 
-		file {linereg2.data};
-
-\end{tikzpicture}
+\includegraphics{./Images/ELMtradional.pdf}
 \caption{Traditional ELM. Two pixels from the image, the bright and dark pixel, are used to solve a linear equation with a slope $m$ and y-intercept $b$ in the $R_{rs}$, $L$ space. Once this relationship is established, each $L$ value in the image can be converted to $R_{rs}$ through $R_{rs}=(L-b)/m$. \label{fig:ELMregression}}
 \end{figure}
 
@@ -228,51 +236,61 @@ The steps for the PIF extraction are the following:
 
 \end{enumerate}
 
+% 
+% \begin{figure}[htb]
+%   \centering
+%   \resizebox{10cm}{!}{%
+%   \begin{tikzpicture}[node distance=0.75cm, auto]
+%           \tikzset{
+%                   basenode/.style={rectangle,rounded corners,draw=black,very thick, inner sep=1em, minimum size=3em, text centered,text width=2cm},
+%                   productnode/.style={ellipse,rounded corners,draw=black, very thick, text centered,text width=1.5cm},
+%                   myarrow/.style={->,>=stealth',thick, double = black},
+%                   mylabel/.style={text width=7em, text centered}
+%           }
+%           % SWIR branch
+%           \node[basenode] (SWIR) {SWIR 2\\ Band};
+%           \node[basenode, below=of SWIR] (TS1) {Mask by Threshold (upward)};
+%           \node[align=left, right=0.0 of TS1] (C1) {Urban\\Veget.\\Water};
+%           \node[align=left, right=-0.15 of C1] (C2) {ON\\ON\\OFF};
+
+%           % Ratio branch
+%           \node[basenode, right=2.5cm of SWIR] (Ratio) {Ratio\\ NIR Band/ Red Band};
+%           \node[basenode, below=of Ratio] (TS2) {Mask by Threshold (downward)};
+%           \node[align=left, right=0.0 of TS2] (C3) {Urban\\Veget.\\Water};
+%           \node[align=left, right=-0.15 of C3] (C4) {ON\\OFF\\ON};
+
+%           % AND
+%           \path (TS1.south)--(TS2.south) node[pos=.5,below=2cm] (AND) {$.AND.$};
+
+
+%           % PIF Mask
+%           \node[basenode, below=of AND] (PIFMask){PIF Mask};
+%           \node[align=left, left=0.85 of PIFMask] (C5) {Urban\\Veget.\\Water};
+%           \node[align=left, right=-0.15 of C5] (C6) {ON\\OFF\\OFF};
+
+%           \node[basenode, below=of TS2,right=2.0cm of AND] (Image) {Image};
+%           \path (Image.south)--(PIFMask.east) node[below=of Image,right=2cm of PIFMask] (AND2) {$.AND.$};
+%           \node[basenode, right=2cm of AND2] (PIFIm){PIF Image};
+
+%           \draw[myarrow] (SWIR)--(TS1);
+%           \draw[myarrow] (Ratio)--(TS2);
+%           \draw[myarrow] (TS1)--(AND);
+%           \draw[myarrow] (TS2)--(AND);
+%           \draw[myarrow] (AND)--(PIFMask);
+%           \draw[myarrow] (Image)--(AND2);
+%           \draw[myarrow] (PIFMask)--(AND2);
+%           \draw[myarrow] (AND2)--(PIFIm);
+%   \end{tikzpicture}
+%   }% end resizebox
+% \caption{Flow chart for the PIF extraction method. Two mask are created. The first one rejects water pixel. The second mask rejects vegetation. The end mask, named PIF mask, is a combination of both previous masks that only accepts the urban features. \label{fig:PIFflowchart}}
+% \end{figure}
+
 \begin{figure}[htb]
   \centering
-  \resizebox{10cm}{!}{%
-  \begin{tikzpicture}[node distance=0.75cm, auto]
-          \tikzset{
-                  basenode/.style={rectangle,rounded corners,draw=black,very thick, inner sep=1em, minimum size=3em, text centered,text width=2cm},
-                  productnode/.style={ellipse,rounded corners,draw=black, very thick, text centered,text width=1.5cm},
-                  myarrow/.style={->,>=stealth',thick, double = black},
-                  mylabel/.style={text width=7em, text centered}
-          }
-          % SWIR branch
-          \node[basenode] (SWIR) {SWIR 2\\ Band};
-          \node[basenode, below=of SWIR] (TS1) {Mask by Threshold (upward)};
-          \node[align=left, right=0.0 of TS1] (C1) {Urban\\Veget.\\Water};
-          \node[align=left, right=-0.15 of C1] (C2) {ON\\ON\\OFF};
-
-          % Ratio branch
-          \node[basenode, right=2.5cm of SWIR] (Ratio) {Ratio\\ NIR Band/ Red Band};
-          \node[basenode, below=of Ratio] (TS2) {Mask by Threshold (downward)};
-          \node[align=left, right=0.0 of TS2] (C3) {Urban\\Veget.\\Water};
-          \node[align=left, right=-0.15 of C3] (C4) {ON\\OFF\\ON};
-
-          % AND
-          \path (TS1.south)--(TS2.south) node[pos=.5,below=2cm] (AND) {$.AND.$};
 
 
-          % PIF Mask
-          \node[basenode, below=of AND] (PIFMask){PIF Mask};
-          \node[align=left, left=0.85 of PIFMask] (C5) {Urban\\Veget.\\Water};
-          \node[align=left, right=-0.15 of C5] (C6) {ON\\OFF\\OFF};
+\includegraphics[width=10cm]{Images/PIFflowchart.pdf}
 
-          \node[basenode, below=of TS2,right=2.0cm of AND] (Image) {Image};
-          \path (Image.south)--(PIFMask.east) node[below=of Image,right=2cm of PIFMask] (AND2) {$.AND.$};
-          \node[basenode, right=2cm of AND2] (PIFIm){PIF Image};
-
-          \draw[myarrow] (SWIR)--(TS1);
-          \draw[myarrow] (Ratio)--(TS2);
-          \draw[myarrow] (TS1)--(AND);
-          \draw[myarrow] (TS2)--(AND);
-          \draw[myarrow] (AND)--(PIFMask);
-          \draw[myarrow] (Image)--(AND2);
-          \draw[myarrow] (PIFMask)--(AND2);
-          \draw[myarrow] (AND2)--(PIFIm);
-  \end{tikzpicture}
-  }% end resizebox
 \caption{Flow chart for the PIF extraction method. Two mask are created. The first one rejects water pixel. The second mask rejects vegetation. The end mask, named PIF mask, is a combination of both previous masks that only accepts the urban features. \label{fig:PIFflowchart}}
 \end{figure}
 
@@ -432,7 +450,7 @@ As a review, \autoref{fig:MOBELMpxls} shows the different spectra used to perfor
 % ---------------------------------------------------------------
 \subsection{LUT Generation}
 \label{subsec:LUT}
-A LUT of $R_{rs}$ is generated in Ecolight for different combinations of CPA concentrations and scattering phase functions. \autoref{tab:LUTconc2} shows the different parameters used to create the LUT for the 2013 scene in Ecolight. The range of CPA concentrations was selected based on {\it in situ} and historical data from the water bodies in the scene. Ecolight was used in the same fashion as in the black pixel determination for the MoB-ELM (Section \ref{subsubsec:blackpixel}). In order to represent all the different kinds of waters in the scene in the LUT, two different sets of IOPs were used, one set for modeling the open lake conditions (low concentration of CPAs) based on the lab measurements for the ONTNS site, and other set for modeling the ponds condition (high concentration of CPAs) based on the lab measurements for the LONGS site\todo{show IOPs figures}. These IOPs are labeled in \autoref{tab:LUTconc2} as ``ONTNS'' for the open lake conditions and as ``LONGS'' for the ponds' conditions. \autoref{tab:LUTconc2} also shows the CPAs concentration used to create the LUT in Ecolight. Furthermore, different discretized Fournier-Forand phase functions with four different $b_b/b$ values (i.e. $0.5$, $1.0$, $1.5$ and $2.0\%$) were used for the Chlorophyll-{\it a} and SM scattering phase functions.
+A LUT of $R_{rs}$ is generated in Ecolight for different combinations of CPA concentrations and scattering phase functions. \autoref{tab:LUTconc2} shows the different parameters used to create the LUT for the 2013 scene in Ecolight. The range of CPA concentrations was selected based on {\it in situ} and historical data from the water bodies in the scene. Ecolight was used in the same fashion as in the black pixel determination for the MoB-ELM (Section \ref{subsubsec:blackpixel}). In order to represent all the different kinds of waters in the scene in the LUT, two different sets of IOPs were used, one set for modeling the open lake conditions (low concentration of CPAs) based on the lab measurements for the ONTNS site, and other set for modeling the ponds condition (high concentration of CPAs) based on the lab measurements for the LONGS site. These IOPs are labeled in \autoref{tab:LUTconc2} as ``ONTNS'' for the open lake conditions and as ``LONGS'' for the ponds' conditions. \autoref{tab:LUTconc2} also shows the CPAs concentration used to create the LUT in Ecolight. Furthermore, different discretized Fournier-Forand phase functions with four different $b_b/b$ values (i.e. $0.5$, $1.0$, $1.5$ and $2.0\%$) were used for the Chlorophyll-{\it a} and SM scattering phase functions.
 
 \begin{table}[htb]
 \caption{Input parameters for the LUT generation in Ecolight for the Landsat 8 image acquired on 09-19-2013. \label{tab:LUTconc2}} 
